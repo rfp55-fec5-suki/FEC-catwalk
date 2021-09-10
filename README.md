@@ -20,3 +20,16 @@ Create a folder for each component in the src directory.
 Do not write on the master branch. Create your own branch.
 All Pull Requests must go through a code review.
 
+## Git Workflow
+
+Master: Production code
+|
+```Staging: Integration test environment
+      |
+      ```Overview
+      |
+      ```Ratings&Reviews
+      |
+      ```Questions&Answers
+      |
+      ```Related Items
