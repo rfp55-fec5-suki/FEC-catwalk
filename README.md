@@ -21,6 +21,7 @@ Do not write on the master branch. Create your own branch.
 All Pull Requests must go through a code review.
 
 ## Git Workflow
+$tree
 
 Master: Production code
 |
