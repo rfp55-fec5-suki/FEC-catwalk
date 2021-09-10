@@ -1,5 +1,5 @@
 import React from 'react';
-import { swallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import Button from './Button';
 
 describe('Test Button component', () => {

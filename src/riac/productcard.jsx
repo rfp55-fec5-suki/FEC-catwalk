@@ -19,3 +19,6 @@ class ProductCard extends React.Component {
     );
   }
 }
+
+// module.exports = ProductCard
+// for testing
