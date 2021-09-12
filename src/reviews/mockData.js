@@ -7,6 +7,7 @@ count     |integer| Specifies how many results per page to return. Default 5.
 sort      |text   | Changes the sort order of reviews to be based on "newest", "helpful", or "relevant"
 product_id|integer| Specifies the product for which to retrieve reviews.
 */
+
 var getReviews = {
   product: 2,
   page: 0,
@@ -18,18 +19,18 @@ var getReviews = {
       summary: "I'm enjoying wearing these shades",
       recommend: false,
       response: null,
-      body: Comfortable and practical.,
+      body: 'Comfortable and practical.',
       date: '2019-04-14T00:00:00.000Z',
       reviewer_name: 'shortandsweeet',
       helpfulness: 5,
       photos: [{
-          id: 1,
-          url: 'urlplaceholder/review_5_photo_number_1.jpg'
-        },
-        {
-          id: 2,
-          url: 'urlplaceholder/review_5_photo_number_2.jpg'
-        },
+        id: 1,
+        url: 'urlplaceholder/review_5_photo_number_1.jpg'
+      },
+      {
+        id: 2,
+        url: 'urlplaceholder/review_5_photo_number_2.jpg'
+      },
         // ...
       ]
     },
@@ -81,4 +82,9 @@ var getReviewsMeta = {
       value: 4.0000
     },
     // ...
+  }
+}
+module.exports = {
+  getReviews,
+  getReviewsMeta
 }
