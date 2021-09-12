@@ -6,7 +6,9 @@ class RatingsReviews extends React.Component {
   }
   render() {
     return(
-      <h1>Hello R and R</h1>
+      <div className="rr-main">
+        <h1>Hello R and R</h1>
+      </div>
     )
   }
 }
