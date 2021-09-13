@@ -2,8 +2,8 @@
   display: grid;
   grid-template-columns: 15%  15% 40% 15% 15%;
   grid-template-rows: 10% auto auto auto auto auto 10%;
-  background-color:  #555;
-  color: white;
+  border: 1px solid;
+
 }
 .star-rating {
   grid-column-start: 1;
@@ -41,7 +41,8 @@
   grid-column-end: 5;
   grid-row-start: 5;
   grid-row-end: 6;
-  background-color: rgb(91, 107, 63);
+  background-color: #555;
+  color: white;
 }
 .helpful {
   grid-column-start: 1;

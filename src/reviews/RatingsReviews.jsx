@@ -12,7 +12,7 @@ class RatingsReviews extends React.Component {
   render() {
     return(
       <div className="rr-main">
-        <h1>Hello R and R</h1>
+        RATINGS AND REVIEWS
         <ReviewTile review={review}/>
       </div>
     )
