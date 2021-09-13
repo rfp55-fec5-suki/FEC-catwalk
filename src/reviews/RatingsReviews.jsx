@@ -1,9 +1,8 @@
 import React from 'react';
-import ReviewTile from './reviewTile/ReviewTile.jsx';
+import ReviewList from './ReviewList.jsx'
 import mockData from './mockData.js';
 import './RatingsReviews.css';
-var review = mockData.getReviews.results[1];
-
+var reviews = mockData.getReviews.results;
 
 class RatingsReviews extends React.Component {
   constructor(props) {
@@ -13,7 +12,7 @@ class RatingsReviews extends React.Component {
     return(
       <div className="rr-main">
         RATINGS AND REVIEWS
-        <ReviewTile review={review}/>
+        <ReviewList reviews={reviews}/>
       </div>
     )
   }
