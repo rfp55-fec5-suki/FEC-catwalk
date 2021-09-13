@@ -25,11 +25,11 @@ const StarRating = (props) => {
   }
   return (
     <div>
-      <img src={stars[0]} />
-      <img src={stars[1]} />
-      <img src={stars[2]} />
-      <img src={stars[3]} />
-      <img src={stars[4]} />
+      <img src={stars[0]} className='star'/>
+      <img src={stars[1]} className='star'/>
+      <img src={stars[2]} className='star'/>
+      <img src={stars[3]} className='star'/>
+      <img src={stars[4]} className='star'/>
     </div>
   )
 }

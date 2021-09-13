@@ -1,7 +1,8 @@
 import React from 'react';
 import ReviewTile from './reviewTile/ReviewTile.jsx';
 import mockData from './mockData.js';
-var review = mockData.getReviews.results[0];
+import './RatingsReviews.css';
+var review = mockData.getReviews.results[1];
 
 
 class RatingsReviews extends React.Component {
