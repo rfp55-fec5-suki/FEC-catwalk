@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "77f14b9d79c6b666e8e4";
+/******/ 	var hotCurrentHash = "612fb326da22cbfa8733";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -1607,7 +1607,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var reac
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("module.exports = {\n  TOKEN: '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'\n};\n\n//# sourceURL=webpack:///./src/riac/config.js?");
+eval("throw new Error(\"Module build failed (from ./node_modules/babel-loader/lib/index.js):\\nError: ENOENT: no such file or directory, open '/Users/andy/Documents/hack-reactor/fec/FEC-catwalk/src/riac/config.js'\");\n\n//# sourceURL=webpack:///./src/riac/config.js?");
 
 /***/ }),
 
