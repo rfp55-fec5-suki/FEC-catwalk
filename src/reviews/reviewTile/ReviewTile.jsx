@@ -12,7 +12,7 @@ class ReviewTile extends React.Component {
     super(props);
     this.monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"];
-    var date = props.review.date;
+    var date = new Date(props.review.date);
     const [month, day, year] = [date.getMonth(), date.getDate(), date.getFullYear()];
     this.month = this.monthNames[month];
     this.day = day;
@@ -30,8 +30,7 @@ class ReviewTile extends React.Component {
           <img src={emptyStar} ></img>
         </div><br/>
         <div>
-          Date of review<br/><br/>
-          {this.month} {this.day}, {this.year}
+          {this.props.review.reviewer_name} {this.month} {this.day}, {this.year}
         </div><br/>
         <div>
           Review Summary<br/><br/>
@@ -43,14 +42,15 @@ class ReviewTile extends React.Component {
         </div><br/>
         <div>
           Recommend<br/><br/>
-          {this.props.review.recommend ? <div>I recommend this product
-            <img src={checkmark}/></div> : null}
-        </div><br/>
-        <div>
-          Reviewer name<br/><br/>
+          {this.props.review.recommend ? <div>
+          <img src={checkmark}/>I recommend this product</div> : null}
         </div><br/>
         <div>
           Response to review<br/><br/>
+          {this.props.review.response ? <div>
+            Response: <br/>
+            {this.props.review.response}
+          </div> : null }
         </div><br/>
         <div>
           Rating helpfulness<br/><br/>
