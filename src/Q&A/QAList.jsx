@@ -1,6 +1,6 @@
 import React from 'react';
 import token from '../../config.js';
-import axios from 'axios'
+import axios from 'axios';
 
 class QAList extends React.Component {
   constructor(props) {
@@ -9,6 +9,7 @@ class QAList extends React.Component {
       questions: [],
       answers: []
     }
+    this.getProducts = this.getProducts.bind(this);
   }
 
   componentDidMount() {
