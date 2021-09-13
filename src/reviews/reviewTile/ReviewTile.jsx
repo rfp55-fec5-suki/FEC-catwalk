@@ -11,7 +11,7 @@ class ReviewTile extends React.Component {
   constructor(props) {
     super(props);
     this.monthNames = ["January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"];
+      "July", "August", "September", "October", "November", "December"];
     var date = new Date(props.review.date);
     const [month, day, year] = [date.getMonth(), date.getDate(), date.getFullYear()];
     this.month = this.monthNames[month];
@@ -22,39 +22,24 @@ class ReviewTile extends React.Component {
     return (
       <div>
         <div>
-          Star Rating<br/><br/>
           <img src={fullStar} ></img>
           <img src={threeQStar} ></img>
           <img src={halfStar} ></img>
           <img src={quarterStar} ></img>
           <img src={emptyStar} ></img>
-        </div><br/>
-        <div>
-          {this.props.review.reviewer_name} {this.month} {this.day}, {this.year}
-        </div><br/>
-        <div>
-          Review Summary<br/><br/>
-          {this.props.review.summary}
-        </div><br/>
-        <div>
-          Review Body<br/><br/>
+        </div><br />
+
+        {this.props.review.reviewer_name} {this.month} {this.day}, {this.year}
+        <br />
+          <h2>{this.props.review.summary}</h2>
           {this.props.review.body}
-        </div><br/>
-        <div>
-          Recommend<br/><br/>
           {this.props.review.recommend ? <div>
-          <img src={checkmark}/>I recommend this product</div> : null}
-        </div><br/>
-        <div>
-          Response to review<br/><br/>
-          {this.props.review.response ? <div>
-            Response: <br/>
-            {this.props.review.response}
-          </div> : null }
-        </div><br/>
-        <div>
-          Rating helpfulness<br/><br/>
-        </div>
+            <img src={checkmark} />I recommend this product</div> : null}
+        {this.props.review.response ? <div>
+          Response: <br />
+          {this.props.review.response}
+        </div> : null}
+        Helpful? Yes({this.props.review.helpfulness})
       </div>
     )
   }
