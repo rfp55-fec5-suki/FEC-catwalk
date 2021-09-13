@@ -3,13 +3,19 @@ import React, { Component } from 'react';
 import './App.css';
 import Reviews from './reviews/RatingsReviews.jsx';
 
+import ProductCard from './riac/productcard.jsx';
+
 class App extends Component {
   render() {
     return (
       <div className='App'>
         <h1> Hello, React! </h1>
+
+
+        <ProductCard />
         <Reviews />
       </div>
+
     );
   }
 }
