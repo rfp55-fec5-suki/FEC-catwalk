@@ -17,8 +17,8 @@ class ReviewTile extends React.Component {
   render() {
     return (
       <div className='review-tile'>
-        <div>
-        <StarRating rating={this.props.review.rating} className='star-rating'/>
+        <div className='star-rating'>
+        <StarRating rating={this.props.review.rating} />
         </div><br />
         <div className='review-date-username'>
         {this.props.review.reviewer_name} {this.month} {this.day}, {this.year}
@@ -31,7 +31,7 @@ class ReviewTile extends React.Component {
           {this.props.review.body}
         </div>
           {this.props.review.recommend ? <div className='recommend'>
-            <img src={checkmark} className='check'/>I recommend this product</div> : null}
+            <img src={checkmark} className='check'/> I recommend this product</div> : null}
         {this.props.review.response ? <div className='response'>
           Response: <br />
           {this.props.review.response}

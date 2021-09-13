@@ -1,30 +1,32 @@
 .review-tile {
   display: grid;
-  grid-template-columns: 25% 50% 25%;
+  grid-template-columns: 15%  15% 40% 15% 15%;
   grid-template-rows: 10% auto auto auto auto auto 10%;
-  background-color: #a3b8a0;
+  background-color:  #555;
+  color: white;
 }
 .star-rating {
   grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 1;
-  grid-row-end: 2;
-}
-.review-date-username {
-  grid-column-start: 3;
   grid-column-end: 3;
   grid-row-start: 1;
   grid-row-end: 2;
 }
+.review-date-username {
+  grid-column-start: 4;
+  grid-column-end: 6;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  justify-self: end;
+}
 .review-summary {
   grid-column-start: 1;
-  grid-column-end: 4;
+  grid-column-end: 6;
   grid-row-start: 2;
   grid-row-end: 3;
 }
 .review-body {
   grid-column-start: 1;
-  grid-column-end: 4;
+  grid-column-end: 6;
   grid-row-start: 3;
   grid-row-end: 4;
 }
@@ -35,11 +37,11 @@
   grid-row-end: 5;
 }
 .response {
-  grid-column-start: 1;
-  grid-column-end: 4;
+  grid-column-start: 2;
+  grid-column-end: 5;
   grid-row-start: 5;
   grid-row-end: 6;
-  background-color: khaki;
+  background-color: rgb(91, 107, 63);
 }
 .helpful {
   grid-column-start: 1;
@@ -48,6 +50,6 @@
   grid-row-end: 7;
 }
 .check {
-  height: 20px;
+  height: 15px;
   width: auto;
 }
