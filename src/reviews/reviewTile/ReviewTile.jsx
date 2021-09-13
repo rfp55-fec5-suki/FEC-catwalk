@@ -1,10 +1,6 @@
 import React from 'react';
-import emptyStar from './Stars/scoreComponents/emptyStar.svg';
-import quarterStar from './Stars/scoreComponents/25Star.svg';
-import halfStar from './Stars/scoreComponents/50Star.svg';
-import threeQStar from './Stars/scoreComponents/75Star.svg';
-import fullStar from './Stars/scoreComponents/fullStar.svg';
-import checkmark from './Stars/scoreComponents/Checkmark.svg';
+import StarRating from './../../sharedComponents/StarRating.jsx';
+import checkmark from './Checkmark.svg';
 
 
 class ReviewTile extends React.Component {
@@ -22,11 +18,7 @@ class ReviewTile extends React.Component {
     return (
       <div>
         <div>
-          <img src={fullStar} ></img>
-          <img src={threeQStar} ></img>
-          <img src={halfStar} ></img>
-          <img src={quarterStar} ></img>
-          <img src={emptyStar} ></img>
+        <StarRating rating={3.5}/>
         </div><br />
 
         {this.props.review.reviewer_name} {this.month} {this.day}, {this.year}
