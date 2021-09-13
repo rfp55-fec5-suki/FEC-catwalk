@@ -9,9 +9,16 @@ import {
 
 const StarRating = (props) => {
   var stars = [];
-  var fullStars = props.rating;
-  for(var i = 1; i <= fullStars; i++) {
+  var fraction = (props.rating % 1).toFixed(2);
+  for(var i = 1; i <= props.rating; i++) {
     stars.push(full)
+  }
+  if(fraction >= .75) {
+    stars.push(threeQuarter);
+  } else if (fraction >= .5) {
+    stars.push(half);
+  } else if (fraction >= .25) {
+    stars.push(quarter);
   }
   while(stars.length < 5) {
     stars.push(empty);
@@ -23,7 +30,6 @@ const StarRating = (props) => {
       <img src={stars[2]} />
       <img src={stars[3]} />
       <img src={stars[4]} />
-      StarRating
     </div>
   )
 }
