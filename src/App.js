@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { hot } from 'react-hot-loader';
+// import { hot } from 'react-hot-loader';
 import './App.css';
+import Reviews from './reviews/RatingsReviews.jsx';
 
 import ProductCard from './riac/productcard.jsx';
 
@@ -10,8 +11,9 @@ class App extends Component {
       <div className='App'>
         <h1> Hello, React! </h1>
 
-        <ProductCard />
 
+        <ProductCard />
+        <Reviews />
       </div>
 
     );
@@ -20,4 +22,4 @@ class App extends Component {
 
 
 
-export default hot(module)(App);
+export default App;
