@@ -1,29 +1,72 @@
 .overview {
-  margin: 0;
-  padding: 0;
   width: 100%;
   height: 100%;
-  display: in-line flex;
+  display: flex;
+  flex-direction: column;
 }
 
-.imageContainer {
-  float: left;
-  width: 60%;
-  height:70%;
-  background-color: gray;
+.overviewTop {
+  width: 100%;
+  display: flex;
 }
 
 .rightCol {
   float: right;
   width: 40%;
-  height: 70%;
+}
+
+.leftCol {
+  float: right;
+  width: 60%;
+  display: flex;
+}
+
+.imageContainer .selectionImgCol {
+  float: left;
+  width: 20%;
+}
+
+.imageContainer .selectionImgCol .img {
+  min-width: 50px;
+}
+
+.imageContainer .mainImg {
+  float: right;
+  width: 80%;
 }
 
 .detailedInformation {
-  clear: both;
-  display: flex;
+  padding-top: 50px;
   width: 100%;
-  height: 30%;
+  display: flex;
+}
+
+.infoFreeText {
+  float:left;
+  width: 59%;
+  margin-right:2%
+}
+
+.infoHighlights {
+  float: right;
+  width: 40%;
+  border-left: solid 3px;
+  display: table;
+  vertical-align: middle;
+  margin-top: 3%;
+  padding-left: 2%;
+}
+
+.infoHighlights span {
+  display: table-row;
+  vertical-align: middle;
+}
+
+.styleSelector img {
+  width:10%;
+  height:10%;
+  min-width: 100px;
+  border-radius: 50%;
 }
 
 .arrowDown {

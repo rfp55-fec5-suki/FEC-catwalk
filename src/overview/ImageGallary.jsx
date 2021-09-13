@@ -10,6 +10,9 @@ var ImageGallary = () => {
         <img src='#'></img><br />
         <i class="arrowDown"></i>
       </div>
+      <div class='mainImg'>
+        <img src='../src/overview/assets/6.jpeg'></img>
+      </div>
     </div>
   );
 };

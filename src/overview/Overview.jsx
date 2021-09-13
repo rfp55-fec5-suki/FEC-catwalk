@@ -10,13 +10,28 @@ import React, {useState} from 'react';
 var Overview = () => {
   return (
     <div class='overview'>
-      <ImageGallary />
-      <div class='rightCol'>
-        <OverviewInformation />
-        <StyleSelector />
-        <AddToCart />
+
+      <div class='overviewTop'>
+
+        <div class='leftCol'>
+          <ImageGallary />
+        </div>
+
+        <div class='rightCol'>
+          <OverviewInformation />
+          <StyleSelector />
+          <AddToCart />
+        </div>
+
       </div>
+
+
       <DetailedInformation />
+
+
+
+
+
     </div>
   );
 };

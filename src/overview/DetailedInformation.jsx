@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { RatingView } from 'react-simple-star-rating';
 
 var DetailedInformation = () => {
+
   return (
     <div class='detailedInformation'>
       <div class='infoFreeText'>
@@ -18,11 +19,11 @@ var DetailedInformation = () => {
         </p>
       </div>
 
-      <p class='infoHighlights'>
-        &#10004; Basic Solid Color<br/>
-        &#10004; Lightweight Stretchy Waffle Knit<br/>
-        &#10004; Great for Spring, Fall, Cool day
-      </p>
+      <div class='infoHighlights'>
+        <span>&#10004; Basic Solid Color<br/></span>
+        <span>&#10004; Lightweight Stretchy Waffle Knit<br/></span>
+        <span> &#10004; Great for Spring, Fall, Cool day</span>
+      </div>
     </div>
   );
 };
