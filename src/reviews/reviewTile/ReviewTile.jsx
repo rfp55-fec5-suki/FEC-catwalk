@@ -18,7 +18,7 @@ class ReviewTile extends React.Component {
     return (
       <div>
         <div>
-        <StarRating rating={3.8}/>
+        <StarRating rating={this.props.review.rating}/>
         </div><br />
 
         {this.props.review.reviewer_name} {this.month} {this.day}, {this.year}
