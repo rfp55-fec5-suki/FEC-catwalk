@@ -29,7 +29,7 @@ const RatingsReviews = (props) => {
   }
   useEffect(() => {
     getReviewList();
-  })
+  }, [props.product_id])
 
   return (
     <div className="rr-main" onClick={() => getReviewList()} >
