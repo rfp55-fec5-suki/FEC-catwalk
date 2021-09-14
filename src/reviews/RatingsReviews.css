@@ -43,6 +43,8 @@
   grid-row-end: 6;
   background-color: #555;
   color: white;
+  border-radius: 5px;
+  padding: 5px;
 }
 .helpful {
   grid-column-start: 1;
