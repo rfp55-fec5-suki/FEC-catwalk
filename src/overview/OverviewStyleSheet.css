@@ -15,6 +15,20 @@
   width: 40%;
 }
 
+.addToCart {
+  display: flex;
+  flex-direction: column;
+}
+
+.addToCart #value {
+  display: flex;
+}
+
+.addToCart button {
+  width: 20px;
+}
+
+
 .leftCol {
   float: right;
   width: 60%;
@@ -23,17 +37,24 @@
 
 .imageContainer .selectionImgCol {
   float: left;
-  width: 20%;
+  width: 5%;
+}
+.imageContainer .selectionImgColumn {
+  display: table;
+
 }
 
-.imageContainer .selectionImgCol .img {
-  min-width: 50px;
+.imageContainer .selectionImgColumn img {
+
+  width: 5%;
 }
 
-.imageContainer .mainImg {
+.imageContainer .mainImg img{
   float: right;
   width: 80%;
+
 }
+
 
 .detailedInformation {
   padding-top: 50px;

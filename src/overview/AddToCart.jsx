@@ -3,13 +3,15 @@ import React, {useState} from 'react';
 var AddToCart = () => {
   return (
     <form class='addToCart'>
-      <select id='selectSize'>
-        <option>SELECT SIZE</option>
-      </select>
+      <div id='values'>
+        <select id='selectSize'>
+          <option>SELECT SIZE</option>
+        </select>
 
-      <select id='selectQuantity'>
-        <option>1</option>
-      </select>
+        <select id='selectQuantity'>
+          <option>1</option>
+        </select>
+      </div>
 
       <input type='button' value='ADD TO BAG +'/>
     </form>

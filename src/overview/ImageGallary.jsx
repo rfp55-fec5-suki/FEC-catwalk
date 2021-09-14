@@ -4,14 +4,14 @@ var ImageGallary = () => {
   return (
     <div class='imageContainer'>
       <div class='selectionImgColumn'>
-        <img src='#'></img><br />
-        <img src='#'></img><br />
-        <img src='#'></img><br />
-        <img src='#'></img><br />
+        <img src='../src/overview/assets/4.jpg'></img><br />
+        <img src='../src/overview/assets/5.jpg'></img><br />
+        <img src='../src/overview/assets/7.jpg'></img><br />
+        <img src='../src/overview/assets/8.jpg'></img><br />
         <i class="arrowDown"></i>
       </div>
       <div class='mainImg'>
-        <img src='../src/overview/assets/6.jpeg'></img>
+        <img src='../src/overview/assets/10.jpg'></img>
       </div>
     </div>
   );
