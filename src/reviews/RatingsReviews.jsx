@@ -8,46 +8,41 @@ import './RatingsReviews.css';
 // var results = [];
 var reviewPage = 1;
 // var totalReviews = 0;
-// var sort = 'relevant'
+var sort = 'relevant';
 class RatingsReviews extends React.Component {
   constructor(props) {
     super(props);
     this.product_id = props.product_id;
     this.state = {
       reviews: [],
-      hasMoreReviews: true,
-      sort: 'relevant'
+      hasMoreReviews: true
     }
     this.getReviewList = this.getReviewList.bind(this);
     this.moreReviews = this.moreReviews.bind(this);
-    this.sort = this.sort.bind(this);
+    this.sortChange = this.sortChange.bind(this);
   }
 
   moreReviews() {
-    // console.log(reviewPage)
     reviewPage++;
     this.getReviewList()
   }
-  sort(e) {
+  sortChange(e) {
     e.preventDefault();
-    reviewPage = 1;
-    setReviews([]);
     console.log(e.target.value);
-    setSort(e.target.value);
-    // sort = e.target.value;
-    // getReviewList();
+    sort = e.target.value
+    reviewPage = 1;
+    this.setState({reviews: []}, () => {
+      this.getReviewList()
+    });
   }
   getReviewList() {
-    // console.log(product_id)
-    // console.log(reviewPage)
     axios({
       method: 'get',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews?product_id=${this.product_id}&count=2&page=${reviewPage}&sort=${this.state.sort}`,
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews?product_id=${this.product_id}&count=2&page=${reviewPage}&sort=${sort}`,
       headers: {
         'Authorization': token.TOKEN
       }
     }).then((response) => {
-      // console.log(response.data.results)
       this.setState({reviews: [...this.state.reviews, ...response.data.results]})
       axios({
         method: 'get',
@@ -71,7 +66,7 @@ class RatingsReviews extends React.Component {
     return (
       <div className="rr-main" >
         RATINGS AND REVIEWS
-        <ReviewList reviews={this.state.reviews} more={this.moreReviews} sort={this.sort} renderButton={this.state.hasMoreReviews} />
+        <ReviewList reviews={this.state.reviews} more={this.moreReviews} sort={this.sortChange} renderButton={this.state.hasMoreReviews} />
       </div>
     )
   }
