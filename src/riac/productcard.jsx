@@ -21,12 +21,6 @@ class ProductCard extends React.Component {
     return (
       <div>
 
-        <div className='riac-productcard-header'>
-
-          RELATED PRODUCTS
-
-        </div>
-
         <div className='riac-productcard' onClick={() => this.props.onClick(this.state.info.id)}>
 
           <div className='riac-productcard-image'>

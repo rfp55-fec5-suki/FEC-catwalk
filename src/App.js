@@ -8,7 +8,7 @@ import initialProductStyles from './initialProductStyles.js';
 import initialRelated from './initialRelated.js';
 
 import Overview from './overview/Overview.jsx';
-import ProductCard from './riac/productcard.jsx';
+import RelatedProducts from './riac/relatedproducts.jsx';
 import QAList from './Q&A/QAList.jsx'
 import Reviews from './reviews/RatingsReviews.jsx';
 
@@ -83,7 +83,7 @@ class App extends React.Component {
 
         <Overview />
 
-        <ProductCard product={this.state.product} styles={this.state.styles} onClick={this.handleClick} related={this.state.related}/>
+        <RelatedProducts product={this.state.product} styles={this.state.styles} related={this.state.related} onClick={this.handleClick}/>
 
         <QAList />
 
