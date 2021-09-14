@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { hot } from 'react-hot-loader';
 import token from '../config.js';
 import axios from 'axios';
 import './App.css';
