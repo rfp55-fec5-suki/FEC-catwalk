@@ -34,7 +34,6 @@ class App extends React.Component {
       responseType: 'stream'
     })
       .then((response) => {
-        console.log('product', response)
         this.setState({
           product: response.data
         });
@@ -51,7 +50,6 @@ class App extends React.Component {
       responseType: 'stream'
     })
       .then((response) => {
-        console.log('styles', response)
         this.setState({
           styles: response.data
         });
