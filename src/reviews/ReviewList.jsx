@@ -7,7 +7,6 @@ const ReviewList = (props) => {
   const renderList = state.renderList;
   return (
   <div>
-    hooks yay
     {renderList.map((review) => <ReviewTile review={review} />)}
   </div>
   );
