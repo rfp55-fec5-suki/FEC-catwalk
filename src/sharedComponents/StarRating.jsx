@@ -7,10 +7,26 @@ import {
   full
 } from './Stars/starsIndex.js';
 
+//takes in either single rating as props.rating
+//or meta rating object as props.meta
 const StarRating = (props) => {
+  if (props.rating) {
+    var rating = props.rating;
+  } else if (props.meta) {
+    var netRating = 0;
+    var nRatings = 0;
+    for (var key in props.meta) {
+      var ratingValue = parseInt(key);
+      netRating += parseInt(key) * props.meta[key];
+      nRatings += props.meta[key];
+    }
+    var rating = netRating / nRatings;
+  } else {
+    var rating = 0;
+  }
   var stars = [];
-  var fraction = (props.rating % 1).toFixed(2);
-  for(var i = 1; i <= props.rating; i++) {
+  var fraction = (rating % 1).toFixed(2);
+  for(var i = 1; i <= rating; i++) {
     stars.push(full)
   }
   if(fraction >= .75) {
