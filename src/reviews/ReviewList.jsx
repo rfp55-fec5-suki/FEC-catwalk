@@ -3,11 +3,15 @@ import React, { useState } from 'react';
 import ReviewTile from './reviewTile/ReviewTile.jsx';
 
 const ReviewList = (props) => {
-  const [state, setState] = useState({renderList: props.reviews.slice(0,2)})
-  const renderList = state.renderList;
+  var reviews = props.reviews;
+  const [nReviews, setNReviews] = useState(2)
+
+  // const [state, setState] = useState({renderList: props.reviews.slice(0,2)})
+  // const renderList = state.renderList;
+  // console.log
   return (
   <div>
-    {renderList.map((review) => <ReviewTile review={review} />)}
+    {reviews.slice(0, nReviews).map((review) => <ReviewTile review={review} />)}
   </div>
   );
 }
