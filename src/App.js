@@ -19,33 +19,53 @@ class App extends React.Component {
       product: initialProduct,
       styles: initialProductStyles
     }
+
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  // componentDidMount() {
-  //   axios({
-  //     method: 'get',
-  //     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40344/',
-  //     headers: {
-  //       'Authorization': token.TOKEN
-  //     },
-  //     responseType: 'stream'
-  //   })
-  //     .then((response) => {
-  //       this.setState({
-  //         product: response.data
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }
+  handleClick(id) {
+    axios({
+      method: 'get',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}`,
+      headers: {
+        'Authorization': token.TOKEN
+      },
+      responseType: 'stream'
+    })
+      .then((response) => {
+        // console.log(response)
+        this.setState({
+          product: response.data
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    axios({
+      method: 'get',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}/styles`,
+      headers: {
+        'Authorization': token.TOKEN
+      },
+      responseType: 'stream'
+    })
+      .then((response) => {
+        // console.log(response)
+        this.setState({
+          styles: response.data
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   render() {
     return (
       <div className='App'>
         <h1> Hello, React! </h1>
 
-        <ProductCard product={this.state.product} styles={this.state.styles}/>
+        <ProductCard product={this.state.product} styles={this.state.styles} onClick={this.handleClick} />
 
         <QAList />
 
