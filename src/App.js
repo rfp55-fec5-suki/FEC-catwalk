@@ -3,15 +3,12 @@ import React, { Component } from 'react';
 import token from '../config.js';
 import axios from 'axios';
 import './App.css';
-<<<<<<< HEAD
 
 import initialProduct from './initialProduct.js';
 import initialProductStyles from './initialProductStyles.js';
 
-import ProductCard from './riac/productcard.jsx';
-=======
 import Overview from './overview/Overview.jsx';
->>>>>>> master
+import ProductCard from './riac/productcard.jsx';
 import QAList from './Q&A/QAList.jsx'
 import Reviews from './reviews/RatingsReviews.jsx';
 
@@ -68,14 +65,11 @@ class App extends React.Component {
     return (
       <div className='App'>
         <h1> Hello, React! </h1>
-<<<<<<< HEAD
+
+        <Overview />
 
         <ProductCard product={this.state.product} styles={this.state.styles} onClick={this.handleClick} />
 
-=======
-        <Overview />
-        <ProductCard />
->>>>>>> master
         <QAList />
 
         <Reviews />
