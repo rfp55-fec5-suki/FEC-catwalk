@@ -6,9 +6,19 @@ import {
   threeQuarter,
   full
 } from './Stars/starsIndex.js';
-
+/////////////////////////////////////////////////
+//INPUTS
 //takes in either single rating as props.rating
+// <StarRating rating={4} />
+//
 //or meta rating object as props.meta
+//<StarRating Meta={{
+// 5: 17,
+// 4: 10,
+// 3: 4,
+// ...
+// }}
+/////////////////////////////////////////////////
 const StarRating = (props) => {
   if (props.rating) {
     var rating = props.rating;
@@ -25,10 +35,12 @@ const StarRating = (props) => {
     var rating = 0;
   }
   var stars = [];
-  var fraction = (rating % 1).toFixed(2);
+  var fraction = (rating % 1).toFixed(2)
+  //set full stars to be rendered
   for(var i = 1; i <= rating; i++) {
     stars.push(full)
   }
+  //set the one factional star if needed
   if(fraction >= .75) {
     stars.push(threeQuarter);
   } else if (fraction >= .5) {
@@ -36,6 +48,7 @@ const StarRating = (props) => {
   } else if (fraction >= .25) {
     stars.push(quarter);
   }
+  //set remaining stars to be empty
   while(stars.length < 5) {
     stars.push(empty);
   }
