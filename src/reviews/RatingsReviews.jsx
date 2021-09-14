@@ -12,7 +12,6 @@ const RatingsReviews = (props) => {
     return mockReviews
   })
 
-  var testchange = true;
   const getReviewList = (product_id = 40344) => {
     // console.log(product_id)
     axios({
