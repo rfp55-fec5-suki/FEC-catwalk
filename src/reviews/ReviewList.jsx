@@ -8,7 +8,7 @@ const ReviewList = (props) => {
   return (
   <div>
     {reviews.map((review) => <ReviewTile review={review} key={review.review_id}/>)}
-    <button className='more-reviews' onClick={props.more}>More Reviews</button>
+    {props.renderButton ? <button className='more-reviews' onClick={props.more}>More Reviews</button> : null}
   </div>
   );
 }
