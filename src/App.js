@@ -11,12 +11,9 @@ class App extends Component {
   render() {
     return (
       <div className='App'>
-<<<<<<< HEAD
         <h1> Best E-Commerce App EVER! </h1>
-=======
-        <h1> Hello, React! </h1>
+
         <Overview />
->>>>>>> da064775a73ecf8e4778cd1eb0c6a0cdd96d21ac
         <ProductCard />
         <QAList />
         <Reviews />
