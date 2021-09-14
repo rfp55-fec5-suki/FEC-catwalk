@@ -12,13 +12,20 @@ class QAAnswer extends React.Component {
     return (
       <div>
           <h2>A:</h2>
-          {this.props.questions.map(question =>
-            Object.values(question.answers).map(answer =>
-            <div key = {answer.id}>
-              <div>{answer.body}</div>
-              <div>by {answer.answerer_name}, {answer.date.substring(0,9)}</div>
-            </div>)
-          )}
+          <div>
+            {this.props.questions.map(question =>
+              Object.values(question.answers).map(answer =>
+              <div key = {answer.id}>
+                <div>{answer.body}</div>
+                <div>by {answer.answerer_name}, {answer.date.substring(0,10)}</div>
+              </div>)
+            )}
+          </div>
+          <div>
+            helpful?
+            <a>Yes</a>
+            <a>Report</a>
+          </div>
       </div>
     )
   }

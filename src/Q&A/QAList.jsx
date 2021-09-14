@@ -46,6 +46,12 @@ class QAList extends React.Component {
         <div key = {question.question_id}>
           {question.question_body}
         </div>)}
+        <form>
+          <input type="text" name="search" placeholder="Find your question" />
+          <input type="submit" value="Search" />
+        </form>
+        <button type = 'submit'>More answered questions</button>
+        <button type = 'submit'>Submit new question</button>
         <QAAnswer questions = {this.state.questions}/>
       </div>
     )
