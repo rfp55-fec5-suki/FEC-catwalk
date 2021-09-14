@@ -1,22 +1,42 @@
-import React from 'react';
-import ReviewTile from './reviewTile/ReviewTile.jsx';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import ReviewList from './ReviewList.jsx';
+import token from '../../config.js';
 import mockData from './mockData.js';
 import './RatingsReviews.css';
-var review = mockData.getReviews.results[1];
+var mockReviews = mockData.getReviews.results;
+var results = [];
+const RatingsReviews = (props) => {
+  const [reviews, setReviews] = useState(() => {
+    console.log('use state function run')
+    return mockReviews
+  })
 
+  const getReviewList = (product_id = 40344) => {
+    // console.log(product_id)
+    axios({
+      method: 'get',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews?product_id=${product_id}`,
+      headers: {
+        'Authorization': token.TOKEN
+      }
+    }).then((response) => {
+      // console.log(response.data.results)
+      setReviews(response.data.results)
+    }).catch((err) => {
+      console.log('error getting review list from api', err)
+    })
+  }
+  useEffect(() => {
+    getReviewList(props.product_id);
+  }, [props.product_id])
 
-class RatingsReviews extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return(
-      <div className="rr-main">
-        RATINGS AND REVIEWS
-        <ReviewTile review={review}/>
-      </div>
-    )
-  }
+  return (
+    <div className="rr-main" onClick={() => getReviewList()} >
+      RATINGS AND REVIEWS
+      <ReviewList reviews={reviews} />
+    </div>
+  )
 }
 
 export default RatingsReviews;
