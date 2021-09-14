@@ -1,0 +1,100 @@
+.overview {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.overviewTop {
+  width: 100%;
+  display: flex;
+}
+
+.rightCol {
+  float: right;
+  width: 40%;
+}
+
+.addToCart {
+  display: flex;
+  flex-direction: column;
+}
+
+.addToCart #value {
+  display: flex;
+}
+
+.addToCart button {
+  width: 20px;
+}
+
+
+.leftCol {
+  float: right;
+  width: 60%;
+  display: flex;
+}
+
+.imageContainer .selectionImgCol {
+  float: left;
+  width: 5%;
+}
+.imageContainer .selectionImgColumn {
+  display: table;
+
+}
+
+.imageContainer .selectionImgColumn img {
+
+  width: 5%;
+}
+
+.imageContainer .mainImg img{
+  float: right;
+  width: 80%;
+
+}
+
+
+.detailedInformation {
+  padding-top: 50px;
+  width: 100%;
+  display: flex;
+}
+
+.infoFreeText {
+  float:left;
+  width: 59%;
+  margin-right:2%
+}
+
+.infoHighlights {
+  float: right;
+  width: 40%;
+  border-left: solid 3px;
+  display: table;
+  vertical-align: middle;
+  margin-top: 3%;
+  padding-left: 2%;
+}
+
+.infoHighlights span {
+  display: table-row;
+  vertical-align: middle;
+}
+
+.styleSelector img {
+  width:10%;
+  height:10%;
+  min-width: 100px;
+  border-radius: 50%;
+}
+
+.arrowDown {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
