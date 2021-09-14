@@ -7,70 +7,30 @@ class ProductCard extends React.Component {
   constructor(props) {
     super(props);
 
-    // state
     this.state = {
       info: {},
       img: {},
       stars: {}
     };
 
-    // binds
-  }
-
-  // functions
-
-  componentDidMount() {
-    axios({
-      method: 'get',
-      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40344/',
-      headers: {
-        'Authorization': token.TOKEN
-      },
-      responseType: 'stream'
-    })
-      .then((response) => {
-        this.setState({
-          info: response.data
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    axios({
-      method: 'get',
-      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40344/styles',
-      headers: {
-        'Authorization': token.TOKEN
-      },
-      responseType: 'stream'
-    })
-      .then((response) => {
-        this.setState({
-          img: response.data.results[0].photos[0]
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   }
 
   render() {
+    this.state.info = this.props.product;
+    this.state.img = this.props.styles;
     return (
       <div>
-        {console.log(this.state.img)}
+
         <div className='riac-productcard-header'>
 
           RELATED PRODUCTS
 
         </div>
 
-        <div className='riac-productcard'>
-
-          {/* <a href={props.repo.html_url}>link: {props.repo.html_url} </a> */}
+        <div className='riac-productcard' onClick={() => this.props.onClick(this.state.info.id)}>
 
           <div className='riac-productcard-image'>
-
-            <img src={this.state.img.thumbnail_url} />
+            <img src={this.state.img.results[0].photos[0].thumbnail_url} />
             <button className='riac-productcard-button'>button</button>
 
           </div>
