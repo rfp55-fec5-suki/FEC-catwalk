@@ -13,7 +13,7 @@ const RatingsReviews = (props) => {
   })
 
   const getReviewList = (product_id = 40344) => {
-    console.log(product_id)
+    // console.log(product_id)
     axios({
       method: 'get',
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews?product_id=${product_id}`,
@@ -21,14 +21,14 @@ const RatingsReviews = (props) => {
         'Authorization': token.TOKEN
       }
     }).then((response) => {
-      console.log(response.data.results)
+      // console.log(response.data.results)
       setReviews(response.data.results)
     }).catch((err) => {
       console.log('error getting review list from api', err)
     })
   }
   useEffect(() => {
-    getReviewList();
+    getReviewList(props.product_id);
   }, [props.product_id])
 
   return (
