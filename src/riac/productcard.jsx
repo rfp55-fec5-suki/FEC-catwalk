@@ -22,7 +22,7 @@ class ProductCard extends React.Component {
   componentDidMount() {
     axios({
       method: 'get',
-      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40344/',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${this.props.products.id}/`,
       headers: {
         'Authorization': token.TOKEN
       },
@@ -57,7 +57,8 @@ class ProductCard extends React.Component {
   render() {
     return (
       <div>
-        {console.log(this.state.img)}
+        {console.log('propssss', this.props.product.id)}
+        {/* {console.log(this.state.img)} */}
         <div className='riac-productcard-header'>
 
           RELATED PRODUCTS
