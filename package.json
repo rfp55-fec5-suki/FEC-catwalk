@@ -22,7 +22,7 @@
     "style-loader": "^0.23.0",
     "webpack": "^4.19.1",
     "webpack-cli": "^3.1.1",
-    "webpack-dev-server": "^3.1.8"
+    "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
     "axios": "^0.21.4",
@@ -31,6 +31,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hot-loader": "^4.13.0",
+    "react-simple-star-rating": "^3.0.0",
     "underscore": "^1.13.1"
   },
   "jest": {
