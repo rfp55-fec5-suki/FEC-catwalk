@@ -7,6 +7,7 @@ import './App.css';
 import initialProduct from './initialProduct.js';
 import initialProductStyles from './initialProductStyles.js';
 
+import Overview from './overview/Overview.jsx';
 import ProductCard from './riac/productcard.jsx';
 import QAList from './Q&A/QAList.jsx'
 import Reviews from './reviews/RatingsReviews.jsx';
@@ -33,7 +34,6 @@ class App extends React.Component {
       responseType: 'stream'
     })
       .then((response) => {
-        // console.log('product', response)
         this.setState({
           product: response.data
         });
@@ -50,7 +50,6 @@ class App extends React.Component {
       responseType: 'stream'
     })
       .then((response) => {
-        // console.log('styles', response)
         this.setState({
           styles: response.data
         });
@@ -64,6 +63,8 @@ class App extends React.Component {
     return (
       <div className='App'>
         <h1> Hello, React! </h1>
+
+        <Overview />
 
         <ProductCard product={this.state.product} styles={this.state.styles} onClick={this.handleClick} />
 
