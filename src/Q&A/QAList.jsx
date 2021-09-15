@@ -33,7 +33,7 @@ class QAList extends React.Component {
 
 
   render() {
-    console.log('this.state.questions: ', this.state.questions);
+    // console.log('this.state.questions: ', this.state.questions);
     return(
       <div>
         {/* <h2>Q:</h2> */}
