@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ReviewTile from './reviewTile/ReviewTile.jsx';
-
+import circleX from './CircledX.svg';
 const ReviewList = (props) => {
   // if(props.filter) {
 
@@ -21,7 +21,7 @@ const ReviewList = (props) => {
       <option value='helpful'>Helpful</option>
     </select>
     {props.filter.length > 0 ? ( <span> and {props.filter.map((rating) => {
-      return (<span onClick={() => props.setFilter(rating)}> {rating} Stars </span>)
+      return (<span onClick={() => props.setFilter(rating)} className='filter-display'> {rating} Stars <img src={circleX} className='x'/></span>)
     })}</span>) : null}
     </div>
     <div className='rr-tile-list'>

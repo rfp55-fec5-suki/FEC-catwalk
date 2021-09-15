@@ -24,10 +24,19 @@
   grid-row: 1 / 2;
   font-size: larger;
 }
-/* .sort-select {
-  grid-column: 2 / 3;
-  grid-row: 1 / 2;
-} */
+.filter-display {
+  background-color: rgba(190, 190, 190, 0.548);
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 3px;
+  padding: 1px;
+}
+.filter-display:hover {
+  background-color: rgba(143, 143, 143, 0.548);;
+}
+.x {
+  height: 12px;
+}
 .sort-select, select, option {
   font-size: large;
   height: 85%;
