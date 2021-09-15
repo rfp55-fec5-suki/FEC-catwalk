@@ -9,7 +9,6 @@ class QAAnswer extends React.Component {
 
 
   render() {
-    // console.log('this.props: ', this.props)
     return (
       <div>
           <h3>A:</h3>
@@ -25,7 +24,6 @@ class QAAnswer extends React.Component {
                 </div>
               </div>)}
           </div>
-
       </div>
     )
   }
