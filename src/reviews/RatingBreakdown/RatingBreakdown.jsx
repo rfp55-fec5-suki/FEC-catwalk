@@ -1,10 +1,11 @@
 import React from 'react';
 import StarRating from './../../sharedComponents/StarRating.jsx'
+import RatingBar from './RatingBar.jsx';
 
 const RatingBreakdown = (props) => {
   if (props.meta.ratings) {
     console.log(props.meta)
-
+    // get average rating------------------------
     var netRating = 0;
     var nRatings = 0;
     for (var key in props.meta.ratings) {
@@ -12,29 +13,40 @@ const RatingBreakdown = (props) => {
       nRatings += parseInt(props.meta.ratings[key]);
     }
     var rating = netRating / nRatings;
-    // console.log(props.meta.recommended.true)
+    //Reommended Percent ----------------------
     var recPer = ((props.meta.recommended.true / nRatings) * 100).toFixed(0);
+    //Star number percentages----------------
+    var starPercents = {}
+    for (var key in props.meta.ratings) {
+
+      var percent = ((props.meta.ratings[key] / nRatings) * 100).toFixed(0);
+
+      starPercents[key] = percent;
+      console.log(starPercents);
+    }
     return (
-      <div><br/>
+      <div><br />
         <div>
-        rating average {rating.toFixed(2)}
-        <StarRating rating={rating}/>
+          rating average {rating.toFixed(2)}
+          <StarRating rating={rating} />
         </div>
-        {recPer}% of reviews recommend this product<br/>
-        5star<br/>
-        4star<br/>
-        3star<br/>
-        2star<br/>
-        1star
+        {recPer}% of reviews recommend this product<br />
+        <div>
+          5 star<RatingBar percentage={starPercents[5]} />
+          4star<RatingBar percentage={starPercents[4]} />
+          3star<RatingBar percentage={starPercents[3]} />
+          2star<RatingBar percentage={starPercents[2]} />
+          1star<RatingBar percentage={starPercents[1]} />
+        </div>
       </div>
     )
 
   } else {
     return (
-      <div><br/>
+      <div><br />
         <div>
-        rating average
-        <StarRating />
+          rating average
+          <StarRating />
         </div>
         percentage of recommend
         5star
