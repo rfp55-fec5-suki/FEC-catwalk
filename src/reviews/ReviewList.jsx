@@ -21,7 +21,7 @@ const ReviewList = (props) => {
       <option value='helpful'>Helpful</option>
     </select>
     {props.filter.length > 0 ? ( <span> and {props.filter.map((rating) => {
-      return (<span> {rating} Stars </span>)
+      return (<span onClick={() => props.setFilter(rating)}> {rating} Stars </span>)
     })}</span>) : null}
     </div>
     <div className='rr-tile-list'>

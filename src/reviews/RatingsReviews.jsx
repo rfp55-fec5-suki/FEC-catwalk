@@ -135,7 +135,8 @@ class RatingsReviews extends React.Component {
         RATINGS & REVIEWS
         <RatingBreakdown meta={this.state.meta} filter={this.setRatingFilter} clear={this.setListToDefault}/>
         <ReviewList reviews={this.state.reviews} more={this.moreReviews} sort={this.sortChange}
-        renderButton={this.state.hasMoreReviews} meta={this.state.meta} filter={this.state.filterByRating}/>
+        renderButton={this.state.hasMoreReviews} meta={this.state.meta} filter={this.state.filterByRating}
+        setFilter={this.setRatingFilter}/>
       </div>
     )
   }
