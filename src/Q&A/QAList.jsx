@@ -36,10 +36,12 @@ class QAList extends React.Component {
     console.log('this.state.questions: ', this.state.questions);
     return(
       <div>
-        <h2>Q:</h2>
+        {/* <h2>Q:</h2> */}
         {this.state.questions.map(question =>
         <div key = {question.question_id}>
+          <h3>Q:</h3>
           {question.question_body}
+          <QAAnswer question = {question}/>
         </div>)}
         <form>
           <input type="text" name="search" placeholder="Find your question" />
@@ -47,7 +49,6 @@ class QAList extends React.Component {
         </form>
         <button type = 'submit'>More answered questions</button>
         <button type = 'submit'>Submit new question</button>
-        <QAAnswer questions = {this.state.questions}/>
       </div>
     )
   }

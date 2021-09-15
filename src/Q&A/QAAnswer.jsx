@@ -12,15 +12,13 @@ class QAAnswer extends React.Component {
     console.log('this.props: ', this.props)
     return (
       <div>
-          <h2>A:</h2>
+          <h3>A:</h3>
           <div>
-            {this.props.questions.map(question =>
-              Object.values(question.answers).map(answer =>
+            {Object.values(this.props.question.answers).map(answer =>
               <div key = {answer.id}>
                 <div>{answer.body}</div>
                 <div>by {answer.answerer_name}, {answer.date.substring(0,10)}</div>
-              </div>)
-            )}
+              </div>)}
           </div>
           <div>
             helpful?
