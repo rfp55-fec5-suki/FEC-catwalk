@@ -22,6 +22,7 @@ class RatingsReviews extends React.Component {
     this.moreReviews = this.moreReviews.bind(this);
     this.sortChange = this.sortChange.bind(this);
     this.setRatingFilter = this.setRatingFilter.bind(this);
+    this.setListToDefault = this.setListToDefault.bind(this);
   }
   //Rating BreakDown handlers ---------------------
   setRatingFilter(rating) {
@@ -31,8 +32,9 @@ class RatingsReviews extends React.Component {
       })
       this.setState({filterByRating: newfilter}, () => {
         if(this.state.filterByRating.length === 0) {
-          this.state.reviews = [];
-          this.getReviewList();
+          this.setListToDefault();
+        } else {
+        this.getAllReviews();
         }
       });
     } else {
@@ -50,6 +52,11 @@ class RatingsReviews extends React.Component {
     this.setState({reviews: []}, () => {
       this.getReviewList();
     });
+  }
+  setListToDefault () {
+    this.state.filterByRating = [];
+    this.state.reviews = [];
+    this.getReviewList();
   }
   //api call handlers -----------------------------
   getMeta() {
@@ -74,8 +81,11 @@ class RatingsReviews extends React.Component {
         'Authorization': token.TOKEN
       }
     }).then((response) => {
-      console.log('got all reviews')
-      this.setState({reviews: response.data.results});
+      // console.log('got all reviews')
+      var filteredResults = response.data.results.filter((review) => {
+        return this.state.filterByRating.includes(review.rating)
+      })
+      this.setState({reviews: filteredResults});
     }).catch((err) => {
       console.log('error getting all reviews to then filter by rating', err);
     })
@@ -111,9 +121,7 @@ class RatingsReviews extends React.Component {
   //lifecycle functions ---------------------------------------------
   componentDidUpdate(oldProps) {
     if(oldProps.product_id !== this.props.product_id) {
-      this.state.reviews = [];
-      this.state.filterByRating = [];
-      this.getReviewList();
+      this.setListToDefault();
       this.getMeta();
     }
   }
@@ -125,7 +133,7 @@ class RatingsReviews extends React.Component {
     return (
       <div className="rr-main" >
         RATINGS & REVIEWS
-        <RatingBreakdown meta={this.state.meta} filter={this.setRatingFilter}/>
+        <RatingBreakdown meta={this.state.meta} filter={this.setRatingFilter} clear={this.setListToDefault}/>
         <ReviewList reviews={this.state.reviews} more={this.moreReviews} sort={this.sortChange}
         renderButton={this.state.hasMoreReviews} meta={this.state.meta} filter={this.state.filterByRating}/>
       </div>
