@@ -18,13 +18,14 @@ class QAAnswer extends React.Component {
               <div key = {answer.id}>
                 <div>{answer.body}</div>
                 <div>by {answer.answerer_name}, {answer.date.substring(0,10)}</div>
+                <div>
+                  helpful?
+                  <button type = 'submit'>Yes</button>
+                  <button type = 'submit'>Report</button>
+                </div>
               </div>)}
           </div>
-          <div>
-            helpful?
-            <a>Yes</a>
-            <a>Report</a>
-          </div>
+
       </div>
     )
   }
