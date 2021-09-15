@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { hot } from 'react-hot-loader';
 import token from '../config.js';
 import axios from 'axios';
 import './App.css';
@@ -70,7 +69,7 @@ class App extends React.Component {
 
         <QAList product={this.state.product}/>
 
-        <Reviews />
+        <Reviews product_id={this.state.product.id}/>
 
       </div>
 
