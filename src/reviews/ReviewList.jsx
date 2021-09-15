@@ -3,11 +3,12 @@ import ReviewTile from './reviewTile/ReviewTile.jsx';
 
 const ReviewList = (props) => {
   var reviews = props.reviews;
-  const [nReviews, setNReviews] = useState(2)
+  // const [nReviews, setNReviews] = useState(2)
 
   return (
   <div>
-    {reviews.slice(0, nReviews).map((review) => <ReviewTile review={review} />)}
+    {reviews.map((review) => <ReviewTile review={review} key={review.review_id}/>)}
+    {props.renderButton ? <button className='more-reviews' onClick={props.more}>More Reviews</button> : null}
   </div>
   );
 }
