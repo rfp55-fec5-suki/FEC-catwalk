@@ -8,10 +8,8 @@ class QAList extends React.Component {
     super(props);
     this.state = {
       questions: [],
-      // answers: []
     }
     this.getQuestions = this.getQuestions.bind(this);
-    //this.getAnswers = this.getAnswers.bind(this);
   }
 
   componentDidMount() {
@@ -32,9 +30,6 @@ class QAList extends React.Component {
         throw error;
       });
   }
-
-
-
 
 
   render() {
