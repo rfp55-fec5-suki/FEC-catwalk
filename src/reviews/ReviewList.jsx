@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import ReviewTile from './reviewTile/ReviewTile.jsx';
 
 const ReviewList = (props) => {
+  if(props.filter) {
+
+  }
   var reviews = props.reviews;
   if(props.meta.recommended) {
     var nReviews = parseInt(props.meta.recommended.false) + parseInt(props.meta.recommended.true);
