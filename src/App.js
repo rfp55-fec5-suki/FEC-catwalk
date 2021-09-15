@@ -87,7 +87,7 @@ class App extends React.Component {
 
         <QAList />
 
-        <Reviews />
+        <Reviews product_id={this.state.product.id}/>
 
       </div>
 
