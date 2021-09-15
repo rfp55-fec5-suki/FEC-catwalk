@@ -5,35 +5,34 @@ import AddToCart from './AddToCart.jsx';
 import DetailedInformation from './DetailedInformation.jsx';
 import './OverviewStyleSheet.css';
 
-import React, {useState} from 'react';
+import React from 'react';
 
-var Overview = () => {
-  return (
-    <div class='overview'>
+class Overview extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
-      <div class='overviewTop'>
+  render () {
+    return (
+      <div class='overview'>
+        <div class='overviewTop'>
+          <div class='leftCol'>
+            <ImageGallary />
+          </div>
 
-        <div class='leftCol'>
-          <ImageGallary />
+          <div class='rightCol'>
+            <OverviewInformation />
+            <StyleSelector />
+            <AddToCart />
+          </div>
         </div>
 
-        <div class='rightCol'>
-          <OverviewInformation />
-          <StyleSelector />
-          <AddToCart />
-        </div>
-
+        <DetailedInformation />
       </div>
+    );
 
-
-      <DetailedInformation />
-
-
-
-
-
-    </div>
-  );
-};
+  }
+}
 
 export default Overview;

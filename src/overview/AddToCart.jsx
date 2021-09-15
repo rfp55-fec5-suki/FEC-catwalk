@@ -1,21 +1,29 @@
-import React, {useState} from 'react';
+import React from 'react';
 
-var AddToCart = () => {
-  return (
-    <form class='addToCart'>
-      <div id='values'>
-        <select id='selectSize'>
-          <option>SELECT SIZE</option>
-        </select>
+class AddToCart extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
-        <select id='selectQuantity'>
-          <option>1</option>
-        </select>
-      </div>
+  render () {
+    return (
+      <form class='addToCart'>
+        <div id='values'>
+          <select id='selectSize'>
+            <option>SELECT SIZE</option>
+          </select>
 
-      <input type='button' value='ADD TO BAG +'/>
-    </form>
-  );
-};
+          <select id='selectQuantity'>
+            <option>1</option>
+          </select>
+        </div>
+
+        <input type='button' value='ADD TO BAG +'/>
+      </form>
+    );
+
+  }
+}
 
 export default AddToCart;

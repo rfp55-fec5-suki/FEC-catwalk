@@ -1,32 +1,38 @@
-import React, {useState} from 'react';
+import React from 'react';
 
-var StyleSelector = () => {
-  return (
+class StyleSelector extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
-    <div class='styleSelector'>
-      <p><b>STYLE &gt; </b>SELECTED STYLE</p>
-      <table>
-        <tbody>
-          <tr></tr>
-          <tr>
-            <th><img src='../src/overview/assets/1.png'></img></th>
-            <th><img src='../src/overview/assets/2.png'></img></th>
-            <th><img src='../src/overview/assets/3.jpg'></img></th>
-            <th><img src='../src/overview/assets/4.jpg'></img></th>
-          </tr>
-          <tr>
-            <th><img src='../src/overview/assets/5.jpg'></img></th>
-            <th><img src='../src/overview/assets/7.jpg'></img></th>
-            <th><img src='../src/overview/assets/8.jpg'></img></th>
-            <th><img src='../src/overview/assets/9.jpg'></img></th>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  render () {
+    return (
+      <div class='styleSelector'>
+        <p><b>STYLE &gt; </b>SELECTED STYLE</p>
+        <table>
+          <tbody>
+            <tr></tr>
+            <tr>
+              <th><img src='../src/overview/assets/1.png'></img></th>
+              <th><img src='../src/overview/assets/2.png'></img></th>
+              <th><img src='../src/overview/assets/3.jpg'></img></th>
+              <th><img src='../src/overview/assets/4.jpg'></img></th>
+            </tr>
+            <tr>
+              <th><img src='../src/overview/assets/5.jpg'></img></th>
+              <th><img src='../src/overview/assets/7.jpg'></img></th>
+              <th><img src='../src/overview/assets/8.jpg'></img></th>
+              <th><img src='../src/overview/assets/9.jpg'></img></th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    );
 
+  }
+}
 
-  );
-};
 
 export default StyleSelector;
 
