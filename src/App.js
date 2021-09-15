@@ -5,9 +5,10 @@ import './App.css';
 
 import initialProduct from './initialProduct.js';
 import initialProductStyles from './initialProductStyles.js';
+import initialRelated from './initialRelated.js';
 
 import Overview from './overview/Overview.jsx';
-import ProductCard from './riac/productcard.jsx';
+import RelatedProducts from './riac/relatedproducts.jsx';
 import QAList from './Q&A/QAList.jsx'
 import Reviews from './reviews/RatingsReviews.jsx';
 
@@ -17,7 +18,8 @@ class App extends React.Component {
 
     this.state = {
       product: initialProduct,
-      styles: initialProductStyles
+      styles: initialProductStyles,
+      related: initialRelated
     }
 
     this.handleClick = this.handleClick.bind(this);
@@ -56,6 +58,22 @@ class App extends React.Component {
       .catch((error) => {
         console.log(error);
       });
+    axios({
+      method: 'get',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}/related`,
+      headers: {
+        'Authorization': token.TOKEN
+      },
+      responseType: 'stream'
+    })
+      .then((response) => {
+        this.setState({
+          related: response.data
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      })
   }
 
   render() {
@@ -65,7 +83,7 @@ class App extends React.Component {
 
         <Overview />
 
-        <ProductCard product={this.state.product} styles={this.state.styles} onClick={this.handleClick} />
+        <RelatedProducts product={this.state.product} styles={this.state.styles} related={this.state.related} onClick={this.handleClick}/>
 
         <QAList />
 
