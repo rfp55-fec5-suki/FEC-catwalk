@@ -51,32 +51,26 @@ class RelatedProductCard extends React.Component {
       .catch((error) => {
         console.log(error);
       });
-
   }
 
   render() {
-
     this.state.id = this.props.productid;
-
     return (
-      <div>
+      <div className='riac-productcard' onClick={() => this.props.onClick(this.state.info.id)}>
 
-        <div className='riac-productcard' onClick={() => this.props.onClick(this.state.info.id)}>
+        <div className='riac-productcard-image'>
+          <img src={this.state.img} />
+        </div>
 
-          <div className='riac-productcard-image'>
-            <img src={this.state.img} />
-            <button className='riac-productcard-button'>button</button>
+        <button className='riac-productcard-button'>cart</button>
 
-          </div>
+        <div className='riac-productcard-description'>
 
-          <div className='riac-productcard-description'>
+          <div className='riac-productcard-category'> {this.state.info.category} </div>
+          <div className='riac-productcard-name'> {this.state.info.name} </div>
+          <div className='riac-productcard-price'> {this.state.info.default_price} </div>
+          <div className='riac-productcard-rating'> Star Rating</div>
 
-            <div className='riac-productcard-category'> {this.state.info.category} </div>
-            <div className='riac-productcard-name'> {this.state.info.name} </div>
-            <div className='riac-productcard-price'> {this.state.info.default_price} </div>
-            <div className='riac-productcard-rating'> Star Rating</div>
-
-          </div>
         </div>
       </div>
     );

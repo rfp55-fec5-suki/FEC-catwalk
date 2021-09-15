@@ -1,6 +1,7 @@
 import React from 'react';
 import ProductCard from './productcard.jsx';
 import RelatedProductCard from './relatedproductcard.jsx';
+import './riac.css';
 
 const RelatedProducts = (props) => (
   <div>
@@ -10,7 +11,7 @@ const RelatedProducts = (props) => (
 
     </div>
 
-    <div className='related-products'>
+    <div className='riac-related-products'>
 
       <ProductCard product={props.product} styles={props.styles} onClick={props.onClick} />
 
