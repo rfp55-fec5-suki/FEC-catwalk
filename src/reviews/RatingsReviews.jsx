@@ -14,13 +14,26 @@ class RatingsReviews extends React.Component {
     this.state = {
       reviews: [],
       hasMoreReviews: true,
-      meta: {}
+      meta: {},
+      filterByRating: []
     }
     this.getReviewList = this.getReviewList.bind(this);
     this.moreReviews = this.moreReviews.bind(this);
     this.sortChange = this.sortChange.bind(this);
+    this.setRatingFilter = this.setRatingFilter.bind(this);
   }
-
+  //Rating BreakDown handlers ---------------------
+  setRatingFilter(rating) {
+    if(this.state.filterByRating.includes(rating)) {
+      var newfilter = this.state.filterByRating.filter((filterValue) => {
+        return filterValue !== rating;
+      })
+      this.setState({filterByRating: newfilter});
+    } else {
+      this.setState({filterByRating: [...this.state.filterByRating, rating]})
+    }
+  }
+  //Review list handlers --------------------------
   sortChange(e) {
     e.preventDefault();
     console.log(e.target.value);
@@ -30,6 +43,7 @@ class RatingsReviews extends React.Component {
       this.getReviewList()
     });
   }
+  //api call handlers -----------------------------
   getMeta() {
     axios({
       method: 'get',
@@ -72,6 +86,7 @@ class RatingsReviews extends React.Component {
     reviewPage++;
     this.getReviewList()
   }
+  //lifecycle functions ---------------------------------------------
   componentDidUpdate(oldProps) {
     if(oldProps.product_id !== this.props.product_id) {
       this.state.reviews = [];
@@ -87,9 +102,9 @@ class RatingsReviews extends React.Component {
     return (
       <div className="rr-main" >
         RATINGS & REVIEWS
-        <RatingBreakdown meta={this.state.meta}/>
-        <ReviewList reviews={this.state.reviews} more={this.moreReviews} sort={this.sortChange} renderButton={this.state.hasMoreReviews}
-        meta={this.state.meta}/>
+        <RatingBreakdown meta={this.state.meta} filter={this.setRatingFilter}/>
+        <ReviewList reviews={this.state.reviews} more={this.moreReviews} sort={this.sortChange}
+        renderButton={this.state.hasMoreReviews} meta={this.state.meta}/>
       </div>
     )
   }

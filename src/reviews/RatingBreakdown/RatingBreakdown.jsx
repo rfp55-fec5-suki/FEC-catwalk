@@ -34,11 +34,21 @@ const RatingBreakdown = (props) => {
         </div>
         {recPer ? recPer.toFixed(0) : 0}% of reviews recommend this product<br />
         <div>
-          5 star<RatingBar percentage={starValues[5].percent} /> {starValues[5].quantity}<br/>
-          4 star<RatingBar percentage={starValues[4].percent} /> {starValues[4].quantity}<br/>
-          3 star<RatingBar percentage={starValues[3].percent} /> {starValues[3].quantity}<br/>
-          2 star<RatingBar percentage={starValues[2].percent} /> {starValues[2].quantity}<br/>
-          1 star<RatingBar percentage={starValues[1].percent} /> {starValues[1].quantity}<br/>
+          <div>
+          <span onClick={() => props.filter(5)}>5 star</span><RatingBar percentage={starValues[5].percent} /> {starValues[5].quantity}<br/>
+          </div>
+          <div>
+          <span onClick={() => props.filter(4)}>4 star</span><RatingBar percentage={starValues[4].percent} /> {starValues[4].quantity}<br/>
+          </div>
+          <div>
+          <span onClick={() => props.filter(3)}>3 star</span><RatingBar percentage={starValues[3].percent} /> {starValues[3].quantity}<br/>
+          </div>
+          <div>
+          <span onClick={() => props.filter(2)}>2 star</span><RatingBar percentage={starValues[2].percent} /> {starValues[2].quantity}<br/>
+          </div>
+          <div>
+          <span onClick={() => props.filter(1)}>1 star</span><RatingBar percentage={starValues[1].percent} /> {starValues[1].quantity}<br/>
+          </div>
         </div>
       </div>
     )
