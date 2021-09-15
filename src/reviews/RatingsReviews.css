@@ -1,8 +1,23 @@
+.rr-main {
+  display: grid;
+  grid-template-columns: 25% 75%;
+  grid-template-rows: 20px 250px auto;
+  margin-top: 20px;
+}
+.rr-title {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+.rating-breakdown {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+}
 .review-list {
+  grid-column: 2 / 3;
+  grid-row: 2 / 4;
   display: grid;
   grid-template-columns: 25% 25% 50%;
   grid-template-rows: 25px auto 100px;
-  margin-top: 20px;
 }
 .sort {
   grid-column: 1 / 4;

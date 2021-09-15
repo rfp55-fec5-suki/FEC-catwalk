@@ -1,6 +1,8 @@
 import React from 'react';
 import StarRating from './../../sharedComponents/StarRating.jsx'
 import RatingBar from './RatingBar.jsx';
+import './RatingBreakdown.css';
+
 
 const RatingBreakdown = (props) => {
   if (props.meta.ratings) {
@@ -27,36 +29,50 @@ const RatingBreakdown = (props) => {
       }
     }
     return (
-      <div><br />
-        <div>
-          rating average {rating ? rating.toFixed(1) : 0}
+      <div className='rating-breakdown'>
+        <div className='average-rating-text'>
+          {rating ? rating.toFixed(1) : 0}
+        </div>
+        <div className='average-rating-stars'>
           <StarRating rating={rating} />
         </div>
+        <div className='recommended-percent'>
         {recPer ? recPer.toFixed(0) : 0}% of reviews recommend this product<br />
-        <div>
-          <div onClick={() => props.filter(5)}>
-          <span >5 star</span><RatingBar percentage={starValues[5].percent} /> {starValues[5].quantity}<br/>
+        </div>
+        <div className='star-breakdown'>
+          <div onClick={() => props.filter(5)} className='five-star star-filter'>
+            <span className='breakdown-text'>5 star</span>
+            <span className='breakdown-bar'><RatingBar percentage={starValues[5].percent} /></span>
+            <span className='breakdown-number'>{starValues[5].quantity}</span>
           </div>
-          <div onClick={() => props.filter(4)}>
-          <span>4 star</span><RatingBar percentage={starValues[4].percent} /> {starValues[4].quantity}<br/>
+          <div onClick={() => props.filter(4)} className='four-star star-filter'>
+            <span className='breakdown-text'>4 star</span>
+            <span className='breakdown-bar'><RatingBar percentage={starValues[4].percent} /> </span>
+            <span className='breakdown-number'>{starValues[4].quantity}</span>
           </div>
-          <div onClick={() => props.filter(3)}>
-          <span >3 star</span><RatingBar percentage={starValues[3].percent} /> {starValues[3].quantity}<br/>
+          <div onClick={() => props.filter(3)} className='three-star star-filter'>
+            <span className='breakdown-text'>3 star</span>
+            <span className='breakdown-bar'><RatingBar percentage={starValues[3].percent} /> </span>
+            <span className='breakdown-number'>{starValues[3].quantity}</span>
           </div>
-          <div onClick={() => props.filter(2)}>
-          <span>2 star</span><RatingBar percentage={starValues[2].percent} /> {starValues[2].quantity}<br/>
+          <div onClick={() => props.filter(2)} className='two-star star-filter'>
+            <span className='breakdown-text'>2 star</span>
+            <span className='breakdown-bar'><RatingBar percentage={starValues[2].percent} /> </span>
+            <span className='breakdown-number'>{starValues[2].quantity}</span>
           </div>
-          <div onClick={() => props.filter(1)}>
-          <span>1 star</span><RatingBar percentage={starValues[1].percent} /> {starValues[1].quantity}<br/>
+          <div onClick={() => props.filter(1)} className='one-star star-filter'>
+            <span className='breakdown-text'>1 star</span>
+            <span className='breakdown-bar'><RatingBar percentage={starValues[1].percent} /> </span>
+            <span className='breakdown-number'>{starValues[1].quantity}</span>
           </div>
         </div>
-        <button onClick={props.clear}>Clear filters</button>
+        <button onClick={props.clear} className='clear-filters'>Clear filters</button>
       </div>
     )
 
   } else {
     return (
-      <div><br />
+      <div>
         <div>
           rating average
           <StarRating />

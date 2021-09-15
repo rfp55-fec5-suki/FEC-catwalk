@@ -136,7 +136,7 @@ class RatingsReviews extends React.Component {
   render() {
     return (
       <div className="rr-main" >
-        RATINGS & REVIEWS
+        <span className='rr-title'>RATINGS & REVIEWS</span>
         <RatingBreakdown meta={this.state.meta} filter={this.setRatingFilter} clear={this.setListToDefault}/>
         <ReviewList reviews={this.state.reviews} more={this.moreReviews} sort={this.sortChange}
         renderButton={this.state.hasMoreReviews} meta={this.state.meta} filter={this.state.filterByRating}
