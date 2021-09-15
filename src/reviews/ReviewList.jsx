@@ -3,14 +3,11 @@ import ReviewTile from './reviewTile/ReviewTile.jsx';
 
 const ReviewList = (props) => {
   var reviews = props.reviews;
-  // const [nReviews, setNReviews] = useState(2)
 
   return (
   <div className='review-list'>
     <div className='sort'>
       Sort Reviews by
-    {/* </div> */}
-    {/* <div className='sort-select'> */}
     <select onChange={props.sort} >
       <option value='relevant'>Relevent</option>
       <option value='newest'>Newest</option>

@@ -4,10 +4,8 @@ import ReviewList from './ReviewList.jsx';
 import token from '../../config.js';
 import mockData from './mockData.js';
 import './RatingsReviews.css';
-// var mockReviews = mockData.getReviews.results;
-// var results = [];
+
 var reviewPage = 1;
-// var totalReviews = 0;
 var sort = 'relevant';
 class RatingsReviews extends React.Component {
   constructor(props) {
@@ -22,10 +20,6 @@ class RatingsReviews extends React.Component {
     this.sortChange = this.sortChange.bind(this);
   }
 
-  moreReviews() {
-    reviewPage++;
-    this.getReviewList()
-  }
   sortChange(e) {
     e.preventDefault();
     console.log(e.target.value);
@@ -59,6 +53,11 @@ class RatingsReviews extends React.Component {
       console.log('error getting review list from api', err)
     })
   }
+  moreReviews() {
+    reviewPage++;
+    this.getReviewList()
+  }
+
   componentDidMount() {
     this.getReviewList();
   }
