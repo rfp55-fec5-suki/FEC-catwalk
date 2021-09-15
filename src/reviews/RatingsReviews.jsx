@@ -76,6 +76,7 @@ class RatingsReviews extends React.Component {
     if(oldProps.product_id !== this.props.product_id) {
       this.state.reviews = [];
       this.getReviewList();
+      this.getMeta();
     }
   }
   componentDidMount() {

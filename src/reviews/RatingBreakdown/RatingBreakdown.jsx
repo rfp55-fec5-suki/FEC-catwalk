@@ -14,29 +14,31 @@ const RatingBreakdown = (props) => {
     }
     var rating = netRating / nRatings;
     //Reommended Percent ----------------------
-    var recPer = ((props.meta.recommended.true / nRatings) * 100).toFixed(0);
+    var recPer = (((props.meta.recommended.true) / nRatings) * 100);
     //Star number percentages----------------
-    var starPercents = {}
-    for (var key in props.meta.ratings) {
-
-      var percent = ((props.meta.ratings[key] / nRatings) * 100).toFixed(0);
-
-      starPercents[key] = percent;
-      console.log(starPercents);
+    var starValues = {}
+    for (var i = 1; i <= 5; i++) {
+      if (props.meta.ratings[i]) {
+        var ratingsByValue = parseInt(props.meta.ratings[i])
+        var percent = ((ratingsByValue / nRatings) * 100).toFixed(0);
+        starValues[i] = { percent: percent, quantity: ratingsByValue };
+      } else {
+        starValues[i] = {percent: 0, quantity: 0}
+      }
     }
     return (
       <div><br />
         <div>
-          rating average {rating.toFixed(1)}
+          rating average {rating ? rating.toFixed(1) : 0}
           <StarRating rating={rating} />
         </div>
-        {recPer}% of reviews recommend this product<br />
+        {recPer ? recPer.toFixed(0) : 0}% of reviews recommend this product<br />
         <div>
-          5 star<RatingBar percentage={starPercents[5]} />
-          4star<RatingBar percentage={starPercents[4]} />
-          3star<RatingBar percentage={starPercents[3]} />
-          2star<RatingBar percentage={starPercents[2]} />
-          1star<RatingBar percentage={starPercents[1]} />
+          5 star<RatingBar percentage={starValues[5].percent} /> {starValues[5].quantity}<br/>
+          4 star<RatingBar percentage={starValues[4].percent} /> {starValues[4].quantity}<br/>
+          3 star<RatingBar percentage={starValues[3].percent} /> {starValues[3].quantity}<br/>
+          2 star<RatingBar percentage={starValues[2].percent} /> {starValues[2].quantity}<br/>
+          1 star<RatingBar percentage={starValues[1].percent} /> {starValues[1].quantity}<br/>
         </div>
       </div>
     )

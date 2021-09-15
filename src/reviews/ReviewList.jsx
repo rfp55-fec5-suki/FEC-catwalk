@@ -11,9 +11,9 @@ const ReviewList = (props) => {
   return (
   <div className='review-list'>
     <div className='sort'>
-      {nReviews} reviews, sorted by
+      {nReviews ? nReviews : 0} reviews, sorted by
     <select onChange={props.sort} >
-      <option value='relevant'>Relevent</option>
+      <option value='relevant'>Relevant</option>
       <option value='newest'>Newest</option>
       <option value='helpful'>Helpful</option>
     </select>
