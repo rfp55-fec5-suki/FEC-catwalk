@@ -29,16 +29,12 @@ class ProductCard extends React.Component {
 
         <button className='riac-productcard-button'>cart</button>
 
-        <div className='riac-productcard-description'>
+        <div className='riac-productcard-category'> {this.state.info.category} </div>
+        <div className='riac-productcard-name'> {this.state.info.name} </div>
+        <div className='riac-productcard-price'> {this.state.info.default_price} </div>
+        <div className='riac-productcard-rating'> Star Rating</div>
 
-          <div className='riac-productcard-category'> {this.state.info.category} </div>
-          <div className='riac-productcard-name'> {this.state.info.name} </div>
-          <div className='riac-productcard-price'> {this.state.info.default_price} </div>
-          <div className='riac-productcard-rating'> Star Rating</div>
-
-        </div>
       </div>
-
     );
   }
 }
