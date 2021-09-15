@@ -10,7 +10,6 @@ var sort = 'relevant';
 class RatingsReviews extends React.Component {
   constructor(props) {
     super(props);
-    this.product_id = props.product_id;
     this.state = {
       reviews: [],
       hasMoreReviews: true
@@ -30,9 +29,10 @@ class RatingsReviews extends React.Component {
     });
   }
   getReviewList() {
+    console.log(this.props.product_id)
     axios({
       method: 'get',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews?product_id=${this.product_id}&count=2&page=${reviewPage}&sort=${sort}`,
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews?product_id=${this.props.product_id}&count=2&page=${reviewPage}&sort=${sort}`,
       headers: {
         'Authorization': token.TOKEN
       }
@@ -40,7 +40,7 @@ class RatingsReviews extends React.Component {
       this.setState({reviews: [...this.state.reviews, ...response.data.results]})
       axios({
         method: 'get',
-        url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews?product_id=${this.product_id}&count=2&page=${reviewPage + 1}`,
+        url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews?product_id=${this.props.product_id}&count=2&page=${reviewPage + 1}`,
         headers: {
           'Authorization': token.TOKEN
         }
@@ -57,14 +57,19 @@ class RatingsReviews extends React.Component {
     reviewPage++;
     this.getReviewList()
   }
-
+  componentDidUpdate(oldProps) {
+    if(oldProps.product_id !== this.props.product_id) {
+      this.state.reviews = [];
+      this.getReviewList();
+    }
+  }
   componentDidMount() {
     this.getReviewList();
   }
   render() {
     return (
       <div className="rr-main" >
-        RATINGS AND REVIEWS
+        RATINGS & REVIEWS
         <ReviewList reviews={this.state.reviews} more={this.moreReviews} sort={this.sortChange} renderButton={this.state.hasMoreReviews} />
       </div>
     )

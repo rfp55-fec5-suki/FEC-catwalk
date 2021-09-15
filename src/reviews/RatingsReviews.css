@@ -1,7 +1,7 @@
 .review-list {
   display: grid;
   grid-template-columns: 25% 25% 50%;
-  grid-template-rows: 8% auto 20%;
+  grid-template-rows: 25px auto 100px;
   margin-top: 20px;
 }
 .sort {
@@ -15,7 +15,7 @@
 } */
 .sort-select, select, option {
   font-size: large;
-  height: 75%;
+  height: 85%;
 }
 .rr-tile-list {
   grid-column: 1 / 4;
