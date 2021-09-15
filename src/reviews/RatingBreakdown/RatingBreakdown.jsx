@@ -27,7 +27,7 @@ const RatingBreakdown = (props) => {
     return (
       <div><br />
         <div>
-          rating average {rating.toFixed(2)}
+          rating average {rating.toFixed(1)}
           <StarRating rating={rating} />
         </div>
         {recPer}% of reviews recommend this product<br />

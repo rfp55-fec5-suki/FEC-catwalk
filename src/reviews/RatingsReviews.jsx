@@ -87,7 +87,8 @@ class RatingsReviews extends React.Component {
       <div className="rr-main" >
         RATINGS & REVIEWS
         <RatingBreakdown meta={this.state.meta}/>
-        <ReviewList reviews={this.state.reviews} more={this.moreReviews} sort={this.sortChange} renderButton={this.state.hasMoreReviews} />
+        <ReviewList reviews={this.state.reviews} more={this.moreReviews} sort={this.sortChange} renderButton={this.state.hasMoreReviews}
+        meta={this.state.meta}/>
       </div>
     )
   }
