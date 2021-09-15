@@ -46,12 +46,16 @@ class RatingsReviews extends React.Component {
   //Review list handlers --------------------------
   sortChange(e) {
     e.preventDefault();
-    console.log(e.target.value);
+    // console.log(e.target.value);
     sort = e.target.value;
     reviewPage = 1;
-    this.setState({reviews: []}, () => {
-      this.getReviewList();
-    });
+    if (this.state.filterByRating.length === 0) {
+      this.setState({reviews: []}, () => {
+        this.getReviewList();
+      });
+    } else {
+      this.getAllReviews();
+    }
   }
   setListToDefault () {
     this.state.filterByRating = [];
@@ -76,7 +80,7 @@ class RatingsReviews extends React.Component {
   getAllReviews() {
     axios({
       method: 'get',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews?product_id=${this.props.product_id}&count=100`,
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews?product_id=${this.props.product_id}&count=100&sort=${sort}`,
       headers: {
         'Authorization': token.TOKEN
       }
