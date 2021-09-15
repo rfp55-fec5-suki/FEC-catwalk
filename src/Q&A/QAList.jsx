@@ -21,7 +21,7 @@ class QAList extends React.Component {
     const product_id = this.props.product.id
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/?product_id=${product_id}`, {headers: {'Authorization': token.TOKEN}})
       .then((res) => {
-        console.log('react get questions success: ', res.data);
+        // console.log('react get questions success: ', res.data);
         this.setState({
           questions: res.data.results
         });
