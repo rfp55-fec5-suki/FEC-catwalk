@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import RatingBreakdown from './RatingBreakdown/RatingBreakdown.jsx';
 import ReviewList from './ReviewList.jsx';
 import token from '../../config.js';
 import mockData from './mockData.js';
@@ -12,7 +13,8 @@ class RatingsReviews extends React.Component {
     super(props);
     this.state = {
       reviews: [],
-      hasMoreReviews: true
+      hasMoreReviews: true,
+      meta: {}
     }
     this.getReviewList = this.getReviewList.bind(this);
     this.moreReviews = this.moreReviews.bind(this);
@@ -28,8 +30,21 @@ class RatingsReviews extends React.Component {
       this.getReviewList()
     });
   }
+  getMeta() {
+    axios({
+      method: 'get',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta?product_id=${this.props.product_id}`,
+      headers: {
+        'Authorization': token.TOKEN
+      }
+    }).then((response) => {
+      console.log(response.data)
+      this.setState({meta: response.data})
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
   getReviewList() {
-    console.log(this.props.product_id)
     axios({
       method: 'get',
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews?product_id=${this.props.product_id}&count=2&page=${reviewPage}&sort=${sort}`,
@@ -65,11 +80,13 @@ class RatingsReviews extends React.Component {
   }
   componentDidMount() {
     this.getReviewList();
+    this.getMeta();
   }
   render() {
     return (
       <div className="rr-main" >
         RATINGS & REVIEWS
+        <RatingBreakdown meta={this.state.meta}/>
         <ReviewList reviews={this.state.reviews} more={this.moreReviews} sort={this.sortChange} renderButton={this.state.hasMoreReviews} />
       </div>
     )
