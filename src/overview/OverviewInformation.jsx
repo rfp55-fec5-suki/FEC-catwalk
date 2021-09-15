@@ -8,12 +8,31 @@ class OverviewInformation extends React.Component {
   }
 
   render () {
+    var product = this.props.product;
+    var style = this.props.selectedStyle;
+
+    let price;
+    if (style.sale_price !== null) {
+      console.log(`Sales price is ${style.sale_price}`);
+      price = (
+        <div class='price'>
+          <span id='salesPrice'>${style.sale_price}</span>
+          <span id='originalPrice'>&nbsp;&nbsp;${style.original_price}</span>
+        </div>
+        );
+      } else {
+        price = (
+          <div class='price'>
+            <span>${style.original_price}</span>
+          </div>);
+      }
+
     return (
       <div class='overviewInformation'>
         <p><RatingView ratingValue={3} /> <a href='#'>Read all reviews</a> </p>
-        <h4>CATEGORY</h4>
-        <h2>Expanded Product Name</h2>
-        <p>$369</p>
+        <h4>{product.category}</h4>
+        <h2>{product.name}</h2>
+        {price}
       </div>
     );
   }

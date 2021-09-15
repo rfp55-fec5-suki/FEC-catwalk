@@ -98,3 +98,11 @@
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
 }
+
+#salesPrice {
+  color: red;
+  font-weight: bold;
+}
+#originalPrice {
+  text-decoration: line-through;
+}

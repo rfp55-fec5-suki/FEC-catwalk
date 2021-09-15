@@ -10,25 +10,26 @@ import React from 'react';
 class Overview extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {selectedStyle: this.props.styles.results[0]};
   }
 
   render () {
+    console.log(this.state.selectedStyle);
     return (
       <div class='overview'>
         <div class='overviewTop'>
           <div class='leftCol'>
-            <ImageGallary />
+            <ImageGallary selectedStyle={this.state.selectedStyle}/>
           </div>
 
           <div class='rightCol'>
-            <OverviewInformation />
-            <StyleSelector />
+            <OverviewInformation product={this.props.product} selectedStyle={this.state.selectedStyle} />
+            <StyleSelector style={this.props.style} selectedStyle={this.state.selectedStyle} />
             <AddToCart />
           </div>
         </div>
 
-        <DetailedInformation />
+        <DetailedInformation product={this.props.product}/>
       </div>
     );
 
