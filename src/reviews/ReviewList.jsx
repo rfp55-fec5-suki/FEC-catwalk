@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import ReviewTile from './reviewTile/ReviewTile.jsx';
 
 const ReviewList = (props) => {
-  if(props.filter) {
+  // if(props.filter) {
 
-  }
+  // }
   var reviews = props.reviews;
   if(props.meta.recommended) {
     var nReviews = parseInt(props.meta.recommended.false) + parseInt(props.meta.recommended.true);
@@ -20,6 +20,9 @@ const ReviewList = (props) => {
       <option value='newest'>Newest</option>
       <option value='helpful'>Helpful</option>
     </select>
+    {props.filter.length > 0 ? ( <span> and {props.filter.map((rating) => {
+      return (<span> {rating} Stars </span>)
+    })}</span>) : null}
     </div>
     <div className='rr-tile-list'>
     {reviews.map((review) => <ReviewTile review={review} key={review.review_id}/>)}
