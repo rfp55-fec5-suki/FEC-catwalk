@@ -1,3 +1,42 @@
+.review-list {
+  display: grid;
+  grid-template-columns: 25% 25% 50%;
+  grid-template-rows: 8% auto 20%;
+  margin-top: 20px;
+}
+.sort {
+  grid-column: 1 / 3;
+  grid-row: 1 / 2;
+  font-size: larger;
+}
+/* .sort-select {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+} */
+.sort-select, select, option {
+  font-size: large;
+  height: 75%;
+}
+.rr-tile-list {
+  grid-column: 1 / 4;
+  grid-row: 2 / 3;
+}
+.more-reviews {
+  grid-column: 1 / 2;
+  grid-row: 3 / 4;
+}
+.add-review {
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+}
+.rr-button {
+  background-color: #555;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  margin: 5%;
+  font-size: larger;
+}
 .review-tile {
   display: grid;
   grid-template-columns: 15%  15% 40% 15% 15%;
