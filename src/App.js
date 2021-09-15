@@ -85,7 +85,7 @@ class App extends React.Component {
 
         <RelatedProducts product={this.state.product} styles={this.state.styles} related={this.state.related} onClick={this.handleClick}/>
 
-        <QAList />
+        <QAList product={this.state.product}/>
 
         <Reviews product_id={this.state.product.id}/>
 

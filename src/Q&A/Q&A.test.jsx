@@ -1,6 +1,19 @@
 import React from 'react';
-import '@testing-library/jest-dom';
-import * from 'enzyme';
-import * as Adapter from 'enzyme-adapter-react-16';
+import { render, screen } from '@testing-library/react';
 
-enzyme.configure
+import QAList from './QAList.jsx';
+import QAAnswer from './QAAnswer.jsx'
+
+describe('QAList', () => {
+  test('renders App component', () => {
+    render(<QAList />);
+
+    screen.debug();
+  });
+});
+
+describe('QAList', () => {
+  test('renders App component', () => {
+    render(<QAAnswer />);
+  });
+});
