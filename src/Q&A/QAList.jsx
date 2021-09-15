@@ -2,6 +2,7 @@ import React from 'react';
 import token from '../../config.js';
 import axios from 'axios';
 import QAAnswer from './QAAnswer.jsx'
+import EachQuestion from './Q&AEachQuestion.jsx'
 
 class QAList extends React.Component {
   constructor(props) {
@@ -40,14 +41,8 @@ class QAList extends React.Component {
           <input type="submit" value="Search" />
         </form>
         {this.state.questions.map(question =>
-        <div key = {question.question_id}>
-          <h3>Q:</h3>
-          {question.question_body}
-          <div>
-            <button type = 'submit'>Submit an Answer</button>
-          </div>
-          <QAAnswer question = {question}/>
-        </div>)}
+        <EachQuestion question = {question}/>
+        )}
 
         <button type = 'submit'>More answered questions</button>
         <button type = 'submit'>Submit new question</button>
