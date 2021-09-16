@@ -1,7 +1,7 @@
 import React from 'react';
 import StarRating from './../../sharedComponents/StarRating.jsx';
 import checkmark from './Checkmark.svg';
-
+import './reviewTile.css';
 
 class ReviewTile extends React.Component {
   constructor(props) {
