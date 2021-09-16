@@ -27,8 +27,8 @@ const StarRating = (props) => {
     var nRatings = 0;
     for (var key in props.meta) {
       var ratingValue = parseInt(key);
-      netRating += parseInt(key) * props.meta[key];
-      nRatings += props.meta[key];
+      netRating += parseInt(key) * parseInt(props.meta[key]);
+      nRatings += parseInt(props.meta[key]);
     }
     var rating = netRating / nRatings;
   } else {
