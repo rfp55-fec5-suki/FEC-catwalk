@@ -4,26 +4,31 @@ import RelatedProductCard from './relatedproductcard.jsx';
 import './riac.css';
 
 const RelatedProducts = (props) => (
-  <div>
+  <div className='riac-carousel'>
+
     <div className='riac-productcard-header'>
 
       RELATED PRODUCTS
 
     </div>
 
-    <div className='riac-related-products'>
-
-      <button className='riac-left-button'/>
+    <div className='riac-container'>
       {/* Make another div that lays over this one for the button. make that div the screen size rather than the div list*/}
 
-      <ProductCard product={props.product} styles={props.styles} onClick={props.onClick} />
+      <button className='riac-left-button' />
+      <button className='riac-right-button' />
 
-      {props.related.map((productid) => {
-        return <RelatedProductCard productid={productid} onClick={props.onClick} />
-      })}
+      <div className='riac-related-products'>
 
-      <button className='riac-right-button'/>
 
+        <ProductCard product={props.product} styles={props.styles} onClick={props.onClick} />
+
+        {props.related.map((productid) => {
+          return <RelatedProductCard productid={productid} onClick={props.onClick} />
+        })}
+
+
+      </div>
     </div>
   </div>
 )
