@@ -24,8 +24,23 @@
   display: flex;
 }
 
-.addToCart button {
-  width: 20px;
+.addToCart #values #selectSize{
+  width: 30%;
+  margin: 5% 5% 5% 0%;
+  padding: 0.5%;
+}
+
+.addToCart #values #selectQuantity{
+  width: 30%;
+  margin: 5% 5% 5% 0%;
+  padding: 0.5%;
+}
+
+.addToCart #buyButton {
+  width: 65%;
+  padding: 3%;
+  font-size: 22px;
+  font-weight: bolder;
 }
 
 

@@ -37,7 +37,7 @@ class AddToCart extends React.Component {
           </select>
         </div>
 
-        <input type='button' value='ADD TO BAG +'/>
+        <input id='buyButton' type='button' value='+ ADD TO BAG'/>
       </form>
     );
 
