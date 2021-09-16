@@ -13,6 +13,13 @@ class ReviewTile extends React.Component {
     this.month = this.monthNames[month];
     this.day = day;
     this.year = year;
+    if (props.review.summary.length > 80) {
+      this.summary = props.review.summary.slice(0, 81);
+      this.summaryCont = props.review.summary.slice(81);
+    } else {
+      this.summary = props.review.summary;
+      this.summaryCont = false
+    }
   }
   render() {
     return (
@@ -25,7 +32,10 @@ class ReviewTile extends React.Component {
         </div>
         <br />
         <div className='review-summary'>
-          <h2>{this.props.review.summary}</h2>
+          {this.summaryCont ? <span>{this.summary}...</span> : this.summary}
+        </div>
+        <div className='review-summary-cont'>
+          {this.summaryCont ? this.summaryCont : null}
         </div>
         <div className='review-body'>
           {this.props.review.body}

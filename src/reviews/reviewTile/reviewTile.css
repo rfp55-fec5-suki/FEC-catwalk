@@ -1,7 +1,7 @@
 .review-tile {
   display: grid;
   grid-template-columns: 15%  15% 40% 15% 15%;
-  grid-template-rows: 10% auto auto auto auto auto 10%;
+  grid-template-rows: 25px auto auto auto auto auto auto 10%;
   border: 1px solid;
   overflow: hidden;
 }
@@ -23,24 +23,32 @@
   grid-column-end: 6;
   grid-row-start: 2;
   grid-row-end: 3;
+  font-size: large;
+  font-weight: bold;
 }
-.review-body {
+.review-summary-cont {
   grid-column-start: 1;
   grid-column-end: 6;
   grid-row-start: 3;
   grid-row-end: 4;
 }
+.review-body {
+  grid-column-start: 1;
+  grid-column-end: 6;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
 .recommend {
   grid-column-start: 1;
   grid-column-end: 3;
-  grid-row-start: 4;
-  grid-row-end: 5;
+  grid-row-start: 5;
+  grid-row-end: 6;
 }
 .response {
   grid-column-start: 2;
   grid-column-end: 5;
-  grid-row-start: 5;
-  grid-row-end: 6;
+  grid-row-start: 6;
+  grid-row-end: 7;
   background-color: #555;
   color: white;
   border-radius: 5px;
@@ -49,8 +57,8 @@
 .helpful {
   grid-column-start: 1;
   grid-column-end: 2;
-  grid-row-start: 6;
-  grid-row-end: 7;
+  grid-row-start: 7;
+  grid-row-end: 8;
 }
 .check {
   height: 15px;
