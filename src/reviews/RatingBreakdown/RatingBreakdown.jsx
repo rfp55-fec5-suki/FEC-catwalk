@@ -6,7 +6,6 @@ import './RatingBreakdown.css';
 
 const RatingBreakdown = (props) => {
   if (props.meta.ratings) {
-    console.log(props.meta)
     // get average rating------------------------
     var netRating = 0;
     var nRatings = 0;
