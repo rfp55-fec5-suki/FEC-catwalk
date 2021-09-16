@@ -128,7 +128,10 @@ class Modal extends React.Component {
               </div>
             </form>
           </div>
-          <button type='submit' onClick={handleClose}>
+          <button onClick={handleClose}>
+            Close
+          </button>
+          <button type = 'submit' onClick={handleClose}>
             Submit
           </button>
         </section>
