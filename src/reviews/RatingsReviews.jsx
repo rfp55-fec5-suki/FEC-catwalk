@@ -57,6 +57,7 @@ class RatingsReviews extends React.Component {
     }
   }
   setListToDefault () {
+    this.state.hasMoreReviews = true;
     this.state.filterByRating = [];
     this.state.reviews = [];
     this.getReviewList();
