@@ -23,8 +23,7 @@ class RelatedProductCard extends React.Component {
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${this.state.id}`,
       headers: {
         'Authorization': token.TOKEN
-      },
-      responseType: 'stream'
+      }
     })
       .then((response) => {
         this.setState({
@@ -39,8 +38,7 @@ class RelatedProductCard extends React.Component {
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${this.state.id}/styles`,
       headers: {
         'Authorization': token.TOKEN
-      },
-      responseType: 'stream'
+      }
     })
       .then((response) => {
         this.setState({
