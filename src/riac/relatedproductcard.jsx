@@ -93,17 +93,18 @@ class RelatedProductCard extends React.Component {
   render() {
     this.state.id = this.props.productid;
     return (
-      <div className='riac-productcard'>
-
+      <div>
         <RelatedProductModal show={this.state.show} handleClose={this.hideModal}>
           <div className='riac-modal-grid'>
             <p>Hello World!</p>
           </div>
         </RelatedProductModal>
 
+      <div className='riac-productcard'>
+
+
         <button className='riac-productcard-button' onClick={this.showModal}>star</button>
 
-        {/* onClick={()=>{this.props.modal(this.state.info)}} */}
 
         <div className='riac-productcard-image' onClick={() => this.props.onClick(this.state.info.id)}>
           <img src={this.state.img} />
@@ -114,6 +115,7 @@ class RelatedProductCard extends React.Component {
         <div className='riac-productcard-price'> {this.state.info.default_price} </div>
         <div className='riac-productcard-rating'> <StarRating meta={this.state.stars} /> </div>
 
+      </div>
       </div>
     );
   }
