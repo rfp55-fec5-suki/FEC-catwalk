@@ -18,7 +18,7 @@ class QAAnswer extends React.Component {
           <div>
             {Object.values(this.props.question.answers).map(answer =>
 
-              <EachAnswer answer = {answer}/>
+              <EachAnswer key = {answer.id} answer = {answer}/>
               )}
           </div>
       </div>

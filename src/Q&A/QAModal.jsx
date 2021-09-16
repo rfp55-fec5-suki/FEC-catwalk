@@ -4,9 +4,39 @@ import './Q&A.css';
 class Modal extends React.Component {
   constructor(props) {
     super (props);
+    this.state = {
+      body: '',
+      name: '',
+      email: '',
+      photo: [],
+      question: false,
+      answer: false
+    }
   }
 
   //event handler here
+  submitForm(e) {
+    const { body, name, email, photo, answer } = this.state
+    const { postAnswer, postQuestion, product } = this.props
+    const input = (answer ? { body, name, email, photo } : { body, name, email, product.id })
+
+    e.preventDefault()
+
+    if( answer ) {
+      postAnswer(input)
+    } else {
+      postQuestion(input)
+    }
+
+    this.setState({
+      body: '',
+      name: '',
+      email: '',
+      photo: ''
+    })
+
+    this.toggleModal()
+  }
 
   render() {
     const handleClose = this.props.handleClose;

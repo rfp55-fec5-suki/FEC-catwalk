@@ -73,7 +73,7 @@ class QAList extends React.Component {
           <input type="submit" value="Search" />
         </form>
         {this.state.questions.map(question =>
-        <EachQuestion key = {question.question_id} question = {question} postAnswer = {this.postAnswer} postQuestion = {this.postQuestion}/>
+        <EachQuestion key = {question.question_id} question = {question} postAnswer = {this.postAnswer} postQuestion = {this.postQuestion} product = {this.props.product}/>
         )}
 
         <button type = 'submit'>More answered questions</button>

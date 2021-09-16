@@ -33,7 +33,13 @@ class EachQuestion extends React.Component {
           <h3>Q:</h3>
           {question.question_body}
           <div>
-            <Modal show={this.state.show} handleClose={this.hideModal}/>
+            <Modal
+            show={this.state.show}
+            handleClose={this.hideModal}
+            postAnswer={this.props.postAnswer}
+            postQuestion={this.props.postQuestion}
+            product={this.props.product}
+            question={this.props.question}/>
             <button type = 'submit' onClick={this.showModal}>
               Add an Answer
             </button>
