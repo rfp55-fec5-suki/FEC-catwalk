@@ -3,8 +3,13 @@ import React from 'react';
 
 class EachAnswer extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
+    this.state = {
+      helpness: this.props.answer.helpfulness
+    }
   }
+
+  //after onclick helpful?, this.setState : helpness+1
 
   render() {
     const answer = this.props.answer;
