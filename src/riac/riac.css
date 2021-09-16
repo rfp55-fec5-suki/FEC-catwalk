@@ -2,6 +2,23 @@
   display: flex;
   flex-wrap: nowrap;
   overflow: auto;
+  width: 100%;
+
+  position: relative;
+
+  margin: auto;
+}
+
+.riac-left-button, .riac-right-button {
+  position: absolute;
+  top: 50%;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 16px;
+  margin-top: -22px;
+  border-radius: 0 3px 3px 0;
+  color: #fff;
+  cursor: pointer;
 }
 
 .riac-productcard-header {

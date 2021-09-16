@@ -13,7 +13,7 @@ const RelatedProducts = (props) => (
 
     <div className='riac-related-products'>
 
-      <button />
+      <button className='riac-left-button'/>
 
       <ProductCard product={props.product} styles={props.styles} onClick={props.onClick} />
 
@@ -21,7 +21,7 @@ const RelatedProducts = (props) => (
         return <RelatedProductCard productid={productid} onClick={props.onClick} />
       })}
 
-      <button />
+      <button className='riac-right-button'/>
 
     </div>
   </div>
