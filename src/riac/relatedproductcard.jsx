@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import token from '../../config.js';
 import StarRating from '../sharedComponents/StarRating.jsx';
+import RelatedProductModal from './relatedproductmodal.jsx';
 import './riac.css';
 
 class RelatedProductCard extends React.Component {
@@ -93,6 +94,12 @@ class RelatedProductCard extends React.Component {
     this.state.id = this.props.productid;
     return (
       <div className='riac-productcard'>
+
+        <RelatedProductModal show={this.state.show} handleClose={this.hideModal}>
+          <div className='riac-modal-grid'>
+            <p>Hello World!</p>
+          </div>
+        </RelatedProductModal>
 
         <button className='riac-productcard-button' onClick={this.showModal}>star</button>
 
