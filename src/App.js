@@ -80,7 +80,7 @@ class App extends React.Component {
 
         <Overview product={this.state.product} styles={this.state.styles} />
 
-        <RelatedProducts related={this.state.related} onClick={this.handleClick}/>
+        <RelatedProducts product={this.state.product} related={this.state.related} onClick={this.handleClick}/>
 
         <QAList product={this.state.product}/>
 

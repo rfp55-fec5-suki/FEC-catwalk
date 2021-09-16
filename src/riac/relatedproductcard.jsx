@@ -59,7 +59,6 @@ class RelatedProductCard extends React.Component {
       }
     })
       .then((response) => {
-        // console.log('meta', response.data.ratings)
         this.setState({
           stars: response.data.ratings
         });
@@ -82,13 +81,13 @@ class RelatedProductCard extends React.Component {
   render() {
     this.state.id = this.props.productid;
     return (
-      <div className='riac-productcard' onClick={() => this.props.onClick(this.state.info.id)}>
+      <div className='riac-productcard'>
 
-        <div className='riac-productcard-image'>
+        <button className='riac-productcard-button' onClick={()=>{this.props.modal(this.state.id)}}>star</button>
+
+        <div className='riac-productcard-image' onClick={() => this.props.onClick(this.state.info.id)}>
           <img src={this.state.img} />
         </div>
-
-        <button className='riac-productcard-button'>cart</button>
 
 
         <div className='riac-productcard-category'> {this.state.info.category} </div>

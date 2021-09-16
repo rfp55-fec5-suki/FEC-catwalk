@@ -2,27 +2,49 @@ import React from 'react';
 import RelatedProductCard from './relatedproductcard.jsx';
 import './riac.css';
 
-const RelatedProducts = (props) => (
-  <div className='riac-carousel'>
+class RelatedProducts extends React.Component {
+  constructor(props) {
+    super(props)
 
-    <div className='riac-productcard-header'>
-      RELATED PRODUCTS
-    </div>
+    this.state = {
+      id: ''
+    }
 
-    <button className='riac-left-button' />
-    <button className='riac-right-button' />
+    this.handleModal = this.handleModal.bind(this);
+  }
 
-    <div className='riac-container'>
+  handleModal(id) {
+    console.log(id)
+  }
 
-      <div className='riac-related-products'>
+  render() {
+    return (
+      <div className='riac-carousel'>
 
-        {props.related.map((productid) => {
-          return <RelatedProductCard productid={productid} onClick={props.onClick} />
-        })}
+        <div className='riac-productcard-header'>
+          RELATED PRODUCTS
+        </div>
 
+        <button className='riac-left-button' />
+        <button className='riac-right-button' />
+
+        <div className='riac-container'>
+
+          <div className='riac-related-products'>
+
+            {this.props.related.map((productid) => {
+              return <RelatedProductCard productid={productid} onClick={this.props.onClick} modal={this.handleModal} />
+            })}
+
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-)
+
+    )
+  }
+}
+
+// const RelatedProducts = (props) => (
+// )
 
 export default RelatedProducts;

@@ -1,3 +1,12 @@
+
+/* Stylesheet for Related Items and Comparisons */
+
+
+
+/* List and Carousel */
+
+
+
 .riac-carousel {
   display: grid;
   grid-template-columns: 3% 2% 90% 2% 3%;
@@ -28,6 +37,12 @@
   z-index: 1;
 }
 
+
+
+/* Related Product Card */
+
+
+
 .riac-related-products {
   display: flex;
   flex-wrap: nowrap;
@@ -46,18 +61,6 @@
   margin: 10px;
 }
 
-.riac-productcard-image {
-  grid-row: 1/4;
-  grid-column: 1/5;
-}
-
-.riac-productcard-image img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-
-}
-
 .riac-productcard-button {
   grid-column: 3/4;
   grid-row: 2/3;
@@ -67,6 +70,19 @@
   border: none;
   cursor: pointer;
   border-radius: 5px;
+  z-index: 1;
+}
+
+.riac-productcard-image {
+  grid-row: 1/4;
+  grid-column: 1/5;
+  cursor: pointer;
+}
+
+.riac-productcard-image img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .riac-productcard-category {
@@ -96,4 +112,19 @@
 
 .riac-productcard-rating .star{
   height: 15px;
+}
+
+
+
+/* Modal */
+
+
+
+.riac-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  Transform: translate(-50%, -50%);
+	box-shadow: 0 0 5px black;
+	background-color: white;
 }
