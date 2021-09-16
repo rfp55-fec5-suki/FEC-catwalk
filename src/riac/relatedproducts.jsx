@@ -15,6 +15,7 @@ class RelatedProducts extends React.Component {
   }
 
   handleModal(id) {
+    event.preventDefault();
     this.setState({
       selected: id
     })

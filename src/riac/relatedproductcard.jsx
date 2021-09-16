@@ -13,11 +13,22 @@ class RelatedProductCard extends React.Component {
       info: {},
       img: '',
       styles: {},
-      stars: {}
+      stars: {},
+      show: false
     };
 
     this.fetchProduct = this.fetchProduct.bind(this);
+    this.showModal = this.showModal.bind(this);
+    this.hideModal = this.hideModal.bind(this);
   }
+
+  showModal() {
+    this.setState({ show: true });
+  };
+
+  hideModal() {
+    this.setState({ show: false });
+  };
 
   fetchProduct() {
     axios({
@@ -83,12 +94,13 @@ class RelatedProductCard extends React.Component {
     return (
       <div className='riac-productcard'>
 
-        <button className='riac-productcard-button' onClick={()=>{this.props.modal(this.state.info)}}>star</button>
+        <button className='riac-productcard-button' onClick={this.showModal}>star</button>
+
+        {/* onClick={()=>{this.props.modal(this.state.info)}} */}
 
         <div className='riac-productcard-image' onClick={() => this.props.onClick(this.state.info.id)}>
           <img src={this.state.img} />
         </div>
-
 
         <div className='riac-productcard-category'> {this.state.info.category} </div>
         <div className='riac-productcard-name'> {this.state.info.name} </div>
