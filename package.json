@@ -35,6 +35,9 @@
     "underscore": "^1.13.1"
   },
   "jest": {
-    "testEnvironment": "jsdom"
+    "testEnvironment": "jsdom",
+    "moduleNameMapper": {
+      "\\.(css|jpg|png|svg)$": "<rootDir>/empty-module.js"
+    }
   }
 }
