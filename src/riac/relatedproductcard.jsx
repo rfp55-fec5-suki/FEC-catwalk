@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import token from '../../config.js';
+import StarRating from '../sharedComponents/StarRating.jsx';
 import './riac.css';
 
 class RelatedProductCard extends React.Component {
@@ -16,7 +17,6 @@ class RelatedProductCard extends React.Component {
     };
 
     this.fetchProduct = this.fetchProduct.bind(this);
-
   }
 
   fetchProduct() {
@@ -51,14 +51,30 @@ class RelatedProductCard extends React.Component {
       .catch((error) => {
         console.log(error);
       });
+    axios({
+      method: 'get',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta?product_id=${this.state.id}`,
+      headers: {
+        'Authorization': token.TOKEN
+      }
+    })
+      .then((response) => {
+        // console.log('meta', response.data.ratings)
+        this.setState({
+          stars: response.data.ratings
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   componentDidMount() {
     this.fetchProduct();
   }
 
-  componentDidUpdate(previous) {
-    if (previous.productid !== this.props.productid) {
+  componentDidUpdate(prevProps) {
+    if (prevProps.productid !== this.props.productid) {
       this.fetchProduct();
     }
   }
@@ -78,7 +94,7 @@ class RelatedProductCard extends React.Component {
         <div className='riac-productcard-category'> {this.state.info.category} </div>
         <div className='riac-productcard-name'> {this.state.info.name} </div>
         <div className='riac-productcard-price'> {this.state.info.default_price} </div>
-        <div className='riac-productcard-rating'> Star Rating</div>
+        <div className='riac-productcard-rating'> <StarRating meta={this.state.stars} /> </div>
 
       </div>
     );
