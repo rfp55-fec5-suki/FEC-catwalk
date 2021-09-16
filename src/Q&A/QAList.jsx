@@ -11,6 +11,8 @@ class QAList extends React.Component {
       questions: [],
     }
     this.getQuestions = this.getQuestions.bind(this);
+    this.postQuestion = this.postQuestion.bind(this);
+    this.postAnswer = this.postAnswer.bind(this);
   }
 
   componentDidMount() {
@@ -28,7 +30,6 @@ class QAList extends React.Component {
     const product_id = this.props.product.id
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/?product_id=${product_id}`, {headers: {'Authorization': token.TOKEN}})
       .then((res) => {
-        console.log('react get questions success: ', res.data);
         this.setState({
           questions: res.data.results
         });
@@ -37,6 +38,31 @@ class QAList extends React.Component {
         throw error;
       });
   }
+
+  postQuestion(question) {
+    const product_id = this.props.product.id
+    axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/?product_id=${product_id}`, question, {headers: {'Authorization': token.TOKEN}})
+      .then((res) => {
+        this.getQuestions();
+      })
+      .catch((error) => {
+        throw error;
+      })
+  }
+
+
+
+  postAnswer(answer) {
+    const question_id = this.state.questions.question_id
+    axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${question_id}/answers`, answer, {headers: {'Authorization': token.TOKEN}})
+      .then((res) => {
+        this.getQuestions();
+      })
+      .catch((error) => {
+        throw error;
+      })
+  }
+
 
 
   render() {
@@ -47,7 +73,7 @@ class QAList extends React.Component {
           <input type="submit" value="Search" />
         </form>
         {this.state.questions.map(question =>
-        <EachQuestion question = {question}/>
+        <EachQuestion question = {question} postAnswer = {this.postAnswer}/>
         )}
 
         <button type = 'submit'>More answered questions</button>
