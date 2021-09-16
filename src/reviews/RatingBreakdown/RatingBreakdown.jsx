@@ -25,7 +25,7 @@ const RatingBreakdown = (props) => {
         var percent = ((ratingsByValue / nRatings) * 100).toFixed(0);
         starValues[i] = { percent: percent, quantity: ratingsByValue };
       } else {
-        starValues[i] = {percent: 0, quantity: 0}
+        starValues[i] = { percent: 0, quantity: 0 }
       }
     }
     return (
@@ -37,7 +37,7 @@ const RatingBreakdown = (props) => {
           <StarRating rating={rating} />
         </div>
         <div className='recommended-percent'>
-        {recPer ? recPer.toFixed(0) : 0}% of reviews recommend this product<br />
+          {recPer ? recPer.toFixed(0) : 0}% of reviews recommend this product
         </div>
         <div className='star-breakdown'>
           <div onClick={() => props.filter(5)} className='five-star star-filter'>
@@ -72,17 +72,28 @@ const RatingBreakdown = (props) => {
 
   } else {
     return (
-      <div>
+      <div className='rating-breakdown'>
+        <div className='average-rating-text'>
+          0
+        </div>
         <div>
           rating average
           <StarRating />
         </div>
-        percentage of recommend
-        5star
-        4star
-        3star
-        2star
-        1star
+        <div className='average-rating-stars'>
+          <StarRating />
+        </div>
+        <div className='recommended-percent'>
+          {recPer ? recPer.toFixed(0) : 0}% of reviews recommend this product
+        </div>
+        <div className='star-breakdown'>
+          5 stars
+          4 stars
+          3 stars
+          2 stars
+          1 star
+        </div>
+        <button onClick={props.clear} className='clear-filters'>Clear filters</button>
       </div>
     )
   }

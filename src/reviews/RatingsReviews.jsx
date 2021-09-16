@@ -46,7 +46,6 @@ class RatingsReviews extends React.Component {
   //Review list handlers --------------------------
   sortChange(e) {
     e.preventDefault();
-    // console.log(e.target.value);
     sort = e.target.value;
     reviewPage = 1;
     if (this.state.filterByRating.length === 0) {
@@ -71,7 +70,6 @@ class RatingsReviews extends React.Component {
         'Authorization': token.TOKEN
       }
     }).then((response) => {
-      // console.log(response.data)
       this.setState({meta: response.data});
     }).catch((err) => {
       console.log(err);
@@ -85,7 +83,6 @@ class RatingsReviews extends React.Component {
         'Authorization': token.TOKEN
       }
     }).then((response) => {
-      // console.log('got all reviews')
       var filteredResults = response.data.results.filter((review) => {
         return this.state.filterByRating.includes(review.rating)
       })
