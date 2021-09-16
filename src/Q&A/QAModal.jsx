@@ -1,4 +1,4 @@
-//import React from 'react';
+import React from 'react';
 import './Q&A.css';
 
 // class Modal extends React.Component {
@@ -10,14 +10,15 @@ import './Q&A.css';
 //   }
 // }
 
-const Modal = (props{/*{handleClose, show, children}*/}) => {
-  const handleClose = this.props.handleClose;
-  const show = this.props.show;
+const Modal = (props) => {
+  const handleClose = props.handleClose;
+  const show = props.show;
+  const children = props.children;
   const showHideClassName = show ? 'modal display-block' : 'modal display-none';
 
   return (
     <div className={showHideClassName}>
-      <section className='nodal-main'>
+      <section className='modal-main'>
         {children}
         <button type='submit' onClick={handleClose}>
           Submit

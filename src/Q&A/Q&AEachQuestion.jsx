@@ -13,13 +13,13 @@ class EachQuestion extends React.Component {
   }
 
   // event handler
-  showModal = () => {
+  showModal() {
     this.setState ({
       show: true
     })
   }
 
-  hideModal = () => {
+  hideModal() {
     this.setState ({
       show: false
     })
