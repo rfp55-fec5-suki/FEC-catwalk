@@ -14,7 +14,7 @@ var testReview = {
   "helpfulness": 2,
   "photos": []
 }
-describe('ReviewTile', () => {
+describe.skip('ReviewTile', () => {
   test('renders proper text elements in ReviewTile component', () => {
     const {getByText} = render(<ReviewTile review={testReview}/>);
     expect(getByText('Helpful? Yes(2)')).toBeInTheDocument();
