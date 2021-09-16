@@ -35,26 +35,33 @@
   display: flex;
 }
 
-.imageContainer .selectionImgCol {
-  float: left;
-  width: 5%;
+.imageContainer {
+  display: flex;
+  flex-direction: row;
 }
+
 .imageContainer .selectionImgColumn {
-  display: table;
-
+  display: flex;
+  flex-direction: column;
+  float: left;
+  width: 10%;
+  height: 100%;
+  padding-right: 5px;
 }
 
-.imageContainer .selectionImgColumn img {
-
-  width: 5%;
+.imageContainer .selectionImgColumn .selectionImg {
+  padding-bottom: 5%;
+  object-fit: fill;
 }
 
-.imageContainer .mainImg img{
+.imageContainer .mainImage-container{
   float: right;
   width: 80%;
-
 }
 
+.imageContainer .mainImage-container .mainImage {
+  width: 100%;
+}
 
 .detailedInformation {
   padding-top: 50px;

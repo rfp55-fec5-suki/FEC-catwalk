@@ -13,12 +13,11 @@ class ImageGallary extends React.Component {
       <div class='imageContainer'>
         <div class='selectionImgColumn'>
           {_.map(stylePhotos, (photo) => {
-            return ( <img src={photo.thumbnail_url}></img> )
+            return ( <img class='selectionImg' src={photo.thumbnail_url}></img> )
           })}
-          <i class="arrowDown"></i>
         </div>
-        <div class='mainImg'>
-          <img src={stylePhotos[0].url}></img>
+        <div class='mainImage-container'>
+          <img class='mainImage' src={stylePhotos[0].url}></img>
         </div>
       </div>
     );
