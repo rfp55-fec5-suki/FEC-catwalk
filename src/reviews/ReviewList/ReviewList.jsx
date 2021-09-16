@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ReviewTile from './reviewTile/ReviewTile.jsx';
+import ReviewTile from '../reviewTile/ReviewTile.jsx';
 import circleX from './CircledX.svg';
 import './ReviewList.css'
 const ReviewList = (props) => {

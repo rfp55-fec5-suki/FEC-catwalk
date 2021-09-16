@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import RatingBreakdown from './RatingBreakdown/RatingBreakdown.jsx';
-import ReviewList from './ReviewList.jsx';
+import ReviewList from './ReviewList/ReviewList.jsx';
 import token from '../../config.js';
-import mockData from './mockData.js';
 import './RatingsReviews.css';
 
 var reviewPage = 1;
