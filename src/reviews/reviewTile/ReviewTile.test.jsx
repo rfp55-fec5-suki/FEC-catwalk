@@ -23,6 +23,15 @@ describe('ReviewTile', () => {
     expect(getByText('user | September 13, 2021')).toBeInTheDocument();
     expect(getByText('I recommend this product')).toBeInTheDocument();
   })
+  test('there should be a recommended element if the reiewer recommends the product', () => {
+    const {getByTestId} = render(<ReviewTile review={testReview}/>);
+    expect(getByTestId('reviewTileRecommend')).toBeInTheDocument();
+  })
+  test('there should not be a recommended element if the reviewer does not recommend the product', () => {
+    testReview.recommend = false;
+    const {queryByTestId} = render(<ReviewTile review={testReview}/>);
+    expect(queryByTestId('reviewTileRecommend')).toBeNull();
+  })
   test('response should not render if value is null', () => {
     const {queryByTestId} = render(<ReviewTile review={testReview}/>);
     expect(queryByTestId('reviewTileResponse')).toBeNull();
@@ -35,5 +44,18 @@ describe('ReviewTile', () => {
   test('there should be a star rating element', () => {
     const {getByTestId} = render(<ReviewTile review={testReview}/>);
     expect(getByTestId('starRating')).toBeInTheDocument();
+  })
+  test('the number next to helpful should be how many people found that review helpful', () => {
+    testReview.helpfulness = 4;
+    const {getByText} = render(<ReviewTile review={testReview}/>);
+    expect(getByText('Helpful? Yes(4)')).toBeInTheDocument();
+  })
+  test('if the review summary is longer than the 65 characters only the first 60 will appear with an elipsis added to the end in the review summary element the rest will appear in a summary cont element', () => {
+    var summary = 'this is a very long summary this summary needs to be over 65 '
+    var summaryCont = 'this part of the long summary should be displayed in the summaryCont element'
+    testReview.summary= summary + summaryCont;
+    const {getByText} = render(<ReviewTile review={testReview}/>);
+    expect(getByText(summary + '...')).toBeInTheDocument();
+    expect(getByText(summaryCont)).toBeInTheDocument();
   })
 })

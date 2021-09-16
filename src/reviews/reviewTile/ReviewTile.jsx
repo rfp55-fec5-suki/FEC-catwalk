@@ -13,7 +13,7 @@ class ReviewTile extends React.Component {
     this.month = this.monthNames[month];
     this.day = day;
     this.year = year;
-    if (props.review.summary.length > 80) {
+    if (props.review.summary.length > 65) {
       this.summary = props.review.summary.slice(0, 61);
       this.summaryCont = props.review.summary.slice(61);
     } else {
