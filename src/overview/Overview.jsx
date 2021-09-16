@@ -13,6 +13,16 @@ class Overview extends React.Component {
     this.state = {selectedStyle: this.props.styles.results[0]};
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.styles.product_id !== prevProps.styles.product_id) {
+      this.setState({ selectedStyle: this.props.styles.results[0] });
+    }
+  }
+
+  handleSelect(style) {
+    this.setState({ selectedStyle: style });
+  }
+
   render () {
     console.log(this.state.selectedStyle);
     return (
@@ -24,7 +34,7 @@ class Overview extends React.Component {
 
           <div class='rightCol'>
             <OverviewInformation product={this.props.product} selectedStyle={this.state.selectedStyle} />
-            <StyleSelector style={this.props.style} selectedStyle={this.state.selectedStyle} />
+            <StyleSelector styles={this.props.styles} selectStyle={this.handleSelect.bind(this)} />
             <AddToCart />
           </div>
         </div>

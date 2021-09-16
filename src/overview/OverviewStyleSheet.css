@@ -83,12 +83,6 @@
   vertical-align: middle;
 }
 
-.styleSelector img {
-  width:10%;
-  height:10%;
-  min-width: 100px;
-  border-radius: 50%;
-}
 
 .arrowDown {
   border: solid black;
@@ -105,4 +99,50 @@
 }
 #originalPrice {
   text-decoration: line-through;
+}
+
+.style-selector {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.style-container {
+  width: 20%;
+  padding: 2.5%;
+}
+
+.style {
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.style:before{
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+
+.style-name {
+  text-align: center;
+  padding-top: 10%;
+  font-size: 10;
+}
+.style img{
+  position: absolute; /* Take your picture out of the flow */
+
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0; /* Make the picture taking the size of it's parent */
+  width: 100%; /* This if for the object-fit */
+  height: 100%; /* This if for the object-fit */
+  object-fit: cover; /* Equivalent of the background-size: cover; of a background-image */
+  object-position: center;
+  background-size: 50% 50%;
+  margin-right: 20px;
+}
+
+.style figcaption{
+  text-align: center;
 }

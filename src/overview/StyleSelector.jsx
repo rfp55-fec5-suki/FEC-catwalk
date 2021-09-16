@@ -1,32 +1,37 @@
 import React from 'react';
+import _ from 'underscore';
 
 class StyleSelector extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {selectedStyle: this.props.styles.results[0]};
+  }
+
+  handleClick(style, e) {
+    e.preventDefault();
+    this.props.selectStyle(style);
   }
 
   render () {
+    var styles = this.props.styles.results;
     return (
-      <div class='styleSelector'>
+      <div>
         <p><b>STYLE &gt; </b>SELECTED STYLE</p>
-        <table>
-          <tbody>
-            <tr></tr>
-            <tr>
-              <th><img src='../src/overview/assets/1.png'></img></th>
-              <th><img src='../src/overview/assets/2.png'></img></th>
-              <th><img src='../src/overview/assets/3.jpg'></img></th>
-              <th><img src='../src/overview/assets/4.jpg'></img></th>
-            </tr>
-            <tr>
-              <th><img src='../src/overview/assets/5.jpg'></img></th>
-              <th><img src='../src/overview/assets/7.jpg'></img></th>
-              <th><img src='../src/overview/assets/8.jpg'></img></th>
-              <th><img src='../src/overview/assets/9.jpg'></img></th>
-            </tr>
-          </tbody>
-        </table>
+
+        <div class='style-selector'>
+          {_.map(styles, (style) => {
+            return (
+              <div class='style-container' key={style.style_id} onClick={this.handleClick.bind(this, style)}>
+                <div class='style'><img src={style.photos[0].thumbnail_url}  /></div>
+                <div class='style-name'>{style.name}</div>
+              </div>
+            )
+          })}
+
+        </div>
+
+
+
       </div>
     );
 

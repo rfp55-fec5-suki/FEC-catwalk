@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'underscore';
 
 class ImageGallary extends React.Component {
   constructor(props) {
@@ -7,17 +8,17 @@ class ImageGallary extends React.Component {
   }
 
   render () {
+    var stylePhotos = this.props.selectedStyle.photos;
     return (
       <div class='imageContainer'>
         <div class='selectionImgColumn'>
-          <img src='../src/overview/assets/4.jpg'></img><br />
-          <img src='../src/overview/assets/5.jpg'></img><br />
-          <img src='../src/overview/assets/7.jpg'></img><br />
-          <img src='../src/overview/assets/8.jpg'></img><br />
+          {_.map(stylePhotos, (photo) => {
+            return ( <img src={photo.thumbnail_url}></img> )
+          })}
           <i class="arrowDown"></i>
         </div>
         <div class='mainImg'>
-          <img src='../src/overview/assets/10.jpg'></img>
+          <img src={stylePhotos[0].url}></img>
         </div>
       </div>
     );

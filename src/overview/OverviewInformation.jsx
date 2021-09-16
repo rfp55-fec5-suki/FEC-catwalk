@@ -15,17 +15,17 @@ class OverviewInformation extends React.Component {
     if (style.sale_price !== null) {
       console.log(`Sales price is ${style.sale_price}`);
       price = (
-        <div class='price'>
+        <React.Fragment>
           <span id='salesPrice'>${style.sale_price}</span>
           <span id='originalPrice'>&nbsp;&nbsp;${style.original_price}</span>
-        </div>
+        </React.Fragment>
         );
       } else {
         price = (
-          <div class='price'>
-            <span>${style.original_price}</span>
-          </div>);
-      }
+        <span>${style.original_price}</span>
+      )
+    }
+
 
     return (
       <div class='overviewInformation'>
