@@ -83,7 +83,7 @@ class RelatedProductCard extends React.Component {
     return (
       <div className='riac-productcard'>
 
-        <button className='riac-productcard-button' onClick={()=>{this.props.modal(this.state.id)}}>star</button>
+        <button className='riac-productcard-button' onClick={()=>{this.props.modal(this.state.info)}}>star</button>
 
         <div className='riac-productcard-image' onClick={() => this.props.onClick(this.state.info.id)}>
           <img src={this.state.img} />

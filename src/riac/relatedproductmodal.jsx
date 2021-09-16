@@ -5,11 +5,14 @@ class RelatedProductModal extends React.Component {
     super(props);
 
     this.state = {
-      id: ''
+      product: '',
+      selected: ''
     }
   }
 
   render() {
+    this.state.product = this.props.product;
+    this.state.selected = this.props.selected;
     return(
       <div className='riac-modal'>
         {console.log('product', this.props.product)}
