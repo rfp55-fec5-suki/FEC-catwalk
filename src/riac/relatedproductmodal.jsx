@@ -12,7 +12,8 @@ class RelatedProductModal extends React.Component {
   render() {
     return(
       <div className='riac-modal'>
-        <div>Hello World!</div>
+        {console.log('product', this.props.product)}
+        {console.log('selected', this.props.selected)}
       </div>
     )
   }

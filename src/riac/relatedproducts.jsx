@@ -1,5 +1,6 @@
 import React from 'react';
 import RelatedProductCard from './relatedproductcard.jsx';
+import RelatedProductModal from './relatedproductmodal.jsx';
 import './riac.css';
 
 class RelatedProducts extends React.Component {
@@ -7,18 +8,24 @@ class RelatedProducts extends React.Component {
     super(props)
 
     this.state = {
-      id: ''
+      selected: ''
     }
 
     this.handleModal = this.handleModal.bind(this);
   }
 
   handleModal(id) {
-    console.log(id)
+    this.setState({
+      selected: id
+    })
   }
 
   render() {
     return (
+    <div>
+
+      <RelatedProductModal product={this.props.product} selected={this.state.selected} />
+
       <div className='riac-carousel'>
 
         <div className='riac-productcard-header'>
@@ -38,6 +45,7 @@ class RelatedProducts extends React.Component {
 
           </div>
         </div>
+      </div>
       </div>
 
     )
