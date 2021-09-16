@@ -1,5 +1,4 @@
-import React from 'react';
-import ProductCard from './productcard.jsx';
+import React, { useEffect } from 'react';
 import RelatedProductCard from './relatedproductcard.jsx';
 import './riac.css';
 
@@ -18,9 +17,6 @@ const RelatedProducts = (props) => (
     <div className='riac-container'>
 
       <div className='riac-related-products'>
-
-
-        {/* <ProductCard product={props.product} styles={props.styles} onClick={props.onClick} /> */}
 
         {props.related.map((productid) => {
           return <RelatedProductCard productid={productid} onClick={props.onClick} />

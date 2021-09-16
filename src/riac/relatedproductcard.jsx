@@ -15,9 +15,11 @@ class RelatedProductCard extends React.Component {
       stars: {}
     };
 
+    this.fetchProduct = this.fetchProduct.bind(this);
+
   }
 
-  componentDidMount() {
+  fetchProduct() {
     axios({
       method: 'get',
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${this.state.id}`,
@@ -49,6 +51,16 @@ class RelatedProductCard extends React.Component {
       .catch((error) => {
         console.log(error);
       });
+  }
+
+  componentDidMount() {
+    this.fetchProduct();
+  }
+
+  componentDidUpdate(previous) {
+    if (previous.productid !== this.props.productid) {
+      this.fetchProduct();
+    }
   }
 
   render() {
