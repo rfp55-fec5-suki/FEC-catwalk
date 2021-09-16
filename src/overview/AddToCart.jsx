@@ -1,21 +1,47 @@
-import React, {useState} from 'react';
+import React from 'react';
 
-var AddToCart = () => {
-  return (
-    <form class='addToCart'>
-      <div id='values'>
-        <select id='selectSize'>
-          <option>SELECT SIZE</option>
-        </select>
+class AddToCart extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
-        <select id='selectQuantity'>
-          <option>1</option>
-        </select>
-      </div>
+  handleSizeSelection(e) {
+    this.setState( {maxQuantity: e.target.value})
+  }
 
-      <input type='button' value='ADD TO BAG +'/>
-    </form>
-  );
-};
+  render () {
+    var options = this.props.selectedStyle.skus;
+
+    let sizeSelections = [];
+    for (var k in options) {
+      sizeSelections.push(<option value={options[k].quantity}>{options[k].size}</option>)
+    }
+
+    let quantityOptions = [];
+    for (var i = 1; i <= this.state.maxQuantity; i++) {
+      quantityOptions.push(<option value={options[k].quantity}>{i}</option>)
+    }
+
+    return (
+      <form class='addToCart'>
+        <div id='values'>
+          <select id='selectSize' onChange={this.handleSizeSelection.bind(this)}>
+            <option>SELECT SIZE</option>
+            <React.Fragment>{sizeSelections}</React.Fragment>
+          </select>
+
+          <select id='selectQuantity'>
+            <option>QUANTITY</option>
+            <React.Fragment>{quantityOptions}</React.Fragment>
+          </select>
+        </div>
+
+        <input id='buyButton' type='button' value='+ ADD TO BAG'/>
+      </form>
+    );
+
+  }
+}
 
 export default AddToCart;
