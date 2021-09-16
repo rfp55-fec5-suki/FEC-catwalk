@@ -81,7 +81,7 @@ class App extends React.Component {
       <div className='App'>
         <h1> Best E-Commerce App EVER! </h1>
 
-        <Overview />
+        <Overview product={this.state.product} styles={this.state.styles} />
 
         <RelatedProducts product={this.state.product} styles={this.state.styles} related={this.state.related} onClick={this.handleClick}/>
 
