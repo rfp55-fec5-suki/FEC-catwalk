@@ -25,6 +25,7 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
+    "@testing-library/jest-dom": "^5.14.1",
     "axios": "^0.21.4",
     "jest": "^27.1.1",
     "jquery": "^3.6.0",

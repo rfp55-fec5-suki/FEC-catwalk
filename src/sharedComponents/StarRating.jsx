@@ -53,7 +53,7 @@ const StarRating = (props) => {
     stars.push(empty);
   }
   return (
-    <div>
+    <div data-testid='starRating'>
       <img src={stars[0]} className='star'/>
       <img src={stars[1]} className='star'/>
       <img src={stars[2]} className='star'/>

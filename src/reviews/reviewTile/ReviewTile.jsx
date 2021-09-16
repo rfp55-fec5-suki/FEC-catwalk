@@ -23,30 +23,30 @@ class ReviewTile extends React.Component {
   }
   render() {
     return (
-      <div className='review-tile'>
-        <div className='star-rating'>
+      <div className='review-tile' data-testid='reviewTile'>
+        <div className='star-rating' data-testid='reviewTileStarRating'>
         <StarRating rating={this.props.review.rating} />
         </div><br />
-        <div className='review-date-username'>
+        <div className='review-date-username' data-testid='reviewTileUsernameDate'>
         {this.props.review.reviewer_name} | {this.month} {this.day}, {this.year}
         </div>
         <br />
-        <div className='review-summary'>
+        <div className='review-summary' data-testid='reviewTileSummary'>
           {this.summaryCont ? <span>{this.summary}...</span> : this.summary}
         </div>
-        <div className='review-summary-cont'>
+        <div className='review-summary-cont' data-testid='reviewTileSummaryCont'>
           {this.summaryCont ? this.summaryCont : null}
         </div>
-        <div className='review-body'>
+        <div className='review-body' data-testid='reviewTileBody'>
           {this.props.review.body}
         </div>
-          {this.props.review.recommend ? <div className='recommend'>
+          {this.props.review.recommend ? <div className='recommend' data-testid='reviewTileRecommend'>
             <img src={checkmark} className='check'/> I recommend this product</div> : null}
-        {this.props.review.response ? <div className='response'>
+        {this.props.review.response ? <div className='response' data-testid='reviewTileResponse'>
           Response: <br />
           {this.props.review.response}
         </div> : null}
-        <div className='helpful'>
+        <div className='helpful' data-testid='reviewTileHelpful'>
         Helpful? Yes({this.props.review.helpfulness})
         </div>
       </div>
