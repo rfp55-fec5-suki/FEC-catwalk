@@ -47,7 +47,7 @@ class ReviewTile extends React.Component {
           {this.props.review.response}
         </div> : null}
         <div className='helpful' data-testid='reviewTileHelpful'>
-        Helpful? Yes({this.props.review.helpfulness})
+        Helpful? Yes({this.props.review.helpfulness}) | report
         </div>
       </div>
     )

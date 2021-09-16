@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import RatingBreakdown from './RatingBreakdown/RatingBreakdown.jsx';
+import ProductBreakdown from './ProductBreakdown/ProductBreakdown.jsx'
 import ReviewList from './ReviewList/ReviewList.jsx';
 import token from '../../config.js';
 import './RatingsReviews.css';
@@ -132,13 +133,16 @@ class RatingsReviews extends React.Component {
   }
   render() {
     return (
+
       <div className="rr-main" >
         <span className='rr-title'>RATINGS & REVIEWS</span>
         <RatingBreakdown meta={this.state.meta} filter={this.setRatingFilter} clear={this.setListToDefault}/>
+        <ProductBreakdown chars={this.state.meta.characteristics}/>
         <ReviewList reviews={this.state.reviews} more={this.moreReviews} sort={this.sortChange}
         renderButton={this.state.hasMoreReviews} meta={this.state.meta} filter={this.state.filterByRating}
         setFilter={this.setRatingFilter}/>
       </div>
+
     )
   }
 }

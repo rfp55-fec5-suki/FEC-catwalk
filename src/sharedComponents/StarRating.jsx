@@ -10,8 +10,10 @@ import {
 //INPUTS
 //takes in either single rating as props.rating
 // <StarRating rating={4} />
+//Or set the ratings object from the meta data
+// on a state and as props.meta
 //
-//or meta rating object as props.meta
+// as props.meta
 //<StarRating meta={{
 // 5: 17,
 // 4: 10,
