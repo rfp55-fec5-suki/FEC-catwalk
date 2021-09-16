@@ -1,5 +1,5 @@
 import OverviewInformation from './OverviewInformation.jsx';
-import ImageGallary from './ImageGallary.jsx';
+import ImageGallery from './ImageGallery.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
 import DetailedInformation from './DetailedInformation.jsx';
@@ -28,7 +28,7 @@ class Overview extends React.Component {
       <div class='overview'>
         <div class='overviewTop'>
           <div class='leftCol'>
-            <ImageGallary selectedStyle={this.state.selectedStyle}/>
+            <ImageGallery selectedStyle={this.state.selectedStyle}/>
           </div>
 
           <div class='rightCol'>
