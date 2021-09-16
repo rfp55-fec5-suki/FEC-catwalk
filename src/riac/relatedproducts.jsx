@@ -13,11 +13,15 @@ const RelatedProducts = (props) => (
 
     <div className='riac-related-products'>
 
+      <button />
+
       <ProductCard product={props.product} styles={props.styles} onClick={props.onClick} />
 
       {props.related.map((productid) => {
         return <RelatedProductCard productid={productid} onClick={props.onClick} />
       })}
+
+      <button />
 
     </div>
   </div>

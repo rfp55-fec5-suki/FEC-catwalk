@@ -1,6 +1,7 @@
 .riac-related-products {
   display: flex;
-  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow: auto;
 }
 
 .riac-productcard-header {
