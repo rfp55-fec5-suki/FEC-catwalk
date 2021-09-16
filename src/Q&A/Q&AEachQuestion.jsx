@@ -35,7 +35,7 @@ class EachQuestion extends React.Component {
           <div>
             <Modal show={this.state.show} handleClose={this.hideModal}/>
             <button type = 'submit' onClick={this.showModal}>
-              Submit an Answer
+              Add an Answer
             </button>
           </div>
           <QAAnswer question = {question}/>
