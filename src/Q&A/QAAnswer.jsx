@@ -1,31 +1,26 @@
 import React from 'react';
 import moment from 'moment';
-
+import EachAnswer from './Q&AEachAnswer.jsx'
 
 class QAAnswer extends React.Component {
   constructor(props) {
     super(props);
-    }
+  }
+
+  //onClick
+  // setState: helpful & reported
 
 
   render() {
-    // console.log('this.props: ', this.props)
     return (
       <div>
           <h3>A:</h3>
           <div>
             {Object.values(this.props.question.answers).map(answer =>
-              <div key = {answer.id}>
-                <div>{answer.body}</div>
-                <div>by {answer.answerer_name}, {answer.date.substring(0,10)}</div>
-                <div>
-                  helpful?
-                  <button type = 'submit'>Yes</button>
-                  <button type = 'submit'>Report</button>
-                </div>
-              </div>)}
-          </div>
 
+              <EachAnswer key = {answer.id} answer = {answer}/>
+              )}
+          </div>
       </div>
     )
   }
