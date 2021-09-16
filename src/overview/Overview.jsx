@@ -24,7 +24,6 @@ class Overview extends React.Component {
   }
 
   render () {
-    console.log(this.state.selectedStyle);
     return (
       <div class='overview'>
         <div class='overviewTop'>

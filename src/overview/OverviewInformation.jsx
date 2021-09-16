@@ -13,7 +13,6 @@ class OverviewInformation extends React.Component {
 
     let price;
     if (style.sale_price !== null) {
-      console.log(`Sales price is ${style.sale_price}`);
       price = (
         <React.Fragment>
           <span id='salesPrice'>${style.sale_price}</span>
