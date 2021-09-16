@@ -18,6 +18,12 @@ class QAList extends React.Component {
     //this.getAnswers()
   }
 
+  componentDidUpdate(prevProps) {
+    if(this.props.product.id !== prevProps.product.id) {
+      this.getQuestions();
+    }
+  }
+
   getQuestions() {
     const product_id = this.props.product.id
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/?product_id=${product_id}`, {headers: {'Authorization': token.TOKEN}})
