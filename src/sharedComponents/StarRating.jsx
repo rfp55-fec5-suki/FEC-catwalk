@@ -31,7 +31,6 @@ const StarRating = (props) => {
       nRatings += parseInt(props.meta[key]);
     }
     var rating = netRating / nRatings;
-    console.log(rating)
   } else {
     var rating = 0;
   }
