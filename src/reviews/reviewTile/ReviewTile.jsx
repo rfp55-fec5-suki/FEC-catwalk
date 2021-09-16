@@ -14,8 +14,8 @@ class ReviewTile extends React.Component {
     this.day = day;
     this.year = year;
     if (props.review.summary.length > 80) {
-      this.summary = props.review.summary.slice(0, 81);
-      this.summaryCont = props.review.summary.slice(81);
+      this.summary = props.review.summary.slice(0, 61);
+      this.summaryCont = props.review.summary.slice(61);
     } else {
       this.summary = props.review.summary;
       this.summaryCont = false
