@@ -14,6 +14,7 @@ const RelatedProducts = (props) => (
     <div className='riac-related-products'>
 
       <button className='riac-left-button'/>
+      {/* Make another div that lays over this one for the button. make that div the screen size rather than the div list*/}
 
       <ProductCard product={props.product} styles={props.styles} onClick={props.onClick} />
 
