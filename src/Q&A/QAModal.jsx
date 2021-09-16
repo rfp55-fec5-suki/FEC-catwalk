@@ -74,10 +74,57 @@ class Modal extends React.Component {
           <div className='modal-body'>
             <form onSubmit={(e) => {this.submitForm(e)}} name='QA'>
               <div>
-                {/* <label></label>
-                <label></label>
-                <label></label> */}
-                See the form
+                <label htmlFor='yourName'>
+                  *Name:
+                  <br />
+                  <input
+                    required
+                    type='text'
+                    name='name'
+                    maxLength='60'
+                    placeholder='your nickName'
+                    onChange={(e) => {this.handleFormChange(e)}}>
+                  </input>
+                </label>
+              <br />
+                <label htmlFor='email'>
+                  *Email:
+                  <br />
+                  <input
+                    required
+                    type='email'
+                    name='email'
+                    placeholder='Example: yourname@gmail.com'
+                    maxLength='60'
+                    onChange={(e) => {this.handleFormChange(e)}}>
+                  </input>
+                </label>
+              <br />
+                <label htmlFor={text}>
+                  *
+                  {text}
+                  <br />
+                  <input
+                    type='textarea'
+                    required
+                    name='body'
+                    rows='20'
+                    maxLength='1000'
+                    onChange={(e) => { this.handleFormChange(e) }}>
+                  </input>
+                </label>
+                <br />
+                  <label htmlFor='photo'>
+                    *Photo url:
+                    <br />
+                    <input
+                      type='url'
+                      onChange={(e) => {
+                        this.handleFormChange(e)
+                      }}
+                      placeholder = 'your answer img url'>
+                    </input>
+                  </label>
               </div>
             </form>
           </div>
