@@ -84,6 +84,7 @@ class RatingsReviews extends React.Component {
         'Authorization': token.TOKEN
       }
     }).then((response) => {
+      this.state.hasMoreReviews = false;
       var filteredResults = response.data.results.filter((review) => {
         return this.state.filterByRating.includes(review.rating)
       })
