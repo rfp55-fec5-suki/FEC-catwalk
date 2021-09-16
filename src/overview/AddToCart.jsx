@@ -6,16 +6,34 @@ class AddToCart extends React.Component {
     this.state = {};
   }
 
+  handleSizeSelection(e) {
+    this.setState( {maxQuantity: e.target.value})
+  }
+
   render () {
+    var options = this.props.selectedStyle.skus;
+
+    let sizeSelections = [];
+    for (var k in options) {
+      sizeSelections.push(<option value={options[k].quantity}>{options[k].size}</option>)
+    }
+
+    let quantityOptions = [];
+    for (var i = 1; i <= this.state.maxQuantity; i++) {
+      quantityOptions.push(<option value={options[k].quantity}>{i}</option>)
+    }
+
     return (
       <form class='addToCart'>
         <div id='values'>
-          <select id='selectSize'>
+          <select id='selectSize' onChange={this.handleSizeSelection.bind(this)}>
             <option>SELECT SIZE</option>
+            <React.Fragment>{sizeSelections}</React.Fragment>
           </select>
 
           <select id='selectQuantity'>
-            <option>1</option>
+            <option>QUANTITY</option>
+            <React.Fragment>{quantityOptions}</React.Fragment>
           </select>
         </div>
 

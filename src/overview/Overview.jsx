@@ -35,7 +35,7 @@ class Overview extends React.Component {
           <div class='rightCol'>
             <OverviewInformation product={this.props.product} selectedStyle={this.state.selectedStyle} />
             <StyleSelector styles={this.props.styles} selectStyle={this.handleSelect.bind(this)} />
-            <AddToCart />
+            <AddToCart selectedStyle={this.state.selectedStyle}/>
           </div>
         </div>
 

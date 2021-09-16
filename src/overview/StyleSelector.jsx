@@ -4,7 +4,7 @@ import _ from 'underscore';
 class StyleSelector extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {selectedStyle: this.props.styles.results[0]};
+    this.state = {};
   }
 
   handleClick(style, e) {
