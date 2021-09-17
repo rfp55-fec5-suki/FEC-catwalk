@@ -41,7 +41,7 @@ class Modal extends React.Component {
     // axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${question_id}/answers`, {data: answer}, {headers: {'Authorization': token.TOKEN}})
       .then((res) => {
         console.log('postAnswer success: ', res)
-        this.propsgetQuestions();
+        this.props.getQuestions();
       })
       .catch((error) => {
         throw error;
@@ -63,7 +63,7 @@ class Modal extends React.Component {
       console.log('Modal called postAnswer function')
     } else {
       console.log('check the post function of question: ', input)
-      postQuestion(input)
+      this.props.postQuestion(input)
     }
 
     this.setState({
