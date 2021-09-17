@@ -10,26 +10,31 @@ class RelatedProducts extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      storage: []
+    }
+
     this.addToOutfit = this.addToOutfit.bind(this);
     this.removeOutfit = this.removeOutfit.bind(this);
   }
 
   addToOutfit() {
     localStorage.setItem(`${this.props.product.id}`, `${this.props.product.id}`)
+    var arr = [...Object.values(localStorage)];
+    this.setState({
+      storage: arr
+    })
   }
 
-  // remove outfit button
   removeOutfit(item) {
     localStorage.removeItem(item)
+    var arr = [...Object.values(localStorage)];
+    this.setState({
+      storage: arr
+    })
   }
 
-
-  // componentmount
-  // update
-
   render() {
-    var values = Object.values(localStorage)
-
     return (
       <div>
 
@@ -55,8 +60,6 @@ class RelatedProducts extends React.Component {
         </div>
 
 
-
-
         <div className='riac-carousel'>
 
           <div className='riac-productcard-header'>
@@ -72,7 +75,7 @@ class RelatedProducts extends React.Component {
 
               <AddOutfit onClick={this.addToOutfit} />
 
-              {values ? values.map((productid) => {
+              {this.state.storage ? this.state.storage.map((productid) => {
                 return <OutfitCard productid={productid} onClick={this.props.onClick} removeOutfit={this.removeOutfit}/>
               }) : null}
 

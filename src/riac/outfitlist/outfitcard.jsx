@@ -14,7 +14,6 @@ class OutfitCard extends React.Component {
       img: '',
       styles: {},
       stars: {},
-      show: false
     };
 
     this.fetchProduct = this.fetchProduct.bind(this);
