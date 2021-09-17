@@ -1,10 +1,10 @@
 import React from 'react';
 import axios from 'axios';
-import token from '../../config.js';
-import StarRating from '../sharedComponents/StarRating.jsx';
+import token from '../../../config.js';
+import StarRating from '../../sharedComponents/StarRating.jsx';
 import RelatedProductModal from './relatedproductmodal.jsx';
 import ModalComparison from './modalcomparison.jsx';
-import './riac.css';
+import '../riac.css';
 
 class RelatedProductCard extends React.Component {
   constructor(props) {
