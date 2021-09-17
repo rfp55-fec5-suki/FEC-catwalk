@@ -88,7 +88,7 @@ class OutfitCard extends React.Component {
 
         <div className='riac-productcard'>
 
-          <button className='riac-productcard-button' >X add onclick</button>
+          <button className='riac-productcard-button' onClick={() => this.props.removeOutfit(this.state.info.id)}>X</button>
 
 
           <div className='riac-productcard-image' onClick={() => this.props.onClick(this.state.info.id)}>

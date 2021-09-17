@@ -11,6 +11,7 @@ class RelatedProducts extends React.Component {
     super(props);
 
     this.addToOutfit = this.addToOutfit.bind(this);
+    this.removeOutfit = this.removeOutfit.bind(this);
   }
 
   addToOutfit() {
@@ -18,6 +19,9 @@ class RelatedProducts extends React.Component {
   }
 
   // remove outfit button
+  removeOutfit(item) {
+    localStorage.removeItem(item)
+  }
 
 
   // componentmount
@@ -69,7 +73,7 @@ class RelatedProducts extends React.Component {
               <AddOutfit onClick={this.addToOutfit} />
 
               {values ? values.map((productid) => {
-                return <OutfitCard productid={productid} onClick={this.props.onClick}/>
+                return <OutfitCard productid={productid} onClick={this.props.onClick} removeOutfit={this.removeOutfit}/>
               }) : null}
 
             </div>
