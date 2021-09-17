@@ -6,55 +6,72 @@ import AddOutfit from './outfitlist/addoutfit.jsx';
 import OutfitCard from './outfitlist/outfitcard.jsx';
 import './riac.css';
 
-const RelatedProducts = (props) => (
-  <div>
+class RelatedProducts extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-    <div className='riac-carousel'>
+  //fetch cart
 
-      <div className='riac-productcard-header'>
-        RELATED PRODUCTS
-      </div>
+  // componentmount
+  // update
 
-      <button className='riac-left-button' />
-      <button className='riac-right-button' />
+  render() {
+    return (
+      <div>
 
-      <div className='riac-container'>
+        <div className='riac-carousel'>
 
-        <div className='riac-related-products'>
+          <div className='riac-productcard-header'>
+            RELATED PRODUCTS
+          </div>
 
-          {props.related.map((productid) => {
-            return <RelatedProductCard product={props.product} productid={productid} onClick={props.onClick} />
-          })}
+          <button className='riac-left-button' />
+          <button className='riac-right-button' />
 
+          <div className='riac-container'>
+
+            <div className='riac-related-products'>
+
+              {this.props.related.map((productid) => {
+                return <RelatedProductCard product={this.props.product} productid={productid} onClick={this.props.onClick} />
+              })}
+
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
 
 
 
 
-    <div className='outfit-carousel'>
+        <div className='outfit-carousel'>
 
-      <div className='outfit-header'>
-        YOUR OUTFIT
-      </div>
+          <div className='outfit-header'>
+            YOUR OUTFIT
+          </div>
 
-      <button className='outfit-left-button' />
-      <button className='outfit-right-button' />
+          <button className='outfit-left-button' />
+          <button className='outfit-right-button' />
 
-      <div className='outfit-container'>
+          <div className='outfit-container'>
 
-        <div className='outfit-list'>
+            <div className='outfit-list'>
 
-          <AddOutfit />
+              <AddOutfit />
 
-          <OutfitCard />
+              <OutfitCard />
 
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
 
-  </div>
-)
+      </div>
+    )
+  }
+}
+
+
+// const RelatedProducts = (props) => (
+// )
 
 export default RelatedProducts;
