@@ -38,8 +38,13 @@
   top:50%;
   left:50%;
   transform: translate(-50%,-50%);
+  display: grid;
+  grid-template-rows: 25px auto;
 }
-
+.modal-button {
+  grid-row: 1 / 2;
+  justify-self: end;
+}
 .display-block {
   display: block;
 }

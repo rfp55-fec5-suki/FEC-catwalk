@@ -165,7 +165,8 @@ class RatingsReviews extends React.Component {
         <ReviewList reviews={this.state.reviews} more={this.moreReviews} sort={this.sortChange}
         renderButton={this.state.hasMoreReviews} meta={this.state.meta} filter={this.state.filterByRating}
         setFilter={this.setRatingFilter} addReview={this.showAddReview}/>
-        <Modal show={this.state.showAddReview} handleClose={this.hideAddReview} children={<AddReview chars={this.state.meta.characteristics}/>}/>
+        <Modal show={this.state.showAddReview} handleClose={this.hideAddReview}
+        children={<AddReview chars={this.state.meta.characteristics} close={this.hideAddReview}/>}/>
       </div>
 
     )
