@@ -9,14 +9,23 @@ import './riac.css';
 class RelatedProducts extends React.Component {
   constructor(props) {
     super(props);
+
+    this.addToOutfit = this.addToOutfit.bind(this);
   }
 
-  //fetch cart
+  addToOutfit() {
+    localStorage.setItem(`${this.props.product.id}`, `${this.props.product.id}`)
+  }
+
+  // remove outfit button
+
 
   // componentmount
   // update
 
   render() {
+    var values = Object.values(localStorage)
+
     return (
       <div>
 
@@ -44,22 +53,24 @@ class RelatedProducts extends React.Component {
 
 
 
-        <div className='outfit-carousel'>
+        <div className='riac-carousel'>
 
-          <div className='outfit-header'>
+          <div className='riac-productcard-header'>
             YOUR OUTFIT
           </div>
 
-          <button className='outfit-left-button' />
-          <button className='outfit-right-button' />
+          <button className='riac-left-button' />
+          <button className='riac-right-button' />
 
-          <div className='outfit-container'>
+          <div className='riac-container'>
 
-            <div className='outfit-list'>
+            <div className='riac-related-products'>
 
-              <AddOutfit />
+              <AddOutfit onClick={this.addToOutfit} />
 
-              <OutfitCard />
+              {values ? values.map((productid) => {
+                return <OutfitCard productid={productid} onClick={this.props.onClick}/>
+              }) : null}
 
             </div>
           </div>
@@ -69,9 +80,5 @@ class RelatedProducts extends React.Component {
     )
   }
 }
-
-
-// const RelatedProducts = (props) => (
-// )
 
 export default RelatedProducts;

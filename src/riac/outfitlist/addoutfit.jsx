@@ -1,18 +1,13 @@
 import React from 'react';
 
-class AddOutfit extends React.Component {
-  constructor(props) {
-    super(props);
+const AddOutfit = (props) => (
+  <div className='riac-productcard'>
 
-  }
+    <button className='riac-productcard-button' onClick={props.onClick}>Add</button>
 
+  </div>
+)
 
-  render() {
-    return(
-      <div>Hello World!</div>
-    )
-  }
-}
 
 
 
