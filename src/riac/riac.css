@@ -64,13 +64,10 @@
 .riac-productcard-button {
   grid-column: 3/4;
   grid-row: 2/3;
-  background-color: #555;
-  color: white;
-  font-size: 16px;
-  border: none;
   cursor: pointer;
-  border-radius: 5px;
   z-index: 1;
+  padding-left: 10px;
+  color: white;
 }
 
 .riac-productcard-image {
@@ -200,5 +197,15 @@
 }
 
 
+
+/* Icons */
+
+
+
+.fa-star:before {
+  content: "\f005";
+  background: black;
+  border-radius: 10px;
+}
 
 /* Outfit Card */

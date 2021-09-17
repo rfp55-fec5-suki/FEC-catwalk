@@ -116,7 +116,10 @@ class RelatedProductCard extends React.Component {
         <div className='riac-productcard'>
 
 
-          <button className='riac-productcard-button' onClick={this.showModal}>star</button>
+          <i className='fas fa-star fa-2x riac-productcard-button' onClick={this.showModal}></i>
+
+
+          {/* <button className='riac-productcard-button' onClick={this.showModal}>star</button> */}
 
 
           <div className='riac-productcard-image' onClick={() => this.props.onClick(this.state.info.id)}>
