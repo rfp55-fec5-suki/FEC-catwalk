@@ -27,12 +27,21 @@ class Modal extends React.Component {
     console.log('we are running handleFormChange')
   }
 
-  postAnswer(answer) {
+  postAnswer(id, answer) {
     const question_id = this.props.question.question_id
-    axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${question_id}/answers`, {data: answer}, {headers: {'Authorization': token.TOKEN}})
+    axios({
+      method: 'post',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${question_id}/answers`,
+      params: question_id,
+      data: answer,
+      headers: {
+        'Authorization': token.TOKEN
+      }
+    })
+    // axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${question_id}/answers`, {data: answer}, {headers: {'Authorization': token.TOKEN}})
       .then((res) => {
         console.log('postAnswer success: ', res)
-        this.getQuestions();
+        this.propsgetQuestions();
       })
       .catch((error) => {
         throw error;
@@ -42,14 +51,15 @@ class Modal extends React.Component {
   //event handler here
   submitForm(e) {
     const { body, name, email, photos, answer } = this.state
-    const { postAnswer, postQuestion, product } = this.props
-    const input = (answer ? { body, name, email, photos } : { body, name, email, product })
+    const { question, postQuestion, product } = this.props
+    const question_id = this.props.question.question_id
+    const input = (answer ? { question_id, body, name, email } : { body, name, email, product })
 
     e.preventDefault()
 
     if( answer ) {
       console.log('check the post function: ', input)
-      this.postAnswer(input)
+      this.postAnswer(question_id, input)
       console.log('Modal called postAnswer function')
     } else {
       console.log('check the post function of question: ', input)
