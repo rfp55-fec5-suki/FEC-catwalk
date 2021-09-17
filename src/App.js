@@ -8,7 +8,7 @@ import initialProductStyles from './initialProductStyles.js';
 import initialRelated from './initialRelated.js';
 
 import Overview from './overview/Overview.jsx';
-import RelatedProducts from './riac/relateditems/relatedproducts.jsx';
+import RelatedProducts from './riac/relatedproducts.jsx';
 import QAList from './Q&A/QAList.jsx'
 import Reviews from './reviews/RatingsReviews.jsx';
 

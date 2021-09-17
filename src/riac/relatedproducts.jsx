@@ -1,7 +1,7 @@
 import React from 'react';
-import RelatedProductCard from './relatedproductcard.jsx';
-import RelatedProductModal from './relatedproductmodal.jsx';
-import '../riac.css';
+import RelatedProductCard from './relateditems/relatedproductcard.jsx';
+import RelatedProductModal from './relateditems/relatedproductmodal.jsx';
+import './riac.css';
 
 const RelatedProducts = (props) => (
   <div>
