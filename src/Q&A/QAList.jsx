@@ -12,12 +12,10 @@ class QAList extends React.Component {
     }
     this.getQuestions = this.getQuestions.bind(this);
     this.postQuestion = this.postQuestion.bind(this);
-    // this.postAnswer = this.postAnswer.bind(this);
   }
 
   componentDidMount() {
     this.getQuestions();
-    //this.getAnswers()
   }
 
   componentDidUpdate(prevProps) {

@@ -12,12 +12,14 @@ class Modal extends React.Component {
       email: '',
       photos: [],
       question: false,
-      answer: true
+      answer: true,
+      show: false
     }
 
     this.handleFormChange = this.handleFormChange.bind(this)
     this.submitForm = this.submitForm.bind(this)
     this.postAnswer = this.postAnswer.bind(this)
+    this.toggleModal = this.toggleModal.bind(this)
   }
 
   handleFormChange(e) {
@@ -54,6 +56,7 @@ class Modal extends React.Component {
     const { question, postQuestion, product } = this.props
     const question_id = this.props.question.question_id
     const input = (answer ? { question_id, body, name, email } : { body, name, email, product })
+    // should work more on photos
 
     e.preventDefault()
 
@@ -73,10 +76,24 @@ class Modal extends React.Component {
       photos: []
     })
 
-    // this.toggleModal()
+    this.toggleModal()
   }
 
-  // toggleModal
+  toggleModal() {
+    const { question, answer } = this.state;
+    const type = this.props.type;
+    console.log('test our toggleModal');
+    if (type === 'question') {
+      this.setState({
+        question: !question
+      })
+    }
+    if(type === 'answer') {
+      this.setState({
+        answer: !answer
+      })
+    }
+  }
 
   render() {
     const question = this.state.question

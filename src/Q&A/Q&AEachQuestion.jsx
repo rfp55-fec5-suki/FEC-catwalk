@@ -39,7 +39,8 @@ class EachQuestion extends React.Component {
             postQuestion={this.props.postQuestion}
             getQuestions={this.props.getQuestions}
             product={this.props.product}
-            question={this.props.question}/>
+            question={this.props.question}
+            type = 'answer'/>
             <button type = 'submit' onClick={this.showModal}>
               Add an Answer
             </button>
