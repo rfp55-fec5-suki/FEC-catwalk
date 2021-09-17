@@ -31,8 +31,7 @@ class App extends React.Component {
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}`,
       headers: {
         'Authorization': token.TOKEN
-      },
-      responseType: 'stream'
+      }
     })
       .then((response) => {
         this.setState({
@@ -47,8 +46,7 @@ class App extends React.Component {
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}/styles`,
       headers: {
         'Authorization': token.TOKEN
-      },
-      responseType: 'stream'
+      }
     })
       .then((response) => {
         this.setState({
@@ -63,8 +61,7 @@ class App extends React.Component {
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}/related`,
       headers: {
         'Authorization': token.TOKEN
-      },
-      responseType: 'stream'
+      }
     })
       .then((response) => {
         this.setState({
@@ -83,7 +80,7 @@ class App extends React.Component {
 
         <Overview product={this.state.product} styles={this.state.styles} />
 
-        <RelatedProducts product={this.state.product} styles={this.state.styles} related={this.state.related} onClick={this.handleClick}/>
+        <RelatedProducts product={this.state.product} related={this.state.related} onClick={this.handleClick}/>
 
         <QAList product={this.state.product}/>
 
