@@ -102,7 +102,7 @@ class RelatedProductCard extends React.Component {
           </div>
 
           {this.props.product.features.map((feature) => {
-            return <ModalComparison feature={feature} />
+            return <ModalComparison feature={feature} compared={this.state.info.features} />
           })}
 
           <div className='riac-modal-compared'>
