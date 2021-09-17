@@ -178,3 +178,8 @@
   padding-left: 10%;
   font-weight: bold;
 }
+
+.riac-modal-feature {
+  grid-column: 2/5;
+  text-align: center;
+}

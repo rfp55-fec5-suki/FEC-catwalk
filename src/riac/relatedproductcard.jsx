@@ -3,6 +3,7 @@ import axios from 'axios';
 import token from '../../config.js';
 import StarRating from '../sharedComponents/StarRating.jsx';
 import RelatedProductModal from './relatedproductmodal.jsx';
+import ModalComparison from './modalcomparison.jsx';
 import './riac.css';
 
 class RelatedProductCard extends React.Component {
@@ -100,9 +101,9 @@ class RelatedProductCard extends React.Component {
             {this.props.product.name}
           </div>
 
-          <div>
-
-          </div>
+          {this.props.product.features.map((feature) => {
+            return <ModalComparison feature={feature} />
+          })}
 
           <div className='riac-modal-compared'>
             {this.state.info.name}
