@@ -1,3 +1,93 @@
+.form-star {
+  height: 30px;
+  width: auto;
+}
 .add-review-form {
   grid-row: 2 / 3;
+  display: grid;
+  grid-template-columns: 30px auto auto auto 30px;
+  grid-template-rows: auto auto auto auto auto auto auto auto auto auto 30px;
+}
+.form-title {
+  grid-column: 2 / 5;
+  grid-row: 1 / 2;
+}
+.overall-rating {
+  grid-column: 2 / 5;
+  grid-row: 2 / 3
+}
+.form-recommend {
+  grid-column: 2 / 5;
+  grid-row: 3 / 4 ;
+}
+.form-chars {
+  grid-column: 2 / 5;
+  grid-row: 4 / 5 ;
+}
+.form-summary {
+  grid-column: 2 / 5;
+  grid-row: 5 / 6 ;
+}
+.form-body {
+  grid-column: 2 / 5;
+  grid-row: 6 / 7 ;
+}
+.form-photos {
+  grid-column: 2 / 5;
+  grid-row: 7 / 8 ;
+}
+.form-thumb {
+  max-height: 100px;
+  width: auto;
+}
+.form-name {
+  grid-column: 2 / 5;
+  grid-row: 8 / 9;
+}
+.form-email {
+  grid-column: 2 / 5;
+  grid-row: 9 / 10;
+}
+.form-submit {
+  grid-column: 2 / 3;
+  grid-row: 10 / 11;
+}
+.char-main {
+  display: grid;
+  grid-row: auto auto;
+  grid-column: 100%;
+}
+.char-name {
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+}
+.char-radio {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  justify-self: center;
+}
+.add-image-modal {
+  display: grid;
+  grid-template-rows: auto auto auto;
+  grid-template-columns: 100%;
+}
+.image-modal-title {
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+  justify-self: center;
+}
+.image-modal-input {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  justify-self: center;
+  width: 80%;
+}
+.modal-url {
+  width: 100%;
+}
+.image-modal-submit {
+  grid-row: 3 / 4;
+  grid-column: 1 / 2;
+  justify-self: center;
+  margin-bottom: 15px;
 }

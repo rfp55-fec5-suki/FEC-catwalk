@@ -161,10 +161,13 @@ class RatingsReviews extends React.Component {
       <div className="rr-main" >
         <span className='rr-title'>RATINGS & REVIEWS</span>
         <RatingBreakdown meta={this.state.meta} filter={this.setRatingFilter} clear={this.setListToDefault}/>
+
         <ProductBreakdown chars={this.state.meta.characteristics}/>
+
         <ReviewList reviews={this.state.reviews} more={this.moreReviews} sort={this.sortChange}
         renderButton={this.state.hasMoreReviews} meta={this.state.meta} filter={this.state.filterByRating}
         setFilter={this.setRatingFilter} addReview={this.showAddReview}/>
+
         <Modal show={this.state.showAddReview} handleClose={this.hideAddReview}
         children={<AddReview chars={this.state.meta.characteristics} close={this.hideAddReview}/>}/>
       </div>

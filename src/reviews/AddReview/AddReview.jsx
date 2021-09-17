@@ -24,7 +24,7 @@ function validateEmail(email) {
 var rating;
 var recommend;
 var characteristics = {};
-var charsByID= {};
+var charsByID = {};
 var summary;
 var name;
 var email;
@@ -56,7 +56,7 @@ const AddReview = (props) => {
     imageUrl = e.target.value
   }
   var submitImage = () => {
-    if(imageUrl) {
+    if (imageUrl) {
       images.push(imageUrl);
       hideModal();
     }
@@ -158,43 +158,68 @@ const AddReview = (props) => {
     setShowModal(false);
   }
   return (
-    <div className='add-review-form'>
-      <h2>Add Review</h2>
-      {unfinished ? `You must fill out the following sections: ${unfinished.join(', ')}` : null}<br />
-      <span style={{color: ratingColor}}>Overall rating*</span><br />
-      <StarSelect />
-      <span style={{color: recommendColor}}>Do you recommend this product?*</span><br />
-      <div onChange={setRecommend}>
-        <input type='radio' name='rec' id='rec-yes' value={true} />
-        <label for='rec-yes'>yes</label>
-        <input type='radio' name='rec' id='rec-no' value={false} />
-        <label for='rec-no'>no</label>
+    <div className='add-review-form' >
+      <div className='form-title'>
+        <h2>Add Review</h2>
+        {unfinished ? `You must fill out the following sections: ${unfinished.join(', ')}` : null}<br />
       </div>
-      <span style={{color: charsColor}}>Characteristics*</span><br />
-      {charsArr.map((char) => <Characteristic char={char} key={char.id} />)}
-      <span style={{color: summaryColor}}>Review summary*</span><br />
-      <input type='text' onChange={setSummary} maxlength='60' placeHolder='Example: Best purchase ever!'/><br />
-      <span style={{color: bodyColor}}>Review body*</span><br />
-      <textarea onChange={setBody} maxlength='1000' placeHolder='Why did you like the product or not?'/><br />
-      {body && body.length > 50 ? 'Minimum reached' : <span style={{color: bodyColor}}>Miniumum required characters left: {body ? 50 - body.length : 50}</span>}<br />
-      Upload your photos<br />
-      {images.length ? [...images.map((image) => (<img src={image} />)), <br /> ]: null}
-      <button onClick={renderModal}>Add Photos</button><br />
-      <span style={{color: nameColor}}>What is your nickname*</span><br />
-      For privacy reasons, do not use your full name or email address<br />
-      <input type='text' onChange={setName} maxlength='60' placeHolder='Example: jackson11!'/><br />
-      <span  style={{color: emailColor}}>Your email*</span><br />
-      <input type='text' onChange={setEmail} maxlength='60' placeHolder='Example: jackson11@email.com'/><br />
-      For authentication reasons, you will not be emailed <br/>
-      <button onClick={submit}>Submit review</button>
+      <div className='overall-rating'>
+        <span style={{ color: ratingColor }}>Overall rating*</span><br />
+        <StarSelect />
+      </div>
+      <div className='form-recommend'>
+        <span style={{ color: recommendColor }}>Do you recommend this product?*</span><br />
+        <div onChange={setRecommend}>
+          <input type='radio' name='rec' id='rec-yes' value={true} />
+          <label for='rec-yes'>yes</label>
+          <input type='radio' name='rec' id='rec-no' value={false} />
+          <label for='rec-no'>no</label>
+        </div>
+      </div>
+      <div className='form-chars'>
+        <span style={{ color: charsColor }}>Characteristics*</span><br />
+        {charsArr.map((char) => <Characteristic char={char} key={char.id} />)}
+      </div>
+      <div className='form-summary'>
+        <span style={{ color: summaryColor }}>Review summary*</span><br />
+        <input type='text' onChange={setSummary} maxlength='60' placeHolder='Example: Best purchase ever!' /><br />
+      </div>
+      <div className='form-body'>
+        <span style={{ color: bodyColor }}>Review body*</span><br />
+        <textarea onChange={setBody} maxlength='1000' placeHolder='Why did you like the product or not?' /><br />
+        {body && body.length > 50 ? 'Minimum reached' : <span style={{ color: bodyColor }}>Miniumum required characters left: {body ? 50 - body.length : 50}</span>}<br />
+      </div>
+      <div className='form-photos'>
+        Upload your photos<br />
+        {images.length ? [...images.map((image) => (<img src={image} className='form-thumb' />)), <br />] : null}
+        <button onClick={renderModal}>Add Photos</button><br />
+      </div>
+      <div className='form-name'>
+        <span style={{ color: nameColor }}>What is your nickname*</span><br />
+        For privacy reasons, do not use your full name or email address<br />
+        <input type='text' onChange={setName} maxlength='60' placeHolder='Example: jackson11!' /><br />
+      </div>
+      <div className='form-email'>
+        <span style={{ color: emailColor }}>Your email*</span><br />
+        <input type='text' onChange={setEmail} maxlength='60' placeHolder='Example: jackson11@email.com' /><br />
+        For authentication reasons, you will not be emailed <br />
+      </div>
+      <div className='form-submit'>
+        <button onClick={submit}>Submit review</button>
+      </div>
 
       <Modal show={showModal} handleClose={hideModal}
-        children={(<div>
-          Add Image<br/>
-          <input type='text' placeHolder='Image Url...' onChange={setImageUrl}/><br/>
-          <button onClick={submitImage}>Submit image</button>
-        </div>)}/>
-    </div>
+        children={(
+          <div className='add-image-modal'>
+            <div className='image-modal-title'>Add Image</div>
+            <div className='image-modal-input'>
+              <input type='text' placeHolder='Image Url...' onChange={setImageUrl} className='modal-url'/><br />
+            </div>
+            <div className='image-modal-submit'>
+              <button onClick={submitImage}>Submit image</button>
+            </div>
+          </div>)} />
+    </div >
   )
 }
 ///////////////////////////////////
@@ -222,11 +247,11 @@ const StarSelect = (props) => {
   }
   return (
     <div>
-      <img src={ratingArr[0]} onClick={() => selectRating(1)} />
-      <img src={ratingArr[1]} onClick={() => selectRating(2)} />
-      <img src={ratingArr[2]} onClick={() => selectRating(3)} />
-      <img src={ratingArr[3]} onClick={() => selectRating(4)} />
-      <img src={ratingArr[4]} onClick={() => selectRating(5)} />
+      <img src={ratingArr[0]} onClick={() => selectRating(1)} className='form-star' />
+      <img src={ratingArr[1]} onClick={() => selectRating(2)} className='form-star' />
+      <img src={ratingArr[2]} onClick={() => selectRating(3)} className='form-star' />
+      <img src={ratingArr[3]} onClick={() => selectRating(4)} className='form-star' />
+      <img src={ratingArr[4]} onClick={() => selectRating(5)} className='form-star' />
       <span>{ratingExpl}</span>
     </div>
   )
@@ -240,18 +265,22 @@ const Characteristic = (props) => {
     charsByID[props.char.id] = e.target.value;
   }
   return (
-    <div onChange={setChar}>
-      {props.char.name}<br />
-      <input type='radio' name={props.char.name} value={1} />
-      {props.char.details[0]}
-      <input type='radio' name={props.char.name} value={2} />
-      {props.char.details[1]}
-      <input type='radio' name={props.char.name} value={3} />
-      {props.char.details[2]}
-      <input type='radio' name={props.char.name} value={4} />
-      {props.char.details[3]}
-      <input type='radio' name={props.char.name} value={5} />
-      {props.char.details[4]}
+    <div onChange={setChar} className='char-main'>
+      <div className='char-name'>
+        {props.char.name}
+      </div>
+      <div className='char-radio'>
+        <input type='radio' name={props.char.name} value={1} />
+        {props.char.details[0]}
+        <input type='radio' name={props.char.name} value={2} />
+        {props.char.details[1]}
+        <input type='radio' name={props.char.name} value={3} />
+        {props.char.details[2]}
+        <input type='radio' name={props.char.name} value={4} />
+        {props.char.details[3]}
+        <input type='radio' name={props.char.name} value={5} />
+        {props.char.details[4]}
+      </div>
     </div>
   )
 }
