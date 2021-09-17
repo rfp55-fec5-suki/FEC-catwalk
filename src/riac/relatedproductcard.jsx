@@ -95,27 +95,36 @@ class RelatedProductCard extends React.Component {
     return (
       <div>
         <RelatedProductModal show={this.state.show} handleClose={this.hideModal}>
-          <div className='riac-modal-grid'>
-            <p>Hello World!</p>
+          <p className='riac-modal-header'>Comparing</p>
+          <div className='riac-modal-current'>
+            {this.props.product.name}
+          </div>
+
+          <div>
+
+          </div>
+
+          <div className='riac-modal-compared'>
+            {this.state.info.name}
           </div>
         </RelatedProductModal>
 
-      <div className='riac-productcard'>
+        <div className='riac-productcard'>
 
 
-        <button className='riac-productcard-button' onClick={this.showModal}>star</button>
+          <button className='riac-productcard-button' onClick={this.showModal}>star</button>
 
 
-        <div className='riac-productcard-image' onClick={() => this.props.onClick(this.state.info.id)}>
-          <img src={this.state.img} />
+          <div className='riac-productcard-image' onClick={() => this.props.onClick(this.state.info.id)}>
+            <img src={this.state.img} />
+          </div>
+
+          <div className='riac-productcard-category'> {this.state.info.category} </div>
+          <div className='riac-productcard-name'> {this.state.info.name} </div>
+          <div className='riac-productcard-price'> {this.state.info.default_price} </div>
+          <div className='riac-productcard-rating'> <StarRating meta={this.state.stars} /> </div>
+
         </div>
-
-        <div className='riac-productcard-category'> {this.state.info.category} </div>
-        <div className='riac-productcard-name'> {this.state.info.name} </div>
-        <div className='riac-productcard-price'> {this.state.info.default_price} </div>
-        <div className='riac-productcard-rating'> <StarRating meta={this.state.stars} /> </div>
-
-      </div>
       </div>
     );
   }

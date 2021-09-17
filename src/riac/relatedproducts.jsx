@@ -29,7 +29,7 @@ class RelatedProducts extends React.Component {
             <div className='riac-related-products'>
 
               {this.props.related.map((productid) => {
-                return <RelatedProductCard productid={productid} onClick={this.props.onClick} />
+                return <RelatedProductCard product={this.props.product} productid={productid} onClick={this.props.onClick} />
               })}
 
             </div>

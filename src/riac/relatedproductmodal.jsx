@@ -8,7 +8,7 @@ const RelatedProductModal = ({ handleClose, show, children }) => {
     <div className={displayModal}>
       <div className="riac-modal-main">
         {children}
-        <button type="button" onClick={handleClose}>
+        <button type="button" className='riac-modal-close' onClick={handleClose}>
           Close
         </button>
       </div>
