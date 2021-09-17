@@ -93,6 +93,9 @@ class RelatedProductCard extends React.Component {
 
   render() {
     this.state.id = this.props.productid;
+    if (this.props.product.features && this.state.info.features) {
+      var comparison = [...this.props.product.features, ...this.state.info.features];
+    }
     return (
       <div>
         <RelatedProductModal show={this.state.show} handleClose={this.hideModal}>
@@ -101,9 +104,9 @@ class RelatedProductCard extends React.Component {
             {this.props.product.name}
           </div>
 
-          {this.props.product.features.map((feature) => {
-            return <ModalComparison feature={feature} compared={this.state.info.features} />
-          })}
+          {comparison ? comparison.map((feature) => {
+            return <ModalComparison feature={feature} current={this.props.product.features} compared={this.state.info.features} />
+          }) : null}
 
           <div className='riac-modal-compared'>
             {this.state.info.name}
