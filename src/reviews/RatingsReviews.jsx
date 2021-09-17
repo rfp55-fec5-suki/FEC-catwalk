@@ -3,8 +3,11 @@ import axios from 'axios';
 import RatingBreakdown from './RatingBreakdown/RatingBreakdown.jsx';
 import ProductBreakdown from './ProductBreakdown/ProductBreakdown.jsx'
 import ReviewList from './ReviewList/ReviewList.jsx';
+import AddReview from './AddReview/AddReview.jsx';
+import Modal from './Modal.jsx';
 import token from '../../config.js';
 import './RatingsReviews.css';
+
 
 var reviewPage = 1;
 var sort = 'relevant';
@@ -15,7 +18,8 @@ class RatingsReviews extends React.Component {
       reviews: [],
       hasMoreReviews: true,
       meta: {},
-      filterByRating: []
+      filterByRating: [],
+      showAddReview: false
     }
     this.getReviewList = this.getReviewList.bind(this);
     this.getAllReviews = this.getAllReviews.bind(this);
@@ -23,8 +27,12 @@ class RatingsReviews extends React.Component {
     this.sortChange = this.sortChange.bind(this);
     this.setRatingFilter = this.setRatingFilter.bind(this);
     this.setListToDefault = this.setListToDefault.bind(this);
+    this.showAddReview = this.showAddReview.bind(this);
+    this.hideAddReview = this.hideAddReview.bind(this);
   }
-  //Rating BreakDown handlers ---------------------
+  //////////////////////////////
+  //Rating BreakDown handlers//
+  /////////////////////////////
   setRatingFilter(rating) {
     if(this.state.filterByRating.includes(rating)) {
       var newfilter = this.state.filterByRating.filter((filterValue) => {
@@ -43,7 +51,9 @@ class RatingsReviews extends React.Component {
       });
     }
   }
-  //Review list handlers --------------------------
+  ////////////////////////
+  //Review list handlers//
+  ////////////////////////
   sortChange(e) {
     e.preventDefault();
     sort = e.target.value;
@@ -62,7 +72,18 @@ class RatingsReviews extends React.Component {
     this.state.reviews = [];
     this.getReviewList();
   }
-  //api call handlers -----------------------------
+  ///////////////////////
+  //Add Review Handlers//
+  ///////////////////////
+  showAddReview() {
+    this.setState({showAddReview: true});
+  }
+  hideAddReview() {
+    this.setState({showAddReview: false});
+  }
+  /////////////////////
+  //api call handlers//
+  /////////////////////
   getMeta() {
     axios({
       method: 'get',
@@ -121,7 +142,9 @@ class RatingsReviews extends React.Component {
     reviewPage++;
     this.getReviewList();
   }
-  //lifecycle functions ---------------------------------------------
+  ///////////////////////
+  //lifecycle functions//
+  ///////////////////////
   componentDidUpdate(oldProps) {
     if(oldProps.product_id !== this.props.product_id) {
       this.setListToDefault();
@@ -141,7 +164,8 @@ class RatingsReviews extends React.Component {
         <ProductBreakdown chars={this.state.meta.characteristics}/>
         <ReviewList reviews={this.state.reviews} more={this.moreReviews} sort={this.sortChange}
         renderButton={this.state.hasMoreReviews} meta={this.state.meta} filter={this.state.filterByRating}
-        setFilter={this.setRatingFilter}/>
+        setFilter={this.setRatingFilter} addReview={this.showAddReview}/>
+        <Modal show={this.state.showAddReview} handleClose={this.hideAddReview} children={<AddReview chars={this.state.meta.characteristics}/>}/>
       </div>
 
     )

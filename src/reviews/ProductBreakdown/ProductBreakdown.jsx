@@ -28,7 +28,7 @@ const ProductBreakdown = (props) => {
   var charsArray = [];
   for (var key in props.chars) {
     var name = key;
-    if (name === 'Size' || name === 'Fit') {
+    if (name === 'Size') {
       var high = 'Too large';
       var mid = 'Perfect';
       var low = 'Too small';
@@ -38,16 +38,20 @@ const ProductBreakdown = (props) => {
       var low = 'Too narrow';
     } else if (name === 'Comfort') {
       var high = 'Perfect';
-      var mid = '';
-      var low = 'Poor';
+      var mid = 'Ok';
+      var low = 'Uncomfortable';
     } else if (name === 'Quality') {
       var high = 'High';
-      var mid = 'Average';
+      var mid = 'What I expected';
       var low = 'Low';
     } else if (name === 'Length') {
       var high = 'Too long';
       var mid = 'Perfect';
       var low = 'Too short';
+    } else if(name === 'Fit') {
+      var high = 'Runs long';
+      var mid = 'Perfect';
+      var low = 'Runs tight';
     } else {
       var high = 'High';
       var mid = 'Mid';
