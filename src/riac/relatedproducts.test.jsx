@@ -18,3 +18,7 @@ describe('true is truthy and false is falsy', () => {
     expect(false).toBe(false);
   });
 });
+
+// make a test to see if the product id matches the clicked product
+
+// make a test to see if modal is rendered when clicked on button
