@@ -12,7 +12,7 @@ class QAList extends React.Component {
     }
     this.getQuestions = this.getQuestions.bind(this);
     this.postQuestion = this.postQuestion.bind(this);
-    this.postAnswer = this.postAnswer.bind(this);
+    // this.postAnswer = this.postAnswer.bind(this);
   }
 
   componentDidMount() {
@@ -52,16 +52,7 @@ class QAList extends React.Component {
 
 
 
-  postAnswer(answer) {
-    const question_id = this.state.questions.question_id
-    axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${question_id}/answers`, answer, {headers: {'Authorization': token.TOKEN}})
-      .then((res) => {
-        this.getQuestions();
-      })
-      .catch((error) => {
-        throw error;
-      })
-  }
+
 
 
 
@@ -73,7 +64,7 @@ class QAList extends React.Component {
           <input type="submit" value="Search" />
         </form>
         {this.state.questions.map(question =>
-        <EachQuestion key = {question.question_id} question = {question} postAnswer = {this.postAnswer} postQuestion = {this.postQuestion} product = {this.props.product}/>
+        <EachQuestion key = {question.question_id} question = {question} postQuestion = {this.postQuestion} product = {this.props.product}/>
         )}
 
         <button type = 'submit'>More answered questions</button>

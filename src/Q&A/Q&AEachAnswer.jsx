@@ -21,7 +21,7 @@ class EachAnswer extends React.Component {
           {answer.body}
         </div>
         <div>
-          {photos.map(photo => <img src = {`${photo}`}/>)}
+          {photos.map(photo => <img key = {answer.id} src = {`${photo}`}/>)}
           by {answer.answerer_name}, {answer.date.substring(0,10)}
         </div>
         <div>

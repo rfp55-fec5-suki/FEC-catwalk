@@ -1,4 +1,6 @@
 import React from 'react';
+import axios from 'axios';
+import token from '../../config.js';
 import './Q&A.css';
 
 class Modal extends React.Component {
@@ -8,32 +10,49 @@ class Modal extends React.Component {
       body: '',
       name: '',
       email: '',
-      photo: [],
+      photos: [],
       question: false,
-      answer: false
+      answer: true
     }
 
     this.handleFormChange = this.handleFormChange.bind(this)
     this.submitForm = this.submitForm.bind(this)
+    this.postAnswer = this.postAnswer.bind(this)
   }
 
   handleFormChange(e) {
     this.setState({
       [e.target.name]: e.target.value
     })
+    console.log('we are running handleFormChange')
+  }
+
+  postAnswer(answer) {
+    const question_id = this.props.question.question_id
+    axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${question_id}/answers`, {data: answer}, {headers: {'Authorization': token.TOKEN}})
+      .then((res) => {
+        console.log('postAnswer success: ', res)
+        this.getQuestions();
+      })
+      .catch((error) => {
+        throw error;
+      })
   }
 
   //event handler here
   submitForm(e) {
-    const { body, name, email, photo, answer } = this.state
+    const { body, name, email, photos, answer } = this.state
     const { postAnswer, postQuestion, product } = this.props
-    const input = (answer ? { body, name, email, photo } : { body, name, email, product })
+    const input = (answer ? { body, name, email, photos } : { body, name, email, product })
 
     e.preventDefault()
 
     if( answer ) {
-      postAnswer(input)
+      console.log('check the post function: ', input)
+      this.postAnswer(input)
+      console.log('Modal called postAnswer function')
     } else {
+      console.log('check the post function of question: ', input)
       postQuestion(input)
     }
 
@@ -41,7 +60,7 @@ class Modal extends React.Component {
       body: '',
       name: '',
       email: '',
-      photo: []
+      photos: []
     })
 
     // this.toggleModal()
@@ -72,7 +91,7 @@ class Modal extends React.Component {
             </p>
           </div>
           <div className='modal-body'>
-            <form onSubmit={(e) => {this.submitForm(e)}} name='QA'>
+            <form onSubmit={this.submitForm} name='QA'>
               <div>
                 <label htmlFor='yourName'>
                   *Name:
@@ -114,8 +133,8 @@ class Modal extends React.Component {
                   </input>
                 </label>
                 <br />
-                  <label htmlFor='photo'>
-                    *Photo url:
+                  <label htmlFor='photos'>
+                    Photos url:
                     <br />
                     <input
                       type='url'
@@ -126,14 +145,15 @@ class Modal extends React.Component {
                     </input>
                   </label>
               </div>
+              <button onClick={handleClose}>
+                Close
+              </button>
+              <button type = 'submit' onClick={handleClose}>
+                Submit
+              </button>
             </form>
           </div>
-          <button onClick={handleClose}>
-            Close
-          </button>
-          <button type = 'submit' onClick={handleClose}>
-            Submit
-          </button>
+
         </section>
       </div>
     )

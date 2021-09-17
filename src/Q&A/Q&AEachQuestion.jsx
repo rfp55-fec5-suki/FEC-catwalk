@@ -36,7 +36,6 @@ class EachQuestion extends React.Component {
             <Modal
             show={this.state.show}
             handleClose={this.hideModal}
-            postAnswer={this.props.postAnswer}
             postQuestion={this.props.postQuestion}
             product={this.props.product}
             question={this.props.question}/>
