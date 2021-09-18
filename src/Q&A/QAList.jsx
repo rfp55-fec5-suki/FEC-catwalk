@@ -59,9 +59,6 @@ class QAList extends React.Component {
           showQ: prevState.showQ += 2
         }
       })
-    // this.setState({
-    //   showQ: this.state.questions.length
-    // })
   }
 
   collapseQClick(e) {

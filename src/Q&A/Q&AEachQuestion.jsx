@@ -1,12 +1,13 @@
 import React from 'react';
 import QAAnswer from './QAAnswer.jsx'
-import Modal from './QAModal.jsx'
+import AModal from './AModal.jsx'
 
 class EachQuestion extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      show: false
+      show: false,
+      // answer: false
     }
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
@@ -15,13 +16,15 @@ class EachQuestion extends React.Component {
   // event handler
   showModal() {
     this.setState ({
-      show: true
+      show: true,
+      // answer: true
     })
   }
 
   hideModal() {
     this.setState ({
-      show: false
+      show: false,
+      // answer: false
     })
   }
 
@@ -33,13 +36,14 @@ class EachQuestion extends React.Component {
           <h3>Q:</h3>
           {question.question_body}
           <div>
-            <Modal
+            <AModal
             show={this.state.show}
             handleClose={this.hideModal}
             postQuestion={this.props.postQuestion}
             getQuestions={this.props.getQuestions}
             product={this.props.product}
             question={this.props.question}
+            answer={this.state.answer}
             type = 'answer'/>
             <button type = 'submit' onClick={this.showModal}>
               Add an Answer
