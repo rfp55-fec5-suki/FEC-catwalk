@@ -9,6 +9,7 @@ class QAAnswer extends React.Component {
       showA: 2
     })
     this.loadMoreAClick = this.loadMoreAClick.bind(this);
+    this.collapseAClick = this.collapseAClick.bind(this);
   }
 
 
@@ -16,6 +17,13 @@ class QAAnswer extends React.Component {
     e.preventDefault();
     this.setState({
       showA: this.props.question.answers.length
+    })
+  }
+
+  collapseAClick(e) {
+    e.preventDefault();
+    this.setState({
+      showA: 2
     })
   }
   // setState: helpful & reported
@@ -33,6 +41,9 @@ class QAAnswer extends React.Component {
           </div>
           <button type='submit' onClick={this.loadMoreAClick}>
             load more answer
+          </button>
+          <button type='submit' onClick={this.collapseAClick}>
+            show less answer
           </button>
       </div>
     )
