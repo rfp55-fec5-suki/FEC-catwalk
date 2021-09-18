@@ -48,7 +48,7 @@
 .riac-related-products {
   display: flex;
   flex-wrap: nowrap;
-  overflow-x: auto;
+  overflow-x: hidden;
   width: 100%;
   position: relative;
   margin: auto;
@@ -139,7 +139,7 @@
   display: grid;
   grid-template-columns: 10% 25% 30% 25% 10%;
   grid-template-rows: 10% 10% auto;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .riac-display-block {

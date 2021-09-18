@@ -23,6 +23,8 @@ class RelatedProducts extends React.Component {
     this.fetchStorage = this.fetchStorage.bind(this);
     this.addToOutfit = this.addToOutfit.bind(this);
     this.removeOutfit = this.removeOutfit.bind(this);
+
+    this.updateButtons = this.updateButtons.bind(this);
   }
 
   fetchStorage() {
@@ -30,6 +32,13 @@ class RelatedProducts extends React.Component {
     this.setState({
       storage: arr
     })
+  }
+
+  updateButtons() {
+    this.setState({
+      scrollLeft: document.getElementById('riac-carousel').scrollLeft,
+      maxScrollLeft: document.getElementById('riac-carousel').scrollWidth - document.getElementById('riac-carousel').clientWidth
+    }, () => {console.log('scrolleft', this.state.scrollLeft); console.log('max', this.state.maxScrollLeft);})
   }
 
   addToOutfit() {
@@ -42,22 +51,18 @@ class RelatedProducts extends React.Component {
     this.fetchStorage();
   }
 
-  componentDidMount() {
-    this.fetchStorage();
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.product.id !== this.props.product.id) {
-      this.fetchStorage();
-    }
-  }
-
   slideLeft() {
     document.getElementById('riac-carousel').scrollLeft -= 260;
+    this.setState({
+      scrollLeft: document.getElementById('riac-carousel').scrollLeft
+    })
   }
 
   slideRight() {
     document.getElementById('riac-carousel').scrollLeft += 260;
+    this.setState({
+      scrollLeft: document.getElementById('riac-carousel').scrollLeft
+    })
   }
 
   outfitSlideLeft() {
@@ -67,6 +72,19 @@ class RelatedProducts extends React.Component {
   outfitSlideRight() {
     document.getElementById('outfit-carousel').scrollLeft += 260;
   }
+
+  componentDidMount() {
+    this.fetchStorage();
+    this.updateButtons();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.product.id !== this.props.product.id) {
+      this.fetchStorage();
+      this.updateButtons();
+    }
+  }
+
 
   render() {
     return (
@@ -78,23 +96,24 @@ class RelatedProducts extends React.Component {
             RELATED PRODUCTS
           </div>
 
-          {/* {$('div.riac-productcard').is(':offscreen')
-            ? <i className='fas fa-chevron-left fa-2x riac-left-button' onClick={this.slideLeft}> </i>
-              <i className='fas fa-chevron-right fa-2x riac-right-button' onClick={this.slideRight}></i>
-            : null} */}
 
-          <i className='fas fa-chevron-left fa-2x riac-left-button' onClick={this.slideLeft}></i>
-          <i className='fas fa-chevron-right fa-2x riac-right-button' onClick={this.slideRight}></i>
+          {console.log('in return scrolleft', this.state.scrollLeft)}
+          {console.log('in return max', this.state.maxScrollLeft)}
+
+
+          {this.state.scrollLeft ? <i className='fas fa-chevron-left fa-2x riac-left-button' onClick={this.slideLeft}></i> : null}
+
+          {this.state.maxScrollLeft === 0 || this.state.maxScrollLeft === this.state.scrollLeft
+            ? null : <i className='fas fa-chevron-right fa-2x riac-right-button' onClick={this.slideRight}></i>}
 
           <div className='riac-container'>
 
             <div className='riac-related-products' id='riac-carousel'>
 
-              {console.log($('div.riac-productcard').is(':offscreen'))}
-
               {this.props.related.map((productid) => {
                 return <RelatedProductCard product={this.props.product} productid={productid} onClick={this.props.onClick} />
               })}
+
 
             </div>
           </div>
@@ -130,10 +149,3 @@ class RelatedProducts extends React.Component {
 }
 
 export default RelatedProducts;
-
-$.expr.filters.offscreen = function (el) {
-  var rect = el.getBoundingClientRect();
-  return (rect.x < 0 || rect.y < 0 ||
-    (rect.x + rect.width) > window.innerWidth ||
-    (rect.y + rect.height) > window.innerHeight);
-};
