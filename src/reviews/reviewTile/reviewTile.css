@@ -65,3 +65,7 @@
   height: 15px;
   width: auto;
 }
+.tile-thumb {
+  max-height: 70px;
+  width: auto;
+}
