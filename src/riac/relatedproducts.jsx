@@ -77,8 +77,8 @@ class RelatedProducts extends React.Component {
             RELATED PRODUCTS
           </div>
 
-          <button className='riac-left-button' onClick={this.slideLeft}/>
-          <button className='riac-right-button' onClick={this.slideRight}/>
+          <i className='fas fa-chevron-left fa-2x riac-left-button' onClick={this.slideLeft}></i>
+          <i className='fas fa-chevron-right fa-2x riac-right-button' onClick={this.slideRight}></i>
 
           <div className='riac-container'>
 
@@ -99,8 +99,8 @@ class RelatedProducts extends React.Component {
             YOUR OUTFIT
           </div>
 
-          <button className='riac-left-button' onClick={this.outfitSlideLeft}/>
-          <button className='riac-right-button' onClick={this.outfitSlideRight}/>
+          <i className='fas fa-chevron-left fa-2x riac-left-button' onClick={this.outfitSlideLeft}></i>
+          <i className='fas fa-chevron-right fa-2x riac-right-button' onClick={this.outfitSlideRight}></i>
 
           <div className='riac-container'>
 
