@@ -9,11 +9,12 @@ class QAList extends React.Component {
     super(props);
     this.state = {
       questions: [],
-      showQ: 2
+      showQ: 4
     }
     this.getQuestions = this.getQuestions.bind(this);
     this.postQuestion = this.postQuestion.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.loadMoreQClick = this.loadMoreQClick.bind(this);
+    this.collapseQClick = this.collapseQClick.bind(this);
   }
 
   componentDidMount() {
@@ -50,15 +51,19 @@ class QAList extends React.Component {
       })
   }
 
-  handleClick(e) {
-    console.log('test load more question click')
+  loadMoreQClick(e) {
     e.preventDefault();
     this.setState({
       showQ: this.state.questions.length
     })
-    console.log('test load more question: ', this.state)
   }
 
+  collapseQClick(e) {
+    e.preventDefault();
+    this.setState({
+      showQ: 2
+    })
+  }
 
 
 
@@ -77,7 +82,8 @@ class QAList extends React.Component {
           )}
         </div>
         <div className = 'questionBtn'>
-          <button type = 'submit' onClick={this.handleClick}>More answered questions</button>
+          <button type='submit' onClick={this.collapseQClick}>Show less answered questions</button>
+          <button type = 'submit' onClick={this.loadMoreQClick}>More answered questions</button>
           <button type = 'submit'>Submit new question</button>
         </div>
       </div>
