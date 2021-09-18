@@ -14,6 +14,8 @@ class RelatedProducts extends React.Component {
       storage: []
     }
 
+    this.navRef = React.createRef();
+
     this.fetchStorage = this.fetchStorage.bind(this);
     this.addToOutfit = this.addToOutfit.bind(this);
     this.removeOutfit = this.removeOutfit.bind(this);
@@ -46,6 +48,15 @@ class RelatedProducts extends React.Component {
     }
   }
 
+  handleNav = (direction) => {
+    if (direction === 'left') {
+      this.navRef ? (this.navRef.current.scrollLeft -= 200) : null;
+    } else {
+      this.navRef ? (this.navRef.current.scrollLeft += 200) : null;
+    }
+  }
+
+
   render() {
     return (
       <div>
@@ -56,12 +67,12 @@ class RelatedProducts extends React.Component {
             RELATED PRODUCTS
           </div>
 
-          <button className='riac-left-button' />
-          <button className='riac-right-button' />
+          <button className='riac-left-button' onClick={() => this.handleNav('left')}/>
+          <button className='riac-right-button' onClick={()=> this.handleNav('right')}/>
 
           <div className='riac-container'>
 
-            <div className='riac-related-products'>
+            <div className='riac-related-products' ref={this.navRef}>
 
               {this.props.related.map((productid) => {
                 return <RelatedProductCard product={this.props.product} productid={productid} onClick={this.props.onClick} />

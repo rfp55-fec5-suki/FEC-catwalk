@@ -46,7 +46,7 @@
 .riac-related-products {
   display: flex;
   flex-wrap: nowrap;
-  overflow: auto;
+  overflow-x: auto;
   width: 100%;
   position: relative;
   margin: auto;
@@ -68,6 +68,7 @@
   z-index: 1;
   color: white;
   text-align: center;
+
 }
 
 .riac-productcard-image {
