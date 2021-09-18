@@ -1,6 +1,7 @@
 import React from 'react';
 import RelatedProductCard from './relateditems/relatedproductcard.jsx';
 import RelatedProductModal from './relateditems/relatedproductmodal.jsx';
+import $ from 'jquery';
 
 import AddOutfit from './outfitlist/addoutfit.jsx';
 import OutfitCard from './outfitlist/outfitcard.jsx';
@@ -77,12 +78,19 @@ class RelatedProducts extends React.Component {
             RELATED PRODUCTS
           </div>
 
+          {/* {$('div.riac-productcard').is(':offscreen')
+            ? <i className='fas fa-chevron-left fa-2x riac-left-button' onClick={this.slideLeft}> </i>
+              <i className='fas fa-chevron-right fa-2x riac-right-button' onClick={this.slideRight}></i>
+            : null} */}
+
           <i className='fas fa-chevron-left fa-2x riac-left-button' onClick={this.slideLeft}></i>
           <i className='fas fa-chevron-right fa-2x riac-right-button' onClick={this.slideRight}></i>
 
           <div className='riac-container'>
 
             <div className='riac-related-products' id='riac-carousel'>
+
+              {console.log($('div.riac-productcard').is(':offscreen'))}
 
               {this.props.related.map((productid) => {
                 return <RelatedProductCard product={this.props.product} productid={productid} onClick={this.props.onClick} />
@@ -109,7 +117,7 @@ class RelatedProducts extends React.Component {
               <AddOutfit onClick={this.addToOutfit} />
 
               {this.state.storage ? this.state.storage.map((productid) => {
-                return <OutfitCard productid={productid} onClick={this.props.onClick} removeOutfit={this.removeOutfit}/>
+                return <OutfitCard productid={productid} onClick={this.props.onClick} removeOutfit={this.removeOutfit} />
               }) : null}
 
             </div>
@@ -122,3 +130,10 @@ class RelatedProducts extends React.Component {
 }
 
 export default RelatedProducts;
+
+$.expr.filters.offscreen = function (el) {
+  var rect = el.getBoundingClientRect();
+  return (rect.x < 0 || rect.y < 0 ||
+    (rect.x + rect.width) > window.innerWidth ||
+    (rect.y + rect.height) > window.innerHeight);
+};

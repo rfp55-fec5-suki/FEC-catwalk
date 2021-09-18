@@ -27,13 +27,15 @@
 
 .riac-left-button {
   grid-row: 3/4;
-  grid-column: 2/3;
+  grid-column: 1/2;
+  text-align: center;
   z-index: 1;
 }
 
 .riac-right-button {
   grid-row: 3/4;
-  grid-column: 4/5;
+  grid-column: 5/6;
+  text-align: center;
   z-index: 1;
 }
 
@@ -68,7 +70,6 @@
   z-index: 1;
   color: white;
   text-align: center;
-
 }
 
 .riac-productcard-image {
