@@ -66,6 +66,17 @@
   white-space: nowrap;
 }
 
+.imageContainer .selectionImgColumn .selectionImages {
+  display: flex;
+  flex-direction: column;
+  float: left;
+  /*height: 100%;*/
+  padding-right: 5px;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+
 .imageContainer .selectionImgColumn .selectionImg {
   padding-bottom: 5%;
   object-fit: fill;
