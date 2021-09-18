@@ -14,24 +14,36 @@ class RelatedProducts extends React.Component {
       storage: []
     }
 
+    this.fetchStorage = this.fetchStorage.bind(this);
     this.addToOutfit = this.addToOutfit.bind(this);
     this.removeOutfit = this.removeOutfit.bind(this);
   }
 
-  addToOutfit() {
-    localStorage.setItem(`${this.props.product.id}`, `${this.props.product.id}`)
+  fetchStorage() {
     var arr = [...Object.values(localStorage)];
     this.setState({
       storage: arr
     })
   }
 
+  addToOutfit() {
+    localStorage.setItem(`${this.props.product.id}`, `${this.props.product.id}`)
+    this.fetchStorage();
+  }
+
   removeOutfit(item) {
     localStorage.removeItem(item)
-    var arr = [...Object.values(localStorage)];
-    this.setState({
-      storage: arr
-    })
+    this.fetchStorage();
+  }
+
+  componentDidMount() {
+    this.fetchStorage();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.product.id !== this.props.product.id) {
+      this.fetchStorage();
+    }
   }
 
   render() {

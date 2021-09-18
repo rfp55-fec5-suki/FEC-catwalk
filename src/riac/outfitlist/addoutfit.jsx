@@ -1,9 +1,9 @@
 import React from 'react';
 
 const AddOutfit = (props) => (
-  <div className='riac-productcard'>
+  <div className='outfit-card'>
 
-    <button className='riac-productcard-button' onClick={props.onClick}>Add</button>
+    <button className='outfit-button' onClick={props.onClick}>Add</button>
 
   </div>
 )
