@@ -8,8 +8,8 @@ class OverviewInformation extends React.Component {
   }
 
   render () {
-    var product = this.props.product;
-    var style = this.props.selectedStyle;
+    const product = this.props.product;
+    const style = this.props.selectedStyle;
 
     let price;
     if (style.sale_price !== null) {
