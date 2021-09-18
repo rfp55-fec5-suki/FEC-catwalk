@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import $ from 'jquery';
 import token from '../../../config.js';
 import StarRating from '../../sharedComponents/StarRating.jsx';
 import RelatedProductModal from './relatedproductmodal.jsx';
@@ -136,7 +137,8 @@ class RelatedProductCard extends React.Component {
             </div>
             : <div className='riac-productcard-price'> {this.state.info.default_price} </div>}
 
-          <div className='riac-productcard-rating'> <StarRating meta={this.state.stars} /> </div>
+          {$.isEmptyObject(this.state.stars) ? null
+            : <div className='riac-productcard-rating'> <StarRating meta={this.state.stars} /> </div>}
 
         </div>
       </div>
