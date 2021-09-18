@@ -41,7 +41,7 @@
 }
 .recommend {
   grid-column-start: 1;
-  grid-column-end: 3;
+  grid-column-end: 6;
   grid-row-start: 5;
   grid-row-end: 6;
 }
@@ -57,11 +57,15 @@
 }
 .helpful {
   grid-column-start: 1;
-  grid-column-end: 2;
+  grid-column-end: 6;
   grid-row-start: 7;
   grid-row-end: 8;
 }
 .check {
   height: 15px;
+  width: auto;
+}
+.tile-thumb {
+  max-height: 70px;
   width: auto;
 }
