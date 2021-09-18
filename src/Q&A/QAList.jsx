@@ -68,26 +68,34 @@ class QAList extends React.Component {
 
 
   render() {
-    return(
-      <div className = 'QA'>
-        <div className = 'searchBar'>
-          <form>
-            <input type="text" name="search" placeholder="Find your question" />
-            <input type="submit" value="Search" />
-          </form>
+    if(this.state.questions.length === 0) {
+      return(
+        <div>
+          <button type = 'submit'>submit a question</button>
         </div>
-        <div className = 'questionList'>
-          {this.state.questions.slice(0,this.state.showQ).map(question =>
-          <EachQuestion key = {question.question_id} question = {question} postQuestion = {this.postQuestion} getQuestions = {this.getQuestions}product = {this.props.product}/>
-          )}
+      )
+    }else {
+      return(
+        <div className = 'QA'>
+          <div className = 'searchBar'>
+            <form>
+              <input type="text" name="search" placeholder="Find your question" />
+              <input type="submit" value="Search" />
+            </form>
+          </div>
+          <div className = 'questionList'>
+            {this.state.questions.slice(0,this.state.showQ).map(question =>
+            <EachQuestion key = {question.question_id} question = {question} postQuestion = {this.postQuestion} getQuestions = {this.getQuestions}product = {this.props.product}/>
+            )}
+          </div>
+          <div className = 'questionBtn'>
+            <button type='submit' onClick={this.collapseQClick}>Show less answered questions</button>
+            <button type = 'submit' onClick={this.loadMoreQClick}>More answered questions</button>
+            <button type = 'submit'>Add more question</button>
+          </div>
         </div>
-        <div className = 'questionBtn'>
-          <button type='submit' onClick={this.collapseQClick}>Show less answered questions</button>
-          <button type = 'submit' onClick={this.loadMoreQClick}>More answered questions</button>
-          <button type = 'submit'>Submit new question</button>
-        </div>
-      </div>
-    )
+      )
+    }
   }
 }
 

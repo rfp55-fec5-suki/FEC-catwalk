@@ -14,7 +14,7 @@ class EachAnswer extends React.Component {
   render() {
     const answer = this.props.answer;
     const photos = this.props.answer.photos; //photos here are array, let's retrieve the url
-
+    // if (answer.answerer_name === 'Seller')
     return (
       <div key = {answer.id}>
         <div>
@@ -22,7 +22,14 @@ class EachAnswer extends React.Component {
         </div>
         <div>
           {photos.map(photo => <img key = {answer.id} src = {`${photo}`}/>)}
-          by {answer.answerer_name}, {answer.date.substring(0,10)}
+          by
+          <div>
+            {(answer.answerer_name === 'Seller') && <b>{answer.answerer_name}</b>}
+            {(answer.answerer_name !== 'Seller') && <div>{answer.answerer_name}</div>}
+          </div>
+          <div>
+            {answer.date.substring(0,10)}
+          </div>
         </div>
         <div>
           helpful?
@@ -31,7 +38,6 @@ class EachAnswer extends React.Component {
         </div>
       </div>
     )
-
   }
 }
 
