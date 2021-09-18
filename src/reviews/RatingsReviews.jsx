@@ -101,9 +101,14 @@ class RatingsReviews extends React.Component {
     })
   }
   getAllReviews() {
+    if (this.state.meta.recommended) {
+      var count = this.state.meta.recommended.true + this.state.meta.recommended.false;
+    } else {
+      var count = 100;
+    }
     axios({
       method: 'get',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews?product_id=${this.props.product_id}&count=100&sort=${sort}`,
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews?product_id=${this.props.product_id}&count=${count}&sort=${sort}`,
       headers: {
         'Authorization': token.TOKEN
       }
