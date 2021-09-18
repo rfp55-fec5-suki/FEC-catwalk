@@ -3,13 +3,13 @@ import { render, screen } from '@testing-library/react';
 
 import ProductCard from './productcard.jsx';
 
-describe('ProductCard', () => {
+describe.skip('ProductCard', () => {
   test('render Product Card component', () => {
     render(<ProductCard />);
   });
 });
 
-describe('true is truthy and false is falsy', () => {
+describe.skip('true is truthy and false is falsy', () => {
   test('true is truthy', () => {
     expect(true).toBe(true);
   });
