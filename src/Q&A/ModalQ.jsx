@@ -24,7 +24,6 @@ class ModalQ extends React.Component {
     this.setState({
       [e.target.name]: e.target.value
     })
-    console.log('we are running handleFormChange')
   }
 
 
@@ -39,7 +38,7 @@ class ModalQ extends React.Component {
       }
     })
       .then((res) => {
-        console.log('postQuestion success: ', res)
+        // console.log('postQuestion success: ', res)
         this.props.getQuestions();
       })
       .catch((error) => {

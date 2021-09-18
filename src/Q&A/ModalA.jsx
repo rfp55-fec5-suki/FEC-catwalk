@@ -41,7 +41,6 @@ class ModalA extends React.Component {
       }
     })
       .then((res) => {
-        console.log('postAnswer success: ', res)
         this.props.getQuestions();
       })
       .catch((error) => {
@@ -60,11 +59,8 @@ class ModalA extends React.Component {
     e.preventDefault()
 
     if( answer ) {
-      console.log('check the post function: ', input)
-      console.log('check the answer prop in post function: ', answer)
       this.postAnswer(question_id, input)
     } else {
-      console.log('check the post function of question: ', answer)
       this.props.postQuestion(input)
     }
 
