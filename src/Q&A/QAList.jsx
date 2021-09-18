@@ -11,10 +11,9 @@ class QAList extends React.Component {
     this.state = {
       questions: [],
       showQ: 2,
-      displayModal: false
+      show: false
     }
     this.getQuestions = this.getQuestions.bind(this);
-    this.postQuestion = this.postQuestion.bind(this);
     this.loadMoreQClick = this.loadMoreQClick.bind(this);
     this.collapseQClick = this.collapseQClick.bind(this);
     this.showModal = this.showModal.bind(this);
@@ -44,16 +43,6 @@ class QAList extends React.Component {
       });
   }
 
-  postQuestion(question) {
-    const product_id = this.props.product.id
-    axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/?product_id=${product_id}`, question, {headers: {'Authorization': token.TOKEN}})
-      .then((res) => {
-        this.getQuestions();
-      })
-      .catch((error) => {
-        throw error;
-      })
-  }
 
   loadMoreQClick(e) {
     e.preventDefault();
@@ -116,10 +105,8 @@ class QAList extends React.Component {
             <ModalQ
             show={this.state.show}
             handleClose={this.hideModal}
-            postQuestion={this.props.postQuestion}
-            getQuestions={this.props.getQuestions}
+            getQuestions={this.getQuestions}
             product_id={this.props.product.id}
-            // question={this.props.question}
             type = 'question'/>
             <button type = 'submit' onClick={this.showModal}>
               Add more question

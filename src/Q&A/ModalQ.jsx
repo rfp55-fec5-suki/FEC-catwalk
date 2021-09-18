@@ -3,7 +3,7 @@ import axios from 'axios';
 import token from '../../config.js';
 import './Q&A.css';
 
-class QModal extends React.Component {
+class ModalQ extends React.Component {
   constructor(props) {
     super (props);
     this.state = {
@@ -13,13 +13,11 @@ class QModal extends React.Component {
       photos: [],
       question: true,
       answer: false,
-      // show: false
     }
 
     this.handleFormChange = this.handleFormChange.bind(this)
     this.submitForm = this.submitForm.bind(this)
-    this.postAnswer = this.postAnswer.bind(this)
-    //this.toggleModal = this.toggleModal.bind(this)
+    this.postQuestion = this.postQuestion.bind(this)
   }
 
   handleFormChange(e) {
@@ -30,20 +28,18 @@ class QModal extends React.Component {
   }
 
 
-  postAnswer(question) {
-    const question_id = this.props.question.question_id
+  postQuestion(question) {
+    const product_id = this.props.product_id
     axios({
       method: 'post',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions`,
-      // params: question_id,
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/?product_id=${product_id}`,
       data: question,
       headers: {
         'Authorization': token.TOKEN
       }
     })
-    // axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${question_id}/answers`, {data: answer}, {headers: {'Authorization': token.TOKEN}})
       .then((res) => {
-        console.log('postAnswer success: ', res)
+        console.log('postQuestion success: ', res)
         this.props.getQuestions();
       })
       .catch((error) => {
@@ -53,22 +49,12 @@ class QModal extends React.Component {
 
   //event handler here
   submitForm(e) {
-    const { body, name, email, photos, answer } = this.state
-    const { question, postQuestion, product_id } = this.props
-    const question_id = this.props.question.question_id
-    const input = (answer ? { question_id, body, name, email } : { body, name, email, product_id })
-    // should work more on photos
-
+    const { body, name, email } = this.state;
+    const product_id = this.props.product_id;
+    const input = {body, name, email, product_id}
     e.preventDefault()
 
-    if( answer ) {
-      console.log('check the post function: ', input)
-      console.log('check the answer prop in post function: ', answer)
-      this.postAnswer(question_id, input)
-    } else {
-      console.log('check the post function of question: ', input)
-      this.props.postQuestion(input)
-    }
+    this.postQuestion(input);
 
     this.setState({
       body: '',
@@ -77,26 +63,10 @@ class QModal extends React.Component {
       photos: []
     })
 
-    //this.toggleModal()
   }
 
 
 
-  // toggleModal() {
-  //   const { question, answer } = this.state;
-  //   const type = this.props.type;
-  //   console.log('test our toggleModal');
-  //   if (type === 'question') {
-  //     this.setState({
-  //       question: !question
-  //     })
-  //   }
-  //   if(type === 'answer') {
-  //     this.setState({
-  //       answer: !answer
-  //     })
-  //   }
-  // }
 
   render() {
     const question = this.state.question
@@ -183,7 +153,6 @@ class QModal extends React.Component {
               </button>
             </form>
           </div>
-
         </section>
       </div>
     )
@@ -192,4 +161,4 @@ class QModal extends React.Component {
 
 
 
-export default QModal;
+export default ModalQ;

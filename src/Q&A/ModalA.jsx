@@ -23,11 +23,9 @@ class ModalA extends React.Component {
   }
 
   handleFormChange(e) {
-    console.log('see this.props.answer in handle change: ', this.props.answer)
     this.setState({
       [e.target.name]: e.target.value
     })
-    console.log('we are running handleFormChange')
   }
 
 
@@ -42,7 +40,6 @@ class ModalA extends React.Component {
         'Authorization': token.TOKEN
       }
     })
-    // axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${question_id}/answers`, {data: answer}, {headers: {'Authorization': token.TOKEN}})
       .then((res) => {
         console.log('postAnswer success: ', res)
         this.props.getQuestions();
@@ -77,27 +74,9 @@ class ModalA extends React.Component {
       email: '',
       photos: []
     })
-
-    //this.toggleModal()
   }
 
 
-
-  // toggleModal() {
-  //   const { question, answer } = this.state;
-  //   const type = this.props.type;
-  //   console.log('test our toggleModal');
-  //   if (type === 'question') {
-  //     this.setState({
-  //       question: !question
-  //     })
-  //   }
-  //   if(type === 'answer') {
-  //     this.setState({
-  //       answer: !answer
-  //     })
-  //   }
-  // }
 
   render() {
     const question = this.state.question
