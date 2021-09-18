@@ -9,7 +9,7 @@ class QAList extends React.Component {
     super(props);
     this.state = {
       questions: [],
-      showQ: 4
+      showQ: 2
     }
     this.getQuestions = this.getQuestions.bind(this);
     this.postQuestion = this.postQuestion.bind(this);
@@ -53,9 +53,15 @@ class QAList extends React.Component {
 
   loadMoreQClick(e) {
     e.preventDefault();
-    this.setState({
-      showQ: this.state.questions.length
-    })
+    this.setState(
+      prevState => {
+        return {
+          showQ: prevState.showQ += 2
+        }
+      })
+    // this.setState({
+    //   showQ: this.state.questions.length
+    // })
   }
 
   collapseQClick(e) {
@@ -90,7 +96,7 @@ class QAList extends React.Component {
           </div>
           <div className = 'questionBtn'>
             <button type='submit' onClick={this.collapseQClick}>Show less answered questions</button>
-            <button type = 'submit' onClick={this.loadMoreQClick}>More answered questions</button>
+            {this.state.questions.length > 2 && <button type = 'submit' onClick={this.loadMoreQClick}>More answered questions</button>}
             <button type = 'submit'>Add more question</button>
           </div>
         </div>

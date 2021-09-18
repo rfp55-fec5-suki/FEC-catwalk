@@ -14,7 +14,6 @@ class EachAnswer extends React.Component {
   render() {
     const answer = this.props.answer;
     const photos = this.props.answer.photos; //photos here are array, let's retrieve the url
-    // if (answer.answerer_name === 'Seller')
     return (
       <div key = {answer.id}>
         <div>

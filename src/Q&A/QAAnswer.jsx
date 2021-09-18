@@ -39,9 +39,8 @@ class QAAnswer extends React.Component {
               <EachAnswer key = {answer.id} answer = {answer}/>
               )}
           </div>
-          <button type='submit' onClick={this.loadMoreAClick}>
-            load more answer
-          </button>
+          {Object.values(this.props.question.answers).length > 2 && <button type='submit' onClick={this.loadMoreAClick}>load more answer</button>}
+
           <button type='submit' onClick={this.collapseAClick}>
             show less answer
           </button>
