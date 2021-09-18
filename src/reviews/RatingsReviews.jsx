@@ -146,6 +146,7 @@ class RatingsReviews extends React.Component {
     this.getReviewList();
   }
   addReview(newReview) {
+    newReview.product_id = this.props.product_id;
     axios({
       method: 'post',
       url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews',
@@ -209,7 +210,8 @@ class RatingsReviews extends React.Component {
         report={this.reportReview}/>
 
         <Modal show={this.state.showAddReview} handleClose={this.hideAddReview}
-        children={<AddReview chars={this.state.meta.characteristics} close={this.hideAddReview}/>}/>
+        children={<AddReview chars={this.state.meta.characteristics} close={this.hideAddReview}
+        postReview={this.addReview}/>}/>
       </div>
 
     )

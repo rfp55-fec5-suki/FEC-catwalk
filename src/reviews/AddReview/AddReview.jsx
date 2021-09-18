@@ -129,7 +129,7 @@ const AddReview = (props) => {
     // console.log(result)
     // console.log(notComplete);
     if (notComplete.length === 0) {
-      // console.log(result)
+      props.postReview(result)
       props.close();
     } else {
       setUnfinished(notComplete);
