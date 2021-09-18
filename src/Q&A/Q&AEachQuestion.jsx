@@ -1,13 +1,12 @@
 import React from 'react';
 import QAAnswer from './QAAnswer.jsx'
-import AModal from './AModal.jsx'
+import ModalA from './ModalA.jsx'
 
 class EachQuestion extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       show: false,
-      // answer: false
     }
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
@@ -17,14 +16,12 @@ class EachQuestion extends React.Component {
   showModal() {
     this.setState ({
       show: true,
-      // answer: true
     })
   }
 
   hideModal() {
     this.setState ({
       show: false,
-      // answer: false
     })
   }
 
@@ -36,7 +33,7 @@ class EachQuestion extends React.Component {
           <h3>Q:</h3>
           {question.question_body}
           <div>
-            <AModal
+            <ModalA
             show={this.state.show}
             handleClose={this.hideModal}
             postQuestion={this.props.postQuestion}

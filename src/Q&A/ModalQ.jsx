@@ -3,7 +3,7 @@ import axios from 'axios';
 import token from '../../config.js';
 import './Q&A.css';
 
-class AModal extends React.Component {
+class QModal extends React.Component {
   constructor(props) {
     super (props);
     this.state = {
@@ -11,19 +11,18 @@ class AModal extends React.Component {
       name: '',
       email: '',
       photos: [],
-      question: false,
-      answer: true,
+      question: true,
+      answer: false,
       // show: false
     }
 
     this.handleFormChange = this.handleFormChange.bind(this)
     this.submitForm = this.submitForm.bind(this)
     this.postAnswer = this.postAnswer.bind(this)
-    this.toggleModal = this.toggleModal.bind(this)
+    //this.toggleModal = this.toggleModal.bind(this)
   }
 
   handleFormChange(e) {
-    console.log('see this.props.answer in handle change: ', this.props.answer)
     this.setState({
       [e.target.name]: e.target.value
     })
@@ -31,13 +30,13 @@ class AModal extends React.Component {
   }
 
 
-  postAnswer(id, answer) {
+  postAnswer(question) {
     const question_id = this.props.question.question_id
     axios({
       method: 'post',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${question_id}/answers`,
-      params: question_id,
-      data: answer,
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions`,
+      // params: question_id,
+      data: question,
       headers: {
         'Authorization': token.TOKEN
       }
@@ -55,12 +54,9 @@ class AModal extends React.Component {
   //event handler here
   submitForm(e) {
     const { body, name, email, photos, answer } = this.state
-    const { question, postQuestion, product } = this.props
-    // const answer = this.props.answer
-    console.log('see this.props.answer: ', this.props.answer)
-    console.log('see the answer prop before post function: ', answer)
+    const { question, postQuestion, product_id } = this.props
     const question_id = this.props.question.question_id
-    const input = (answer ? { question_id, body, name, email } : { body, name, email, product })
+    const input = (answer ? { question_id, body, name, email } : { body, name, email, product_id })
     // should work more on photos
 
     e.preventDefault()
@@ -70,7 +66,7 @@ class AModal extends React.Component {
       console.log('check the answer prop in post function: ', answer)
       this.postAnswer(question_id, input)
     } else {
-      console.log('check the post function of question: ', answer)
+      console.log('check the post function of question: ', input)
       this.props.postQuestion(input)
     }
 
@@ -86,27 +82,21 @@ class AModal extends React.Component {
 
 
 
-  toggleModal() {
-    // const answer = this.state.answer;
-    // if(answer) {
-    //   this.setState({
-    //     answer: !answer
-    //   })
-    // }
-    const { question, answer } = this.state;
-    const type = this.props.type;
-    console.log('test our toggleModal');
-    if (type === 'question') {
-      this.setState({
-        question: !question
-      })
-    }
-    if(type === 'answer') {
-      this.setState({
-        answer: !answer
-      })
-    }
-  }
+  // toggleModal() {
+  //   const { question, answer } = this.state;
+  //   const type = this.props.type;
+  //   console.log('test our toggleModal');
+  //   if (type === 'question') {
+  //     this.setState({
+  //       question: !question
+  //     })
+  //   }
+  //   if(type === 'answer') {
+  //     this.setState({
+  //       answer: !answer
+  //     })
+  //   }
+  // }
 
   render() {
     const question = this.state.question
@@ -202,4 +192,4 @@ class AModal extends React.Component {
 
 
 
-export default AModal;
+export default QModal;

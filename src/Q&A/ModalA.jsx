@@ -3,7 +3,7 @@ import axios from 'axios';
 import token from '../../config.js';
 import './Q&A.css';
 
-class QModal extends React.Component {
+class ModalA extends React.Component {
   constructor(props) {
     super (props);
     this.state = {
@@ -11,18 +11,19 @@ class QModal extends React.Component {
       name: '',
       email: '',
       photos: [],
-      question: true,
-      answer: false,
+      question: false,
+      answer: true,
       // show: false
     }
 
     this.handleFormChange = this.handleFormChange.bind(this)
     this.submitForm = this.submitForm.bind(this)
     this.postAnswer = this.postAnswer.bind(this)
-    this.toggleModal = this.toggleModal.bind(this)
+    //this.toggleModal = this.toggleModal.bind(this)
   }
 
   handleFormChange(e) {
+    console.log('see this.props.answer in handle change: ', this.props.answer)
     this.setState({
       [e.target.name]: e.target.value
     })
@@ -54,9 +55,9 @@ class QModal extends React.Component {
   //event handler here
   submitForm(e) {
     const { body, name, email, photos, answer } = this.state
-    const { question, postQuestion, product } = this.props
+    const { question, postQuestion, product_id } = this.props
     const question_id = this.props.question.question_id
-    const input = (answer ? { question_id, body, name, email } : { body, name, email, product })
+    const input = (answer ? { question_id, body, name, email } : { body, name, email, product_id })
     // should work more on photos
 
     e.preventDefault()
@@ -192,4 +193,4 @@ class QModal extends React.Component {
 
 
 
-export default QModal;
+export default ModalA;
