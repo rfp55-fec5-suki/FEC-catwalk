@@ -81,16 +81,12 @@ class OutfitCard extends React.Component {
 
   render() {
     this.state.id = this.props.productid;
-
     return (
       <div>
 
         <div className='riac-productcard'>
 
-        <i class='fas fa-times-circle riac-productcard-button' onClick={() => this.props.removeOutfit(this.state.info.id)}></i>
-
-          {/* <button className='riac-productcard-button' onClick={() => this.props.removeOutfit(this.state.info.id)}>X</button> */}
-
+          <i class='fas fa-times-circle riac-productcard-button' onClick={() => this.props.removeOutfit(this.state.info.id)}></i>
 
           <div className='riac-productcard-image' onClick={() => this.props.onClick(this.state.info.id)}>
             <img src={this.state.img} />

@@ -3,7 +3,11 @@ import React from 'react';
 const AddOutfit = (props) => (
   <div className='outfit-card'>
 
-    <button className='outfit-button' onClick={props.onClick}>Add</button>
+    <i className='fas fa-plus outfit-button' onClick={props.onClick}></i>
+
+    <div className='outfit-card-description'>
+      Add to Outfit
+    </div>
 
   </div>
 )

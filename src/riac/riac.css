@@ -224,5 +224,15 @@
 }
 
 .outfit-button {
+  grid-row: 3/4;
+  grid-column: 1/5;
+  padding-top: 35%;
+  text-align: center;
+  cursor: pointer;
+}
 
+.outfit-card-description {
+  grid-row: 4/8;
+  grid-column: 1/5;
+  text-align: center;
 }
