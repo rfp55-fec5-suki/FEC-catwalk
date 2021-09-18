@@ -14,7 +14,10 @@ class RelatedProducts extends React.Component {
       storage: []
     }
 
-    this.navRef = React.createRef();
+    this.slideLeft = this.slideLeft.bind(this);
+    this.slideRight = this.slideRight.bind(this);
+    this.outfitSlideLeft = this.outfitSlideLeft.bind(this);
+    this.outfitSlideRight = this.outfitSlideRight.bind(this);
 
     this.fetchStorage = this.fetchStorage.bind(this);
     this.addToOutfit = this.addToOutfit.bind(this);
@@ -48,14 +51,21 @@ class RelatedProducts extends React.Component {
     }
   }
 
-  handleNav = (direction) => {
-    if (direction === 'left') {
-      this.navRef ? (this.navRef.current.scrollLeft -= 200) : null;
-    } else {
-      this.navRef ? (this.navRef.current.scrollLeft += 200) : null;
-    }
+  slideLeft() {
+    document.getElementById('riac-carousel').scrollLeft -= 260;
   }
 
+  slideRight() {
+    document.getElementById('riac-carousel').scrollLeft += 260;
+  }
+
+  outfitSlideLeft() {
+    document.getElementById('outfit-carousel').scrollLeft -= 260;
+  }
+
+  outfitSlideRight() {
+    document.getElementById('outfit-carousel').scrollLeft += 260;
+  }
 
   render() {
     return (
@@ -67,12 +77,12 @@ class RelatedProducts extends React.Component {
             RELATED PRODUCTS
           </div>
 
-          <button className='riac-left-button' onClick={() => this.handleNav('left')}/>
-          <button className='riac-right-button' onClick={()=> this.handleNav('right')}/>
+          <button className='riac-left-button' onClick={this.slideLeft}/>
+          <button className='riac-right-button' onClick={this.slideRight}/>
 
           <div className='riac-container'>
 
-            <div className='riac-related-products' ref={this.navRef}>
+            <div className='riac-related-products' id='riac-carousel'>
 
               {this.props.related.map((productid) => {
                 return <RelatedProductCard product={this.props.product} productid={productid} onClick={this.props.onClick} />
@@ -89,12 +99,12 @@ class RelatedProducts extends React.Component {
             YOUR OUTFIT
           </div>
 
-          <button className='riac-left-button' />
-          <button className='riac-right-button' />
+          <button className='riac-left-button' onClick={this.outfitSlideLeft}/>
+          <button className='riac-right-button' onClick={this.outfitSlideRight}/>
 
           <div className='riac-container'>
 
-            <div className='riac-related-products'>
+            <div className='riac-related-products' id='outfit-carousel'>
 
               <AddOutfit onClick={this.addToOutfit} />
 
