@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'underscore';
 
-class ImageGallary extends React.Component {
+class ImageGallery extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -24,4 +24,4 @@ class ImageGallary extends React.Component {
   }
 }
 
-export default ImageGallary;
+export default ImageGallery;
