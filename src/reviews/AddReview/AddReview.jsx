@@ -126,10 +126,10 @@ const AddReview = (props) => {
       notComplete.push('please enter valid email');
       setEmailColor('red')
     }
-    console.log(result)
-    console.log(notComplete);
+    // console.log(result)
+    // console.log(notComplete);
     if (notComplete.length === 0) {
-      console.log(result)
+      // console.log(result)
       props.close();
     } else {
       setUnfinished(notComplete);
