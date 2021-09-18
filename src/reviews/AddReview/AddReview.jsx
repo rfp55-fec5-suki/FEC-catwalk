@@ -30,7 +30,7 @@ var name;
 var email;
 var notComplete = [];
 var imageUrl;
-var images = [];
+// var images = [];
 const AddReview = (props) => {
   var charsArr = [];
   for (var key in props.chars) {
@@ -57,7 +57,7 @@ const AddReview = (props) => {
   }
   var submitImage = () => {
     if (imageUrl) {
-      images.push(imageUrl);
+      setImages(prev => [...prev, imageUrl]);
       hideModal();
     }
   }
@@ -147,6 +147,7 @@ const AddReview = (props) => {
   const [bodyColor, setBodyColor] = useState('black');
   const [nameColor, setNameColor] = useState('black');
   const [emailColor, setEmailColor] = useState('black');
+  const [images, setImages] = useState([])
   ///////////////////////
   // Add pictures modal//
   ///////////////////////
@@ -192,7 +193,7 @@ const AddReview = (props) => {
       <div className='form-photos'>
         Upload your photos<br />
         {images.length ? [...images.map((image) => (<img src={image} className='form-thumb' />)), <br />] : null}
-        <button onClick={renderModal}>Add Photos</button><br />
+        {images.length < 5 ? <React.Fragment><button onClick={renderModal}>Add Photos</button><br /></React.Fragment> : null}
       </div>
       <div className='form-name'>
         <span style={{ color: nameColor }}>What is your nickname*</span><br />
