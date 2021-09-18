@@ -64,13 +64,10 @@
 .riac-productcard-button {
   grid-column: 3/4;
   grid-row: 2/3;
-  background-color: #555;
-  color: white;
-  font-size: 16px;
-  border: none;
   cursor: pointer;
-  border-radius: 5px;
   z-index: 1;
+  color: white;
+  text-align: center;
 }
 
 .riac-productcard-image {
@@ -197,4 +194,45 @@
 .riac-modal-feature-compared {
   grid-column: 5/6;
   padding-right: 25%
+}
+
+
+
+/* Icons */
+
+
+
+.fa-star:before {
+  content: "\f005";
+  background: black;
+  border-radius: 5px;
+}
+
+
+
+/* Outfit Card */
+
+
+
+.outfit-card {
+  display: grid;
+  border: 1px solid;
+  color: black;
+  margin: 10px;
+  grid-template-columns: 15px 200px 50px 15px;
+  grid-template-rows: 15px 20px 250px 25px 35px 25px 25px;
+}
+
+.outfit-button {
+  grid-row: 3/4;
+  grid-column: 1/5;
+  padding-top: 35%;
+  text-align: center;
+  cursor: pointer;
+}
+
+.outfit-card-description {
+  grid-row: 4/8;
+  grid-column: 1/5;
+  text-align: center;
 }

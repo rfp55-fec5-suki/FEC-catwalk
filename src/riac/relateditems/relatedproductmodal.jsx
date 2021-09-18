@@ -1,5 +1,5 @@
 import React from 'react';
-import './riac.css'
+import '../riac.css'
 
 const RelatedProductModal = ({ handleClose, show, children }) => {
   const displayModal = show ? "riac-display-block" : "riac-display-none";

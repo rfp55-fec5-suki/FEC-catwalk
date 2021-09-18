@@ -13,7 +13,7 @@ class ReviewTile extends React.Component {
     this.month = this.monthNames[month];
     this.day = day;
     this.year = year;
-    if (props.review.summary.length > 80) {
+    if (props.review.summary.length > 65) {
       this.summary = props.review.summary.slice(0, 61);
       this.summaryCont = props.review.summary.slice(61);
     } else {
@@ -23,31 +23,36 @@ class ReviewTile extends React.Component {
   }
   render() {
     return (
-      <div className='review-tile'>
-        <div className='star-rating'>
-        <StarRating rating={this.props.review.rating} />
+      <div className='review-tile' data-testid='reviewTile'>
+        <div className='star-rating' data-testid='reviewTileStarRating'>
+          <StarRating rating={this.props.review.rating} />
         </div><br />
-        <div className='review-date-username'>
-        {this.props.review.reviewer_name} | {this.month} {this.day}, {this.year}
+        <div className='review-date-username' data-testid='reviewTileUsernameDate'>
+          {this.props.review.reviewer_name} | {this.month} {this.day}, {this.year}
         </div>
         <br />
-        <div className='review-summary'>
+        <div className='review-summary' data-testid='reviewTileSummary'>
           {this.summaryCont ? <span>{this.summary}...</span> : this.summary}
         </div>
-        <div className='review-summary-cont'>
+        <div className='review-summary-cont' data-testid='reviewTileSummaryCont'>
           {this.summaryCont ? this.summaryCont : null}
         </div>
-        <div className='review-body'>
-          {this.props.review.body}
+        <div className='review-body' data-testid='reviewTileBody'>
+          <div>
+            {this.props.review.body}
+          </div>
+          <div>
+            {this.props.review.photos.length ? this.props.review.photos.map((photo) => (<img src ={`${photo.url}`} className='tile-thumb' key={ photo.id } />)) : null}
+          </div>
         </div>
-          {this.props.review.recommend ? <div className='recommend'>
-            <img src={checkmark} className='check'/> I recommend this product</div> : null}
-        {this.props.review.response ? <div className='response'>
+        {this.props.review.recommend ? <div className='recommend' data-testid='reviewTileRecommend'>
+          <img src={checkmark} className='check' /> I recommend this product</div> : null}
+        {this.props.review.response ? <div className='response' data-testid='reviewTileResponse'>
           Response: <br />
           {this.props.review.response}
         </div> : null}
-        <div className='helpful'>
-        Helpful? Yes({this.props.review.helpfulness})
+        <div className='helpful' data-testid='reviewTileHelpful'>
+          Helpful? Yes({this.props.review.helpfulness}) | report
         </div>
       </div>
     )
