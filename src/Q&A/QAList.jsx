@@ -3,7 +3,8 @@ import token from '../../config.js';
 import axios from 'axios';
 import QAAnswer from './QAAnswer.jsx';
 import EachQuestion from './Q&AEachQuestion.jsx';
-import ModalQ from './ModalQ.jsx'
+import ModalQ from './ModalQ.jsx';
+import Search from './Search.jsx';
 
 class QAList extends React.Component {
   constructor(props) {
@@ -32,7 +33,7 @@ class QAList extends React.Component {
 
   getQuestions() {
     const product_id = this.props.product.id
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/?product_id=${product_id}`, {headers: {'Authorization': token.TOKEN}})
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/?product_id=${product_id}&page=${3}&count=${5}`, {headers: {'Authorization': token.TOKEN}})
       .then((res) => {
         this.setState({
           questions: res.data.results
@@ -79,18 +80,24 @@ class QAList extends React.Component {
     if(this.state.questions.length === 0) {
       return(
         <div>
-          <button type = 'submit'>submit a question</button>
+          <h3>We don't have questions for this product, Post the first Question!</h3>
+          <div>
+            <ModalQ
+            show={this.state.show}
+            handleClose={this.hideModal}
+            getQuestions={this.getQuestions}
+            product_id={this.props.product.id}
+            type = 'question'/>
+            <button type = 'submit' onClick={this.showModal}>
+              Submit a question
+            </button>
+          </div>
         </div>
       )
     }else {
       return(
         <div className = 'QA'>
-          <div className = 'searchBar'>
-            <form>
-              <input type="text" name="search" placeholder="Find your question" />
-              <input type="submit" value="Search" />
-            </form>
-          </div>
+          <Search />
           <div className = 'questionList'>
             {this.state.questions.slice(0,this.state.showQ).map(question =>
             <EachQuestion key = {question.question_id} question = {question} postQuestion = {this.postQuestion} getQuestions = {this.getQuestions}product = {this.props.product}/>
@@ -99,7 +106,6 @@ class QAList extends React.Component {
           <div className = 'questionBtn'>
             <button type='submit' onClick={this.collapseQClick}>Show less answered questions</button>
             {this.state.questions.length > 2 && <button type = 'submit' onClick={this.loadMoreQClick}>More answered questions</button>}
-            {/* <button type = 'submit'>Add more question</button> */}
           </div>
           <div>
             <ModalQ

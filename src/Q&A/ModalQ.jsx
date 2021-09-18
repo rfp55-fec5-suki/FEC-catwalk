@@ -31,14 +31,15 @@ class ModalQ extends React.Component {
     const product_id = this.props.product_id
     axios({
       method: 'post',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/?product_id=${product_id}`,
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions`,
+      params: product_id,
       data: question,
       headers: {
         'Authorization': token.TOKEN
       }
     })
       .then((res) => {
-        // console.log('postQuestion success: ', res)
+        console.log('postQuestion success: ', res)
         this.props.getQuestions();
       })
       .catch((error) => {
@@ -144,13 +145,14 @@ class ModalQ extends React.Component {
                     </input>
                   </label>
               </div>
-              <button onClick={handleClose}>
-                Close
-              </button>
+
               <button type = 'submit' onClick={handleClose}>
                 Submit
               </button>
             </form>
+            <button onClick={handleClose}>
+                Close
+            </button>
           </div>
         </section>
       </div>

@@ -41,6 +41,7 @@ class ModalA extends React.Component {
       }
     })
       .then((res) => {
+        console.log('post answer success: ', res)
         this.props.getQuestions();
       })
       .catch((error) => {

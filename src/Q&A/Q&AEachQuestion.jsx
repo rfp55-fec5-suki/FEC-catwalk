@@ -32,6 +32,8 @@ class EachQuestion extends React.Component {
       <div key = {question.question_id}>
           <h3>Q:</h3>
           {question.question_body}
+          <br />
+          post on: {question.question_date.slice(0,10)}
           <div>
             <ModalA
             show={this.state.show}
