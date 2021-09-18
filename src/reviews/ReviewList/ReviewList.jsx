@@ -24,7 +24,8 @@ const ReviewList = (props) => {
         })}</span>) : null}
       </div>
       <div className='rr-tile-list'>
-        {reviews.map((review) => <ReviewTile review={review} key={review.review_id} />)}
+        {reviews.map((review) => <ReviewTile review={review} key={review.review_id}
+        markHelpful={props.markHelpful} report={props.report}/>)}
       </div>
       {props.renderButton ? <button className='rr-button more-reviews' onClick={props.more}>More Reviews</button> : null}
       <button className='rr-button add-review' onClick={props.addReview}>Add Review +</button>

@@ -66,7 +66,9 @@ class ReviewTile extends React.Component {
           {this.props.review.response}
         </div> : null}
         <div className='helpful' data-testid='reviewTileHelpful'>
-          Helpful? Yes({this.props.review.helpfulness}) | report
+          <span onClick={() => {
+            this.props.markHelpful(this.props.review.review_id)}}>Helpful? Yes({this.props.review.helpfulness}) </span> | <span onClick={() =>
+            {this.props.report(this.props.review.review_id)}}>report</span>
         </div>
 
         <Modal show={this.state.showFullImg} children={<img src={this.state.fullImgUrl} />} handleClose={this.hideImgModal}/>

@@ -29,6 +29,9 @@ class RatingsReviews extends React.Component {
     this.setListToDefault = this.setListToDefault.bind(this);
     this.showAddReview = this.showAddReview.bind(this);
     this.hideAddReview = this.hideAddReview.bind(this);
+    this.addReview = this.addReview.bind(this);
+    this.markHelpful = this.markHelpful.bind(this);
+    this.reportReview = this.reportReview.bind(this);
   }
   //////////////////////////////
   //Rating BreakDown handlers//
@@ -142,6 +145,42 @@ class RatingsReviews extends React.Component {
     reviewPage++;
     this.getReviewList();
   }
+  addReview(newReview) {
+    axios({
+      method: 'post',
+      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews',
+      headers: {
+        'Authorization': token.TOKEN
+      },
+      data: newReview
+    }).catch((err) => {
+      console.log('error posting new review to server', err);
+    })
+  }
+  markHelpful(review_id) {
+    console.log('helpful')
+    axios({
+      method: 'put',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${review_id}/helpful`,
+      headers: {
+        'Authorization': token.TOKEN
+      }
+    }).catch((err) => {
+      console.log('error marking review as helpful', err);
+    })
+  }
+  reportReview(review_id) {
+    console.log('report')
+    axios({
+      method: 'put',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${review_id}/report`,
+      headers: {
+        'Authorization': token.TOKEN
+      }
+    }).catch((err) => {
+      console.log('error reporting review', err);
+    })
+  }
   ///////////////////////
   //lifecycle functions//
   ///////////////////////
@@ -166,7 +205,8 @@ class RatingsReviews extends React.Component {
 
         <ReviewList reviews={this.state.reviews} more={this.moreReviews} sort={this.sortChange}
         renderButton={this.state.hasMoreReviews} meta={this.state.meta} filter={this.state.filterByRating}
-        setFilter={this.setRatingFilter} addReview={this.showAddReview}/>
+        setFilter={this.setRatingFilter} addReview={this.showAddReview} markHelpful={this.markHelpful}
+        report={this.reportReview}/>
 
         <Modal show={this.state.showAddReview} handleClose={this.hideAddReview}
         children={<AddReview chars={this.state.meta.characteristics} close={this.hideAddReview}/>}/>
