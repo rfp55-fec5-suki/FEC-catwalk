@@ -21,6 +21,9 @@ class QAAnswer extends React.Component {
               <EachAnswer key = {answer.id} answer = {answer}/>
               )}
           </div>
+          <button>
+            load more answer
+          </button>
       </div>
     )
   }

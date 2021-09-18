@@ -9,9 +9,11 @@ class QAList extends React.Component {
     super(props);
     this.state = {
       questions: [],
+      showQ: 2
     }
     this.getQuestions = this.getQuestions.bind(this);
     this.postQuestion = this.postQuestion.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -48,25 +50,36 @@ class QAList extends React.Component {
       })
   }
 
-
-
+  handleClick(e) {
+    console.log('test load more question click')
+    e.preventDefault();
+    this.setState({
+      showQ: this.state.questions.length
+    })
+    console.log('test load more question: ', this.state)
+  }
 
 
 
 
   render() {
     return(
-      <div>
-        <form>
-          <input type="text" name="search" placeholder="Find your question" />
-          <input type="submit" value="Search" />
-        </form>
-        {this.state.questions.map(question =>
-        <EachQuestion key = {question.question_id} question = {question} postQuestion = {this.postQuestion} getQuestions = {this.getQuestions}product = {this.props.product}/>
-        )}
-
-        <button type = 'submit'>More answered questions</button>
-        <button type = 'submit'>Submit new question</button>
+      <div className = 'QA'>
+        <div className = 'searchBar'>
+          <form>
+            <input type="text" name="search" placeholder="Find your question" />
+            <input type="submit" value="Search" />
+          </form>
+        </div>
+        <div className = 'questionList'>
+          {this.state.questions.slice(0,this.state.showQ).map(question =>
+          <EachQuestion key = {question.question_id} question = {question} postQuestion = {this.postQuestion} getQuestions = {this.getQuestions}product = {this.props.product}/>
+          )}
+        </div>
+        <div className = 'questionBtn'>
+          <button type = 'submit' onClick={this.handleClick}>More answered questions</button>
+          <button type = 'submit'>Submit new question</button>
+        </div>
       </div>
     )
   }

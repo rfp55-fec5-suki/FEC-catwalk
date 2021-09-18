@@ -1,9 +1,8 @@
 
-.u-form-1{
-  height: 77px;
-  margin: 32px 485px 0 0;
-  display: flex;
-  flex-direction: column;
+.QA {
+  display: grid;
+  grid-template-rows: auto auto auto;
+  padding: 10px;
 }
 
 .modal {
