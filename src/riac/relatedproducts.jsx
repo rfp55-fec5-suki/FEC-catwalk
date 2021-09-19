@@ -1,6 +1,7 @@
 import React from 'react';
 import RelatedProductCard from './relateditems/relatedproductcard.jsx';
 import RelatedProductModal from './relateditems/relatedproductmodal.jsx';
+import initialRelated from '../initialRelated.js';
 import $ from 'jquery';
 
 import AddOutfit from './outfitlist/addoutfit.jsx';
@@ -95,6 +96,8 @@ class RelatedProducts extends React.Component {
 
 
   render() {
+    var related = this.props.related.length === 0 ? initialRelated : this.props.related;
+
     return (
       <div>
 
@@ -114,7 +117,7 @@ class RelatedProducts extends React.Component {
 
             <div className='riac-related-products' id='riac-carousel'>
 
-              {this.props.related.map((productid) => {
+              {related.map((productid) => {
                 return <RelatedProductCard product={this.props.product} productid={productid} onClick={this.props.onClick} />
               })}
 
