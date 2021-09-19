@@ -1,17 +1,22 @@
 import React from 'react';
-import QAAnswer from './QAAnswer.jsx'
-import ModalA from './ModalA.jsx'
+import axios from 'axios';
+import token from '../../config.js';
+import QAAnswer from './QAAnswer.jsx';
+import ModalA from './ModalA.jsx';
 
 class EachQuestion extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       show: false,
-      question_helpfulness: this.props.question.question_helpfulness
+      helpfulness: this.props.question.question_helpfulness
     }
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
+    this.addHelp = this.addHelp.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
+
 
   showModal() {
     this.setState ({
@@ -39,10 +44,27 @@ class EachQuestion extends React.Component {
     })
       .then((res) => {
         this.props.getQuestions();
+        console.log('addHelp body: ', res);
       })
       .catch((error) => {
         throw error;
       })
+  }
+
+  handleClick() {
+    const question_id = this.props.question.question_id;
+    this.setState(prevState => {
+      return {
+        helpfulness: prevState.helpfulness + 1
+      }
+    })
+    this.addHelp(question_id);
+      // .then((res) => {
+      //   console.log(res.body)
+      // })
+      // .catch((error) => {
+      //   throw error;
+      // })
   }
 
   //render
@@ -70,7 +92,8 @@ class EachQuestion extends React.Component {
           </div>
           <div>
             Helpful?
-            <button type = 'submit' onClick={this.helpHandler}>Yes</button>
+            <button type = 'submit' onClick={this.handleClick}>Yes</button>
+            <button >Report</button>
           </div>
 
           <QAAnswer question = {question}/>
