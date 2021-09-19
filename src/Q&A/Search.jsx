@@ -5,7 +5,7 @@ class Search extends React.Component {
     super(props);
     this.state = ({
       searchInput: '',
-      disPlayQ: ''
+      disPlayQ: []
     })
 
     this.handleSearchInput = this.handleSearchInput.bind(this);
@@ -42,12 +42,13 @@ class Search extends React.Component {
   findMatchedQ(input) {
     console.log('test findMatched')
     var matchedQ = [];
+    var matchedA = []
     var questions = this.props.questions;
     for (var i = 0; i < questions.length; i++) {
       var lowerInput = input.toLowerCase();
       var lowerquestion = questions[i].question_body.toLowerCase();
       if(lowerquestion.includes(lowerInput)) {
-        matchedQ.push(questions[i].question_body)
+        matchedQ.push(questions[i])
       }
     }
     return matchedQ;
@@ -58,14 +59,36 @@ class Search extends React.Component {
   }
 
   render() {
+    console.log(this.state.disPlayQ);
+    console.log('if this.state.displayQ is array: ', Array.isArray(this.state.disPlayQ));
     const BarStyling = {width:"20rem",background:"#F2F1F9", border:"none", padding:"0.5rem", margin: "15px"};
     return (
       <>
-        <input className="search-field" type="text" placeholder="Have a question? Search for answers…" style={BarStyling} onChange={(event) => { this.handleSearchInput(event) }}></input>
-      <button onClick = {this.handleClick}>submit question</button>
-      <div>
-        {this.state.disPlayQ}
-      </div>
+        <div>
+          <input className="search-field" type="text" placeholder="Have a question? Search for answers…" style={BarStyling} onChange={(event) => { this.handleSearchInput(event) }}></input>
+          <button onClick = {this.handleClick}>submit question</button>
+        </div>
+        <div>
+          {/* {this.state.disPlayQ} */}
+          {this.state.disPlayQ.map(
+            q =>
+            <div>
+              your matched questions:
+              <li key={q.question_id}>
+                {q.question_body}
+                <br />
+                Their answers:
+              </li>
+              <div key={q.question_id}>
+                {Object.values(q.answers).map(
+                  a =>
+                  <li>{a.body}</li>
+                )}
+              </div>
+            </div>
+          )
+            }
+        </div>
       </>
     )
   }
