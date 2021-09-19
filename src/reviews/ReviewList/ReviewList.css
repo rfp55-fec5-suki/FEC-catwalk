@@ -1,7 +1,7 @@
 .review-list {
   display: grid;
   grid-template-columns: 200px 200px auto;
-  grid-template-rows: 25px auto 50px;
+  grid-template-rows: auto auto 50px;
 }
 .sort {
   grid-column: 1 / 4;
@@ -24,6 +24,11 @@
 .sort-select, select, option {
   font-size: large;
   height: 85%;
+}
+.keyword-search {
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+  justify-self: end;
 }
 .rr-tile-list {
   grid-column: 1 / 4;

@@ -188,7 +188,7 @@ const AddReview = (props) => {
       <div className='form-body'>
         <span style={{ color: bodyColor }}>Review body*</span><br />
         <textarea onChange={setBody} maxLength='1000' placeholder='Why did you like the product or not?' /><br />
-        {body && body.length > 50 ? 'Minimum reached' : <span style={{ color: bodyColor }}>Miniumum required characters left: {body ? 50 - body.length : 50}</span>}<br />
+        {body && body.length >= 50 ? 'Minimum reached' : <span style={{ color: bodyColor }}>Miniumum required characters left: {body ? 50 - body.length : 50}</span>}<br />
       </div>
       <div className='form-photos'>
         Upload your photos<br />
@@ -263,7 +263,7 @@ const StarSelect = (props) => {
 const Characteristic = (props) => {
   const setChar = (e) => {
     characteristics[props.char.name] = e.target.value;
-    charsByID[props.char.id] = e.target.value;
+    charsByID[props.char.id] = parseInt(e.target.value);
   }
   return (
     <div onChange={setChar} className='char-main'>

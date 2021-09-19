@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import ReviewTile from '../reviewTile/ReviewTile.jsx';
 import circleX from './CircledX.svg';
 import './ReviewList.css'
+
+var userSearch = '';
 const ReviewList = (props) => {
   var reviews = props.reviews;
   if (props.meta.recommended) {
@@ -9,6 +11,10 @@ const ReviewList = (props) => {
   } else {
     var nReviews = 0;
   }
+  // const searchChange = (e) => {
+  //   userSearch = e.target.value;
+  //   console.log(userSearch)
+  // }
   return (
     <div className='review-list'>
       <div className='sort'>
@@ -22,6 +28,9 @@ const ReviewList = (props) => {
           return (<span onClick={() => props.setFilter(rating)} className='filter-display'>
             {rating} Stars <img src={circleX} className='x' /></span>)
         })}</span>) : null}
+      </div>
+      <div className='keyword-search'>
+        <input type='text' onChange={props.keywordChange}/><button>search reviews</button>
       </div>
       <div className='rr-tile-list'>
         {reviews.map((review) => <ReviewTile review={review} key={review.review_id}
