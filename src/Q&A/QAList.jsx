@@ -97,7 +97,7 @@ class QAList extends React.Component {
     }else {
       return(
         <div className = 'QA'>
-          <Search />
+          <Search questions = {this.state.questions}/>
           <div className = 'questionList'>
             {this.state.questions.slice(0,this.state.showQ).map(question =>
             <EachQuestion key = {question.question_id} question = {question} postQuestion = {this.postQuestion} getQuestions = {this.getQuestions}product = {this.props.product}/>

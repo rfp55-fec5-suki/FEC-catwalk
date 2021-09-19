@@ -5,28 +5,55 @@ class Search extends React.Component {
     super(props);
     this.state = ({
       searchInput: '',
-      searchText: ''
+      disPlayQ: ''
     })
 
     this.handleSearchInput = this.handleSearchInput.bind(this);
-    this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
+    this.handledisplayQ = this.handledisplayQ.bind(this);
+    this.findMatchedQ = this.findMatchedQ.bind(this);
   }
 
   handleSearchInput(event) {
     event.preventDefault();
     var input = event.target.value;
-    this.setState({
-      searchInput: input
-    });
+    if(input.length < 3) {
+      return;
+    } else {
+      this.setState({
+        searchInput: input
+      });
+    }
   }
 
-  handleSearchSubmit(event) {
-    event.preventDefault();
-    var submission = this.state.searchInput.toLowerCase();
-    console.log('see submit: ', submission)
-    this.setState({
-      searchText: submission
-    });
+
+  handledisplayQ(input) {
+    console.log('input in Search: ', input)
+    if(input === '') {
+      return;
+    } else {
+      var matchedQ = this.findMatchedQ(input);
+      this.setState ({
+        disPlayQ: matchedQ
+      })
+    }
+  }
+
+  findMatchedQ(input) {
+    console.log('test findMatched')
+    var matchedQ = [];
+    var questions = this.props.questions;
+    for (var i = 0; i < questions.length; i++) {
+      var lowerInput = input.toLowerCase();
+      var lowerquestion = questions[i].question_body.toLowerCase();
+      if(lowerquestion.includes(lowerInput)) {
+        matchedQ.push(questions[i].question_body)
+      }
+    }
+    return matchedQ;
+  }
+
+  handleClick() {
+    this.handledisplayQ(this.state.searchInput);
   }
 
   render() {
@@ -35,10 +62,10 @@ class Search extends React.Component {
       <>
       <form>
         <input className="search-field" type="text" placeholder="Have a question? Search for answers…" style={BarStyling} onChange={(event) => { this.handleSearchInput(event) }}></input>
-        <input className="search-button" type="submit" value="Search" onClick={(event) => { this.handleSearchSubmit(event) }}></input>
+        <button onClick={() => this.handleClick()}>find questions</button>
       </form>
       <div>
-        {this.state.searchText}
+        {this.state.disPlayQ}
       </div>
       </>
     )
