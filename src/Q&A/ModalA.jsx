@@ -85,7 +85,7 @@ class ModalA extends React.Component {
 
     return (
       <div className={showHideClassName}>
-        <section className='modal-main'>
+        <section className='modal-main1'>
           {children}
           <div className='modal-header'>
             <h3>{titleText}</h3>

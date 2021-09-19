@@ -7,9 +7,11 @@ class EachQuestion extends React.Component {
     super(props)
     this.state = {
       show: false,
+      question_helpfulness: this.props.question.question_helpfulness
     }
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
+    // this.helpHandler = this.helpHandler.bind(this);
   }
 
   // event handler
@@ -23,6 +25,35 @@ class EachQuestion extends React.Component {
     this.setState ({
       show: false,
     })
+  }
+
+  // helpHandler() {
+  //   this.setState(
+  //     prevState => {
+  //       return {
+  //         question_helpfulness: prevState.question_helpfulness+1
+  //       }
+  //     }
+  //   )
+  // }
+
+  addHelp(question) {
+    const question_id = this.props.question.question_id;
+    axios({
+      method: 'put',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${question_id}/helpful`,
+      params: question_id,
+      data: question,
+      headers: {
+        'Authorization': token.TOKEN
+      }
+    })
+      .then((res) => {
+        this.props.getQuestions();
+      })
+      .catch((error) => {
+        throw error;
+      })
   }
 
   //render
@@ -48,6 +79,11 @@ class EachQuestion extends React.Component {
               Add an Answer
             </button>
           </div>
+          <div>
+            Helpful?
+            <button type = 'submit' onClick={this.helpHandler}>Yes</button>
+          </div>
+
           <QAAnswer question = {question}/>
       </div>
     )

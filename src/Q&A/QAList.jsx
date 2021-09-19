@@ -79,7 +79,7 @@ class QAList extends React.Component {
   render() {
     if(this.state.questions.length === 0) {
       return(
-        <div>
+        <div className = 'QA'>
           <h3>We don't have questions for this product, Post the first Question!</h3>
           <div>
             <ModalQ

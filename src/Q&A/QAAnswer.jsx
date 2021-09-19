@@ -33,7 +33,7 @@ class QAAnswer extends React.Component {
     return (
       <div>
           <h3>A:</h3>
-          <div>
+          <div className='answerList'>
             {Object.values(this.props.question.answers).slice(0,this.state.showA).map(answer =>
 
               <EachAnswer key = {answer.id} answer = {answer}/>

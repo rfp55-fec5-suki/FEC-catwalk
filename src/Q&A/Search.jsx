@@ -1,22 +1,19 @@
 import React from 'react';
 
-class Search extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
-  //handle
-
-  render () {
-    return (
-      <div className = 'searchBar'>
-        <form>
-          <input type="text" name="search" placeholder="Find your question" />
-          <input type="submit" value="Search" />
-        </form>
-      </div>
-    )
-  }
+const Search = ({keyword,setKeyword}) => {
+  const BarStyling = {width:"20rem",background:"#F2F1F9", border:"none", padding:"0.5rem"};
+  return (
+    <>
+    <input
+     style={BarStyling}
+     key="random1"
+     value={keyword}
+     placeholder={"Have a question? Search for answers…"}
+     onChange={(e) => setKeyword(e.target.value)}
+    />
+    <input type = 'button' value='search'/>
+    </>
+  );
 }
 
 export default Search;

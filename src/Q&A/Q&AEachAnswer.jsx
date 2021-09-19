@@ -11,6 +11,7 @@ class EachAnswer extends React.Component {
 
   //after onclick helpful?, this.setState : helpness+1
 
+
   render() {
     const answer = this.props.answer;
     const photos = this.props.answer.photos; //photos here are array, let's retrieve the url
