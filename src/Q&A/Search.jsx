@@ -11,6 +11,7 @@ class Search extends React.Component {
     this.handleSearchInput = this.handleSearchInput.bind(this);
     this.handledisplayQ = this.handledisplayQ.bind(this);
     this.findMatchedQ = this.findMatchedQ.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleSearchInput(event) {
@@ -60,10 +61,8 @@ class Search extends React.Component {
     const BarStyling = {width:"20rem",background:"#F2F1F9", border:"none", padding:"0.5rem", margin: "15px"};
     return (
       <>
-      <form>
         <input className="search-field" type="text" placeholder="Have a question? Search for answers…" style={BarStyling} onChange={(event) => { this.handleSearchInput(event) }}></input>
-        <button onClick={() => this.handleClick()}>find questions</button>
-      </form>
+      <button onClick = {this.handleClick}>submit question</button>
       <div>
         {this.state.disPlayQ}
       </div>
@@ -72,20 +71,5 @@ class Search extends React.Component {
   }
 
 }
-// const Search = ({keyword,setKeyword}) => {
-//   const BarStyling = {width:"20rem",background:"#F2F1F9", border:"none", padding:"0.5rem", margin: "15px"};
-//   return (
-//     <>
-//     <input
-//      style={BarStyling}
-//      key="random1"
-//      value={keyword}
-//      placeholder={"Have a question? Search for answers…"}
-//      onChange={(e) => setKeyword(e.target.value)}
-//     />
-//     <input type = 'button' value='search'/>
-//     </>
-//   );
-// }
 
 export default Search;
