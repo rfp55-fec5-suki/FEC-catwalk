@@ -73,11 +73,11 @@ class Search extends React.Component {
           {this.state.disPlayQ.map(
             q =>
             <div>
-              your matched questions:
+              matched Q:
               <li key={q.question_id}>
                 {q.question_body}
                 <br />
-                Their answers:
+                Answers:
               </li>
               <div key={q.question_id}>
                 {Object.values(q.answers).map(
