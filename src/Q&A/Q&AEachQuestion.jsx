@@ -61,7 +61,7 @@ class EachQuestion extends React.Component {
     const question = this.props.question;
     return (
       <div key = {question.question_id}>
-          <h3>Q:</h3>
+          <div className='listTitle'>Q:</div>
           {question.question_body}
           <br />
           post on: {question.question_date.slice(0,10)}

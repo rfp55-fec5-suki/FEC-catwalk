@@ -33,7 +33,7 @@ class QAList extends React.Component {
 
   getQuestions() {
     const product_id = this.props.product.id
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/?product_id=${product_id}&page=${3}&count=${5}`, {headers: {'Authorization': token.TOKEN}})
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/?product_id=${product_id}&page=${1}&count=${100}`, {headers: {'Authorization': token.TOKEN}})
       .then((res) => {
         this.setState({
           questions: res.data.results
@@ -80,7 +80,7 @@ class QAList extends React.Component {
     if(this.state.questions.length === 0) {
       return(
         <div className = 'QA'>
-          <h3>We don't have questions for this product, Post the first Question!</h3>
+          <div className='listTitle'>We don't have questions for this product, Post the first Question!</div>
           <div>
             <ModalQ
             show={this.state.show}

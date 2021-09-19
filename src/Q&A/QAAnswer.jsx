@@ -32,7 +32,7 @@ class QAAnswer extends React.Component {
   render() {
     return (
       <div>
-          <h3>A:</h3>
+          <div className='listTitle'>A:</div>
           <div className='answerList'>
             {Object.values(this.props.question.answers).slice(0,this.state.showA).map(answer =>
 
