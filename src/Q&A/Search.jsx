@@ -40,9 +40,7 @@ class Search extends React.Component {
   }
 
   findMatchedQ(input) {
-    console.log('test findMatched')
     var matchedQ = [];
-    var matchedA = []
     var questions = this.props.questions;
     for (var i = 0; i < questions.length; i++) {
       var lowerInput = input.toLowerCase();
@@ -51,6 +49,7 @@ class Search extends React.Component {
         matchedQ.push(questions[i])
       }
     }
+    console.log('test find matched: ', matchedQ)
     return matchedQ;
   }
 
@@ -59,8 +58,7 @@ class Search extends React.Component {
   }
 
   render() {
-    console.log(this.state.disPlayQ);
-    console.log('if this.state.displayQ is array: ', Array.isArray(this.state.disPlayQ));
+    console.log('this.state.disPlayQ: ', this.state.disPlayQ);
     const BarStyling = {width:"20rem",background:"#F2F1F9", border:"none", padding:"0.5rem", margin: "15px"};
     return (
       <>
@@ -69,20 +67,19 @@ class Search extends React.Component {
           <button onClick = {this.handleClick}>submit question</button>
         </div>
         <div>
-          {/* {this.state.disPlayQ} */}
           {this.state.disPlayQ.map(
             q =>
             <div>
-              matched Q:
-              <li key={q.question_id}>
-                {q.question_body}
-                <br />
-                Answers:
-              </li>
-              <div key={q.question_id}>
+                matched Q:
+                <li key={q.question_id}>
+                  {q.question_body}
+                  <br />
+                  Answers:
+                </li>
+              <div>
                 {Object.values(q.answers).map(
                   a =>
-                  <li>{a.body}</li>
+                  <li key={a.id}>{a.body}</li>
                 )}
               </div>
             </div>

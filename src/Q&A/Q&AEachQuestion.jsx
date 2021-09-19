@@ -11,10 +11,8 @@ class EachQuestion extends React.Component {
     }
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
-    // this.helpHandler = this.helpHandler.bind(this);
   }
 
-  // event handler
   showModal() {
     this.setState ({
       show: true,
@@ -27,23 +25,14 @@ class EachQuestion extends React.Component {
     })
   }
 
-  // helpHandler() {
-  //   this.setState(
-  //     prevState => {
-  //       return {
-  //         question_helpfulness: prevState.question_helpfulness+1
-  //       }
-  //     }
-  //   )
-  // }
 
-  addHelp(question) {
+  addHelp(num) {
     const question_id = this.props.question.question_id;
     axios({
       method: 'put',
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${question_id}/helpful`,
       params: question_id,
-      data: question,
+      data: num,
       headers: {
         'Authorization': token.TOKEN
       }
