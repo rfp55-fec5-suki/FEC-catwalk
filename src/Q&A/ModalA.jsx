@@ -41,7 +41,6 @@ class ModalA extends React.Component {
       }
     })
       .then((res) => {
-        console.log('post answer success: ', res)
         this.props.getQuestions();
       })
       .catch((error) => {
@@ -49,21 +48,18 @@ class ModalA extends React.Component {
       })
   }
 
-  //event handler here
   submitForm(e) {
     const { body, name, email, photos, answer } = this.state
     const { question, postQuestion, product_id } = this.props
     const question_id = this.props.question.question_id
-    const input = (answer ? { question_id, body, name, email } : { body, name, email, product_id })
+    const input = { question_id, body, name, email }
     // should work more on photos
 
     e.preventDefault()
 
-    if( answer ) {
-      this.postAnswer(question_id, input)
-    } else {
-      this.props.postQuestion(input)
-    }
+
+    this.postAnswer(question_id, input)
+
 
     this.setState({
       body: '',

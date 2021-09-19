@@ -39,7 +39,6 @@ class ModalQ extends React.Component {
       }
     })
       .then((res) => {
-        console.log('postQuestion success: ', res)
         this.props.getQuestions();
       })
       .catch((error) => {
@@ -132,18 +131,7 @@ class ModalQ extends React.Component {
                     onChange={(e) => { this.handleFormChange(e) }}>
                   </input>
                 </label>
-                <br />
-                  <label htmlFor='photos'>
-                    Photos url:
-                    <br />
-                    <input
-                      type='url'
-                      onChange={(e) => {
-                        this.handleFormChange(e)
-                      }}
-                      placeholder = 'your answer img url'>
-                    </input>
-                  </label>
+
               </div>
 
               <button type = 'submit' onClick={handleClose}>
