@@ -7,11 +7,14 @@ class EachAnswer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      helpness: this.props.answer.helpfulness
+      helpness: this.props.answer.helpfulness,
+      reported: false
     }
 
     this.addHelp = this.addHelp.bind(this);
     this.handleClickYes = this.handleClickYes.bind(this);
+    this.markReport = this.markReport.bind(this);
+    this.handleClickReport = this.handleClickReport.bind(this);
   }
 
   //after onclick helpful?, this.setState : helpness+1
@@ -35,6 +38,26 @@ class EachAnswer extends React.Component {
       })
   }
 
+  markReport(input) {
+    const answer_id = this.props.answer.id;
+    axios({
+      method: 'put',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/answers/${answer_id}/report`,
+      parames: answer_id,
+      data: input,
+      headers: {
+        'Authorization': token.TOKEN
+      }
+    })
+      .then((res) => {
+        this.props.getQuestions();
+        console.log('answer markReport res: ', res);
+      })
+      .catch((error) => {
+        throw error;
+      })
+  }
+
   handleClickYes() {
     const answer_id = this.props.answer.id;
     this.setState(prevState => {
@@ -43,6 +66,14 @@ class EachAnswer extends React.Component {
       }
     })
     this.addHelp(answer_id);
+  }
+
+  handleClickReport() {
+    const answer_id = this.props.answer.id;
+    this.setState({
+      reported: true
+    })
+    this.markReport(answer_id, {});
   }
 
   render() {
@@ -71,7 +102,7 @@ class EachAnswer extends React.Component {
           helpful?
           <button type = 'submit' onClick={this.handleClickYes}>Yes({this.props.answer.helpfulness})</button>
           <div>{this.props.answer.helpfulness}</div>
-          <button type = 'submit'>Report</button>
+          <button type = 'submit' onClick={this.handleClickReport}>Report</button>
         </div>
       </div>
     )
