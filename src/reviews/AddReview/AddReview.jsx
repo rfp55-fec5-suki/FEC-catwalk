@@ -183,11 +183,11 @@ const AddReview = (props) => {
       </div>
       <div className='form-summary'>
         <span style={{ color: summaryColor }}>Review summary*</span><br />
-        <input type='text' onChange={setSummary} maxLength='60' placeholder='Example: Best purchase ever!' /><br />
+        <input className='summary-input' type='text' onChange={setSummary} maxLength='60' placeholder='Example: Best purchase ever!' /><br />
       </div>
       <div className='form-body'>
         <span style={{ color: bodyColor }}>Review body*</span><br />
-        <textarea onChange={setBody} maxLength='1000' placeholder='Why did you like the product or not?' /><br />
+        <textarea className='body-input' onChange={setBody} maxLength='1000' placeholder='Why did you like the product or not?' /><br />
         {body && body.length >= 50 ? 'Minimum reached' : <span style={{ color: bodyColor }}>Miniumum required characters left: {body ? 50 - body.length : 50}</span>}<br />
       </div>
       <div className='form-photos'>
@@ -198,11 +198,11 @@ const AddReview = (props) => {
       <div className='form-name'>
         <span style={{ color: nameColor }}>What is your nickname*</span><br />
         For privacy reasons, do not use your full name or email address<br />
-        <input type='text' onChange={setName} maxLength='60' placeholder='Example: jackson11!' /><br />
+        <input className='name-input' type='text' onChange={setName} maxLength='60' placeholder='Example: jackson11!' /><br />
       </div>
       <div className='form-email'>
         <span style={{ color: emailColor }}>Your email*</span><br />
-        <input type='text' onChange={setEmail} maxLength='60' placeholder='Example: jackson11@email.com' /><br />
+        <input className='email-input' type='text' onChange={setEmail} maxLength='60' placeholder='Example: jackson11@email.com' /><br />
         For authentication reasons, you will not be emailed <br />
       </div>
       <div className='form-submit'>

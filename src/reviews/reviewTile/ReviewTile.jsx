@@ -1,6 +1,6 @@
 import React from 'react';
 import StarRating from './../../sharedComponents/StarRating.jsx';
-import checkmark from './Checkmark.svg';
+// import checkmark from './Checkmark.svg';
 import Modal from '../Modal.jsx';
 import './reviewTile.css';
 
@@ -29,10 +29,10 @@ class ReviewTile extends React.Component {
     this.hideImgModal = this.hideImgModal.bind(this);
   }
   showImgModal(url) {
-    this.setState({fullImgUrl: url, showFullImg: true});
+    this.setState({ fullImgUrl: url, showFullImg: true });
   }
   hideImgModal() {
-    this.setState({showFullImg: false});
+    this.setState({ showFullImg: false });
   }
   render() {
     return (
@@ -55,23 +55,24 @@ class ReviewTile extends React.Component {
             {this.props.review.body}
           </div>
           <div>
-            {this.props.review.photos.length ? this.props.review.photos.map((photo) => (<img src ={`${photo.url}`}
-            className='tile-thumb' key={ photo.id }  onClick={() => this.showImgModal(photo.url)}/>)) : null}
+            {this.props.review.photos.length ? this.props.review.photos.map((photo) => (<img src={`${photo.url}`}
+              className='tile-thumb' key={photo.id} onClick={() => this.showImgModal(photo.url)} />)) : null}
           </div>
         </div>
         {this.props.review.recommend ? <div className='recommend' data-testid='reviewTileRecommend'>
-          <img src={checkmark} className='check' /> I recommend this product</div> : null}
+          <i class="fas fa-check"></i> I recommend this product</div> : null}
         {this.props.review.response ? <div className='response' data-testid='reviewTileResponse'>
           Response: <br />
           {this.props.review.response}
         </div> : null}
         <div className='helpful' data-testid='reviewTileHelpful'>
-          <span onClick={() => {
-            this.props.markHelpful(this.props.review.review_id)}}>Helpful? Yes({this.props.review.helpfulness}) </span> | <span onClick={() =>
-            {this.props.report(this.props.review.review_id)}}>report</span>
+          <span className='helpful-button' onClick={() => {
+            this.props.markHelpful(this.props.review.review_id)
+          }}>Helpful? Yes({this.props.review.helpfulness}) </span> | <span className='report-button'
+            onClick={() => { this.props.report(this.props.review.review_id) }}>report</span>
         </div>
 
-        <Modal show={this.state.showFullImg} children={<img src={this.state.fullImgUrl} />} handleClose={this.hideImgModal}/>
+        <Modal show={this.state.showFullImg} children={<div className='modal-image'><img src={this.state.fullImgUrl} /></div>} handleClose={this.hideImgModal} />
       </div>
     )
   }

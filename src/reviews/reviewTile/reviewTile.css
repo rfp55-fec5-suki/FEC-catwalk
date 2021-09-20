@@ -1,10 +1,11 @@
 .review-tile {
   display: grid;
-  grid-template-columns: 15%  15% 40% 15% 15%;
+  grid-template-columns: 15%  15% 35% 20% 15%;
   grid-template-rows: 25px auto auto auto auto auto auto 10%;
-  border: 1px solid;
+  border-bottom: 1px solid rgba(82,69,51,255);
   overflow: hidden;
   margin-right: 1px;
+  margin-bottom: 5px;
 }
 .star-rating {
   grid-column-start: 1;
@@ -18,14 +19,17 @@
   grid-row-start: 1;
   grid-row-end: 2;
   justify-self: end;
+  text-align: right;
 }
 .review-summary {
   grid-column-start: 1;
   grid-column-end: 6;
   grid-row-start: 2;
   grid-row-end: 3;
-  font-size: large;
+  font-size: 25px;
   font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .review-summary-cont {
   grid-column-start: 1;
@@ -62,10 +66,24 @@
   grid-column-end: 6;
   grid-row-start: 7;
   grid-row-end: 8;
+  padding-bottom: 5px;
+}
+.helpful-button {
+  cursor: pointer;
+}
+.helpful-button:hover {
+  color: rgb(0, 56, 0);
+}
+.report-button:hover {
+  cursor: pointer;
+  color: rgb(56, 0, 0);
 }
 .check {
   height: 15px;
   width: auto;
+}
+.fa-check {
+  color: rgba(45,65,58,255);
 }
 .tile-thumb {
   max-height: 70px;

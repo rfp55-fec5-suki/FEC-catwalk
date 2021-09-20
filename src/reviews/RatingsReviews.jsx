@@ -244,7 +244,7 @@ class RatingsReviews extends React.Component {
     return (
 
       <div className="rr-main" >
-        <span className='rr-title'>RATINGS & REVIEWS</span>
+        <h1 className='rr-title'>RATINGS & REVIEWS</h1>
         <RatingBreakdown meta={this.state.meta} filter={this.setRatingFilter} clear={this.setListToDefault}/>
 
         <ProductBreakdown chars={this.state.meta.characteristics}/>
