@@ -19,6 +19,7 @@ class QAList extends React.Component {
     this.collapseQClick = this.collapseQClick.bind(this);
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
+    this.sort = this.sort.bind(this);
   }
 
   componentDidMount() {
@@ -74,9 +75,23 @@ class QAList extends React.Component {
     })
   }
 
+  sort(prop, arr) {
+    arr.sort(function(a, b) {
+      if (a[prop] < b[prop]) {
+        return 1;
+      } else if (a[prop] > b[prop]) {
+        return -1;
+      } else {
+        return 0;
+      }
+    })
+    return arr;
+  }
+
 
 
   render() {
+
     if(this.state.questions.length === 0) {
       return(
         <div className = 'QA'>
@@ -95,6 +110,8 @@ class QAList extends React.Component {
         </div>
       )
     }else {
+      this.sort('question_helpfulness', this.state.questions);
+      console.log('sorted questions: ', this.sort('question_helpfulness', this.state.questions));
       return(
         <div className = 'QA'>
           <Search questions = {this.state.questions}/>
