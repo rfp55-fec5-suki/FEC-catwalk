@@ -11,10 +11,7 @@ const ReviewList = (props) => {
   } else {
     var nReviews = 0;
   }
-  // const searchChange = (e) => {
-  //   userSearch = e.target.value;
-  //   console.log(userSearch)
-  // }
+
   return (
     <div className='review-list'>
       <div className='sort'>

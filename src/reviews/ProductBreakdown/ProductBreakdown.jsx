@@ -61,15 +61,9 @@ const ProductBreakdown = (props) => {
     charsArray.push(<Characteristic name={name} high={high} mid={mid} low={low}
       percent={percent} key={props.chars[key].id} />)
   }
-  // console.log(props.meta.characteristics)
   return (
     <div className='product-breakdown'>
-
       {charsArray}
-      {/* <Characteristic /> */}
-      {/* <CharBar /> */}
-
-
     </div>
   )
 }

@@ -80,7 +80,6 @@ class RatingsReviews extends React.Component {
     this.getReviewList();
   }
   keywordSearch(search) {
-    console.log('search')
     var reg = new RegExp(search);
     var filteredResults = reviews.filter((review) => {
       return reg.test(review.summary) || reg.test(review.body) || reg.test(review.response);
@@ -90,12 +89,8 @@ class RatingsReviews extends React.Component {
   keywordChange(e) {
   var search = e.target.value;
   if(search.length === 3) {
-    console.log('3')
-    console.log(search)
     this.getAllReviews(() => this.keywordSearch(search));
   } else if (search.length > 3) {
-    console.log('> 3')
-    console.log(search)
     this.keywordSearch(search);
   } else if (search.length === 2) {
     this.setListToDefault();
@@ -150,7 +145,6 @@ class RatingsReviews extends React.Component {
       reviews = filteredResults;
       this.setState({reviews: filteredResults}, () => {
         if(callback) {
-          console.log('attempting callback')
           callback();
         }
       });
@@ -190,8 +184,6 @@ class RatingsReviews extends React.Component {
   addReview(newReview) {
     newReview.product_id = this.props.product_id;
     newReview.recommend = newReview.recommend === 'true';
-    console.log(newReview)
-    // console.log(JSON.stringify(newReview))
     axios({
       method: 'post',
       url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews',
@@ -204,7 +196,6 @@ class RatingsReviews extends React.Component {
     })
   }
   markHelpful(review_id) {
-    console.log('helpful')
     axios({
       method: 'put',
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${review_id}/helpful`,
@@ -216,7 +207,6 @@ class RatingsReviews extends React.Component {
     })
   }
   reportReview(review_id) {
-    console.log('report')
     axios({
       method: 'put',
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${review_id}/report`,
