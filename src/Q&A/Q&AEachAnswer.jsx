@@ -31,7 +31,6 @@ class EachAnswer extends React.Component {
     })
       .then((res) => {
         this.props.getQuestions();
-        console.log('answer addHelp res: ', res);
       })
       .catch((error) => {
         throw error;
@@ -51,7 +50,6 @@ class EachAnswer extends React.Component {
     })
       .then((res) => {
         this.props.getQuestions();
-        console.log('answer markReport res: ', res);
       })
       .catch((error) => {
         throw error;

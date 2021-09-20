@@ -47,7 +47,6 @@ class EachQuestion extends React.Component {
     })
       .then((res) => {
         this.props.getQuestions();
-        console.log('addHelp res: ', res);
       })
       .catch((error) => {
         throw error;
@@ -67,7 +66,6 @@ class EachQuestion extends React.Component {
     })
       .then((res) => {
         this.props.getQuestions();
-        console.log('markReport res: ', res);
       })
       .catch((error) => {
         throw error;
@@ -95,7 +93,6 @@ class EachQuestion extends React.Component {
   //render
   render() {
     const question = this.props.question;
-    console.log('questions reported? ', question.reported)
     return (
       <div key = {question.question_id}>
           <div className='listTitle'>Q:</div>
