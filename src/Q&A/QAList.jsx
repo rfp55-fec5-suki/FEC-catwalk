@@ -111,7 +111,6 @@ class QAList extends React.Component {
       )
     }else {
       this.sort('question_helpfulness', this.state.questions);
-      console.log('sorted questions: ', this.sort('question_helpfulness', this.state.questions));
       return(
         <div className = 'QA'>
           <Search questions = {this.state.questions}/>

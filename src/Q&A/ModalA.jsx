@@ -71,7 +71,6 @@ class ModalA extends React.Component {
   }
 
   submitErrForm(e) {
-    console.log(e.target.name);
     alert(`You must enter the following: ${e.target.name}`);
     event.preventDefault();
   }

@@ -48,7 +48,6 @@ class QAAnswer extends React.Component {
     const first = 'Seller';
     const answers = Object.values(this.props.question.answers);
     this.sort('helpfulness', answers);
-    console.log('sorted answers: ', answers);
     for (var i = 0; i < answers.length; i++) {
       if (answers[i].answerer_name === 'Seller') {
         answers.unshift(answers[i]);
