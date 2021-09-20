@@ -124,7 +124,7 @@ class EachQuestion extends React.Component {
             <button type = 'submit' onClick={this.handleClickReport}>Report</button>
           </div>
 
-          <QAAnswer question = {question}/>
+          <QAAnswer question = {question} getQuestions={this.props.getQuestions}/>
       </div>
     )
   }

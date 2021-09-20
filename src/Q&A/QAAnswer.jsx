@@ -36,13 +36,13 @@ class QAAnswer extends React.Component {
           <div className='answerList'>
             {Object.values(this.props.question.answers).slice(0,this.state.showA).map(answer =>
 
-              <EachAnswer key = {answer.id} answer = {answer}/>
+              <EachAnswer key = {answer.id} answer = {answer} getQuestions = {this.props.getQuestions}/>
               )}
           </div>
-          {Object.values(this.props.question.answers).length > 2 && <button type='submit' onClick={this.loadMoreAClick}>load more answer</button>}
+          {Object.values(this.props.question.answers).length > 2 && <button type='submit' onClick={this.loadMoreAClick}>See more answers</button>}
 
           <button type='submit' onClick={this.collapseAClick}>
-            show less answer
+            Collapse answers
           </button>
       </div>
     )
