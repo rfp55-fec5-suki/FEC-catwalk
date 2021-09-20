@@ -1,26 +1,20 @@
 import React from 'react';
-import axios from 'axios';
-import token from '../../config.js';
 import './Q&A.css';
 
-class ModalA extends React.Component {
+class Modal extends React.Component {
   constructor(props) {
     super (props);
     this.state = {
       body: '',
       name: '',
       email: '',
-      photos: [],
+      photo: [],
       question: false,
-      answer: true,
-      // show: false
+      answer: false
     }
 
     this.handleFormChange = this.handleFormChange.bind(this)
     this.submitForm = this.submitForm.bind(this)
-    this.postAnswer = this.postAnswer.bind(this)
-    this.submitErrForm = this.submitErrForm.bind(this)
-    this.submitErrEmail = this.submitErrEmail.bind(this)
   }
 
   handleFormChange(e) {
@@ -29,57 +23,31 @@ class ModalA extends React.Component {
     })
   }
 
-
-  postAnswer(id, answer) {
-    const question_id = this.props.question.question_id
-    axios({
-      method: 'post',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${question_id}/answers`,
-      params: question_id,
-      data: answer,
-      headers: {
-        'Authorization': token.TOKEN
-      }
-    })
-      .then((res) => {
-        this.props.getQuestions();
-      })
-      .catch((error) => {
-        throw error;
-      })
-  }
-
+  //event handler here
   submitForm(e) {
-    const { body, name, email, photos, answer } = this.state
-    const { question, postQuestion, product_id } = this.props
-    const question_id = this.props.question.question_id
-    const input = { question_id, body, name, email }
-    // should work more on photos
+    const { body, name, email, photo, answer } = this.state
+    const { postAnswer, postQuestion, product } = this.props
+    const input = (answer ? { body, name, email, photo } : { body, name, email, product })
 
     e.preventDefault()
 
-
-    this.postAnswer(question_id, input)
-
+    if( answer ) {
+      postAnswer(input)
+    } else {
+      postQuestion(input)
+    }
 
     this.setState({
       body: '',
       name: '',
       email: '',
-      photos: []
+      photo: []
     })
+
+    // this.toggleModal()
   }
 
-  submitErrForm(e) {
-    alert(`You must enter the following: ${e.target.name}`);
-    event.preventDefault();
-  }
-
-  submitErrEmail(e) {
-    alert('The email address provided is not in correct email format');
-  }
-
-
+  // toggleModal
 
   render() {
     const question = this.state.question
@@ -95,7 +63,7 @@ class ModalA extends React.Component {
 
     return (
       <div className={showHideClassName}>
-        <section className='modal-main1'>
+        <section className='modal-main'>
           {children}
           <div className='modal-header'>
             <h3>{titleText}</h3>
@@ -104,7 +72,7 @@ class ModalA extends React.Component {
             </p>
           </div>
           <div className='modal-body'>
-            <form onSubmit={this.submitForm} name='QA'>
+            <form onSubmit={(e) => {this.submitForm(e)}} name='QA'>
               <div>
                 <label htmlFor='yourName'>
                   *Name:
@@ -114,14 +82,10 @@ class ModalA extends React.Component {
                     type='text'
                     name='name'
                     maxLength='60'
-                    placeholder='Example: jack543!'
-                    onChange={(e) => {this.handleFormChange(e)}}
-                    onInvalid={this.submitErrForm}>
+                    placeholder='your nickName'
+                    onChange={(e) => {this.handleFormChange(e)}}>
                   </input>
                 </label>
-                <div>
-                  For privacy reasons, do not use your full name or email address
-                </div>
               <br />
                 <label htmlFor='email'>
                   *Email:
@@ -132,11 +96,9 @@ class ModalA extends React.Component {
                     name='email'
                     placeholder='Example: yourname@gmail.com'
                     maxLength='60'
-                    onChange={(e) => {this.handleFormChange(e)}}
-                    onInvalid={this.submitErrEmail}>
+                    onChange={(e) => {this.handleFormChange(e)}}>
                   </input>
                 </label>
-                For authentication reasons, you will not be emailed” will appear
               <br />
                 <label htmlFor={text}>
                   *
@@ -148,13 +110,12 @@ class ModalA extends React.Component {
                     name='body'
                     rows='20'
                     maxLength='1000'
-                    onChange={(e) => { this.handleFormChange(e) }}
-                    onInvalid={this.submitErrForm}>
+                    onChange={(e) => { this.handleFormChange(e) }}>
                   </input>
                 </label>
                 <br />
-                  <label htmlFor='photos'>
-                    Photos url:
+                  <label htmlFor='photo'>
+                    *Photo url:
                     <br />
                     <input
                       type='url'
@@ -165,15 +126,11 @@ class ModalA extends React.Component {
                     </input>
                   </label>
               </div>
-              <button onClick={handleClose}>
-                Close
-              </button>
-              <button type = 'submit' onClick={handleClose}>
-                Submit
-              </button>
             </form>
           </div>
-
+          <button type='submit' onClick={handleClose}>
+            Submit
+          </button>
         </section>
       </div>
     )
@@ -182,4 +139,4 @@ class ModalA extends React.Component {
 
 
 
-export default ModalA;
+export default Modal;
