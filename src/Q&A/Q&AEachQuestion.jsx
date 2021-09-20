@@ -104,8 +104,6 @@ class EachQuestion extends React.Component {
           post on: {question.question_date.slice(0,10)}
           <br />
           helpness: {question.question_helpfulness}
-          <br />
-          reported: {question.reported.toString()}
           <div>
             <ModalA
             show={this.state.show}
