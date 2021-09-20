@@ -28,7 +28,6 @@ class Search extends React.Component {
 
 
   handledisplayQ(input) {
-    console.log('input in Search: ', input)
     if(input === '') {
       return;
     } else {
@@ -58,7 +57,6 @@ class Search extends React.Component {
   }
 
   render() {
-    console.log('this.state.disPlayQ: ', this.state.disPlayQ);
     const BarStyling = {width:"20rem",background:"#F2F1F9", border:"none", padding:"0.5rem", margin: "15px"};
     return (
       <>
