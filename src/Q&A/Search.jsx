@@ -18,7 +18,10 @@ class Search extends React.Component {
     event.preventDefault();
     var input = event.target.value;
     if(input.length < 3) {
-      return;
+      input = '';
+      this.setState({
+        searchInput: input
+      })
     } else {
       this.setState({
         searchInput: input
@@ -28,9 +31,15 @@ class Search extends React.Component {
 
 
   handledisplayQ(input) {
-    if(input === '') {
+    console.log('test handle display: ', input)
+    if(input.length < 3) {
+      console.log('test handle display length < 3: ', input)
+      this.setState({
+        disPlayQ: []
+      })
       return;
     } else {
+      console.log('test handle display length >= 3')
       var matchedQ = this.findMatchedQ(input);
       this.setState ({
         disPlayQ: matchedQ
