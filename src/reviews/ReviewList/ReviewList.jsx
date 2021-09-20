@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import ReviewTile from '../reviewTile/ReviewTile.jsx';
 import circleX from './CircledX.svg';
 import './ReviewList.css'
+
+var userSearch = '';
 const ReviewList = (props) => {
   var reviews = props.reviews;
   if (props.meta.recommended) {
@@ -9,6 +11,7 @@ const ReviewList = (props) => {
   } else {
     var nReviews = 0;
   }
+
   return (
     <div className='review-list'>
       <div className='sort'>
@@ -20,14 +23,20 @@ const ReviewList = (props) => {
         </select>
         {props.filter.length > 0 ? (<span> and {props.filter.map((rating) => {
           return (<span onClick={() => props.setFilter(rating)} className='filter-display'>
-            {rating} Stars <img src={circleX} className='x' /></span>)
+            {rating} Stars<img src={circleX} className='x' /></span>)
         })}</span>) : null}
       </div>
-      <div className='rr-tile-list'>
-        {reviews.map((review) => <ReviewTile review={review} key={review.review_id} />)}
+      <div className='keyword-search'>
+        <input type='text' onChange={props.keywordChange} placeholder='search reviews' />
       </div>
-      {props.renderButton ? <button className='rr-button more-reviews' onClick={props.more}>More Reviews</button> : null}
-      <button className='rr-button add-review' onClick={props.addReview}>Add Review +</button>
+      <div className='rr-tile-list'>
+        {reviews.map((review) => <ReviewTile review={review} key={review.review_id}
+          markHelpful={props.markHelpful} report={props.report} />)}
+      </div>
+      <div className='rr-button-bar'>
+        <button className='rr-button add-review' onClick={props.addReview}>Add Review +</button>
+        {props.renderButton ? <button className='rr-button more-reviews' onClick={props.more}>More Reviews</button> : null}
+      </div>
     </div>
   );
 }

@@ -5,7 +5,7 @@ import './ProductBreakdown.css';
 const CharBar = (props) => {
   return (
     <div className='char-bar'>
-      <img src={pointer} className='pointer' style={{marginLeft: `${props.percent}%`}}/>
+      <img src={pointer} className='pointer' style={{ marginLeft: `${props.percent}%` }} />
       <div className='bar-segment left-bar' />
       <div className='bar-segment middle-bar' />
       <div className='bar-segment right-bar' />
@@ -16,7 +16,7 @@ const Characteristic = (props) => {
   return (
     <div className='characteristic'>
       <span className='char-name'>{props.name}</span>
-      <CharBar percent={props.percent}/>
+      <CharBar percent={props.percent} />
       <span className='char-low'>{props.low}</span>
       <span className='char-mid'>{props.mid}</span>
       <span className='char-high'>{props.high}</span>
@@ -48,7 +48,7 @@ const ProductBreakdown = (props) => {
       var high = 'Too long';
       var mid = 'Perfect';
       var low = 'Too short';
-    } else if(name === 'Fit') {
+    } else if (name === 'Fit') {
       var high = 'Runs long';
       var mid = 'Perfect';
       var low = 'Runs tight';
@@ -59,18 +59,11 @@ const ProductBreakdown = (props) => {
     }
     var percent = ((props.chars[key].value / 5) * 100).toFixed(0);
     charsArray.push(<Characteristic name={name} high={high} mid={mid} low={low}
-    percent={percent} key={props.chars[key].id}/>)
+      percent={percent} key={props.chars[key].id} />)
   }
-  // console.log(props.meta.characteristics)
   return (
     <div className='product-breakdown'>
-      Product Breakdown
-      <div>
-        {charsArray}
-        {/* <Characteristic /> */}
-        {/* <CharBar /> */}
-      </div>
-
+      {charsArray}
     </div>
   )
 }

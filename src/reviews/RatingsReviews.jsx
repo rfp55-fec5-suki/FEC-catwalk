@@ -11,6 +11,7 @@ import './RatingsReviews.css';
 
 var reviewPage = 1;
 var sort = 'relevant';
+var reviews = [];
 class RatingsReviews extends React.Component {
   constructor(props) {
     super(props);
@@ -19,7 +20,8 @@ class RatingsReviews extends React.Component {
       hasMoreReviews: true,
       meta: {},
       filterByRating: [],
-      showAddReview: false
+      showAddReview: false,
+      filterBySearch: ''
     }
     this.getReviewList = this.getReviewList.bind(this);
     this.getAllReviews = this.getAllReviews.bind(this);
@@ -29,6 +31,11 @@ class RatingsReviews extends React.Component {
     this.setListToDefault = this.setListToDefault.bind(this);
     this.showAddReview = this.showAddReview.bind(this);
     this.hideAddReview = this.hideAddReview.bind(this);
+    this.addReview = this.addReview.bind(this);
+    this.markHelpful = this.markHelpful.bind(this);
+    this.reportReview = this.reportReview.bind(this);
+    this.keywordSearch = this.keywordSearch.bind(this);
+    this.keywordChange = this.keywordChange.bind(this);
   }
   //////////////////////////////
   //Rating BreakDown handlers//
@@ -66,11 +73,28 @@ class RatingsReviews extends React.Component {
       this.getAllReviews();
     }
   }
-  setListToDefault () {
+  setListToDefault() {
     this.state.hasMoreReviews = true;
     this.state.filterByRating = [];
     this.state.reviews = [];
     this.getReviewList();
+  }
+  keywordSearch(search) {
+    var reg = new RegExp(search);
+    var filteredResults = reviews.filter((review) => {
+      return reg.test(review.summary) || reg.test(review.body) || reg.test(review.response);
+    });
+    this.setState({reviews: filteredResults})
+  }
+  keywordChange(e) {
+  var search = e.target.value;
+  if(search.length === 3) {
+    this.getAllReviews(() => this.keywordSearch(search));
+  } else if (search.length > 3) {
+    this.keywordSearch(search);
+  } else if (search.length === 2) {
+    this.setListToDefault();
+  }
   }
   ///////////////////////
   //Add Review Handlers//
@@ -97,19 +121,33 @@ class RatingsReviews extends React.Component {
       console.log(err);
     })
   }
-  getAllReviews() {
+  getAllReviews(callback) {
+    if (this.state.meta.recommended) {
+      var count = this.state.meta.recommended.true + this.state.meta.recommended.false;
+    } else {
+      var count = 100;
+    }
     axios({
       method: 'get',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews?product_id=${this.props.product_id}&count=100&sort=${sort}`,
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews?product_id=${this.props.product_id}&count=${count}&sort=${sort}`,
       headers: {
         'Authorization': token.TOKEN
       }
     }).then((response) => {
       this.state.hasMoreReviews = false;
-      var filteredResults = response.data.results.filter((review) => {
-        return this.state.filterByRating.includes(review.rating)
-      })
-      this.setState({reviews: filteredResults});
+      if (this.state.filterByRating.length) {
+        var filteredResults = response.data.results.filter((review) => {
+          return this.state.filterByRating.includes(review.rating)
+        })
+      } else {
+        filteredResults = response.data.results;
+      }
+      reviews = filteredResults;
+      this.setState({reviews: filteredResults}, () => {
+        if(callback) {
+          callback();
+        }
+      });
     }).catch((err) => {
       console.log('error getting all reviews to then filter by rating', err);
     })
@@ -122,6 +160,7 @@ class RatingsReviews extends React.Component {
         'Authorization': token.TOKEN
       }
     }).then((response) => {
+      reviews = [...reviews, ...response.data.results];
       this.setState({reviews: [...this.state.reviews, ...response.data.results]});
       axios({
         method: 'get',
@@ -142,6 +181,42 @@ class RatingsReviews extends React.Component {
     reviewPage++;
     this.getReviewList();
   }
+  addReview(newReview) {
+    newReview.product_id = this.props.product_id;
+    newReview.recommend = newReview.recommend === 'true';
+    axios({
+      method: 'post',
+      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews',
+      headers: {
+        'Authorization': token.TOKEN
+      },
+      data: newReview
+    }).catch((err) => {
+      console.log('error posting new review to server', err);
+    })
+  }
+  markHelpful(review_id) {
+    axios({
+      method: 'put',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${review_id}/helpful`,
+      headers: {
+        'Authorization': token.TOKEN
+      }
+    }).catch((err) => {
+      console.log('error marking review as helpful', err);
+    })
+  }
+  reportReview(review_id) {
+    axios({
+      method: 'put',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${review_id}/report`,
+      headers: {
+        'Authorization': token.TOKEN
+      }
+    }).catch((err) => {
+      console.log('error reporting review', err);
+    })
+  }
   ///////////////////////
   //lifecycle functions//
   ///////////////////////
@@ -159,17 +234,19 @@ class RatingsReviews extends React.Component {
     return (
 
       <div className="rr-main" >
-        <span className='rr-title'>RATINGS & REVIEWS</span>
+        <h1 className='rr-title'>RATINGS & REVIEWS</h1>
         <RatingBreakdown meta={this.state.meta} filter={this.setRatingFilter} clear={this.setListToDefault}/>
 
         <ProductBreakdown chars={this.state.meta.characteristics}/>
 
         <ReviewList reviews={this.state.reviews} more={this.moreReviews} sort={this.sortChange}
         renderButton={this.state.hasMoreReviews} meta={this.state.meta} filter={this.state.filterByRating}
-        setFilter={this.setRatingFilter} addReview={this.showAddReview}/>
+        setFilter={this.setRatingFilter} addReview={this.showAddReview} markHelpful={this.markHelpful}
+        report={this.reportReview} keywordChange={this.keywordChange}/>
 
         <Modal show={this.state.showAddReview} handleClose={this.hideAddReview}
-        children={<AddReview chars={this.state.meta.characteristics} close={this.hideAddReview}/>}/>
+        children={<AddReview chars={this.state.meta.characteristics} close={this.hideAddReview}
+        postReview={this.addReview}/>}/>
       </div>
 
     )

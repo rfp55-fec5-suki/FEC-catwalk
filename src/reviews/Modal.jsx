@@ -9,7 +9,7 @@ const Modal = ({ handleClose, show, children }) => {
         {children}
         </div>
         <button onClick={handleClose} className='modal-button'>
-          close
+        <i class="fas fa-times"></i>
         </button>
       </div>
     </div>
