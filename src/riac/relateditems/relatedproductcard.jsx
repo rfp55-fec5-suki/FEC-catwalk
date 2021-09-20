@@ -1,9 +1,11 @@
 import React from 'react';
 import axios from 'axios';
+import $ from 'jquery';
 import token from '../../../config.js';
 import StarRating from '../../sharedComponents/StarRating.jsx';
 import RelatedProductModal from './relatedproductmodal.jsx';
 import ModalComparison from './modalcomparison.jsx';
+import noImage from '../../noImage.js';
 import '../riac.css';
 
 class RelatedProductCard extends React.Component {
@@ -16,6 +18,8 @@ class RelatedProductCard extends React.Component {
       img: '',
       styles: {},
       stars: {},
+      price: '',
+      sale: '',
       show: false
     };
 
@@ -58,7 +62,9 @@ class RelatedProductCard extends React.Component {
       .then((response) => {
         this.setState({
           img: response.data.results[0].photos[0].thumbnail_url,
-          styles: response.data
+          styles: response.data,
+          price: response.data.results[0].original_price,
+          sale: response.data.results[0].sale_price
         });
       })
       .catch((error) => {
@@ -93,6 +99,7 @@ class RelatedProductCard extends React.Component {
 
   render() {
     this.state.id = this.props.productid;
+
     if (this.props.product.features && this.state.info.features) {
       var comparison = [...this.props.product.features, ...this.state.info.features];
     }
@@ -118,13 +125,21 @@ class RelatedProductCard extends React.Component {
           <i className='fas fa-star riac-productcard-button' onClick={this.showModal}></i>
 
           <div className='riac-productcard-image' onClick={() => this.props.onClick(this.state.info.id)}>
-            <img src={this.state.img} />
+            {this.state.img ? <img src={this.state.img} /> : <img src={noImage} />}
           </div>
 
           <div className='riac-productcard-category'> {this.state.info.category} </div>
           <div className='riac-productcard-name'> {this.state.info.name} </div>
-          <div className='riac-productcard-price'> {this.state.info.default_price} </div>
-          <div className='riac-productcard-rating'> <StarRating meta={this.state.stars} /> </div>
+
+          {this.state.sale ?
+            <div className='riac-productcard-price'>
+              <div className='riac-productcard-sale'> {this.state.sale} </div>
+              <div className='riac-productcard-price-sale'> {this.state.price} </div>
+            </div>
+            : <div className='riac-productcard-price'> {this.state.info.default_price} </div>}
+
+          {$.isEmptyObject(this.state.stars) ? null
+            : <div className='riac-productcard-rating'> <StarRating meta={this.state.stars} /> </div>}
 
         </div>
       </div>
