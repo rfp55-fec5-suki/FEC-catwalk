@@ -19,7 +19,8 @@ class ModalA extends React.Component {
     this.handleFormChange = this.handleFormChange.bind(this)
     this.submitForm = this.submitForm.bind(this)
     this.postAnswer = this.postAnswer.bind(this)
-    //this.toggleModal = this.toggleModal.bind(this)
+    this.submitErrForm = this.submitErrForm.bind(this)
+    this.submitErrEmail = this.submitErrEmail.bind(this)
   }
 
   handleFormChange(e) {
@@ -69,6 +70,16 @@ class ModalA extends React.Component {
     })
   }
 
+  submitErrForm(e) {
+    console.log(e.target.name);
+    alert(`You must enter the following: ${e.target.name}`);
+    event.preventDefault();
+  }
+
+  submitErrEmail(e) {
+    alert('The email address provided is not in correct email format');
+  }
+
 
 
   render() {
@@ -104,10 +115,14 @@ class ModalA extends React.Component {
                     type='text'
                     name='name'
                     maxLength='60'
-                    placeholder='your nickName'
-                    onChange={(e) => {this.handleFormChange(e)}}>
+                    placeholder='Example: jack543!'
+                    onChange={(e) => {this.handleFormChange(e)}}
+                    onInvalid={this.submitErrForm}>
                   </input>
                 </label>
+                <div>
+                  For privacy reasons, do not use your full name or email address
+                </div>
               <br />
                 <label htmlFor='email'>
                   *Email:
@@ -118,9 +133,11 @@ class ModalA extends React.Component {
                     name='email'
                     placeholder='Example: yourname@gmail.com'
                     maxLength='60'
-                    onChange={(e) => {this.handleFormChange(e)}}>
+                    onChange={(e) => {this.handleFormChange(e)}}
+                    onInvalid={this.submitErrEmail}>
                   </input>
                 </label>
+                For authentication reasons, you will not be emailed” will appear
               <br />
                 <label htmlFor={text}>
                   *
@@ -132,7 +149,8 @@ class ModalA extends React.Component {
                     name='body'
                     rows='20'
                     maxLength='1000'
-                    onChange={(e) => { this.handleFormChange(e) }}>
+                    onChange={(e) => { this.handleFormChange(e) }}
+                    onInvalid={this.submitErrForm}>
                   </input>
                 </label>
                 <br />

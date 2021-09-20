@@ -19,6 +19,7 @@ class ModalQ extends React.Component {
     this.submitForm = this.submitForm.bind(this)
     this.postQuestion = this.postQuestion.bind(this)
     this.submitErrForm = this.submitErrForm.bind(this)
+    this.submitErrEmail = this.submitErrEmail.bind(this)
   }
 
   handleFormChange(e) {
@@ -70,7 +71,9 @@ class ModalQ extends React.Component {
     event.preventDefault();
   }
 
-
+  submitErrEmail(e) {
+    alert('The email address provided is not in correct email format');
+  }
 
 
   render() {
@@ -125,7 +128,7 @@ class ModalQ extends React.Component {
                     placeholder='Example: yourname@gmail.com'
                     maxLength='60'
                     onChange={(e) => {this.handleFormChange(e)}}
-                    onInvalid={this.submitErrForm}
+                    onInvalid={this.submitErrEmail}
 
                     >
                   </input>
