@@ -14,14 +14,14 @@ const ReviewList = (props) => {
 
   return (
     <div className='review-list'>
-      <div className='sort'>
+      <div className='rr-sort'>
         {nReviews ? nReviews : 0} reviews, sorted by
         <select onChange={props.sort} >
           <option value='relevant'>Relevant</option>
           <option value='newest'>Newest</option>
           <option value='helpful'>Helpful</option>
         </select>
-        {props.filter.length > 0 ? (<span> and {props.filter.map((rating) => {
+        {props.filter.length > 0 ? (<span><br/>and {props.filter.map((rating) => {
           return (<span onClick={() => props.setFilter(rating)} className='filter-display'>
             {rating} Stars<img src={circleX} className='x' /></span>)
         })}</span>) : null}
