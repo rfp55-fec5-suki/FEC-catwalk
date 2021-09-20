@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import token from '../../../config.js';
 import StarRating from '../../sharedComponents/StarRating.jsx';
+import noImage from '../../noImage.js';
 import '../riac.css';
 
 class OutfitCard extends React.Component {
@@ -89,7 +90,7 @@ class OutfitCard extends React.Component {
           <i class='fas fa-times-circle riac-productcard-button' onClick={() => this.props.removeOutfit(this.state.info.id)}></i>
 
           <div className='riac-productcard-image' onClick={() => this.props.onClick(this.state.info.id)}>
-            <img src={this.state.img} />
+            {this.state.img ? <img src={this.state.img} /> : <img src={noImage} />}
           </div>
 
           <div className='riac-productcard-category'> {this.state.info.category} </div>

@@ -1,10 +1,11 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import RelatedProductCard from './relatedproductcard.jsx';
 
 
-// describe('ProductCard', () => {
-//   test('render Product Card component', () => {
-//     render(<ProductCard />);
+// describe('RelatedProductCard', () => {
+//   test('render Related Product Card component', () => {
+//     render(<RelatedProductCard />);
 //   });
 // });
 
