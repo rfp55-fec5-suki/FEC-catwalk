@@ -5,6 +5,7 @@ import token from '../../../config.js';
 import StarRating from '../../sharedComponents/StarRating.jsx';
 import RelatedProductModal from './relatedproductmodal.jsx';
 import ModalComparison from './modalcomparison.jsx';
+import noImage from '../../noImage.js';
 import '../riac.css';
 
 class RelatedProductCard extends React.Component {
@@ -124,7 +125,7 @@ class RelatedProductCard extends React.Component {
           <i className='fas fa-star riac-productcard-button' onClick={this.showModal}></i>
 
           <div className='riac-productcard-image' onClick={() => this.props.onClick(this.state.info.id)}>
-            <img src={this.state.img} />
+            {this.state.img ? <img src={this.state.img} /> : <img src={noImage} />}
           </div>
 
           <div className='riac-productcard-category'> {this.state.info.category} </div>
