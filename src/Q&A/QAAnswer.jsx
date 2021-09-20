@@ -10,6 +10,7 @@ class QAAnswer extends React.Component {
     })
     this.loadMoreAClick = this.loadMoreAClick.bind(this);
     this.collapseAClick = this.collapseAClick.bind(this);
+    this.sort = this.sort.bind(this);
   }
 
 
@@ -28,11 +29,26 @@ class QAAnswer extends React.Component {
   }
   // setState: helpful & reported
 
+  sort(prop, arr) {
+    arr.sort(function(a, b) {
+      if (a[prop] < b[prop]) {
+        return 1;
+      } else if (a[prop] > b[prop]) {
+        return -1;
+      } else {
+        return 0;
+      }
+    })
+    return arr;
+  }
+
 
   render() {
     // move seller to first
     const first = 'Seller';
     const answers = Object.values(this.props.question.answers);
+    this.sort('helpfulness', answers);
+    console.log('sorted answers: ', answers);
     for (var i = 0; i < answers.length; i++) {
       if (answers[i].answerer_name === 'Seller') {
         answers.unshift(answers[i]);
