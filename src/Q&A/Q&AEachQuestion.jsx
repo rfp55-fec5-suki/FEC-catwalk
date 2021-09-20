@@ -9,12 +9,15 @@ class EachQuestion extends React.Component {
     super(props)
     this.state = {
       show: false,
-      helpfulness: this.props.question.question_helpfulness
+      helpfulness: this.props.question.question_helpfulness,
+      reported: this.props.question.reported
     }
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
     this.addHelp = this.addHelp.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleClickYes = this.handleClickYes.bind(this);
+    this.markReport = this.markReport.bind(this);
+    this.handleClickReport = this.handleClickReport.bind(this);
   }
 
 
@@ -44,14 +47,34 @@ class EachQuestion extends React.Component {
     })
       .then((res) => {
         this.props.getQuestions();
-        console.log('addHelp body: ', res);
+        console.log('addHelp res: ', res);
       })
       .catch((error) => {
         throw error;
       })
   }
 
-  handleClick() {
+  markReport(input) {
+    const question_id = this.props.question.question_id;
+    axios({
+      method: 'put',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${question_id}/report`,
+      parames: question_id,
+      data: input,
+      headers: {
+        'Authorization': token.TOKEN
+      }
+    })
+      .then((res) => {
+        this.props.getQuestions();
+        console.log('markReport res: ', res);
+      })
+      .catch((error) => {
+        throw error;
+      })
+  }
+
+  handleClickYes() {
     const question_id = this.props.question.question_id;
     this.setState(prevState => {
       return {
@@ -59,23 +82,30 @@ class EachQuestion extends React.Component {
       }
     })
     this.addHelp(question_id);
-      // .then((res) => {
-      //   console.log(res.body)
-      // })
-      // .catch((error) => {
-      //   throw error;
-      // })
+  }
+
+  handleClickReport() {
+    const question_id = this.props.question.question_id;
+    this.setState({
+      reported: true
+    })
+    this.markReport(question_id, {});
   }
 
   //render
   render() {
     const question = this.props.question;
+    console.log('questions reported? ', question.reported)
     return (
       <div key = {question.question_id}>
           <div className='listTitle'>Q:</div>
           {question.question_body}
           <br />
           post on: {question.question_date.slice(0,10)}
+          <br />
+          helpness: {question.question_helpfulness}
+          <br />
+          reported: {question.reported.toString()}
           <div>
             <ModalA
             show={this.state.show}
@@ -92,8 +122,8 @@ class EachQuestion extends React.Component {
           </div>
           <div>
             Helpful?
-            <button type = 'submit' onClick={this.handleClick}>Yes</button>
-            <button >Report</button>
+            <button type = 'submit' onClick={this.handleClickYes}>Yes</button>
+            <button type = 'submit' onClick={this.handleClickReport}>Report</button>
           </div>
 
           <QAAnswer question = {question}/>

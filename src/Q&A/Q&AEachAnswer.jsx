@@ -10,7 +10,7 @@ class EachAnswer extends React.Component {
   }
 
   //after onclick helpful?, this.setState : helpness+1
-
+  // markAsHelpful(num)
 
   render() {
     const answer = this.props.answer;
