@@ -18,6 +18,7 @@ class ModalQ extends React.Component {
     this.handleFormChange = this.handleFormChange.bind(this)
     this.submitForm = this.submitForm.bind(this)
     this.postQuestion = this.postQuestion.bind(this)
+    this.submitErrForm = this.submitErrForm.bind(this)
   }
 
   handleFormChange(e) {
@@ -61,7 +62,12 @@ class ModalQ extends React.Component {
       email: '',
       photos: []
     })
+  }
 
+  submitErrForm(e) {
+    console.log(e.target.name);
+    alert(`You must enter the following: ${e.target.name}`);
+    event.preventDefault();
   }
 
 
@@ -100,10 +106,14 @@ class ModalQ extends React.Component {
                     type='text'
                     name='name'
                     maxLength='60'
-                    placeholder='your nickName'
-                    onChange={(e) => {this.handleFormChange(e)}}>
+                    placeholder='Example: jackson11!'
+                    onChange={(e) => {this.handleFormChange(e)}}
+                    onInvalid={this.submitErrForm}>
                   </input>
                 </label>
+                <div>
+                  For privacy reasons, do not use your full name or email address
+                </div>
               <br />
                 <label htmlFor='email'>
                   *Email:
@@ -114,9 +124,15 @@ class ModalQ extends React.Component {
                     name='email'
                     placeholder='Example: yourname@gmail.com'
                     maxLength='60'
-                    onChange={(e) => {this.handleFormChange(e)}}>
+                    onChange={(e) => {this.handleFormChange(e)}}
+                    onInvalid={this.submitErrForm}
+
+                    >
                   </input>
                 </label>
+                <div>
+                  For authentication reasons, you will not be emailed
+                </div>
               <br />
                 <label htmlFor={text}>
                   *
@@ -128,7 +144,8 @@ class ModalQ extends React.Component {
                     name='body'
                     rows='20'
                     maxLength='1000'
-                    onChange={(e) => { this.handleFormChange(e) }}>
+                    onChange={(e) => { this.handleFormChange(e) }}
+                    onInvalid={this.submitErrForm}>
                   </input>
                 </label>
 
