@@ -14,7 +14,8 @@ class Overview extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.styles.product_id !== prevProps.styles.product_id) {
-      this.setState({ selectedStyle: this.props.styles.results[0] });
+      this.setState({ selectedStyle: this.props.styles.results[0],
+                      addToCart: {size: null, quantity: null} });
     }
   }
 
