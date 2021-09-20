@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 import QAList from './QAList.jsx';
 import QAAnswer from './QAAnswer.jsx'
 
-describe.skip('QAList', () => {
+describe('QAList', () => {
   test('renders App component', () => {
     render(<QAList />);
 
@@ -12,7 +12,7 @@ describe.skip('QAList', () => {
   });
 });
 
-describe.skip('QAList', () => {
+describe('QAList', () => {
   test('renders App component', () => {
     render(<QAAnswer />);
   });
