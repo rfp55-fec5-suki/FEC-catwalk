@@ -96,7 +96,7 @@ class EachAnswer extends React.Component {
         <div>
           helpful?
           <a className = 'link' onClick={this.handleClickYes}>
-            <span>Yes({this.props.answer.helpfulness})</span>
+            <span>Yes({this.props.answer.helpfulness}) | </span>
           </a>
 
           <a className = 'link'>
