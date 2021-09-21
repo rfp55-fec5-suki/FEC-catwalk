@@ -85,7 +85,7 @@ class RatingsReviews extends React.Component {
     var filteredResults = reviews.filter((review) => {
       return reg.test(review.summary) || reg.test(review.body) || reg.test(review.response);
     });
-    this.setState({reviews: filteredResults})
+    this.setState({reviews: filteredResults, hasMoreReviews: false});
   }
   keywordChange(e) {
   var search = e.target.value;
