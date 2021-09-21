@@ -1,6 +1,6 @@
 .characteristic {
   display: grid;
-  grid-template-columns: 5px 100px 5px 100px 5px 100px 5px;
+  grid-template-columns: 10px 100px 5px 100px 5px 100px 10px;
   grid-template-rows: auto auto auto;
 }
 .char-name {
@@ -31,7 +31,7 @@
   position: relative;
   height: 10px;
   display: grid;
-  grid-template-columns: 5px 100px 5px 100px 5px 95px 5px 5px;
+  grid-template-columns: 5px 100px 5px 100px 5px 95px 10px 5px;
   grid-template-rows: 10px;
 }
 .bar-segment {
@@ -54,7 +54,7 @@
 .pointer {
   grid-column: 1 / 7;
   grid-row: 1 / 2;
-  width: 10px;
+  width: 20px;
   height: 10px;
   z-index: 1;
 }
