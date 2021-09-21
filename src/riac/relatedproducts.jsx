@@ -128,7 +128,7 @@ class RelatedProducts extends React.Component {
               })}
 
               {/* {console.log('in return scrolleft', this.state.scrollLeft)} */}
-              {console.log('in return max', this.state.maxScrollLeft)}
+              {/* {console.log('in return max', this.state.maxScrollLeft)} */}
 
 
             </div>
@@ -136,7 +136,7 @@ class RelatedProducts extends React.Component {
         </div>
 
 
-        <div className='riac-carousel'>
+        <div className='riac-carousel' id='outfit'>
 
           <div className='riac-productcard-header'>
             YOUR OUTFIT
