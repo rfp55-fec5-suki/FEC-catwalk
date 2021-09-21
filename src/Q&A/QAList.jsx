@@ -4,12 +4,13 @@ import axios from 'axios';
 import QAAnswer from './QAAnswer.jsx';
 import EachQuestion from './Q&AEachQuestion.jsx';
 import ModalQ from './ModalQ.jsx';
-import Search from './Search.jsx';
+// import Search from './Search.jsx';
 
 class QAList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      originquestions: [],
       questions: [],
       showQ: 2,
       show: false
@@ -19,6 +20,7 @@ class QAList extends React.Component {
     this.collapseQClick = this.collapseQClick.bind(this);
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
+    this.handleFilter = this.handleFilter.bind(this);
     this.sort = this.sort.bind(this);
   }
 
@@ -37,7 +39,8 @@ class QAList extends React.Component {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/?product_id=${product_id}&page=${1}&count=${100}`, {headers: {'Authorization': token.TOKEN}})
       .then((res) => {
         this.setState({
-          questions: res.data.results
+          questions: res.data.results,
+          originquestions: res.data.results
         });
       })
       .catch((error) => {
@@ -88,6 +91,25 @@ class QAList extends React.Component {
     return arr;
   }
 
+  handleFilter(e) {
+    e.preventDefault();
+    const matched = [];
+    if (e.target.value.length >= 3) {
+      for(var i = 0; i < this.state.questions.length; i++) {
+        if(this.state.questions[i].question_body.toLowerCase().includes(e.target.value)) {
+          matched.push(this.state.questions[i]);
+        }
+      }
+      this.setState({
+        questions: matched
+      })
+    } else {
+      this.setState({
+        questions: this.state.originquestions
+      })
+    }
+  }
+
 
 
   render() {
@@ -95,6 +117,7 @@ class QAList extends React.Component {
     if(this.state.questions.length === 0) {
       return(
         <div className = 'QA'>
+          <h2>Questions & Answers</h2>
           <div className='listTitle'>We don't have questions for this product, Post the first Question!</div>
           <div>
             <ModalQ
@@ -103,7 +126,7 @@ class QAList extends React.Component {
             getQuestions={this.getQuestions}
             product_id={this.props.product.id}
             type = 'question'/>
-            <button type = 'submit' onClick={this.showModal}>
+            <button className='button' type = 'submit' onClick={this.showModal}>
               Submit a question
             </button>
           </div>
@@ -113,7 +136,15 @@ class QAList extends React.Component {
       this.sort('question_helpfulness', this.state.questions);
       return(
         <div className = 'QA'>
-          <Search questions = {this.state.questions}/>
+          <h2>Questions & Answers</h2>
+          <div >
+            <input
+              className = 'searchBar'
+              type = 'text'
+              placeholder="Have a question? Search for answers…"
+              onChange = {this.handleFilter}
+            ></input>
+          </div>
           <div className = 'questionList'>
             {this.state.questions.slice(0,this.state.showQ).map(question =>
             <EachQuestion key = {question.question_id} question = {question} postQuestion = {this.postQuestion} getQuestions = {this.getQuestions}product = {this.props.product}/>
@@ -130,7 +161,7 @@ class QAList extends React.Component {
             getQuestions={this.getQuestions}
             product_id={this.props.product.id}
             type = 'question'/>
-            <button type = 'submit' onClick={this.showModal}>
+            <button className='button' type = 'submit' onClick={this.showModal}>
               Add more question
             </button>
           </div>
