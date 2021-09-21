@@ -86,13 +86,13 @@ class RelatedProducts extends React.Component {
 
   componentDidMount() {
     this.fetchStorage();
-    setTimeout(this.updateButtons, 1500);
+    setTimeout(this.updateButtons, 500);
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.product.id !== this.props.product.id) {
       this.fetchStorage();
-      setTimeout(this.updateButtons, 1500);
+      setTimeout(this.updateButtons, 500);
     }
   }
 
