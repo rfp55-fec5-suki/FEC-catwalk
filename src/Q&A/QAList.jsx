@@ -10,6 +10,7 @@ class QAList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      originquestions: [],
       questions: [],
       showQ: 2,
       show: false
@@ -38,7 +39,8 @@ class QAList extends React.Component {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/?product_id=${product_id}&page=${1}&count=${100}`, {headers: {'Authorization': token.TOKEN}})
       .then((res) => {
         this.setState({
-          questions: res.data.results
+          questions: res.data.results,
+          originquestions: res.data.results
         });
       })
       .catch((error) => {
@@ -100,6 +102,10 @@ class QAList extends React.Component {
       }
       this.setState({
         questions: matched
+      })
+    } else {
+      this.setState({
+        questions: this.state.originquestions
       })
     }
   }
