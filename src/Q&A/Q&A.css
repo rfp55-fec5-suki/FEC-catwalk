@@ -8,7 +8,7 @@
 
 .searchBar{
   width:600px;
-  background:#F2F1F9;
+  background:#E6E6FA;
   border:none;
   padding:0.5rem;
   margin: 15px
@@ -16,12 +16,14 @@
 
 .QA {
   margin-top: 50px;
+  background-color: #F8F8FF;
+  border: none;
 }
 
 .questionList {
   height: 300px;
   overflow: scroll;
-  border: 2px solid;
+  border: none;
   padding-left: 15px;
 }
 
@@ -29,13 +31,42 @@
   height: 100px;
   width: 70%;
   overflow: scroll;
-  border: 1px solid #003300;
+  border: 2px solid #483D8B;
 }
 
 .listTitle {
   font-weight: bold;
 }
 
+.link {
+  color: darkblue;
+  text-decoration: underline;
+}
+
+
+.link:hover {
+  color: red;
+  text-decoration: underline;
+}
+
+
+.link:active {
+  color:blue;
+}
+
+.button {
+  font-size: 20px;
+  background-color: #483D8B;
+  border:none;
+  color: white;
+}
+
+.button:hover {
+  font-size: 20px;
+  background-color: white;
+  border: 1px solid #483D8B;
+  color: #483D8B;
+}
 
 .modal-main1 {
   position:fixed;
@@ -46,16 +77,7 @@
   left:50%;
   transform: translate(-50%,-50%);
 }
-/* .modal-main {
-  position:fixed;
-  background: white;
-  width: 80%;
-  height: auto;
-  top:50%;
-  left:50%;
-  transform: translate(-50%,-50%);
-  display: block;
-} */
+
 
 .modal-header, .modal-footer {
   padding: 10px;

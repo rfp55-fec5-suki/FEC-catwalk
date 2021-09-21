@@ -117,6 +117,7 @@ class QAList extends React.Component {
     if(this.state.questions.length === 0) {
       return(
         <div className = 'QA'>
+          <h2>Questions & Answers</h2>
           <div className='listTitle'>We don't have questions for this product, Post the first Question!</div>
           <div>
             <ModalQ
@@ -125,7 +126,7 @@ class QAList extends React.Component {
             getQuestions={this.getQuestions}
             product_id={this.props.product.id}
             type = 'question'/>
-            <button type = 'submit' onClick={this.showModal}>
+            <button className='button' type = 'submit' onClick={this.showModal}>
               Submit a question
             </button>
           </div>
@@ -135,7 +136,7 @@ class QAList extends React.Component {
       this.sort('question_helpfulness', this.state.questions);
       return(
         <div className = 'QA'>
-          {/* <Search questions = {this.state.questions}/> */}
+          <h2>Questions & Answers</h2>
           <div >
             <input
               className = 'searchBar'
@@ -160,7 +161,7 @@ class QAList extends React.Component {
             getQuestions={this.getQuestions}
             product_id={this.props.product.id}
             type = 'question'/>
-            <button type = 'submit' onClick={this.showModal}>
+            <button className='button' type = 'submit' onClick={this.showModal}>
               Add more question
             </button>
           </div>

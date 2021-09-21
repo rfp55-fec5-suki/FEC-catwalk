@@ -113,22 +113,19 @@ class EachQuestion extends React.Component {
               Add an Answer
             </button>
           </div>
-          <a onClick={this.handleClickYes}>
+          <div className = 'helpful'>
             Helpful?
-            <span>
-              Yes({question.question_helpfulness})
-            </span>
-          </a>
-          <a onClick={this.handleClickReport}>
-            <span>
-              Report
-            </span>
-          </a>
-          {/* <div>
-            Helpful?
-            <button type = 'submit' onClick={this.handleClickYes}>Yes</button>
-            <button type = 'submit' onClick={this.handleClickReport}>Report</button>
-          </div> */}
+            <a className = 'link' onClick={this.handleClickYes}>
+              <span>
+                Yes({question.question_helpfulness})
+              </span>
+            </a>
+            <a className = 'link' onClick={this.handleClickReport}>
+              <span>
+                Report
+              </span>
+            </a>
+          </div>
 
           <QAAnswer question = {question} getQuestions={this.props.getQuestions}/>
       </div>
