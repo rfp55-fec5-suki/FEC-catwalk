@@ -128,7 +128,7 @@ class RelatedProducts extends React.Component {
               })}
 
               {/* {console.log('in return scrolleft', this.state.scrollLeft)} */}
-              {console.log('in return max', this.state.maxScrollLeft)}
+              {/* {console.log('in return max', this.state.maxScrollLeft)} */}
 
 
             </div>
