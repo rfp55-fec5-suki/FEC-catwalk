@@ -1,5 +1,6 @@
 import React from 'react';
 import _ from 'underscore';
+import MainImagePopup from './MainImagePopup.jsx';
 
 const MAX_PHOTOS_TO_DISPLAY = 7;
 
@@ -7,7 +8,10 @@ const MAX_PHOTOS_TO_DISPLAY = 7;
 class ImageGallery extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { currentShowedFirstIndex: 0, currentSelectedIndex: 0};
+    this.state = { currentShowedFirstIndex: 0,
+                   currentSelectedIndex: 0,
+                   isPopupOpen: false
+                  };
   }
 
   componentDidUpdate(prevProps) {
@@ -27,6 +31,16 @@ class ImageGallery extends React.Component {
 
   onImageClick(index) {
     this.setState({currentSelectedIndex: index});
+  }
+
+  onMainImageClick(e) {
+    e.preventDefault();
+    this.setState({ isPopupOpen: true });
+  }
+
+  onClickClosePopup(e) {
+    e.preventDefault();
+    this.setState({ isPopupOpen: false });
   }
 
   render() {
@@ -54,7 +68,8 @@ class ImageGallery extends React.Component {
           {renderDownButton}
         </div>
         <div class='mainImage-container'>
-          <img class='mainImage' src={stylePhotos[this.state.currentSelectedIndex].url}></img>
+          <img class='mainImage' src={stylePhotos[this.state.currentSelectedIndex].url} onClick={this.onMainImageClick.bind(this)}></img>
+          <MainImagePopup openPopup={this.state.isPopupOpen} closePopup={this.onClickClosePopup.bind(this)}  stylePhotos={this.props.selectedStyle.photos} currentIndex={this.state.currentShowedFirstIndex}/>
         </div>
       </div>
     );

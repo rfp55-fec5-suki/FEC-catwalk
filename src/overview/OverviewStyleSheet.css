@@ -1,9 +1,11 @@
 .overview {
   width: 100%;
-  height: 100%;
+  height: 60%;
   display: flex;
   flex-direction: column;
   padding-top: 80px;
+  padding-left: 3%;
+  padding-right: 3%;
 }
 
 .overviewTop {
@@ -14,6 +16,7 @@
 .rightCol {
   float: right;
   width: 70%;
+  padding-left: 5%;
 }
 
 .addToCart {
@@ -73,11 +76,10 @@
   display: flex;
   flex-direction: column;
   float: left;
-  padding-right: 20px;
+  padding-right:5px;
   overflow: auto;
   white-space: nowrap;
 }
-
 
 .imageContainer .selectionImgColumn .selectionImg {
   padding-bottom: 5%;
@@ -96,7 +98,6 @@
 
 .mainImage img{
   position: absolute; /* Take your picture out of the flow */
-
   width: 100px; /* This if for the object-fit */
   height: auto; /* This if for the object-fit */
   object-fit: cover; /* Equivalent of the background-size: cover; of a background-image */
@@ -131,7 +132,6 @@
   vertical-align: middle;
 }
 
-
 .arrowDown {
   border: solid black;
   border-width: 0 3px 3px 0;
@@ -155,8 +155,8 @@
   flex-wrap: wrap;
 }
 .style-container {
-  width: 20%;
-  padding: 2.5%;
+  width: 12%;
+  padding: 2%;
 }
 
 .style {
@@ -173,7 +173,7 @@
 
 .style-name {
   text-align: center;
-  padding-top: 10%;
+  padding-top: 5%;
   font-size: 10;
 }
 .style img{
