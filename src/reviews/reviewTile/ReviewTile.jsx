@@ -1,6 +1,5 @@
 import React from 'react';
 import StarRating from './../../sharedComponents/StarRating.jsx';
-// import checkmark from './Checkmark.svg';
 import Modal from '../Modal.jsx';
 import './reviewTile.css';
 
@@ -88,9 +87,6 @@ class ReviewTile extends React.Component {
             this.setState({helpfulCount: this.state.helpfulCount + 1})
             this.props.markHelpful(this.props.review.review_id)
           }}>Helpful? Yes({this.state.helpfulCount}) </span>}
-          {/* <span className='helpful-button' onClick={() => { */}
-          {/*    this.props.markHelpful(this.props.review.review_id)
-           }}>Helpful? Yes({this.props.review.helpfulness}) </span> */}
           | <span className='report-button'
             onClick={() => { this.props.report(this.props.review.review_id) }}>report</span>
         </div>

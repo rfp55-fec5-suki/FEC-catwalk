@@ -200,6 +200,12 @@ class RatingsReviews extends React.Component {
     })
   }
   reportReview(review_id) {
+    reviews = reviews.filter((review) => {
+      return review.review_id !== review_id;
+    })
+    this.setState({reviews: this.state.reviews.filter((review) => {
+      return review.review_id !== review_id;
+    })})
     axios({
       method: 'put',
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${review_id}/report`,
