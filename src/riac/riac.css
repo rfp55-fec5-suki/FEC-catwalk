@@ -8,9 +8,14 @@
 
 
 .riac-carousel {
+  margin-top: 17vh;
   display: grid;
   grid-template-columns: 3% 2% 90% 2% 3%;
   grid-template-rows: 10% 40% 10% 40%;
+}
+
+#outfit {
+  margin-top: 2vh;
 }
 
 .riac-productcard-header {

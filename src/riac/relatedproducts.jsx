@@ -136,7 +136,7 @@ class RelatedProducts extends React.Component {
         </div>
 
 
-        <div className='riac-carousel'>
+        <div className='riac-carousel' id='outfit'>
 
           <div className='riac-productcard-header'>
             YOUR OUTFIT
