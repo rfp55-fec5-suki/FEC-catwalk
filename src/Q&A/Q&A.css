@@ -6,6 +6,14 @@
   flex-direction: column;
 }
 
+.searchBar{
+  width:60px;
+  background:#F2F1F9;
+  border:none;
+  padding:0.5rem;
+  margin: 15px
+}
+
 .QA {
   margin-top: 50px;
 }

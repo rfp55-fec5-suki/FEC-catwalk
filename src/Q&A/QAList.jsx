@@ -136,8 +136,9 @@ class QAList extends React.Component {
       return(
         <div className = 'QA'>
           {/* <Search questions = {this.state.questions}/> */}
-          <div>
+          <div >
             <input
+              className = 'searchBar'
               type = 'text'
               placeholder="Have a question? Search for answers…"
               onChange = {this.handleFilter}
