@@ -9,7 +9,9 @@ class ReviewTile extends React.Component {
     super(props);
     this.state = {
       fullImgUrl: '',
-      showFullImg: false
+      showFullImg: false,
+      helped: false,
+      helpfulCount: props.review.helpfulness
     }
     this.monthNames = ["January", "February", "March", "April", "May", "June",
       "July", "August", "September", "October", "November", "December"];
@@ -33,6 +35,20 @@ class ReviewTile extends React.Component {
   }
   hideImgModal() {
     this.setState({ showFullImg: false });
+  }
+  componentDidMount() {
+    if(this.props.helped) {
+      if(this.props.helped.includes(`${this.props.review.review_id}`)) {
+        this.setState({helped: true});
+      }
+    }
+  }
+  componentDidUpdate(oldProps) {
+    if(oldProps.helped !== this.props.helped) {
+      if(this.props.helped.includes(this.props.review.review_id)) {
+        this.setState({helped: true});
+      }
+    }
   }
   render() {
     return (
@@ -66,9 +82,16 @@ class ReviewTile extends React.Component {
           {this.props.review.response}
         </div> : null}
         <div className='helpful' data-testid='reviewTileHelpful'>
+          {this.state.helped ? <React.Fragment><i class="fas fa-check"></i>
+          <span className='helped-button'>Helpful? Yes({this.state.helpfulCount}) </span></React.Fragment> :
           <span className='helpful-button' onClick={() => {
+            this.setState({helpfulCount: this.state.helpfulCount + 1})
             this.props.markHelpful(this.props.review.review_id)
-          }}>Helpful? Yes({this.props.review.helpfulness}) </span> | <span className='report-button'
+          }}>Helpful? Yes({this.state.helpfulCount}) </span>}
+          {/* <span className='helpful-button' onClick={() => { */}
+          {/*    this.props.markHelpful(this.props.review.review_id)
+           }}>Helpful? Yes({this.props.review.helpfulness}) </span> */}
+          | <span className='report-button'
             onClick={() => { this.props.report(this.props.review.review_id) }}>report</span>
         </div>
 

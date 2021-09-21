@@ -31,7 +31,7 @@ const ReviewList = (props) => {
       </div>
       <div className='rr-tile-list'>
         {reviews.map((review) => <ReviewTile review={review} key={review.review_id}
-          markHelpful={props.markHelpful} report={props.report} />)}
+          markHelpful={props.markHelpful} report={props.report} helped={props.helped}/>)}
       </div>
       <div className='rr-button-bar'>
         <button className='rr-button add-review' onClick={props.addReview}>Add Review +</button>

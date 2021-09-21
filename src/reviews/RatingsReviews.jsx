@@ -21,8 +21,11 @@ class RatingsReviews extends React.Component {
       meta: {},
       filterByRating: [],
       showAddReview: false,
-      filterBySearch: ''
+      filterBySearch: '',
+      helpedList: localStorage.getItem('helpful') ?
+      localStorage.getItem('helpful').split(',') : null
     }
+    console.log(this.state.helpedList);
     this.getAllReviews = this.getAllReviews.bind(this);
     this.moreReviews = this.moreReviews.bind(this);
     this.sortChange = this.sortChange.bind(this);
@@ -176,6 +179,16 @@ class RatingsReviews extends React.Component {
     })
   }
   markHelpful(review_id) {
+    var helped = localStorage.getItem('helpful');
+    if (helped) {
+      helped = helped.split(',');
+      helped.push(review_id);
+      this.setState({helpedList: helped});
+      helped = helped.join(',');
+      localStorage.setItem('helpful', helped);
+    } else {
+      localStorage.setItem('helpful', review_id);
+    }
     axios({
       method: 'put',
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${review_id}/helpful`,
@@ -222,7 +235,7 @@ class RatingsReviews extends React.Component {
         <ReviewList reviews={this.state.reviews} more={this.moreReviews} sort={this.sortChange}
         renderButton={this.state.hasMoreReviews} meta={this.state.meta} filter={this.state.filterByRating}
         setFilter={this.setRatingFilter} addReview={this.showAddReview} markHelpful={this.markHelpful}
-        report={this.reportReview} keywordChange={this.keywordChange}/>
+        report={this.reportReview} keywordChange={this.keywordChange} helped={this.state.helpedList}/>
 
         <Modal show={this.state.showAddReview} handleClose={this.hideAddReview}
         children={<AddReview chars={this.state.meta.characteristics} close={this.hideAddReview}
