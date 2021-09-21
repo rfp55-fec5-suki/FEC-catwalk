@@ -76,15 +76,16 @@ class App extends React.Component {
   render() {
     return (
       <div className='App'>
+
         <h1> Best E-Commerce App EVER! </h1>
 
         <Overview product={this.state.product} styles={this.state.styles} />
 
-        <RelatedProducts product={this.state.product} related={this.state.related} onClick={this.handleClick}/>
+        <RelatedProducts product={this.state.product} related={this.state.related} onClick={this.handleClick} />
 
-        <QAList product={this.state.product}/>
+        <QAList product={this.state.product} />
 
-        <Reviews product_id={this.state.product.id}/>
+        <Reviews product_id={this.state.product.id} />
 
       </div>
 

@@ -56,7 +56,7 @@ class ReviewTile extends React.Component {
           </div>
           <div>
             {this.props.review.photos.length ? this.props.review.photos.map((photo) => (<img src={`${photo.url}`}
-              className='tile-thumb' key={photo.id} onClick={() => this.showImgModal(photo.url)} />)) : null}
+              className='tile-thumb' key={photo.id} onClick={() => this.showImgModal(photo.url)} alt='review thumbnail'/>)) : null}
           </div>
         </div>
         {this.props.review.recommend ? <div className='recommend' data-testid='reviewTileRecommend'>
@@ -72,7 +72,7 @@ class ReviewTile extends React.Component {
             onClick={() => { this.props.report(this.props.review.review_id) }}>report</span>
         </div>
 
-        <Modal show={this.state.showFullImg} children={<img src={this.state.fullImgUrl} />} handleClose={this.hideImgModal} />
+        <Modal show={this.state.showFullImg} children={<img src={this.state.fullImgUrl} alt='review image full size'/>} handleClose={this.hideImgModal} />
       </div>
     )
   }
