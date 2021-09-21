@@ -4,7 +4,10 @@
   grid-template-rows: auto 250px auto auto auto;
   margin-top: 20px;
   background-color: rgb(129, 161, 128);
-
+  padding-bottom: 20px;
+  margin-left: 3%;
+  margin-right: 3%;
+  border-radius: 10px;
 }
 .rr-title {
   grid-column: 2 / 3;
