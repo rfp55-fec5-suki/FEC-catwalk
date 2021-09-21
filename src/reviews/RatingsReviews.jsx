@@ -25,7 +25,7 @@ class RatingsReviews extends React.Component {
       helpedList: localStorage.getItem('helpful') ?
       localStorage.getItem('helpful').split(',') : null
     }
-    console.log(this.state.helpedList);
+    // console.log(this.state.helpedList);
     this.getAllReviews = this.getAllReviews.bind(this);
     this.moreReviews = this.moreReviews.bind(this);
     this.sortChange = this.sortChange.bind(this);

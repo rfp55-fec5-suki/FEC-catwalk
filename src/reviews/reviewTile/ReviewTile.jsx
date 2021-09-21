@@ -36,6 +36,7 @@ class ReviewTile extends React.Component {
     this.setState({ showFullImg: false });
   }
   componentDidMount() {
+    console.log(this.props.helped)
     if(this.props.helped) {
       if(this.props.helped.includes(`${this.props.review.review_id}`)) {
         this.setState({helped: true});

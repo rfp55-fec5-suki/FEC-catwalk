@@ -82,8 +82,11 @@
   height: 15px;
   width: auto;
 }
-.fa-check {
-  color: rgba(45,65,58,255);
+.helpful .fa-check:before  {
+  color: #d0ab29;
+}
+.recommend .fa-check:before {
+  color: #d0ab29;
 }
 .tile-thumb {
   max-height: 70px;
