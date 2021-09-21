@@ -4,7 +4,7 @@ import axios from 'axios';
 import QAAnswer from './QAAnswer.jsx';
 import EachQuestion from './Q&AEachQuestion.jsx';
 import ModalQ from './ModalQ.jsx';
-import Search from './Search.jsx';
+// import Search from './Search.jsx';
 
 class QAList extends React.Component {
   constructor(props) {
@@ -19,6 +19,7 @@ class QAList extends React.Component {
     this.collapseQClick = this.collapseQClick.bind(this);
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
+    this.handleFilter = this.handleFilter.bind(this);
     this.sort = this.sort.bind(this);
   }
 
@@ -88,6 +89,21 @@ class QAList extends React.Component {
     return arr;
   }
 
+  handleFilter(e) {
+    e.preventDefault();
+    const matched = [];
+    if (e.target.value.length >= 3) {
+      for(var i = 0; i < this.state.questions.length; i++) {
+        if(this.state.questions[i].question_body.toLowerCase().includes(e.target.value)) {
+          matched.push(this.state.questions[i]);
+        }
+      }
+      this.setState({
+        questions: matched
+      })
+    }
+  }
+
 
 
   render() {
@@ -113,7 +129,14 @@ class QAList extends React.Component {
       this.sort('question_helpfulness', this.state.questions);
       return(
         <div className = 'QA'>
-          <Search questions = {this.state.questions}/>
+          {/* <Search questions = {this.state.questions}/> */}
+          <div>
+            <input
+              type = 'text'
+              placeholder="Have a question? Search for answers…"
+              onChange = {this.handleFilter}
+            ></input>
+          </div>
           <div className = 'questionList'>
             {this.state.questions.slice(0,this.state.showQ).map(question =>
             <EachQuestion key = {question.question_id} question = {question} postQuestion = {this.postQuestion} getQuestions = {this.getQuestions}product = {this.props.product}/>
