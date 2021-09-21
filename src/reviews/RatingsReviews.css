@@ -36,7 +36,7 @@
 .modal-main {
   position:fixed;
   background: rgb(129, 161, 128);
-  width: 80%;
+  max-width: 80%;
   max-height: 80%;
   overflow: auto;
   height: auto;

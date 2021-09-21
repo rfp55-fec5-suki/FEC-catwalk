@@ -72,7 +72,7 @@ class ReviewTile extends React.Component {
             onClick={() => { this.props.report(this.props.review.review_id) }}>report</span>
         </div>
 
-        <Modal show={this.state.showFullImg} children={<div className='modal-image'><img src={this.state.fullImgUrl} /></div>} handleClose={this.hideImgModal} />
+        <Modal show={this.state.showFullImg} children={<img src={this.state.fullImgUrl} />} handleClose={this.hideImgModal} />
       </div>
     )
   }
