@@ -21,7 +21,7 @@ const ReviewList = (props) => {
           <option value='newest'>Newest</option>
           <option value='helpful'>Helpful</option>
         </select>
-        {props.filter.length > 0 ? (<span> and {props.filter.map((rating) => {
+        {props.filter.length > 0 ? (<span><br/> and {props.filter.map((rating) => {
           return (<span onClick={() => props.setFilter(rating)} className='filter-display'>
             {rating} Stars<img src={circleX} className='x' /></span>)
         })}</span>) : null}
