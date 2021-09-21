@@ -3,11 +3,13 @@ import { render, screen } from '@testing-library/react';
 import RelatedProductCard from './relatedproductcard.jsx';
 
 
-// describe('RelatedProductCard', () => {
-//   test('render Related Product Card component', () => {
-//     render(<RelatedProductCard />);
-//   });
-// });
+describe('RelatedProductCard', () => {
+  test('renders Related Product Card component', () => {
+    render(<RelatedProductCard />);
+
+    screen.debug();
+  });
+});
 
 describe.skip('true is truthy and false is falsy', () => {
   test('true is truthy', () => {

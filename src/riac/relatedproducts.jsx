@@ -41,6 +41,12 @@ class RelatedProducts extends React.Component {
       maxScrollLeft: document.getElementById('riac-carousel').scrollWidth - document.getElementById('riac-carousel').clientWidth,
       outfitScroll: document.getElementById('outfit-carousel').scrollLeft,
       outfitMaxScroll: document.getElementById('outfit-carousel').scrollWidth - document.getElementById('outfit-carousel').clientWidth
+    }, () => {
+      // console.log('callback')
+      // this.setState({
+      //   maxScrollLeft: document.getElementById('riac-carousel').scrollWidth - document.getElementById('riac-carousel').clientWidth,
+      //   outfitMaxScroll: document.getElementById('outfit-carousel').scrollWidth - document.getElementById('outfit-carousel').clientWidth
+      // })
     })
   }
 
@@ -121,8 +127,8 @@ class RelatedProducts extends React.Component {
                 return <RelatedProductCard product={this.props.product} productid={productid} onClick={this.props.onClick} />
               })}
 
-              {/* {console.log('in return scrolleft', this.state.scrollLeft)}
-              {console.log('in return max', this.state.maxScrollLeft)} */}
+              {/* {console.log('in return scrolleft', this.state.scrollLeft)} */}
+              {console.log('in return max', this.state.maxScrollLeft)}
 
 
             </div>
