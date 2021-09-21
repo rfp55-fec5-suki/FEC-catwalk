@@ -1,6 +1,5 @@
 import React from 'react';
 import StarRating from './../../sharedComponents/StarRating.jsx';
-// import checkmark from './Checkmark.svg';
 import Modal from '../Modal.jsx';
 import './reviewTile.css';
 
@@ -9,7 +8,9 @@ class ReviewTile extends React.Component {
     super(props);
     this.state = {
       fullImgUrl: '',
-      showFullImg: false
+      showFullImg: false,
+      helped: false,
+      helpfulCount: props.review.helpfulness
     }
     this.monthNames = ["January", "February", "March", "April", "May", "June",
       "July", "August", "September", "October", "November", "December"];
@@ -34,6 +35,20 @@ class ReviewTile extends React.Component {
   hideImgModal() {
     this.setState({ showFullImg: false });
   }
+  componentDidMount() {
+    if(this.props.helped) {
+      if(this.props.helped.includes(`${this.props.review.review_id}`)) {
+        this.setState({helped: true});
+      }
+    }
+  }
+  componentDidUpdate(oldProps) {
+    if(oldProps.helped !== this.props.helped) {
+      if(this.props.helped.includes(this.props.review.review_id)) {
+        this.setState({helped: true});
+      }
+    }
+  }
   render() {
     return (
       <div className='review-tile' data-testid='reviewTile'>
@@ -56,7 +71,7 @@ class ReviewTile extends React.Component {
           </div>
           <div>
             {this.props.review.photos.length ? this.props.review.photos.map((photo) => (<img src={`${photo.url}`}
-              className='tile-thumb' key={photo.id} onClick={() => this.showImgModal(photo.url)} />)) : null}
+              className='tile-thumb' key={photo.id} onClick={() => this.showImgModal(photo.url)} alt='review thumbnail'/>)) : null}
           </div>
         </div>
         {this.props.review.recommend ? <div className='recommend' data-testid='reviewTileRecommend'>
@@ -66,13 +81,17 @@ class ReviewTile extends React.Component {
           {this.props.review.response}
         </div> : null}
         <div className='helpful' data-testid='reviewTileHelpful'>
+          {this.state.helped ? <React.Fragment><i class="fas fa-check"></i>
+          <span className='helped-button'>Helpful? Yes({this.state.helpfulCount}) </span></React.Fragment> :
           <span className='helpful-button' onClick={() => {
+            this.setState({helpfulCount: this.state.helpfulCount + 1})
             this.props.markHelpful(this.props.review.review_id)
-          }}>Helpful? Yes({this.props.review.helpfulness}) </span> | <span className='report-button'
+          }}>Helpful? Yes({this.state.helpfulCount}) </span>}
+          | <span className='report-button'
             onClick={() => { this.props.report(this.props.review.review_id) }}>report</span>
         </div>
 
-        <Modal show={this.state.showFullImg} children={<img src={this.state.fullImgUrl} />} handleClose={this.hideImgModal} />
+        <Modal show={this.state.showFullImg} children={<img src={this.state.fullImgUrl} alt='review image full size'/>} handleClose={this.hideImgModal} />
       </div>
     )
   }
