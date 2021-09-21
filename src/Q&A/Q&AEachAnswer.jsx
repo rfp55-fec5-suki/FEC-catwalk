@@ -8,7 +8,8 @@ class EachAnswer extends React.Component {
     super(props);
     this.state = {
       helpness: this.props.answer.helpfulness,
-      reported: false
+      reported: false,
+      voted: false
     }
 
     this.addHelp = this.addHelp.bind(this);
@@ -58,12 +59,17 @@ class EachAnswer extends React.Component {
 
   handleClickYes() {
     const answer_id = this.props.answer.id;
-    this.setState(prevState => {
-      return {
-        helpfulness: prevState.helpfulness + 1
-      }
-    })
-    this.addHelp(answer_id);
+    if (this.state.voted === true) {
+      return;
+    } else {
+      this.setState(prevState => {
+        return {
+          helpfulness: prevState.helpfulness + 1,
+          voted: true
+        }
+      })
+      this.addHelp(answer_id);
+    }
   }
 
   handleClickReport() {
@@ -96,7 +102,7 @@ class EachAnswer extends React.Component {
         <div>
           helpful?
           <a className = 'link' onClick={this.handleClickYes}>
-            <span>Yes({this.props.answer.helpfulness})</span>
+            <span>Yes({this.props.answer.helpfulness}) | </span>
           </a>
 
           <a className = 'link'>

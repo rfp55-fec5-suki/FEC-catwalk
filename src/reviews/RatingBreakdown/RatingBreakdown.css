@@ -34,7 +34,7 @@
   cursor: pointer;
 }
 .clear-filters:hover {
-  background-color: rgb(255, 255, 80);
+  background-color: #d0ab29;
 }
 .star-filter {
   display: grid;
@@ -46,7 +46,7 @@
   cursor: pointer;
 }
 .star-filter:hover {
-  background-color: rgb(255, 255, 80);
+  background-color: #d0ab29;
   border: 1px solid black;
 }
 .breakdown-text {

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import token from '../config.js';
 import axios from 'axios';
 import './App.css';
+import eyes from './sharedComponents/suki-eyes.jpg'
 
 import initialProduct from './initialProduct.js';
 import initialProductStyles from './initialProductStyles.js';
@@ -77,7 +78,7 @@ class App extends React.Component {
     return (
       <div className='App'>
 
-        <h1> Best E-Commerce App EVER! </h1>
+        <h1 className='header'><span className='main-title'>Suki Shopping Site</span><img src={eyes} className='eyes'/></h1>
 
         <Overview product={this.state.product} styles={this.state.styles} />
 

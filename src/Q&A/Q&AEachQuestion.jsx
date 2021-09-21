@@ -10,7 +10,8 @@ class EachQuestion extends React.Component {
     this.state = {
       show: false,
       helpfulness: this.props.question.question_helpfulness,
-      reported: this.props.question.reported
+      reported: this.props.question.reported,
+      voted: false
     }
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
@@ -74,12 +75,17 @@ class EachQuestion extends React.Component {
 
   handleClickYes() {
     const question_id = this.props.question.question_id;
-    this.setState(prevState => {
-      return {
-        helpfulness: prevState.helpfulness + 1
-      }
-    })
-    this.addHelp(question_id);
+    if(this.state.voted === true) {
+      return
+    } else {
+      this.setState(prevState => {
+        return {
+          helpfulness: prevState.helpfulness + 1,
+          voted: true
+        }
+      })
+      this.addHelp(question_id);
+    }
   }
 
   handleClickReport() {
@@ -99,6 +105,21 @@ class EachQuestion extends React.Component {
           {question.question_body}
           <br />
           post on: {question.question_date.slice(0,10)}
+
+          <div className = 'helpful'>
+            Helpful?
+            <a className = 'link' onClick={this.handleClickYes}>
+              <span>
+                Yes({question.question_helpfulness}) |
+              </span>
+            </a>
+            <a className = 'link' onClick={this.handleClickReport}>
+              <span>
+                Report
+              </span>
+            </a>
+          </div>
+
           <div>
             <ModalA
             show={this.state.show}
@@ -112,19 +133,6 @@ class EachQuestion extends React.Component {
             <button className='button' type = 'submit' onClick={this.showModal}>
               Add an Answer
             </button>
-          </div>
-          <div className = 'helpful'>
-            Helpful?
-            <a className = 'link' onClick={this.handleClickYes}>
-              <span>
-                Yes({question.question_helpfulness})
-              </span>
-            </a>
-            <a className = 'link' onClick={this.handleClickReport}>
-              <span>
-                Report
-              </span>
-            </a>
           </div>
 
           <QAAnswer question = {question} getQuestions={this.props.getQuestions}/>

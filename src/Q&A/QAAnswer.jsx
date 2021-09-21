@@ -44,32 +44,44 @@ class QAAnswer extends React.Component {
 
 
   render() {
-    // move seller to first
+    // if we don't have answer show some other things
     const first = 'Seller';
     const answers = Object.values(this.props.question.answers);
-    this.sort('helpfulness', answers);
-    for (var i = 0; i < answers.length; i++) {
-      if (answers[i].answerer_name === 'Seller') {
-        answers.unshift(answers[i]);
-        answers.splice(i+1, 1);
-      }
-    }
-
-    return (
-      <div>
+    if(answers.length === 0) {
+      return (
+        <div>
           <div className='listTitle'>A:</div>
           <div className='answerList'>
-            {answers.slice(0,this.state.showA).map(answer =>
-              <EachAnswer key = {answer.id} answer = {answer} getQuestions = {this.props.getQuestions}/>
-              )}
+            We don't have answer for this question, submit the first answer!
           </div>
-          {answers.length > 2 && <button className='button' type='submit' onClick={this.loadMoreAClick}>See more answers</button>}
+        </div>
+      )
+    } else {
+      this.sort('helpfulness', answers);
+      for (var i = 0; i < answers.length; i++) {
+        if (answers[i].answerer_name === 'Seller') {
+          answers.unshift(answers[i]);
+          answers.splice(i+1, 1);
+        }
+      }
 
-          <button className='button' type='submit' onClick={this.collapseAClick}>
-            Collapse answers
-          </button>
-      </div>
-    )
+      return (
+        <div>
+            <div className='listTitle'>A:</div>
+            <div className='answerList'>
+              {answers.slice(0,this.state.showA).map(answer =>
+                <EachAnswer key = {answer.id} answer = {answer} getQuestions = {this.props.getQuestions}/>
+                )}
+            </div>
+            {answers.length > 2 && <button className='button' type='submit' onClick={this.loadMoreAClick}>See more answers</button>}
+
+            <button className='button' type='submit' onClick={this.collapseAClick}>
+              Collapse answers
+            </button>
+        </div>
+      )
+    }
+
   }
 }
 

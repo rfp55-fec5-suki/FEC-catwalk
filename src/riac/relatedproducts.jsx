@@ -41,12 +41,6 @@ class RelatedProducts extends React.Component {
       maxScrollLeft: document.getElementById('riac-carousel').scrollWidth - document.getElementById('riac-carousel').clientWidth,
       outfitScroll: document.getElementById('outfit-carousel').scrollLeft,
       outfitMaxScroll: document.getElementById('outfit-carousel').scrollWidth - document.getElementById('outfit-carousel').clientWidth
-    }, () => {
-      // console.log('callback')
-      // this.setState({
-      //   maxScrollLeft: document.getElementById('riac-carousel').scrollWidth - document.getElementById('riac-carousel').clientWidth,
-      //   outfitMaxScroll: document.getElementById('outfit-carousel').scrollWidth - document.getElementById('outfit-carousel').clientWidth
-      // })
     })
   }
 
@@ -88,15 +82,17 @@ class RelatedProducts extends React.Component {
     })
   }
 
+
+
   componentDidMount() {
     this.fetchStorage();
-    this.updateButtons();
+    setTimeout(this.updateButtons, 500);
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.product.id !== this.props.product.id) {
       this.fetchStorage();
-      this.updateButtons();
+      setTimeout(this.updateButtons, 500);
     }
   }
 
@@ -127,16 +123,12 @@ class RelatedProducts extends React.Component {
                 return <RelatedProductCard product={this.props.product} productid={productid} onClick={this.props.onClick} />
               })}
 
-              {/* {console.log('in return scrolleft', this.state.scrollLeft)} */}
-              {console.log('in return max', this.state.maxScrollLeft)}
-
-
             </div>
           </div>
         </div>
 
 
-        <div className='riac-carousel'>
+        <div className='riac-carousel' id='outfit'>
 
           <div className='riac-productcard-header'>
             YOUR OUTFIT
@@ -155,9 +147,6 @@ class RelatedProducts extends React.Component {
               {this.state.storage ? this.state.storage.map((productid) => {
                 return <OutfitCard productid={productid} onClick={this.props.onClick} removeOutfit={this.removeOutfit} />
               }) : null}
-
-              {/* {console.log('in return outfitscroll', this.state.outfitScroll)}
-              {console.log('in return outfitmax', this.state.outfitMaxScroll)} */}
 
             </div>
           </div>
