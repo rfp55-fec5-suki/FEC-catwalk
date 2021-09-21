@@ -24,7 +24,7 @@ class OutfitCard extends React.Component {
   fetchProduct() {
     axios({
       method: 'get',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${this.state.id}`,
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${this.props.productid}`,
       headers: {
         'Authorization': token.TOKEN
       }
@@ -39,7 +39,7 @@ class OutfitCard extends React.Component {
       });
     axios({
       method: 'get',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${this.state.id}/styles`,
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${this.props.productid}/styles`,
       headers: {
         'Authorization': token.TOKEN
       }
@@ -55,7 +55,7 @@ class OutfitCard extends React.Component {
       });
     axios({
       method: 'get',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta?product_id=${this.state.id}`,
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta?product_id=${this.props.productid}`,
       headers: {
         'Authorization': token.TOKEN
       }
@@ -81,7 +81,6 @@ class OutfitCard extends React.Component {
   }
 
   render() {
-    this.state.id = this.props.productid;
     return (
       <div>
 

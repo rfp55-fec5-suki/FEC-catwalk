@@ -59,6 +59,9 @@
   background-color: #E6E6FA;
   border:none;
   color: black;
+  margin-right: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .button:hover {
