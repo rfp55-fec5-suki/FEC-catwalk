@@ -23,7 +23,6 @@ class RatingsReviews extends React.Component {
       showAddReview: false,
       filterBySearch: ''
     }
-    // this.getReviewList = this.getReviewList.bind(this);
     this.getAllReviews = this.getAllReviews.bind(this);
     this.moreReviews = this.moreReviews.bind(this);
     this.sortChange = this.sortChange.bind(this);
