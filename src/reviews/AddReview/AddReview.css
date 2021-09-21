@@ -1,13 +1,13 @@
 .form-star {
   height: 30px;
   width: auto;
+  cursor: pointer;
 }
 .add-review-form {
   grid-row: 2 / 3;
   display: grid;
   grid-template-columns: 30px auto auto auto 30px;
   grid-template-rows: auto auto auto auto auto auto auto auto auto auto 30px;
-  margin-left: 20%;
 }
 .form-title {
   grid-column: 2 / 5;
@@ -51,6 +51,16 @@
   grid-row: 7 / 8 ;
   margin: 5px;
 }
+.form-photos button {
+  border: 1px solid black;
+  height: 25px;
+  width: 100px;
+  cursor: pointer;
+  background-color: white;
+}
+.form-photos button:hover {
+  background-color: #d0ab29;
+}
 .form-thumb {
   max-height: 100px;
   width: auto;
@@ -76,6 +86,15 @@
   grid-column: 2 / 3;
   grid-row: 10 / 11;
   margin: 5px;
+}
+.form-submit button {
+  border: 1px solid black;
+  height: 25;
+  width: 120;
+  background-color: white;
+}
+.form-submit button:hover {
+  background-color: #d0ab29;
 }
 .char-main {
   display: grid;
@@ -118,4 +137,15 @@
   grid-column: 1 / 2;
   justify-self: center;
   margin-bottom: 15px;
+}
+.image-modal-submit button{
+  border: 1px solid black;
+  height: 30px;
+  width: 100px;
+  background-color: white;
+  margin-top: 5px;
+  cursor: pointer;
+}
+.image-modal-submit button:hover {
+  background-color: #d0ab29;
 }
