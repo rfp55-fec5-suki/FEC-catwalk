@@ -10,7 +10,8 @@ class EachQuestion extends React.Component {
     this.state = {
       show: false,
       helpfulness: this.props.question.question_helpfulness,
-      reported: this.props.question.reported
+      reported: this.props.question.reported,
+      voted: false
     }
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
@@ -74,12 +75,17 @@ class EachQuestion extends React.Component {
 
   handleClickYes() {
     const question_id = this.props.question.question_id;
-    this.setState(prevState => {
-      return {
-        helpfulness: prevState.helpfulness + 1
-      }
-    })
-    this.addHelp(question_id);
+    if(this.state.voted === true) {
+      return
+    } else {
+      this.setState(prevState => {
+        return {
+          helpfulness: prevState.helpfulness + 1,
+          voted: true
+        }
+      })
+      this.addHelp(question_id);
+    }
   }
 
   handleClickReport() {
