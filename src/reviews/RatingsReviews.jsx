@@ -23,7 +23,6 @@ class RatingsReviews extends React.Component {
       showAddReview: false,
       filterBySearch: ''
     }
-    this.getReviewList = this.getReviewList.bind(this);
     this.getAllReviews = this.getAllReviews.bind(this);
     this.moreReviews = this.moreReviews.bind(this);
     this.sortChange = this.sortChange.bind(this);
@@ -41,6 +40,7 @@ class RatingsReviews extends React.Component {
   //Rating BreakDown handlers//
   /////////////////////////////
   setRatingFilter(rating) {
+    reviewPage = 1;
     if(this.state.filterByRating.includes(rating)) {
       var newfilter = this.state.filterByRating.filter((filterValue) => {
         return filterValue !== rating;
@@ -66,9 +66,7 @@ class RatingsReviews extends React.Component {
     sort = e.target.value;
     reviewPage = 1;
     if (this.state.filterByRating.length === 0) {
-      this.setState({reviews: []}, () => {
-        this.getReviewList();
-      });
+      this.setListToDefault();
     } else {
       this.getAllReviews();
     }
@@ -77,10 +75,10 @@ class RatingsReviews extends React.Component {
     this.state.hasMoreReviews = true;
     this.state.filterByRating = [];
     this.state.reviews = [];
-    this.getReviewList();
+    this.getAllReviews();
   }
   keywordSearch(search) {
-    var reg = new RegExp(search);
+    var reg = new RegExp(search, 'i');
     var filteredResults = reviews.filter((review) => {
       return reg.test(review.summary) || reg.test(review.body) || reg.test(review.response);
     });
@@ -134,7 +132,7 @@ class RatingsReviews extends React.Component {
         'Authorization': token.TOKEN
       }
     }).then((response) => {
-      this.state.hasMoreReviews = false;
+      this.state.hasMoreReviews = true;
       if (this.state.filterByRating.length) {
         var filteredResults = response.data.results.filter((review) => {
           return this.state.filterByRating.includes(review.rating)
@@ -143,7 +141,10 @@ class RatingsReviews extends React.Component {
         filteredResults = response.data.results;
       }
       reviews = filteredResults;
-      this.setState({reviews: filteredResults}, () => {
+      this.setState({reviews: filteredResults.slice(0, 2)}, () => {
+        if(this.state.reviews.length === reviews.length) {
+          this.setState({hasMoreReviews: false});
+        }
         if(callback) {
           callback();
         }
@@ -152,34 +153,13 @@ class RatingsReviews extends React.Component {
       console.log('error getting all reviews to then filter by rating', err);
     })
   }
-  getReviewList() {
-    axios({
-      method: 'get',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews?product_id=${this.props.product_id}&count=2&page=${reviewPage}&sort=${sort}`,
-      headers: {
-        'Authorization': token.TOKEN
-      }
-    }).then((response) => {
-      reviews = [...reviews, ...response.data.results];
-      this.setState({reviews: [...this.state.reviews, ...response.data.results]});
-      axios({
-        method: 'get',
-        url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews?product_id=${this.props.product_id}&count=2&page=${reviewPage + 1}`,
-        headers: {
-          'Authorization': token.TOKEN
-        }
-      }).then((response => {
-        if (response.data.results.length === 0) {
-          this.setState({ hasMoreReviews: false });
-        }
-      }))
-    }).catch((err) => {
-      console.log('error getting review list from api', err);
-    })
-  }
   moreReviews() {
     reviewPage++;
-    this.getReviewList();
+    this.setState({reviews: reviews.slice(0, 2 * reviewPage)}, () => {
+      if (this.state.reviews.length === reviews.length) {
+        this.setState({hasMoreReviews: false})
+      }
+    });
   }
   addReview(newReview) {
     newReview.product_id = this.props.product_id;
@@ -227,7 +207,7 @@ class RatingsReviews extends React.Component {
     }
   }
   componentDidMount() {
-    this.getReviewList();
+    this.getAllReviews();
     this.getMeta();
   }
   render() {
