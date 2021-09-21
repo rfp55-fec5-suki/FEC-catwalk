@@ -30,7 +30,6 @@ var name;
 var email;
 var notComplete = [];
 var imageUrl;
-// var images = [];
 const AddReview = (props) => {
   var charsArr = [];
   for (var key in props.chars) {
@@ -126,8 +125,6 @@ const AddReview = (props) => {
       notComplete.push('please enter valid email');
       setEmailColor('red')
     }
-    // console.log(result)
-    // console.log(notComplete);
     if (notComplete.length === 0) {
       props.postReview(result)
       props.close();
