@@ -189,7 +189,7 @@ const AddReview = (props) => {
       </div>
       <div className='form-photos'>
         Upload your photos<br />
-        {images.length ? [...images.map((image) => (<img src={image} className='form-thumb' />)), <br />] : null}
+        {images.length ? [...images.map((image) => (<img src={image} className='form-thumb' alt='uploaded thumbnail'/>)), <br />] : null}
         {images.length < 5 ? <React.Fragment><button onClick={renderModal}>Add Photos</button><br /></React.Fragment> : null}
       </div>
       <div className='form-name'>
@@ -245,11 +245,11 @@ const StarSelect = (props) => {
   }
   return (
     <div>
-      <img src={ratingArr[0]} onClick={() => selectRating(1)} className='form-star' />
-      <img src={ratingArr[1]} onClick={() => selectRating(2)} className='form-star' />
-      <img src={ratingArr[2]} onClick={() => selectRating(3)} className='form-star' />
-      <img src={ratingArr[3]} onClick={() => selectRating(4)} className='form-star' />
-      <img src={ratingArr[4]} onClick={() => selectRating(5)} className='form-star' />
+      <img src={ratingArr[0]} onClick={() => selectRating(1)} className='form-star' alt='select rating 1 star'/>
+      <img src={ratingArr[1]} onClick={() => selectRating(2)} className='form-star' alt='select rating 2 star'/>
+      <img src={ratingArr[2]} onClick={() => selectRating(3)} className='form-star' alt='select rating 3 star'/>
+      <img src={ratingArr[3]} onClick={() => selectRating(4)} className='form-star' alt='select rating 4 star'/>
+      <img src={ratingArr[4]} onClick={() => selectRating(5)} className='form-star' alt='select rating 5 star'/>
       <span>{ratingExpl}</span>
     </div>
   )

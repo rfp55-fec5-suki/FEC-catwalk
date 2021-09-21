@@ -23,7 +23,7 @@ const ReviewList = (props) => {
         </select>
         {props.filter.length > 0 ? (<span><br/> and {props.filter.map((rating) => {
           return (<span onClick={() => props.setFilter(rating)} className='filter-display'>
-            {rating} Stars<img src={circleX} className='x' /></span>)
+            {rating} Stars<img src={circleX} className='x' alt='circled x'/></span>)
         })}</span>) : null}
       </div>
       <div className='keyword-search'>
@@ -31,7 +31,7 @@ const ReviewList = (props) => {
       </div>
       <div className='rr-tile-list'>
         {reviews.map((review) => <ReviewTile review={review} key={review.review_id}
-          markHelpful={props.markHelpful} report={props.report} />)}
+          markHelpful={props.markHelpful} report={props.report} helped={props.helped}/>)}
       </div>
       <div className='rr-button-bar'>
         <button className='rr-button add-review' onClick={props.addReview}>Add Review +</button>
