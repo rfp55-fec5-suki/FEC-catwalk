@@ -83,9 +83,6 @@ class EachAnswer extends React.Component {
           {answer.body}
         </div>
         <div>
-          helpful count: {this.props.answer.helpfulness}
-        </div>
-        <div>
           {photos.map(photo => <img key = {answer.id} src = {`${photo}`}/>)}
           by
           <div>
@@ -98,9 +95,14 @@ class EachAnswer extends React.Component {
         </div>
         <div>
           helpful?
-          <button type = 'submit' onClick={this.handleClickYes}>Yes({this.props.answer.helpfulness})</button>
-          <div>{this.props.answer.helpfulness}</div>
-          <button type = 'submit' onClick={this.handleClickReport}>Report</button>
+          <a className = 'link' onClick={this.handleClickYes}>
+            <span>Yes({this.props.answer.helpfulness})</span>
+          </a>
+
+          <a className = 'link'>
+            <span onClick={this.handleClickReport}>Report</span>
+          </a>
+
         </div>
       </div>
     )
