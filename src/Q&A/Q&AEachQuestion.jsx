@@ -109,7 +109,7 @@ class EachQuestion extends React.Component {
             question={this.props.question}
             answer={this.state.answer}
             type = 'answer'/>
-            <button type = 'submit' onClick={this.showModal}>
+            <button className='button' type = 'submit' onClick={this.showModal}>
               Add an Answer
             </button>
           </div>

@@ -151,8 +151,8 @@ class QAList extends React.Component {
             )}
           </div>
           <div className = 'questionBtn'>
-            <button type='submit' onClick={this.collapseQClick}>Show less answered questions</button>
-            {this.state.questions.length > 2 && <button type = 'submit' onClick={this.loadMoreQClick}>More answered questions</button>}
+            <button className='button' type='submit' onClick={this.collapseQClick}>Show less answered questions</button>
+            {this.state.questions.length > 2 && <button className='button' type = 'submit' onClick={this.loadMoreQClick}>More answered questions</button>}
           </div>
           <div>
             <ModalQ
