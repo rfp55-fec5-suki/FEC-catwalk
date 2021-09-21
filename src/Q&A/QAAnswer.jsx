@@ -63,9 +63,9 @@ class QAAnswer extends React.Component {
               <EachAnswer key = {answer.id} answer = {answer} getQuestions = {this.props.getQuestions}/>
               )}
           </div>
-          {answers.length > 2 && <button type='submit' onClick={this.loadMoreAClick}>See more answers</button>}
+          {answers.length > 2 && <button className='button' type='submit' onClick={this.loadMoreAClick}>See more answers</button>}
 
-          <button type='submit' onClick={this.collapseAClick}>
+          <button className='button' type='submit' onClick={this.collapseAClick}>
             Collapse answers
           </button>
       </div>
