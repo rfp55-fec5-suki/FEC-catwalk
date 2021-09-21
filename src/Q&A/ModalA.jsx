@@ -165,13 +165,13 @@ class ModalA extends React.Component {
                     </input>
                   </label>
               </div>
-              <button onClick={handleClose}>
-                Close
-              </button>
               <button type = 'submit' onClick={handleClose}>
                 Submit
               </button>
             </form>
+            <button onClick={handleClose}>
+                Close
+            </button>
           </div>
 
         </section>

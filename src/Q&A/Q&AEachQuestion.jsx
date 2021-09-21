@@ -99,8 +99,6 @@ class EachQuestion extends React.Component {
           {question.question_body}
           <br />
           post on: {question.question_date.slice(0,10)}
-          <br />
-          helpness: {question.question_helpfulness}
           <div>
             <ModalA
             show={this.state.show}
@@ -111,14 +109,22 @@ class EachQuestion extends React.Component {
             question={this.props.question}
             answer={this.state.answer}
             type = 'answer'/>
-            <button type = 'submit' onClick={this.showModal}>
+            <button className='button' type = 'submit' onClick={this.showModal}>
               Add an Answer
             </button>
           </div>
-          <div>
+          <div className = 'helpful'>
             Helpful?
-            <button type = 'submit' onClick={this.handleClickYes}>Yes</button>
-            <button type = 'submit' onClick={this.handleClickReport}>Report</button>
+            <a className = 'link' onClick={this.handleClickYes}>
+              <span>
+                Yes({question.question_helpfulness})
+              </span>
+            </a>
+            <a className = 'link' onClick={this.handleClickReport}>
+              <span>
+                Report
+              </span>
+            </a>
           </div>
 
           <QAAnswer question = {question} getQuestions={this.props.getQuestions}/>

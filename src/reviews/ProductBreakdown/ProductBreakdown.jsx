@@ -5,7 +5,7 @@ import './ProductBreakdown.css';
 const CharBar = (props) => {
   return (
     <div className='char-bar'>
-      <img src={pointer} className='pointer' style={{ marginLeft: `${props.percent}%` }} />
+      <img src={pointer} className='pointer' alt='characteristic pointer' style={{ marginLeft: `${props.percent}%` }} />
       <div className='bar-segment left-bar' />
       <div className='bar-segment middle-bar' />
       <div className='bar-segment right-bar' />
