@@ -88,15 +88,17 @@ class RelatedProducts extends React.Component {
     })
   }
 
+
+
   componentDidMount() {
     this.fetchStorage();
-    this.updateButtons();
+    setTimeout(this.updateButtons, 1500);
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.product.id !== this.props.product.id) {
       this.fetchStorage();
-      this.updateButtons();
+      setTimeout(this.updateButtons, 1500);
     }
   }
 
@@ -128,7 +130,7 @@ class RelatedProducts extends React.Component {
               })}
 
               {/* {console.log('in return scrolleft', this.state.scrollLeft)} */}
-              {/* {console.log('in return max', this.state.maxScrollLeft)} */}
+              {console.log('in return max', this.state.maxScrollLeft)}
 
 
             </div>
