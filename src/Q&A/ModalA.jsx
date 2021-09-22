@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import token from '../../config.js';
 import './Q&A.css';
@@ -11,6 +12,7 @@ class ModalA extends React.Component {
       name: '',
       email: '',
       photos: [],
+      url: '',
       question: false,
       answer: true,
       // show: false
@@ -21,11 +23,29 @@ class ModalA extends React.Component {
     this.postAnswer = this.postAnswer.bind(this)
     this.submitErrForm = this.submitErrForm.bind(this)
     this.submitErrEmail = this.submitErrEmail.bind(this)
+    this.addUrl = this.addUrl.bind(this)
+    this.setUrl = this.setUrl.bind(this)
   }
 
   handleFormChange(e) {
     this.setState({
       [e.target.name]: e.target.value
+    })
+  }
+
+  addUrl(e) {
+    e.preventDefault();
+    this.setState(prevState => {
+      return {
+        photos: [...prevState.photos, this.state.url],
+        url: ''
+      }
+    })
+  }
+
+  setUrl(e) {
+    this.setState({
+      url: e.target.value
     })
   }
 
@@ -45,6 +65,7 @@ class ModalA extends React.Component {
         this.props.getQuestions();
       })
       .catch((error) => {
+        console.log(answer);
         throw error;
       })
   }
@@ -53,7 +74,7 @@ class ModalA extends React.Component {
     const { body, name, email, photos, answer } = this.state
     const { question, postQuestion, product_id } = this.props
     const question_id = this.props.question.question_id
-    const input = { question_id, body, name, email }
+    const input = { question_id, body, name, email, photos }
     // should work more on photos
 
     e.preventDefault()
@@ -81,6 +102,8 @@ class ModalA extends React.Component {
 
 
 
+
+
   render() {
     const question = this.state.question
     const product = this.props.product
@@ -92,7 +115,6 @@ class ModalA extends React.Component {
     const text = (question ? 'Question: ' : 'Answer: ')
     const titleText = (question ? 'Ask your Question: ' : 'Submit your Answer')
     const subtitleText = (question ? 'About the Product: ' : `${product.name}: ${eachQuestion.question_body}`)
-
     return (
       <div className={showHideClassName}>
         <section className='modal-main1'>
@@ -157,19 +179,23 @@ class ModalA extends React.Component {
                     Photos url:
                     <br />
                     <input
-                      type='url'
+                      type='text'
+                      name='photos'
                       onChange={(e) => {
-                        this.handleFormChange(e)
+                        this.setUrl(e)
                       }}
-                      placeholder = 'your answer img url'>
+                      placeholder = 'your answer img url example.com/photo.jpg'>
                     </input>
+                    <button className='button' onClick={this.addUrl}>
+                      Add Image
+                    </button>
                   </label>
               </div>
-              <button type = 'submit' onClick={handleClose}>
+              <button className='button' type = 'submit' onClick={handleClose}>
                 Submit
               </button>
             </form>
-            <button onClick={handleClose}>
+            <button className='button' onClick={handleClose}>
                 Close
             </button>
           </div>

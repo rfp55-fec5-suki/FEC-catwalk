@@ -153,11 +153,11 @@ class ModalQ extends React.Component {
 
               </div>
 
-              <button type = 'submit' onClick={handleClose}>
+              <button className='button' type = 'submit' onClick={handleClose}>
                 Submit
               </button>
             </form>
-            <button onClick={handleClose}>
+            <button className='button' onClick={handleClose}>
                 Close
             </button>
           </div>
