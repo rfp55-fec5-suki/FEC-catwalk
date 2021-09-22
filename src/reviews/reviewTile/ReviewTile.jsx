@@ -84,6 +84,7 @@ class ReviewTile extends React.Component {
           {this.state.helped ? <React.Fragment><i class="fas fa-check"></i>
           <span className='helped-button'>Helpful? Yes({this.state.helpfulCount}) </span></React.Fragment> :
           <span className='helpful-button' onClick={() => {
+            this.setState({helped: true})
             this.setState({helpfulCount: this.state.helpfulCount + 1})
             this.props.markHelpful(this.props.review.review_id)
           }}>Helpful? Yes({this.state.helpfulCount}) </span>}
