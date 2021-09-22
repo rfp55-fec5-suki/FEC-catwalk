@@ -85,9 +85,9 @@ class ImageGallery extends React.Component {
       return (
         <div style={POPUP_STYLES} class='main-img-popup'>
           <button class='btn-left' onClick={this.onClickToLeft.bind(this)} disabled={selected <= showedFirst}>&#8249;</button>
-          <img src={stylePhotos[selected].url } class='mainPopup' onClick={this.onMainImageClick.bind(this)}></img>
+          <img src={stylePhotos[selected].url } class='mainPopup'></img>
           <button class='btn-right' onClick={this.onClickToRight.bind(this)} disabled={selected >= Math.min(showedFirst + MAX_PHOTOS_TO_DISPLAY - 1, stylePhotos.length - 1)}>&#8250;</button>
-            <button onClick={this.onClickClosePopup.bind(this)} class='popup-close-button topright'>X</button>
+          <button onClick={this.onClickClosePopup.bind(this)} class='popup-close-button topright'>X</button>
         </div>
       )
     }
@@ -109,7 +109,7 @@ class ImageGallery extends React.Component {
           <div class='selectionImages'>
             {stylePhotos.map((photo, index) => {
               if (index >= currentShowedFirst && index < currentShowedFirst + MAX_PHOTOS_TO_DISPLAY) {
-                return (<img class='selectionImg' src={photo.thumbnail_url} onClick={this.onImageClick.bind(this, index)} />);
+                return (<img class='selectionImg' src={photo.thumbnail_url} onClick={this.onImageClick.bind(this, index)} style={index === currentSelected ? {border: 'solid'} : {border: 'none'} }/>);
               }
               return (<div/>);
               })}
@@ -118,7 +118,7 @@ class ImageGallery extends React.Component {
         </div>
         <div class='mainImage-container'>
           <button class='btn-left' onClick={this.onClickToLeft.bind(this)} disabled={currentSelected <= currentShowedFirst}>&#8249;</button>
-          <img class='mainImage' src={stylePhotos[this.state.currentSelectedIndex].url} onClick={this.onMainImageClick.bind(this)}></img>
+          <img class='mainImage' src={stylePhotos[this.state.currentSelectedIndex].url} onClick={this.onMainImageClick.bind(this)} ></img>
           <button class='btn-right' onClick={this.onClickToRight.bind(this)} disabled={currentSelected >= Math.min(currentShowedFirst + MAX_PHOTOS_TO_DISPLAY - 1, stylePhotos.length - 1)}>&#8250;</button>
           {this.getMainImagePopup()}
         </div>
