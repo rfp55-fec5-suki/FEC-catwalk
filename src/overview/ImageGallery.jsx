@@ -83,10 +83,10 @@ class ImageGallery extends React.Component {
       return null;
     } else {
       return (
-        <div style={POPUP_STYLES}>
-          <button class='toLeftBtn' onClick={this.onClickToLeft.bind(this)} disabled={selected <= showedFirst}>TO LEFT</button>
+        <div style={POPUP_STYLES} class='main-img-popup'>
+          <button class='btn-left' onClick={this.onClickToLeft.bind(this)} disabled={selected <= showedFirst}>&#8249;</button>
           <img src={stylePhotos[selected].url } class='mainPopup' onClick={this.onMainImageClick.bind(this)}></img>
-          <button id='toRightBtn' onClick={this.onClickToRight.bind(this)} disabled={selected >= Math.min(showedFirst + MAX_PHOTOS_TO_DISPLAY - 1, stylePhotos.length - 1)}>TO RIGHT</button>
+          <button class='btn-right' onClick={this.onClickToRight.bind(this)} disabled={selected >= Math.min(showedFirst + MAX_PHOTOS_TO_DISPLAY - 1, stylePhotos.length - 1)}>&#8250;</button>
             <button onClick={this.onClickClosePopup.bind(this)} class='popup-close-button topright'>X</button>
         </div>
       )
@@ -117,9 +117,9 @@ class ImageGallery extends React.Component {
           {renderDownButton}
         </div>
         <div class='mainImage-container'>
-          <button class='toLeftBtn' onClick={this.onClickToLeft.bind(this)} disabled={currentSelected <= currentShowedFirst}>TO LEFT</button>
+          <button class='btn-left' onClick={this.onClickToLeft.bind(this)} disabled={currentSelected <= currentShowedFirst}>&#8249;</button>
           <img class='mainImage' src={stylePhotos[this.state.currentSelectedIndex].url} onClick={this.onMainImageClick.bind(this)}></img>
-          <button id='toRightBtn' onClick={this.onClickToRight.bind(this)} disabled={currentSelected >= Math.min(currentShowedFirst + MAX_PHOTOS_TO_DISPLAY - 1, stylePhotos.length - 1)}>TO RIGHT</button>
+          <button class='btn-right' onClick={this.onClickToRight.bind(this)} disabled={currentSelected >= Math.min(currentShowedFirst + MAX_PHOTOS_TO_DISPLAY - 1, stylePhotos.length - 1)}>&#8250;</button>
           {this.getMainImagePopup()}
         </div>
       </div>

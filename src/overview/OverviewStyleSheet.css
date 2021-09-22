@@ -15,8 +15,7 @@
 
 .rightCol {
   float: right;
-  width: 70%;
-  padding-left: 5%;
+  width: 60%;
 }
 
 .addToCart {
@@ -30,21 +29,21 @@
 
 .addToCart #values #selectSize{
   width: 30%;
-  margin: 5% 5% 5% 0%;
+  margin: 1% 5% 1% 0%;
   padding: 0.5%;
   height: 35px;
 }
 
 .addToCart #values #selectQuantity{
   width: 30%;
-  margin: 5% 5% 5% 0%;
+  margin: 1% 5% 1% 0%;
   padding: 0.5%;
   height: 35px;
 }
 
 .addToCart #buyButton {
-  width: 65%;
-  padding: 3%;
+  width: 30%;
+  padding: 1%;
   font-size: 22px;
   font-weight: bolder;
 }
@@ -52,7 +51,7 @@
 
 .leftCol {
   float: right;
-  width: 50%;
+  width: 60%;
   display: flex;
 }
 
@@ -67,7 +66,6 @@
   float: left;
   width: 10%;
   height: 100%;
-  padding-right: 5px;
   overflow: auto;
   white-space: nowrap;
 }
@@ -76,7 +74,6 @@
   display: flex;
   flex-direction: column;
   float: left;
-  padding-right:5px;
   overflow: auto;
   white-space: nowrap;
 }
@@ -87,19 +84,55 @@
 }
 
 .imageContainer .mainImage-container{
+  position: relative;
   float: right;
   width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mainImage-container .btn-left {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  color: black;
+  font-size: 40px;
+  background-color:#F0F0F0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.mainImage-container .btn-right {
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  color: black;
+  font-size: 40px;
+  background-color: #F0F0F0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .imageContainer .mainImage-container .mainImage {
-  width: 100%;
-  height: auto;
+  width: inherit;
+  /*height: auto;*/
   cursor: zoom-in;
+  display:block;
+  margin: 1%;
+  padding: 0%, 3%;
 }
 
 
 .mainPopup {
   object-fit: cover;
+  display:block;
+  margin-left: auto;
+  margin-right: auto;
+  height: inherit;
+
 }
 
 .detailedInformation {
@@ -150,10 +183,12 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  padding-right: 50%;
+
 }
 .style-container {
-  width: 12%;
-  padding: 2%;
+  width: 18%;
+  padding-right: 5%;
 }
 
 .style {
@@ -211,3 +246,4 @@
   right: 0;
   top: 0
 }
+
