@@ -1,14 +1,18 @@
 import React from 'react';
 import _ from 'underscore';
 
+
+
 class StyleSelector extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {selectedStyle: null};
   }
+
 
   handleClick(style, e) {
     e.preventDefault();
+    this.setState({ selectedStyle: style.style_id });
     this.props.selectStyle(style);
   }
 
@@ -22,6 +26,9 @@ class StyleSelector extends React.Component {
           {_.map(styles, (style) => {
             return (
               <div class='style-container' key={style.style_id} onClick={this.handleClick.bind(this, style)}>
+                <div id='style-checkmark'  hidden={style.style_id !== this.state.selectedStyle}><i class="fafafa fas fa-check"></i></div>
+
+
                 <div class='style'><img src={style.photos[0].thumbnail_url}  /></div>
                 <div class='style-name'>{style.name}</div>
               </div>
