@@ -24,6 +24,7 @@ class ModalA extends React.Component {
     this.submitErrForm = this.submitErrForm.bind(this)
     this.submitErrEmail = this.submitErrEmail.bind(this)
     this.addUrl = this.addUrl.bind(this)
+    this.setUrl = this.setUrl.bind(this)
   }
 
   handleFormChange(e) {
@@ -36,8 +37,15 @@ class ModalA extends React.Component {
     e.preventDefault();
     this.setState(prevState => {
       return {
-        photos: [...prevState.photos, e.target.value]
+        photos: [...prevState.photos, this.state.url],
+        url: ''
       }
+    })
+  }
+
+  setUrl(e) {
+    this.setState({
+      url: e.target.value
     })
   }
 
@@ -175,10 +183,13 @@ class ModalA extends React.Component {
                       type='text'
                       name='photos'
                       onChange={(e) => {
-                        this.addUrl(e)
+                        this.setUrl(e)
                       }}
                       placeholder = 'your answer img url example.com/photo.jpg'>
                     </input>
+                    <button className='button' onClick={this.addUrl}>
+                      Add Image
+                    </button>
                   </label>
               </div>
               <button type = 'submit' onClick={handleClose}>
