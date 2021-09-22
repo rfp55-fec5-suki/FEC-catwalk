@@ -1,10 +1,6 @@
 node_modules
 config.js
-<<<<<<< HEAD
-dist/
-=======
 dist/bundle.js
 dist/images/
->>>>>>> dfef2680132e179fc6111c2c57de760dd707a46e
 coverage/
 package-lock.json
