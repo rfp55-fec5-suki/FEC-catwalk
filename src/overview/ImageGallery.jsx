@@ -1,9 +1,22 @@
 import React from 'react';
 import _ from 'underscore';
-import MainImagePopup from './MainImagePopup.jsx';
+
 
 const MAX_PHOTOS_TO_DISPLAY = 7;
 
+const POPUP_STYLES = {
+  position: 'fixed',
+  width: '90%',
+  height: '90%',
+  padding: '3%',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  backgroundColor: '#FFF',
+  padding: '50px',
+  objectFit: "cover",
+  zIndex: 1000
+}
 
 class ImageGallery extends React.Component {
   constructor(props) {
@@ -60,6 +73,26 @@ class ImageGallery extends React.Component {
     }
   }
 
+  getMainImagePopup() {
+    const openPopUp = this.state.isPopupOpen;
+    const stylePhotos = this.props.selectedStyle.photos;
+    const selected = this.state.currentSelectedIndex;
+    const showedFirst = this.state.currentShowedFirstIndex;
+    const photosLength = this.props.selectedStyle.photos.length
+    if (!openPopUp) {
+      return null;
+    } else {
+      return (
+        <div style={POPUP_STYLES}>
+          <button class='toLeftBtn' onClick={this.onClickToLeft.bind(this)} disabled={selected <= showedFirst}>TO LEFT</button>
+          <img src={stylePhotos[selected].url } class='mainPopup' onClick={this.onMainImageClick.bind(this)}></img>
+          <button id='toRightBtn' onClick={this.onClickToRight.bind(this)} disabled={selected >= Math.min(showedFirst + MAX_PHOTOS_TO_DISPLAY - 1, stylePhotos.length - 1)}>TO RIGHT</button>
+            <button onClick={this.onClickClosePopup.bind(this)} class='popup-close-button topright'>X</button>
+        </div>
+      )
+    }
+}
+
   render() {
     const stylePhotos = this.props.selectedStyle.photos;
     const currentShowedFirst = this.state.currentShowedFirstIndex;
@@ -76,9 +109,7 @@ class ImageGallery extends React.Component {
           <div class='selectionImages'>
             {stylePhotos.map((photo, index) => {
               if (index >= currentShowedFirst && index < currentShowedFirst + MAX_PHOTOS_TO_DISPLAY) {
-                return (<img class='selectionImg'
-                          src={photo.thumbnail_url}
-                          onClick={this.onImageClick.bind(this, index)} />);
+                return (<img class='selectionImg' src={photo.thumbnail_url} onClick={this.onImageClick.bind(this, index)} />);
               }
               return (<div/>);
               })}
@@ -86,10 +117,10 @@ class ImageGallery extends React.Component {
           {renderDownButton}
         </div>
         <div class='mainImage-container'>
-          <button id='mainLeft' onClick={this.onClickToLeft.bind(this)} disabled={currentSelected <= currentShowedFirst}>TO LEFT</button>
+          <button class='toLeftBtn' onClick={this.onClickToLeft.bind(this)} disabled={currentSelected <= currentShowedFirst}>TO LEFT</button>
           <img class='mainImage' src={stylePhotos[this.state.currentSelectedIndex].url} onClick={this.onMainImageClick.bind(this)}></img>
-          <button id='mainRight' onClick={this.onClickToRight.bind(this)} disabled={currentSelected >= Math.min(currentShowedFirst + MAX_PHOTOS_TO_DISPLAY - 1, stylePhotos.length - 1)}>TO RIGHT</button>
-          <MainImagePopup openPopup={this.state.isPopupOpen} closePopup={this.onClickClosePopup.bind(this)}  stylePhotos={this.props.selectedStyle.photos} currentIndex={this.state.currentSelectedIndex}/>
+          <button id='toRightBtn' onClick={this.onClickToRight.bind(this)} disabled={currentSelected >= Math.min(currentShowedFirst + MAX_PHOTOS_TO_DISPLAY - 1, stylePhotos.length - 1)}>TO RIGHT</button>
+          {this.getMainImagePopup()}
         </div>
       </div>
     );
