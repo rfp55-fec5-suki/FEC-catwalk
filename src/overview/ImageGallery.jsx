@@ -43,12 +43,30 @@ class ImageGallery extends React.Component {
     this.setState({ isPopupOpen: false });
   }
 
+  onClickToLeft() {
+    const selected = this.state.currentSelectedIndex;
+    const showedFirst = this.state.currentShowedFirstIndex;
+    if (selected > showedFirst) {
+      this.setState({ currentSelectedIndex: selected - 1});
+    }
+  }
+
+  onClickToRight() {
+    const selected = this.state.currentSelectedIndex;
+    const showedFirst = this.state.currentShowedFirstIndex;
+    const photosLength = this.props.selectedStyle.photos.length
+    if (selected < Math.min(showedFirst + MAX_PHOTOS_TO_DISPLAY - 1, photosLength - 1)) {
+      this.setState({ currentSelectedIndex: selected + 1 });
+    }
+  }
+
   render() {
     const stylePhotos = this.props.selectedStyle.photos;
-    const currentIndex = this.state.currentShowedFirstIndex;
-    const renderUpButton = (<button disabled={currentIndex === 0} onClick={this.onUpClick.bind(this)}>UP</button>);
+    const currentShowedFirst = this.state.currentShowedFirstIndex;
+    const currentSelected = this.state.currentSelectedIndex;
+    const renderUpButton = (<button disabled={currentShowedFirst === 0} onClick={this.onUpClick.bind(this)}>UP</button>);
     const renderDownButton = (<button
-                                disabled={currentIndex + MAX_PHOTOS_TO_DISPLAY >= stylePhotos.length}
+                                disabled={currentShowedFirst + MAX_PHOTOS_TO_DISPLAY >= stylePhotos.length}
                                 onClick={this.onDownClick.bind(this)}>DOWN</button>);
 
     return (
@@ -57,7 +75,7 @@ class ImageGallery extends React.Component {
           {renderUpButton}
           <div class='selectionImages'>
             {stylePhotos.map((photo, index) => {
-              if (index >= currentIndex && index < currentIndex + MAX_PHOTOS_TO_DISPLAY) {
+              if (index >= currentShowedFirst && index < currentShowedFirst + MAX_PHOTOS_TO_DISPLAY) {
                 return (<img class='selectionImg'
                           src={photo.thumbnail_url}
                           onClick={this.onImageClick.bind(this, index)} />);
@@ -68,8 +86,10 @@ class ImageGallery extends React.Component {
           {renderDownButton}
         </div>
         <div class='mainImage-container'>
+          <button id='mainLeft' onClick={this.onClickToLeft.bind(this)} disabled={currentSelected <= currentShowedFirst}>TO LEFT</button>
           <img class='mainImage' src={stylePhotos[this.state.currentSelectedIndex].url} onClick={this.onMainImageClick.bind(this)}></img>
-          <MainImagePopup openPopup={this.state.isPopupOpen} closePopup={this.onClickClosePopup.bind(this)}  stylePhotos={this.props.selectedStyle.photos} currentIndex={this.state.currentShowedFirstIndex}/>
+          <button id='mainRight' onClick={this.onClickToRight.bind(this)} disabled={currentSelected >= Math.min(currentShowedFirst + MAX_PHOTOS_TO_DISPLAY - 1, stylePhotos.length - 1)}>TO RIGHT</button>
+          <MainImagePopup openPopup={this.state.isPopupOpen} closePopup={this.onClickClosePopup.bind(this)}  stylePhotos={this.props.selectedStyle.photos} currentIndex={this.state.currentSelectedIndex}/>
         </div>
       </div>
     );

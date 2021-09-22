@@ -10,6 +10,7 @@ const POPUP_STYLES = {
   transform: 'translate(-50%, -50%)',
   backgroundColor: '#FFF',
   padding: '50px',
+  objectFit: "cover",
   zIndex: 1000
 }
 
@@ -28,14 +29,11 @@ export default function MainImagePopup({ openPopup, children, closePopup, styleP
       return null;
     } else {
       return (
-        <div style={OVERLAY_STYLES}>
-          <div class='mainImagePopup' class='mainImagePopup'   style={POPUP_STYLES}>
-            <button onClick={closePopup}>Close popup</button>
-            {children}
-            <img src={stylePhotos[currentIndex].url}></img>
-          </div>
+        <div style={POPUP_STYLES}>
+          <img src={stylePhotos[currentIndex].url } class='mainPopup'></img>
+          <button onClick={closePopup} class='popup-close-button topright'>Close popup</button>
+          {children}
         </div>
-
       )
     }
 }
