@@ -89,7 +89,7 @@ class EachAnswer extends React.Component {
           {answer.body}
         </div>
         <div>
-          {photos.map(photo => <img key = {answer.id} src = {`${photo}`}/>)}
+          {photos.map(photo => <img className='answerPic' key = {answer.id} src = {`${photo}`}/>)}
           by
           <div>
             {(answer.answerer_name === 'Seller') && <b>{answer.answerer_name}</b>}

@@ -28,10 +28,15 @@
 }
 
 .answerList {
-  height: 100px;
-  width: 70%;
+  height: 150px;
+  width: 50%;
   overflow: scroll;
   border: 2px solid rgb(88, 110, 87);
+}
+
+.answerPic {
+  height: 90px;
+  width: 120px;
 }
 
 .listTitle {
