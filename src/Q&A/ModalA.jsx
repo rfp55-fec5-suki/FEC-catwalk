@@ -115,7 +115,6 @@ class ModalA extends React.Component {
     const text = (question ? 'Question: ' : 'Answer: ')
     const titleText = (question ? 'Ask your Question: ' : 'Submit your Answer')
     const subtitleText = (question ? 'About the Product: ' : `${product.name}: ${eachQuestion.question_body}`)
-    console.log(this.state.photos)
     return (
       <div className={showHideClassName}>
         <section className='modal-main1'>
