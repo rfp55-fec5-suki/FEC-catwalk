@@ -7,12 +7,14 @@ import AddReview from './AddReview/AddReview.jsx';
 import Modal from './Modal.jsx';
 import token from '../../config.js';
 import './RatingsReviews.css';
-
+// import TrackClickContext from '../trackClick.jsx';
 
 var reviewPage = 1;
 var sort = 'relevant';
 var reviews = [];
+// console.log(TrackClickContext);
 class RatingsReviews extends React.Component {
+  // static contextType = this.TrackClickContext;
   constructor(props) {
     super(props);
     this.state = {
@@ -101,6 +103,7 @@ class RatingsReviews extends React.Component {
   //Add Review Handlers//
   ///////////////////////
   showAddReview() {
+    // context()
     this.setState({showAddReview: true});
   }
   hideAddReview() {
