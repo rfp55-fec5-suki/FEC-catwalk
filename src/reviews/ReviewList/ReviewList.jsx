@@ -13,7 +13,7 @@ const ReviewList = (props) => {
   }
 
   return (
-    <div className='review-list'>
+    <div className='review-list' id='review-section'>
       <div className='rr-sort'>
         {nReviews ? nReviews : 0} reviews, sorted by
         <select onChange={props.sort} >
