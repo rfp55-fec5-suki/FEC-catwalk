@@ -50,11 +50,12 @@ class ModalQ extends React.Component {
   }
 
   //event handler here
-  submitForm(e) {
+  submitForm() {
+    console.log('check submit q')
     const { body, name, email } = this.state;
     const product_id = this.props.product_id;
     const input = {body, name, email, product_id}
-    e.preventDefault()
+    // e.preventDefault()
 
     this.postQuestion(input);
 
@@ -89,10 +90,8 @@ class ModalQ extends React.Component {
     const subtitleText = (question ? 'About the Product: ' : `${product.name}: ${eachQuestion.question_body}`)
 
     return (
-      <TrackClickContext.Consumer>{(context) => {
-        context = context;
-        return(
-          <div className={showHideClassName}>
+
+      <div className={showHideClassName}>
         <section className='modal-main1'>
           {children}
           <div className='modal-header'>
@@ -102,7 +101,7 @@ class ModalQ extends React.Component {
             </p>
           </div>
           <div className='modal-body'>
-            <form onSubmit={this.submitForm} name='QA'>
+            <form  onSubmit={this.submitForm} name='QA'>
               <div>
                 <label htmlFor='yourName'>
                   *Name:
@@ -134,7 +133,6 @@ class ModalQ extends React.Component {
                     maxLength='60'
                     onChange={(e) => {this.handleFormChange(e)}}
                     onInvalid={this.submitErrEmail}
-
                     >
                   </input>
                 </label>
@@ -157,10 +155,9 @@ class ModalQ extends React.Component {
                     onInvalid={this.submitErrForm}>
                   </input>
                 </label>
-
               </div>
 
-              <button className='button' type = 'submit' onClick={(e) => {handleClose(e); context.click('qa_ModalQ_submit', 'QA')}}>
+              <button className='button' type = 'submit' onClick={(e) => {handleClose(e)}} >
                 Submit
               </button>
             </form>
@@ -170,9 +167,6 @@ class ModalQ extends React.Component {
           </div>
         </section>
       </div>
-        )
-      }}
-      </TrackClickContext.Consumer>
 
     )
   }
