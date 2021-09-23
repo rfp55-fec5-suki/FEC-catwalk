@@ -102,9 +102,11 @@ class EachQuestion extends React.Component {
     return (
       <div key = {question.question_id}>
           <div className='listTitle'>Q:</div>
-          {question.question_body}
-          <br />
-          post on: {question.question_date.slice(0,10)}
+          <div className='qa_questionInfo'>
+            <div className='qa_questionBody'>{question.question_body}</div>
+            <div>{question.question_date.slice(0,10)}</div>
+          </div>
+
 
           <div className = 'helpful'>
             Helpful?

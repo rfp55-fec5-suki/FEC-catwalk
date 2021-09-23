@@ -105,6 +105,7 @@ class ModalQ extends React.Component {
                   <br />
                   <input
                     required
+                    style = {{width: "300px"}}
                     type='text'
                     name='name'
                     maxLength='60'
@@ -122,6 +123,7 @@ class ModalQ extends React.Component {
                   <br />
                   <input
                     required
+                    style = {{width: "300px"}}
                     type='email'
                     name='email'
                     placeholder='Example: yourname@gmail.com'
@@ -142,6 +144,7 @@ class ModalQ extends React.Component {
                   <br />
                   <input
                     type='textarea'
+                    style={{height: "50px", width: "300px"}}
                     required
                     name='body'
                     rows='20'

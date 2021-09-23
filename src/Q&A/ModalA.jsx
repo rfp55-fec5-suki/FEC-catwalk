@@ -133,6 +133,7 @@ class ModalA extends React.Component {
                   <br />
                   <input
                     required
+                    style = {{width: "300px"}}
                     type='text'
                     name='name'
                     maxLength='60'
@@ -150,6 +151,7 @@ class ModalA extends React.Component {
                   <br />
                   <input
                     required
+                    style = {{width: "300px"}}
                     type='email'
                     name='email'
                     placeholder='Example: yourname@gmail.com'
@@ -158,7 +160,9 @@ class ModalA extends React.Component {
                     onInvalid={this.submitErrEmail}>
                   </input>
                 </label>
+                <br />
                 For authentication reasons, you will not be emailed” will appear
+                <br />
               <br />
                 <label htmlFor={text}>
                   *
@@ -166,6 +170,7 @@ class ModalA extends React.Component {
                   <br />
                   <input
                     type='textarea'
+                    style={{height: "50px", width: "300px"}}
                     required
                     name='body'
                     rows='20'
@@ -180,6 +185,7 @@ class ModalA extends React.Component {
                     <br />
                     <input
                       type='text'
+                      style={{width: "300px"}}
                       name='photos'
                       onChange={(e) => {
                         this.setUrl(e)
