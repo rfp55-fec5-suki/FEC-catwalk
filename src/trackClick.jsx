@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import token from './../config.js';
 
-export const TrackClickContext = React.createContext();
+export const TrackClickContext = createContext();
 
 class TrackContextProvider extends React.Component {
 
@@ -29,4 +29,4 @@ class TrackContextProvider extends React.Component {
   }
 }
 // export default TrackClickContext;
-export default { TrackContextProvider };
+export default TrackContextProvider ;
