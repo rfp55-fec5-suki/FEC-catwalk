@@ -1,5 +1,6 @@
 import React, { createContext } from 'react';
 import token from './../config.js';
+import axios from 'axios';
 
 export const TrackClickContext = createContext();
 
@@ -16,7 +17,7 @@ class TrackContextProvider extends React.Component {
       body: {
         'element': element,
         'widget': widget,
-        'time': new Date()
+        'time': 'date'
       }
     })
   }

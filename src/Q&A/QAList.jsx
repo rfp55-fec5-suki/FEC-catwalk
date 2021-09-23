@@ -5,6 +5,7 @@ import QAAnswer from './QAAnswer.jsx';
 import EachQuestion from './Q&AEachQuestion.jsx';
 import ModalQ from './ModalQ.jsx';
 // import Search from './Search.jsx';
+import { TrackClickContext } from './../trackClick.jsx';
 
 class QAList extends React.Component {
   constructor(props) {
@@ -115,27 +116,40 @@ class QAList extends React.Component {
   render() {
 
     if(this.state.questions.length === 0) {
+
       return(
-        <div className = 'QA'>
-          <h2>Questions & Answers</h2>
-          <div className='listTitle'>We don't have questions for this product, Post the first Question!</div>
-          <div>
-            <ModalQ
-            show={this.state.show}
-            handleClose={this.hideModal}
-            getQuestions={this.getQuestions}
-            product_id={this.props.product.id}
-            type = 'question'/>
-            <button className='button' type = 'submit' onClick={this.showModal}>
-              Submit a question
-            </button>
-          </div>
-        </div>
+        <TrackClickContext.Consumer>{(context) => {
+          var context = context
+          return (
+            <div className = 'QA'>
+              <h2>Questions & Answers</h2>
+              <div className='listTitle'>We don't have questions for this product, Post the first Question!</div>
+              <div>
+                <ModalQ
+                show={this.state.show}
+                handleClose={this.hideModal}
+                getQuestions={this.getQuestions}
+                product_id={this.props.product.id}
+                type = 'question'/>
+                <button className='button' type = 'submit' onClick={() => {this.showModal; context.click('qa_addQBtn', 'QA')}}>
+                  Submit a question
+                </button>
+              </div>
+            </div>
+          )
+        }
+
+        }
+        </TrackClickContext.Consumer>
+
       )
     }else {
       this.sort('question_helpfulness', this.state.questions);
       return(
-        <div className = 'QA'>
+        <TrackClickContext.Consumer>{(context) => {
+          var context = context
+          return (
+            <div className = 'QA'>
           <h2>Questions & Answers</h2>
           <div >
             <input
@@ -152,10 +166,10 @@ class QAList extends React.Component {
           </div>
           <div className = 'qa_questionBtn'>
             <div>
-              <button className='button' type='submit' onClick={this.collapseQClick}>Show less answered questions</button>
+              <button className='button' type='submit' onClick={()=>{this.collapseQClick; context.click('qa_showlessQBtn', 'QA')}}>Show less answered questions</button>
             </div>
             <div>
-              {this.state.questions.length > 2 && <button className='button' type = 'submit' onClick={this.loadMoreQClick}>More answered questions</button>}
+              {this.state.questions.length > 2 && <button className='button' type = 'submit' onClick={()=>{this.loadMoreQClick; context.click('qa_showmoreQBtn', 'QA')}}>More answered questions</button>}
             </div>
           </div>
           <div className='qa_addAnswer'>
@@ -166,12 +180,17 @@ class QAList extends React.Component {
               product_id={this.props.product.id}
               type = 'question'/>
               <div>
-                <button className='button' type = 'submit' onClick={this.showModal}>
+                <button className='button' type = 'submit' onClick={() => {this.showModal; context.click('qa_addQBtn', 'QA')}}>
                   Add more question
                 </button>
               </div>
           </div>
         </div>
+          )
+        }
+        }
+        </TrackClickContext.Consumer>
+
       )
     }
   }

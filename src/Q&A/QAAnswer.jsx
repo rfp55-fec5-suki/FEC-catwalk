@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
-import EachAnswer from './Q&AEachAnswer.jsx'
+import EachAnswer from './Q&AEachAnswer.jsx';
+import { TrackClickContext } from './../trackClick.jsx';
 
 class QAAnswer extends React.Component {
   constructor(props) {
@@ -66,7 +67,10 @@ class QAAnswer extends React.Component {
       }
 
       return (
-        <div>
+        <TrackClickContext.Consumer>{(context) => {
+          var context = context
+          return (
+          <div>
             <div className='listTitle'>A:</div>
             <div className='answerList'>
               {answers.slice(0,this.state.showA).map(answer =>
@@ -74,14 +78,18 @@ class QAAnswer extends React.Component {
                 )}
             </div>
             <div className='qa_answerBtn'>
-              {answers.length > 2 && <button className='button' type='submit' onClick={this.loadMoreAClick}>See more answers</button>}
+              {answers.length > 2 && <button className='button' type='submit' onClick={() => {
+        this.loadMoreAClick; context.click('qa_moreABtn', 'QA')}}>See more answers</button>}
 
-              <button className='button' type='submit' onClick={this.collapseAClick}>
+              <button className='button' type='submit' onClick={() => {this.collapseAClick(e); context.click('qa_collapseABtn', 'QA')}}>
                 Collapse answers
               </button>
             </div>
+          </div>
+          )
+        }}
+        </TrackClickContext.Consumer>
 
-        </div>
       )
     }
 
