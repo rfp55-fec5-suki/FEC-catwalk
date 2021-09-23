@@ -5,7 +5,7 @@ const ModalComparison = (props) => (
     <div className='riac-modal-feature-current'>
       {props.current ? props.current.map((feature) => {
         return `${feature.value} ${feature.feature}` === `${props.feature.value} ${props.feature.feature}` ?
-        <i className="fas fa-check"></i> : null
+        <i className="fas fa-check" alt='Feature is included'></i> : null
       }) : null}
     </div>
 
@@ -16,7 +16,7 @@ const ModalComparison = (props) => (
     <div className='riac-modal-feature-compared'>
       {props.compared ? props.compared.map((feature) => {
         return `${feature.value} ${feature.feature}` === `${props.feature.value} ${props.feature.feature}` ?
-        <i className="fas fa-check"></i> : null
+        <i className="fas fa-check" alt='Feature is included'></i> : null
       }) : null}
     </div>
   </div>
