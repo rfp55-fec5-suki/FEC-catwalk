@@ -12,6 +12,7 @@ import Overview from './overview/Overview.jsx';
 import RelatedProducts from './riac/relatedproducts.jsx';
 import QAList from './Q&A/QAList.jsx'
 import Reviews from './reviews/RatingsReviews.jsx';
+import TrackContextProvider from './trackClick.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -78,16 +79,16 @@ class App extends React.Component {
     return (
       <div className='App'>
 
-        <h1 className='header'><span className='main-title'>Suki Shopping Site</span><img src={eyes} className='eyes'/></h1>
+        <h1 className='header'><span className='main-title'>Suki Shopping Site</span><img src={eyes} className='eyes' /></h1>
+        <TrackContextProvider>
+          <Overview product={this.state.product} styles={this.state.styles} />
 
-        <Overview product={this.state.product} styles={this.state.styles} />
+          <RelatedProducts product={this.state.product} related={this.state.related} onClick={this.handleClick} />
 
-        <RelatedProducts product={this.state.product} related={this.state.related} onClick={this.handleClick} />
+          <QAList product={this.state.product} />
 
-        <QAList product={this.state.product} />
-
-        <Reviews product_id={this.state.product.id} />
-
+          <Reviews product_id={this.state.product.id} />
+        </TrackContextProvider>
       </div>
 
     );

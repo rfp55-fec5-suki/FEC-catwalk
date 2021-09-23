@@ -7,11 +7,12 @@ import AddReview from './AddReview/AddReview.jsx';
 import Modal from './Modal.jsx';
 import token from '../../config.js';
 import './RatingsReviews.css';
-
+import { TrackClickContext } from './../trackClick.jsx';
 
 var reviewPage = 1;
 var sort = 'relevant';
 var reviews = [];
+// console.log(TrackClickContext);
 class RatingsReviews extends React.Component {
   constructor(props) {
     super(props);
@@ -23,7 +24,7 @@ class RatingsReviews extends React.Component {
       showAddReview: false,
       filterBySearch: '',
       helpedList: localStorage.getItem('helpful') ?
-      localStorage.getItem('helpful').split(',') : null
+        localStorage.getItem('helpful').split(',') : null
     }
     // console.log(this.state.helpedList);
     this.getAllReviews = this.getAllReviews.bind(this);
@@ -44,19 +45,19 @@ class RatingsReviews extends React.Component {
   /////////////////////////////
   setRatingFilter(rating) {
     reviewPage = 1;
-    if(this.state.filterByRating.includes(rating)) {
+    if (this.state.filterByRating.includes(rating)) {
       var newfilter = this.state.filterByRating.filter((filterValue) => {
         return filterValue !== rating;
       })
-      this.setState({filterByRating: newfilter}, () => {
-        if(this.state.filterByRating.length === 0) {
+      this.setState({ filterByRating: newfilter }, () => {
+        if (this.state.filterByRating.length === 0) {
           this.setListToDefault();
         } else {
-        this.getAllReviews();
+          this.getAllReviews();
         }
       });
     } else {
-      this.setState({filterByRating: [...this.state.filterByRating, rating]}, () => {
+      this.setState({ filterByRating: [...this.state.filterByRating, rating] }, () => {
         this.getAllReviews();
       });
     }
@@ -85,26 +86,27 @@ class RatingsReviews extends React.Component {
     var filteredResults = reviews.filter((review) => {
       return reg.test(review.summary) || reg.test(review.body) || reg.test(review.response);
     });
-    this.setState({reviews: filteredResults, hasMoreReviews: false});
+    this.setState({ reviews: filteredResults, hasMoreReviews: false });
   }
   keywordChange(e) {
-  var search = e.target.value;
-  if(search.length === 3) {
-    this.getAllReviews(() => this.keywordSearch(search));
-  } else if (search.length > 3) {
-    this.keywordSearch(search);
-  } else if (search.length === 2) {
-    this.setListToDefault();
-  }
+    var search = e.target.value;
+    if (search.length === 3) {
+      this.getAllReviews(() => this.keywordSearch(search));
+    } else if (search.length > 3) {
+      this.keywordSearch(search);
+    } else if (search.length === 2) {
+      this.setListToDefault();
+    }
   }
   ///////////////////////
   //Add Review Handlers//
   ///////////////////////
   showAddReview() {
-    this.setState({showAddReview: true});
+    // context()
+    this.setState({ showAddReview: true });
   }
   hideAddReview() {
-    this.setState({showAddReview: false});
+    this.setState({ showAddReview: false });
   }
   /////////////////////
   //api call handlers//
@@ -117,7 +119,7 @@ class RatingsReviews extends React.Component {
         'Authorization': token.TOKEN
       }
     }).then((response) => {
-      this.setState({meta: response.data});
+      this.setState({ meta: response.data });
     }).catch((err) => {
       console.log(err);
     })
@@ -144,11 +146,11 @@ class RatingsReviews extends React.Component {
         filteredResults = response.data.results;
       }
       reviews = filteredResults;
-      this.setState({reviews: filteredResults.slice(0, 2)}, () => {
-        if(this.state.reviews.length === reviews.length) {
-          this.setState({hasMoreReviews: false});
+      this.setState({ reviews: filteredResults.slice(0, 2) }, () => {
+        if (this.state.reviews.length === reviews.length) {
+          this.setState({ hasMoreReviews: false });
         }
-        if(callback) {
+        if (callback) {
           callback();
         }
       });
@@ -158,9 +160,9 @@ class RatingsReviews extends React.Component {
   }
   moreReviews() {
     reviewPage++;
-    this.setState({reviews: reviews.slice(0, 2 * reviewPage)}, () => {
+    this.setState({ reviews: reviews.slice(0, 2 * reviewPage) }, () => {
       if (this.state.reviews.length === reviews.length) {
-        this.setState({hasMoreReviews: false})
+        this.setState({ hasMoreReviews: false })
       }
     });
   }
@@ -183,7 +185,7 @@ class RatingsReviews extends React.Component {
     if (helped) {
       helped = helped.split(',');
       helped.push(review_id);
-      this.setState({helpedList: helped});
+      this.setState({ helpedList: helped });
       helped = helped.join(',');
       localStorage.setItem('helpful', helped);
     } else {
@@ -203,9 +205,11 @@ class RatingsReviews extends React.Component {
     reviews = reviews.filter((review) => {
       return review.review_id !== review_id;
     })
-    this.setState({reviews: this.state.reviews.filter((review) => {
-      return review.review_id !== review_id;
-    })})
+    this.setState({
+      reviews: this.state.reviews.filter((review) => {
+        return review.review_id !== review_id;
+      })
+    })
     axios({
       method: 'put',
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${review_id}/report`,
@@ -220,7 +224,7 @@ class RatingsReviews extends React.Component {
   //lifecycle functions//
   ///////////////////////
   componentDidUpdate(oldProps) {
-    if(oldProps.product_id !== this.props.product_id) {
+    if (oldProps.product_id !== this.props.product_id) {
       this.setListToDefault();
       this.getMeta();
     }
@@ -231,23 +235,28 @@ class RatingsReviews extends React.Component {
   }
   render() {
     return (
+      <TrackClickContext.Consumer>{(context) => {
+        var context = context
 
-      <div className="rr-main" >
-        <h1 className='rr-title'>RATINGS & REVIEWS</h1>
-        <RatingBreakdown meta={this.state.meta} filter={this.setRatingFilter} clear={this.setListToDefault}/>
+        return(
+        <div className="rr-main" >
+          <h1 className='rr-title'>RATINGS & REVIEWS</h1>
+          <RatingBreakdown meta={this.state.meta} filter={this.setRatingFilter} clear={this.setListToDefault} />
 
-        <ProductBreakdown chars={this.state.meta.characteristics}/>
+          <ProductBreakdown chars={this.state.meta.characteristics} />
 
-        <ReviewList reviews={this.state.reviews} more={this.moreReviews} sort={this.sortChange}
-        renderButton={this.state.hasMoreReviews} meta={this.state.meta} filter={this.state.filterByRating}
-        setFilter={this.setRatingFilter} addReview={this.showAddReview} markHelpful={this.markHelpful}
-        report={this.reportReview} keywordChange={this.keywordChange} helped={this.state.helpedList}/>
+          <ReviewList reviews={this.state.reviews} more={this.moreReviews} sort={this.sortChange}
+            renderButton={this.state.hasMoreReviews} meta={this.state.meta} filter={this.state.filterByRating}
+            setFilter={this.setRatingFilter} addReview={this.showAddReview} markHelpful={this.markHelpful}
+            report={this.reportReview} keywordChange={this.keywordChange} helped={this.state.helpedList} />
 
-        <Modal show={this.state.showAddReview} handleClose={this.hideAddReview}
-        children={<AddReview chars={this.state.meta.characteristics} close={this.hideAddReview}
-        postReview={this.addReview}/>}/>
-      </div>
-
+          <Modal show={this.state.showAddReview} handleClose={this.hideAddReview}
+            children={<AddReview chars={this.state.meta.characteristics} close={this.hideAddReview}
+              postReview={this.addReview} />} />
+        </div>
+        )
+      }}
+      </TrackClickContext.Consumer>
     )
   }
 }
