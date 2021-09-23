@@ -28,4 +28,4 @@ class TrackContextProvider extends React.Component {
     );
   }
 }
-export default TrackContextProvider ;
+export default TrackContextProvider;

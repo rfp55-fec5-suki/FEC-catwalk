@@ -7,6 +7,7 @@ import $ from 'jquery';
 import AddOutfit from './outfitlist/addoutfit.jsx';
 import OutfitCard from './outfitlist/outfitcard.jsx';
 import './riac.css';
+import { TrackClickContext } from './../trackClick.jsx';
 
 class RelatedProducts extends React.Component {
   constructor(props) {
@@ -101,58 +102,65 @@ class RelatedProducts extends React.Component {
     var related = this.props.related.length === 0 ? initialRelated : this.props.related;
 
     return (
-      <div>
+      <TrackClickContext.Consumer>{(context) => {
 
-        <div className='riac-carousel'>
+        return (
+          <div>
 
-          <div className='riac-productcard-header'>
-            RELATED PRODUCTS
-          </div>
+            <div className='riac-carousel'>
+
+              <div className='riac-productcard-header'>
+                RELATED PRODUCTS
+              </div>
 
 
-          {this.state.scrollLeft ? <i className='fas fa-chevron-left fa-2x riac-left-button' onClick={this.slideLeft}></i> : null}
+              {this.state.scrollLeft ? <i className='fas fa-chevron-left fa-2x riac-left-button' onClick={() => {this.slideLeft(); context.click('Related Products Button Left', 'Related Products')}} alt='Move related products list to the right'></i> : null}
 
-          {this.state.maxScrollLeft === 0 || this.state.maxScrollLeft === this.state.scrollLeft
-            ? null : <i className='fas fa-chevron-right fa-2x riac-right-button' onClick={this.slideRight}></i>}
+              {this.state.maxScrollLeft === 0 || this.state.maxScrollLeft === this.state.scrollLeft
+                ? null : <i className='fas fa-chevron-right fa-2x riac-right-button' onClick={() => {this.slideRight(); context.click('Related Products Button Right', 'Related Products')}} alt='Move related products list to the right'></i>}
 
-          <div className='riac-container'>
+              <div className='riac-container'>
 
-            <div className='riac-related-products' id='riac-carousel'>
+                <div className='riac-related-products' id='riac-carousel'>
 
-              {related.map((productid) => {
-                return <RelatedProductCard product={this.props.product} productid={productid} onClick={this.props.onClick} />
-              })}
+                  {related.map((productid) => {
+                    return <RelatedProductCard product={this.props.product} productid={productid} onClick={this.props.onClick} />
+                  })}
 
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
 
 
-        <div className='riac-carousel' id='outfit'>
+            <div className='riac-carousel' id='outfit'>
 
-          <div className='riac-productcard-header'>
-            YOUR OUTFIT
-          </div>
+              <div className='riac-productcard-header'>
+                YOUR OUTFIT
+              </div>
 
-          {this.state.outfitScroll ? <i className='fas fa-chevron-left fa-2x riac-left-button' onClick={this.outfitSlideLeft}></i> : null}
-          {this.state.outfitMaxScroll === 0 || this.state.outfitMaxScroll === this.state.outfitScroll
-            ? null : <i className='fas fa-chevron-right fa-2x riac-right-button' onClick={this.outfitSlideRight}></i>}
+              {this.state.outfitScroll ? <i className='fas fa-chevron-left fa-2x riac-left-button' onClick={() => {this.outfitSlideLeft(); context.click('Outfit Button Left', 'Related Products')}} alt='Move outfit list to the left'></i> : null}
 
-          <div className='riac-container'>
+              {this.state.outfitMaxScroll === 0 || this.state.outfitMaxScroll === this.state.outfitScroll
+                ? null : <i className='fas fa-chevron-right fa-2x riac-right-button' onClick={() => {this.outfitSlideRight(); context.click=('Outfit Button Right', 'Related Products')}} alt='Move outfit list to the right'></i>}
 
-            <div className='riac-related-products' id='outfit-carousel'>
+              <div className='riac-container'>
 
-              <AddOutfit onClick={this.addToOutfit} />
+                <div className='riac-related-products' id='outfit-carousel'>
 
-              {this.state.storage ? this.state.storage.map((productid) => {
-                return <OutfitCard productid={productid} onClick={this.props.onClick} removeOutfit={this.removeOutfit} />
-              }) : null}
+                  <AddOutfit onClick={this.addToOutfit} />
 
+                  {this.state.storage ? this.state.storage.map((productid) => {
+                    return <OutfitCard productid={productid} onClick={this.props.onClick} removeOutfit={this.removeOutfit} />
+                  }) : null}
+
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
 
-      </div>
+          </div>
+        )
+      }}
+      </TrackClickContext.Consumer>
     )
   }
 }

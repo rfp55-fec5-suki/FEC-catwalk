@@ -236,7 +236,6 @@ class RatingsReviews extends React.Component {
   render() {
     return (
       <TrackClickContext.Consumer>{(context) => {
-        var context = context
 
         return(
         <div className="rr-main" >
