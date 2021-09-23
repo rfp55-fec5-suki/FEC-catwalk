@@ -3,7 +3,9 @@ import axios from 'axios';
 import token from '../../../config.js';
 import StarRating from '../../sharedComponents/StarRating.jsx';
 import noImage from '../../noImage.js';
+import $ from 'jquery';
 import '../riac.css';
+import { TrackClickContext } from './../../trackClick.jsx';
 
 class OutfitCard extends React.Component {
   constructor(props) {
@@ -15,6 +17,8 @@ class OutfitCard extends React.Component {
       img: '',
       styles: {},
       stars: {},
+      price: '',
+      sale: ''
     };
 
     this.fetchProduct = this.fetchProduct.bind(this);
@@ -47,7 +51,9 @@ class OutfitCard extends React.Component {
       .then((response) => {
         this.setState({
           img: response.data.results[0].photos[0].thumbnail_url,
-          styles: response.data
+          styles: response.data,
+          price: response.data.results[0].original_price,
+          sale: response.data.results[0].sale_price
         });
       })
       .catch((error) => {
@@ -82,23 +88,36 @@ class OutfitCard extends React.Component {
 
   render() {
     return (
-      <div>
+      <TrackClickContext.Consumer>{(context) => {
+        return (
+          <div>
 
-        <div className='riac-productcard'>
+            <div className='riac-productcard'>
 
-          <i class='fas fa-times-circle riac-productcard-button' onClick={() => this.props.removeOutfit(this.state.info.id)}></i>
+              <i class='fas fa-times-circle riac-productcard-button' onClick={() => {this.props.removeOutfit(this.state.info.id); context.click('Remove Outfit Button', 'Related Products')}} alt='Remove item from outfit list'></i>
 
-          <div className='riac-productcard-image' onClick={() => this.props.onClick(this.state.info.id)}>
-            {this.state.img ? <img src={this.state.img} /> : <img src={noImage} />}
+              <div className='riac-productcard-image' onClick={() => {this.props.onClick(this.state.info.id); context.click('Select New Product', 'Related Products')}}>
+                {this.state.img ? <img src={this.state.img} alt={`Image of ${this.state.info.name}`}/> : <img src={noImage} alt='Image of item not available'/>}
+              </div>
+
+              <div className='riac-productcard-category'> {this.state.info.category} </div>
+              <div className='riac-productcard-name'> {this.state.info.name} </div>
+
+              {this.state.sale ?
+                <div className='riac-productcard-price'>
+                  <div className='riac-productcard-sale'> {this.state.sale} </div>
+                  <div className='riac-productcard-price-sale'> {this.state.price} </div>
+                </div>
+                : <div className='riac-productcard-price'> {this.state.info.default_price} </div>}
+
+              {$.isEmptyObject(this.state.stars) ? null
+                : <div className='riac-productcard-rating'> <StarRating meta={this.state.stars} /> </div>}
+
+            </div>
           </div>
-
-          <div className='riac-productcard-category'> {this.state.info.category} </div>
-          <div className='riac-productcard-name'> {this.state.info.name} </div>
-          <div className='riac-productcard-price'> {this.state.info.default_price} </div>
-          <div className='riac-productcard-rating'> <StarRating meta={this.state.stars} /> </div>
-
-        </div>
-      </div>
+        )
+      }}
+      </TrackClickContext.Consumer>
     );
   }
 }
