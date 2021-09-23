@@ -3,6 +3,7 @@ import axios from 'axios';
 import token from '../../../config.js';
 import StarRating from '../../sharedComponents/StarRating.jsx';
 import noImage from '../../noImage.js';
+import $ from 'jquery';
 import '../riac.css';
 import { TrackClickContext } from './../../trackClick.jsx';
 
@@ -16,6 +17,8 @@ class OutfitCard extends React.Component {
       img: '',
       styles: {},
       stars: {},
+      price: '',
+      sale: ''
     };
 
     this.fetchProduct = this.fetchProduct.bind(this);
@@ -48,7 +51,9 @@ class OutfitCard extends React.Component {
       .then((response) => {
         this.setState({
           img: response.data.results[0].photos[0].thumbnail_url,
-          styles: response.data
+          styles: response.data,
+          price: response.data.results[0].original_price,
+          sale: response.data.results[0].sale_price
         });
       })
       .catch((error) => {
