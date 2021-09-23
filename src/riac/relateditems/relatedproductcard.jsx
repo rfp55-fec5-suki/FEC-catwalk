@@ -7,6 +7,7 @@ import RelatedProductModal from './relatedproductmodal.jsx';
 import ModalComparison from './modalcomparison.jsx';
 import noImage from '../../noImage.js';
 import '../riac.css';
+import { TrackClickContext } from './../../trackClick.jsx';
 
 class RelatedProductCard extends React.Component {
   constructor(props) {
@@ -102,45 +103,50 @@ class RelatedProductCard extends React.Component {
       var comparison = [...this.props.product.features, ...this.state.info.features];
     }
     return (
-      <div>
-        <RelatedProductModal show={this.state.show} handleClose={this.hideModal}>
-          <p className='riac-modal-header'>Comparing</p>
-          <div className='riac-modal-current'>
-            {this.props.product.name}
-          </div>
+      <TrackClickContext.Consumer>{(context) => {
+        return (
+          <div>
+            <RelatedProductModal show={this.state.show} handleClose={this.hideModal}>
+              <p className='riac-modal-header'>Comparing</p>
+              <div className='riac-modal-current'>
+                {this.props.product.name}
+              </div>
 
-          {comparison ? comparison.map((feature) => {
-            return <ModalComparison feature={feature} current={this.props.product.features} compared={this.state.info.features} />
-          }) : null}
+              {comparison ? comparison.map((feature) => {
+                return <ModalComparison feature={feature} current={this.props.product.features} compared={this.state.info.features} />
+              }) : null}
 
-          <div className='riac-modal-compared'>
-            {this.state.info.name}
-          </div>
-        </RelatedProductModal>
+              <div className='riac-modal-compared'>
+                {this.state.info.name}
+              </div>
+            </RelatedProductModal>
 
-        <div className='riac-productcard'>
+            <div className='riac-productcard'>
 
-          <i className='fas fa-star riac-productcard-button' onClick={this.showModal}></i>
+              <i className='fas fa-star riac-productcard-button' onClick={() => {this.showModal(); context.click('Display Modal Button', 'Related Products')}}></i>
 
-          <div className='riac-productcard-image' onClick={() => this.props.onClick(this.state.info.id)}>
-            {this.state.img ? <img src={this.state.img} /> : <img src={noImage} />}
-          </div>
+              <div className='riac-productcard-image' onClick={() => {this.props.onClick(this.state.info.id); context.click('Select New Product', 'Related Products')}}>
+                {this.state.img ? <img src={this.state.img} /> : <img src={noImage} />}
+              </div>
 
-          <div className='riac-productcard-category'> {this.state.info.category} </div>
-          <div className='riac-productcard-name'> {this.state.info.name} </div>
+              <div className='riac-productcard-category'> {this.state.info.category} </div>
+              <div className='riac-productcard-name'> {this.state.info.name} </div>
 
-          {this.state.sale ?
-            <div className='riac-productcard-price'>
-              <div className='riac-productcard-sale'> {this.state.sale} </div>
-              <div className='riac-productcard-price-sale'> {this.state.price} </div>
+              {this.state.sale ?
+                <div className='riac-productcard-price'>
+                  <div className='riac-productcard-sale'> {this.state.sale} </div>
+                  <div className='riac-productcard-price-sale'> {this.state.price} </div>
+                </div>
+                : <div className='riac-productcard-price'> {this.state.info.default_price} </div>}
+
+              {$.isEmptyObject(this.state.stars) ? null
+                : <div className='riac-productcard-rating'> <StarRating meta={this.state.stars} /> </div>}
+
             </div>
-            : <div className='riac-productcard-price'> {this.state.info.default_price} </div>}
-
-          {$.isEmptyObject(this.state.stars) ? null
-            : <div className='riac-productcard-rating'> <StarRating meta={this.state.stars} /> </div>}
-
-        </div>
-      </div>
+          </div>
+        )
+      }}
+      </TrackClickContext.Consumer>
     );
   }
 }
