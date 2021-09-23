@@ -74,8 +74,7 @@ class QAList extends React.Component {
     })
   }
 
-  hideModal(e) {
-    e.preventDefault();
+  hideModal() {
     this.setState ({
       show: false,
     })
@@ -171,7 +170,7 @@ class QAList extends React.Component {
               <button className='button' type='submit' onClick={()=>{this.collapseQClick; context.click('qa_showlessQBtn', 'QA')}}>Show less answered questions</button>
             </div>
             <div>
-              {this.state.questions.length > 2 && <button className='button' type = 'submit' onClick={()=>{this.loadMoreQClick; context.click('qa_showmoreQBtn', 'QA')}}>More answered questions</button>}
+              {this.state.questions.length > 2 && <button className='button' type = 'submit' onClick={(e)=>{this.loadMoreQClick(e); context.click('qa_showmoreQBtn', 'QA')}}>More answered questions</button>}
             </div>
           </div>
           <div className='qa_addAnswer'>

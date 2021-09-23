@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import token from '../../config.js';
 import './Q&A.css';
-import { TrackClickContext } from './../trackClick.jsx';
+//import { TrackClickContext } from './../trackClick.jsx';
 
 class ModalQ extends React.Component {
   constructor(props) {
@@ -50,12 +50,11 @@ class ModalQ extends React.Component {
   }
 
   //event handler here
-  submitForm() {
-    console.log('check submit q')
+  submitForm(e) {
     const { body, name, email } = this.state;
     const product_id = this.props.product_id;
     const input = {body, name, email, product_id}
-    // e.preventDefault()
+    e.preventDefault()
 
     this.postQuestion(input);
 
@@ -90,7 +89,6 @@ class ModalQ extends React.Component {
     const subtitleText = (question ? 'About the Product: ' : `${product.name}: ${eachQuestion.question_body}`)
 
     return (
-
       <div className={showHideClassName}>
         <section className='modal-main1'>
           {children}
@@ -157,11 +155,11 @@ class ModalQ extends React.Component {
                 </label>
               </div>
 
-              <button className='button' type = 'submit' onClick={(e) => {handleClose(e)}} >
+              <button className='button' type = 'submit' onClick={this.props.handleClose} >
                 Submit
               </button>
             </form>
-            <button className='button' onClick={(e) => {handleClose(e); context.click('qa_ModalQ_close', 'QA')}}>
+            <button className='button' onClick={handleClose}>
                 Close
             </button>
           </div>

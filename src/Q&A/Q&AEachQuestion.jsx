@@ -30,8 +30,7 @@ class EachQuestion extends React.Component {
     })
   }
 
-  hideModal(e) {
-    e.preventDefault();
+  hideModal() {
     this.setState ({
       show: false,
     })
@@ -76,7 +75,8 @@ class EachQuestion extends React.Component {
       })
   }
 
-  handleClickYes() {
+  handleClickYes(e) {
+    e.preventDefault();
     const question_id = this.props.question.question_id;
     if(this.state.voted === true) {
       return
@@ -91,7 +91,8 @@ class EachQuestion extends React.Component {
     }
   }
 
-  handleClickReport() {
+  handleClickReport(e) {
+    e.preventDefault();
     const question_id = this.props.question.question_id;
     this.setState({
       reported: true
@@ -116,12 +117,12 @@ class EachQuestion extends React.Component {
 
           <div className = 'helpful'>
             Helpful?
-            <a className = 'link' onClick={() => {this.handleClickYes; context.click('qa_QYes', 'QA')}}>
+            <a className = 'link' onClick={(e) => {this.handleClickYes(e); context.click('qa_QYes', 'QA')}}>
               <span>
                 Yes({question.question_helpfulness}) |
               </span>
             </a>
-            <a className = 'link' onClick={() => {this.handleClickReport; context.click('qa_Qreport', 'QA')}}>
+            <a className = 'link' onClick={(e) => {this.handleClickReport(e); context.click('qa_Qreport', 'QA')}}>
               <span>
                 Report
               </span>
