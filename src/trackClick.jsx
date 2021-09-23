@@ -14,9 +14,9 @@ class TrackContextProvider extends React.Component {
         'Authorization': token.TOKEN
       },
       data: {
-        'element': element,
-        'widget': widget,
-        'time': Date()
+        element: element,
+        widget: widget,
+        time: Date()
       }
     })
   }
