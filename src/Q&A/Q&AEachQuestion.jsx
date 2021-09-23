@@ -23,13 +23,15 @@ class EachQuestion extends React.Component {
   }
 
 
-  showModal() {
+  showModal(e) {
+    e.preventDefault();
     this.setState ({
       show: true,
     })
   }
 
-  hideModal() {
+  hideModal(e) {
+    e.preventDefault();
     this.setState ({
       show: false,
     })
@@ -136,7 +138,7 @@ class EachQuestion extends React.Component {
             question={this.props.question}
             answer={this.state.answer}
             type = 'answer'/>
-            <button className='button' type = 'submit' onClick={this.showModal}>
+            <button className='button' type = 'submit' onClick={(e) => {this.showModal(e); context.click('qa_ModalA', 'QA')}}>
               Add an Answer
             </button>
           </div>

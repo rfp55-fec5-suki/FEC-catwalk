@@ -67,13 +67,15 @@ class QAList extends React.Component {
     })
   }
 
-  showModal() {
+  showModal(e) {
+    e.preventDefault();
     this.setState ({
       show: true,
     })
   }
 
-  hideModal() {
+  hideModal(e) {
+    e.preventDefault();
     this.setState ({
       show: false,
     })
@@ -131,7 +133,7 @@ class QAList extends React.Component {
                 getQuestions={this.getQuestions}
                 product_id={this.props.product.id}
                 type = 'question'/>
-                <button className='button' type = 'submit' onClick={() => {this.showModal; context.click('qa_addQBtn', 'QA')}}>
+                <button className='button' type = 'submit' onClick={(e) => {this.showModal(e); context.click('qa_addQBtn', 'QA')}}>
                   Submit a question
                 </button>
               </div>
@@ -180,7 +182,7 @@ class QAList extends React.Component {
               product_id={this.props.product.id}
               type = 'question'/>
               <div>
-                <button className='button' type = 'submit' onClick={() => {this.showModal; context.click('qa_addQBtn', 'QA')}}>
+                <button className='button' type = 'submit' onClick={(e) => {this.showModal(e); context.click('qa_addQBtn', 'QA')}}>
                   Add more question
                 </button>
               </div>

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import token from '../../config.js';
 import './Q&A.css';
+import { TrackClickContext } from './../trackClick.jsx'
 
 class ModalA extends React.Component {
   constructor(props) {
@@ -116,7 +117,10 @@ class ModalA extends React.Component {
     const titleText = (question ? 'Ask your Question: ' : 'Submit your Answer')
     const subtitleText = (question ? 'About the Product: ' : `${product.name}: ${eachQuestion.question_body}`)
     return (
-      <div className={showHideClassName}>
+      <TrackClickContext.Consumer>{(context) => {
+        context = context
+        return (
+          <div className={showHideClassName}>
         <section className='modal-main1'>
           {children}
           <div className='modal-header'>
@@ -197,7 +201,7 @@ class ModalA extends React.Component {
                     </button>
                   </label>
               </div>
-              <button className='button' type = 'submit' onClick={handleClose}>
+              <button className='button' type = 'submit' onClick={(e) => {handleClose(e); context.click('qa_ModalA_submit', 'QA')}}>
                 Submit
               </button>
             </form>
@@ -208,6 +212,10 @@ class ModalA extends React.Component {
 
         </section>
       </div>
+        )
+      }}
+      </TrackClickContext.Consumer>
+
     )
   }
 }

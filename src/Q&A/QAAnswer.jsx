@@ -78,10 +78,10 @@ class QAAnswer extends React.Component {
                 )}
             </div>
             <div className='qa_answerBtn'>
-              {answers.length > 2 && <button className='button' type='submit' onClick={() => {
-        this.loadMoreAClick; context.click('qa_moreABtn', 'QA')}}>See more answers</button>}
+              {answers.length > 2 && <button className='button' type='submit' onClick={(e) => {
+        this.loadMoreAClick(e); context.click('qa_moreABtn', 'QA')}}>See more answers</button>}
 
-              <button className='button' type='submit' onClick={() => {this.collapseAClick(e); context.click('qa_collapseABtn', 'QA')}}>
+              <button className='button' type='submit' onClick={(e) => {this.collapseAClick(e); context.click('qa_collapseABtn', 'QA')}}>
                 Collapse answers
               </button>
             </div>

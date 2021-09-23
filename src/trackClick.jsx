@@ -14,10 +14,10 @@ class TrackContextProvider extends React.Component {
       headers: {
         'Authorization': token.TOKEN
       },
-      body: {
+      data: {
         'element': element,
         'widget': widget,
-        'time': 'date'
+        'time': Date()
       }
     })
   }

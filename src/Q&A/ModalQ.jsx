@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import token from '../../config.js';
 import './Q&A.css';
+import { TrackClickContext } from './../trackClick.jsx';
 
 class ModalQ extends React.Component {
   constructor(props) {
@@ -88,7 +89,10 @@ class ModalQ extends React.Component {
     const subtitleText = (question ? 'About the Product: ' : `${product.name}: ${eachQuestion.question_body}`)
 
     return (
-      <div className={showHideClassName}>
+      <TrackClickContext.Consumer>{(context) => {
+        context = context;
+        return(
+          <div className={showHideClassName}>
         <section className='modal-main1'>
           {children}
           <div className='modal-header'>
@@ -156,16 +160,20 @@ class ModalQ extends React.Component {
 
               </div>
 
-              <button className='button' type = 'submit' onClick={handleClose}>
+              <button className='button' type = 'submit' onClick={(e) => {handleClose(e); context.click('qa_ModalQ_submit', 'QA')}}>
                 Submit
               </button>
             </form>
-            <button className='button' onClick={handleClose}>
+            <button className='button' onClick={(e) => {handleClose(e); context.click('qa_ModalQ_close', 'QA')}}>
                 Close
             </button>
           </div>
         </section>
       </div>
+        )
+      }}
+      </TrackClickContext.Consumer>
+
     )
   }
 }
