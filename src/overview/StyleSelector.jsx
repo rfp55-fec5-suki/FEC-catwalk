@@ -2,8 +2,6 @@ import React from 'react';
 import _ from 'underscore';
 import { TrackClickContext } from '../trackClick.jsx'
 
-
-
 class StyleSelector extends React.Component {
   constructor(props) {
     super(props);
@@ -11,38 +9,39 @@ class StyleSelector extends React.Component {
   }
 
 
-  handleClick(style, e) {
+  handleClick(style, context, e) {
     e.preventDefault();
+    context.click(`Style Selection ${style.style_id}`, 'StyleSelector');
     this.setState({ selectedStyle: style.style_id });
     this.props.selectStyle(style);
   }
 
   render () {
     var styles = this.props.styles.results;
+    return (
+      <TrackClickContext.Consumer>
+        {(context) => {
+          return (
+            <div>
+              <p><b>STYLE &gt; </b>SELECTED STYLE</p>
+              <div class='style-selector'>
+                {_.map(styles, (style) => {
+                  return (
+                    <div class='style-container' key={style.style_id} onClick={this.handleClick.bind(this, style, context)}>
+                      <div id='style-checkmark'  hidden={style.style_id !== this.state.  selectedStyle}><i class="fafafa fas fa-check"></i></div>
+                      <div class='style'><img src={style.photos[0].thumbnail_url}        /></div>
+                      <div class='style-name'>{style.name}</div>
+                    </div>)
+                  })
+                }
+             </div>
+           </div>)
+          }
+        }
+      </TrackClickContext.Consumer>
+    )
 
-    <TrackClickContext.Consumer>
-    {(context) => {
-      var context = context;
-      console.log(`Context is ${context}`);
-      return (
-        <div>
-          <p><b>STYLE &gt; </b>SELECTED STYLE</p>
 
-          <div class='style-selector'>
-            {_.map(styles, (style) => {
-              return (
-                <div class='style-container' key={style.style_id} onClick={this.handleClick.bind(this, style)}>
-                  <div id='style-checkmark'  hidden={style.style_id !== this.state.selectedStyle}><i class="fafafa fas fa-check"></i></div>
-                  <div class='style'><img src={style.photos[0].thumbnail_url}  /></div>
-                  <div class='style-name'>{style.name}</div>
-                </div>
-              )
-            })}
-          </div>
-        </div>
-      )
-    }}
-    </TrackClickContext.Consumer>
   }
 }
 
