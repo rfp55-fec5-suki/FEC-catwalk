@@ -2,6 +2,8 @@ import React from 'react';
 import StarRating from './../../sharedComponents/StarRating.jsx';
 import Modal from '../Modal.jsx';
 import './reviewTile.css';
+import { TrackClickContext } from '../../trackClick.jsx';
+
 
 class ReviewTile extends React.Component {
   constructor(props) {
@@ -51,6 +53,8 @@ class ReviewTile extends React.Component {
   }
   render() {
     return (
+      <TrackClickContext.Consumer>{(context) => {
+        return (
       <div className='review-tile' data-testid='reviewTile'>
         <div className='star-rating' data-testid='reviewTileStarRating'>
           <StarRating rating={this.props.review.rating} />
@@ -71,7 +75,10 @@ class ReviewTile extends React.Component {
           </div>
           <div>
             {this.props.review.photos.length ? this.props.review.photos.map((photo) => (<img src={`${photo.url}`}
-              className='tile-thumb' key={photo.id} onClick={() => this.showImgModal(photo.url)} alt='review thumbnail'/>)) : null}
+              className='tile-thumb' key={photo.id} onClick={() => {
+                context.click('review_thumbnail', 'reviews');
+                this.showImgModal(photo.url);
+                }} alt='review thumbnail'/>)) : null}
           </div>
         </div>
         {this.props.review.recommend ? <div className='recommend' data-testid='reviewTileRecommend'>
@@ -84,16 +91,21 @@ class ReviewTile extends React.Component {
           {this.state.helped ? <React.Fragment><i class="fas fa-check"></i>
           <span className='helped-button'>Helpful? Yes({this.state.helpfulCount}) </span></React.Fragment> :
           <span className='helpful-button' onClick={() => {
-            this.setState({helped: true})
-            this.setState({helpfulCount: this.state.helpfulCount + 1})
-            this.props.markHelpful(this.props.review.review_id)
+            context.click('review_helpful', 'reviews');
+            this.setState({helped: true});
+            this.setState({helpfulCount: this.state.helpfulCount + 1});
+            this.props.markHelpful(this.props.review.review_id);
           }}>Helpful? Yes({this.state.helpfulCount}) </span>}
           | <span className='report-button'
-            onClick={() => { this.props.report(this.props.review.review_id) }}>report</span>
+            onClick={() => {
+              context.click('report_review', 'reviews');
+              this.props.report(this.props.review.review_id);
+              }}>report</span>
         </div>
 
         <Modal show={this.state.showFullImg} children={<img src={this.state.fullImgUrl} alt='review image full size'/>} handleClose={this.hideImgModal} />
-      </div>
+      </div>)}}
+    </TrackClickContext.Consumer>
     )
   }
 }

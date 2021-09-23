@@ -1,22 +1,22 @@
 import React, { createContext } from 'react';
 import token from './../config.js';
+import axios from 'axios';
 
 export const TrackClickContext = createContext();
 
 class TrackContextProvider extends React.Component {
 
   sendClickTrack(element, widget) {
-    console.log('click tracked!')
     axios({
       method: 'post',
       url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/interactions',
       headers: {
         'Authorization': token.TOKEN
       },
-      body: {
-        'element': element,
-        'widget': widget,
-        'time': new Date()
+      data: {
+        element: element,
+        widget: widget,
+        time: Date()
       }
     })
   }
@@ -28,5 +28,4 @@ class TrackContextProvider extends React.Component {
     );
   }
 }
-// export default TrackClickContext;
 export default TrackContextProvider ;
