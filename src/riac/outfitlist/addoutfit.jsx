@@ -6,7 +6,7 @@ const AddOutfit = (props) => (
     return (
       <div className='outfit-card'>
 
-        <i className='fas fa-plus outfit-button' onClick={() => {props.onClick(); context.click('Add Outfit Button', 'Related Products')}}></i>
+        <i className='fas fa-plus outfit-button' onClick={() => {props.onClick(); context.click('Add Outfit Button', 'Related Products')}} alt='Add item to outfit list'></i>
 
         <div className='outfit-card-description'>
           Add to Outfit

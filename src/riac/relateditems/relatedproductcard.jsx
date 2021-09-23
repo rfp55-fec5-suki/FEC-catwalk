@@ -123,10 +123,10 @@ class RelatedProductCard extends React.Component {
 
             <div className='riac-productcard'>
 
-              <i className='fas fa-star riac-productcard-button' onClick={() => {this.showModal(); context.click('Display Modal Button', 'Related Products')}}></i>
+              <i className='fas fa-star riac-productcard-button' onClick={() => {this.showModal(); context.click('Display Modal Button', 'Related Products')}} alt='Open comparison modal'></i>
 
               <div className='riac-productcard-image' onClick={() => {this.props.onClick(this.state.info.id); context.click('Select New Product', 'Related Products')}}>
-                {this.state.img ? <img src={this.state.img} /> : <img src={noImage} />}
+                {this.state.img ? <img src={this.state.img} alt={`Image of ${this.state.info.name}`}/> : <img src={noImage} alt='Image of item not available'/>}
               </div>
 
               <div className='riac-productcard-category'> {this.state.info.category} </div>

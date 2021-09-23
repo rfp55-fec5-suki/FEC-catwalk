@@ -11,7 +11,7 @@ const RelatedProductModal = ({ handleClose, show, children }) => {
         <div className={displayModal}>
           <div className="riac-modal-main">
             {children}
-            <button type="button" className='riac-modal-close' onClick={() => {handleClose(); context.click('Close Modal Button', 'Related Products')}}>
+            <button type="button" className='riac-modal-close' onClick={() => {handleClose(); context.click('Close Modal Button', 'Related Products')}} alt='Close comparison modal'>
               Close
             </button>
           </div>

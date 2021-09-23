@@ -114,10 +114,10 @@ class RelatedProducts extends React.Component {
               </div>
 
 
-              {this.state.scrollLeft ? <i className='fas fa-chevron-left fa-2x riac-left-button' onClick={() => {this.slideLeft(); context.click('Related Products Button Left', 'Related Products')}}></i> : null}
+              {this.state.scrollLeft ? <i className='fas fa-chevron-left fa-2x riac-left-button' onClick={() => {this.slideLeft(); context.click('Related Products Button Left', 'Related Products')}} alt='Move related products list to the right'></i> : null}
 
               {this.state.maxScrollLeft === 0 || this.state.maxScrollLeft === this.state.scrollLeft
-                ? null : <i className='fas fa-chevron-right fa-2x riac-right-button' onClick={() => {this.slideRight(); context.click('Related Products Button Right', 'Related Products')}}></i>}
+                ? null : <i className='fas fa-chevron-right fa-2x riac-right-button' onClick={() => {this.slideRight(); context.click('Related Products Button Right', 'Related Products')}} alt='Move related products list to the right'></i>}
 
               <div className='riac-container'>
 
@@ -138,9 +138,10 @@ class RelatedProducts extends React.Component {
                 YOUR OUTFIT
               </div>
 
-              {this.state.outfitScroll ? <i className='fas fa-chevron-left fa-2x riac-left-button' onClick={() => {this.outfitSlideLeft(); context.click('Outfit Button Left', 'Related Products')}}></i> : null}
+              {this.state.outfitScroll ? <i className='fas fa-chevron-left fa-2x riac-left-button' onClick={() => {this.outfitSlideLeft(); context.click('Outfit Button Left', 'Related Products')}} alt='Move outfit list to the left'></i> : null}
+
               {this.state.outfitMaxScroll === 0 || this.state.outfitMaxScroll === this.state.outfitScroll
-                ? null : <i className='fas fa-chevron-right fa-2x riac-right-button' onClick={() => {this.outfitSlideRight(); context.click=('Outfit Button Right', 'Related Products')}}></i>}
+                ? null : <i className='fas fa-chevron-right fa-2x riac-right-button' onClick={() => {this.outfitSlideRight(); context.click=('Outfit Button Right', 'Related Products')}} alt='Move outfit list to the right'></i>}
 
               <div className='riac-container'>
 
