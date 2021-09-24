@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import StarRating from './StarRating.jsx'
 
-describe.skip('Star rating', () => {
+describe('Star rating', () => {
   test('it should have the proper amount of full stars based on rating', () => {
     var {queryAllByTestId, unmount} = render(<StarRating rating={0} />);
     expect(queryAllByTestId('empty').length).toBe(5);
