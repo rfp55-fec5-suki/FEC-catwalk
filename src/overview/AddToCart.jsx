@@ -41,7 +41,7 @@ class AddToCart extends React.Component {
 
     return (
       <form class='addToCart' onSubmit={this.handleSubmit.bind(this)}>
-        <div id='values'>
+
           <select id='selectSize' value={this.state.sku} onChange={this.handleSizeSelection.bind(this)}>
             <option value="">SELECT SIZE</option>
             <React.Fragment>{sizeSelections}</React.Fragment>
@@ -51,7 +51,6 @@ class AddToCart extends React.Component {
             <option value="0">QUANTITY</option>
             <React.Fragment>{quantityOptions}</React.Fragment>
           </select>
-        </div>
 
         <input id='buyButton' type='submit' value='+ ADD TO BAG' disabled={this.state.sku === "" || this.state.quantity === "" || this.state.quantity === "0"} />
       </form>

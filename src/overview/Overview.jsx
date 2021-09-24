@@ -2,7 +2,7 @@ import OverviewInformation from './OverviewInformation.jsx';
 import ImageGallery from './ImageGallery.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
-//import { RatingView } from 'react-simple-star-rating';
+import _ from 'underscore';
 import StarRating from '../sharedComponents/StarRating.jsx';
 import axios from 'axios';
 import token from '../../config.js';
@@ -38,7 +38,6 @@ class Overview extends React.Component {
         }
       })
         .then((response) => {
-          console.log(response.data.ratings);
           this.setState({
             ratingCount: this.countReviews(response.data.ratings),
             productStarRating: response.data.ratings
@@ -56,6 +55,9 @@ class Overview extends React.Component {
   }
 
   render () {
+
+    const features = this.props.product.features;
+
     return (
       <div class='overview'>
         <div class='overviewTop'>
@@ -71,6 +73,11 @@ class Overview extends React.Component {
             <div class='infoFreeText'>
               <h3>{this.props.product.slogan}</h3>
               <p>{this.props.product.description}</p>
+            </div>
+            <div class='features'>
+              {_.map(this.props.product.features, (feature) => {
+                return (<p>	&#10003; {feature.feature}: {feature.value}</p>)
+              })}
             </div>
           </div>
         </div>
