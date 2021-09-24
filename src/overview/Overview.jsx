@@ -55,14 +55,7 @@ class Overview extends React.Component {
     this.setState({ selectedStyle: style });
   }
 
-  render () {/*
-    let starRating;
-    if (Object.keys(this.state.productStarRating).length === 0) {
-      return null;
-    } else {
-      return ()
-    }
-    */
+  render () {
     return (
       <div class='overview'>
         <div class='overviewTop'>

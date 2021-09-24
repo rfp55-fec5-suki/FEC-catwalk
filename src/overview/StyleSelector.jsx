@@ -5,7 +5,7 @@ import { TrackClickContext } from '../trackClick.jsx'
 class StyleSelector extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {selectedStyle: null};
+    this.state = {selectedStyle: this.props.styles.results[0].style_id};
   }
 
 
@@ -14,6 +14,12 @@ class StyleSelector extends React.Component {
     context.click(`Style Selection ${style.style_id}`, 'StyleSelector');
     this.setState({ selectedStyle: style.style_id });
     this.props.selectStyle(style);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.styles.product_id !== prevProps.styles.product_id) {
+      this.setState({ selectedStyle: this.props.styles.results[0].style_id });
+    }
   }
 
   render () {
@@ -28,8 +34,8 @@ class StyleSelector extends React.Component {
                 {_.map(styles, (style) => {
                   return (
                     <div class='style-container' key={style.style_id} onClick={this.handleClick.bind(this, style, context)}>
-                      <div id='style-checkmark'  hidden={style.style_id !== this.state.  selectedStyle}><i class="fafafa fas fa-check"></i></div>
-                      <div class='style'><img src={style.photos[0].thumbnail_url}        /></div>
+                      <div id='style-checkmark'  hidden={style.style_id !== this.state.selectedStyle}><i class="fafafa fas fa-check"></i></div>
+                      <div class='style'><img src={style.photos[0].thumbnail_url} /></div>
                       <div class='style-name'>{style.name}</div>
                     </div>)
                   })
