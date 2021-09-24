@@ -3,41 +3,56 @@ import React from 'react';
 class AddToCart extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    // Make selectedStyle a state so we can control when this is updated (e.g. make sure  sku and quantity are always reset when updating the selected style).
+    this.state = { selectedStyle: this.props.selectedStyle, sku: "", quantity: "" };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.selectedStyle !== prevProps.selectedStyle) {
+      this.setState({ selectedStyle: this.props.selectedStyle, sku: "", quantity: "" });
+    }
   }
 
   handleSizeSelection(e) {
-    this.setState( {maxQuantity: e.target.value})
+    this.setState({ sku: e.target.value });
   }
 
-  render () {
-    var options = this.props.selectedStyle.skus;
+  handleQuantityChange(e) {
+    this.setState({ quantity: e.target.value });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    this.setState({ sku: "", quantity: "" });
+  }
+  render() {
+    var skus = this.state.selectedStyle.skus;
 
     let sizeSelections = [];
-    for (var k in options) {
-      sizeSelections.push(<option value={options[k].quantity}>{options[k].size}</option>)
+    for (var sku in skus) {
+      sizeSelections.push(<option value={sku}>{skus[sku].size}</option>);
     }
 
+    const maxQuantity = this.state.sku === "" ? 0 : skus[this.state.sku].quantity;
     let quantityOptions = [];
-    for (var i = 1; i <= this.state.maxQuantity; i++) {
-      quantityOptions.push(<option value={options[k].quantity}>{i}</option>)
+    for (var i = 1; i <= maxQuantity; i++) {
+      quantityOptions.push(<option value={i}>{i}</option>)
     }
 
     return (
-      <form class='addToCart'>
-        <div id='values'>
-          <select id='selectSize' onChange={this.handleSizeSelection.bind(this)}>
-            <option>SELECT SIZE</option>
+      <form class='addToCart' onSubmit={this.handleSubmit.bind(this)}>
+
+          <select id='selectSize' value={this.state.sku} onChange={this.handleSizeSelection.bind(this)}>
+            <option value="">SELECT SIZE</option>
             <React.Fragment>{sizeSelections}</React.Fragment>
           </select>
 
-          <select id='selectQuantity'>
-            <option>QUANTITY</option>
+          <select id='selectQuantity' value={this.state.selectedQuantity} onChange={this.handleQuantityChange.bind(this)}>
+            <option value="0">QUANTITY</option>
             <React.Fragment>{quantityOptions}</React.Fragment>
           </select>
-        </div>
 
-        <input id='buyButton' type='button' value='+ ADD TO BAG'/>
+        <input id='buyButton' type='submit' value='+ ADD TO BAG' disabled={this.state.sku === "" || this.state.quantity === "" || this.state.quantity === "0"} />
       </form>
     );
 

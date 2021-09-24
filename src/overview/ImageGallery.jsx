@@ -15,7 +15,8 @@ const POPUP_STYLES = {
   backgroundColor: '#FFF',
   padding: '50px',
   objectFit: "cover",
-  zIndex: 1000
+  background: `linear-gradient(45deg, rgb(129, 161, 128),rgba(86,73, 54, .6), rgb(214, 164, 15), rgb(161, 19, 40), black)`,
+  zIndex: 100
 }
 
 class ImageGallery extends React.Component {
@@ -83,12 +84,25 @@ class ImageGallery extends React.Component {
       return null;
     } else {
       return (
-        <div style={POPUP_STYLES} class='main-img-popup'>
+        <div class='main-image-popup'>
+          <div style={POPUP_STYLES} class='main-image-popup-img'>
           <button class='btn-left' onClick={this.onClickToLeft.bind(this)} disabled={selected <= showedFirst}>&#8249;</button>
           <img src={stylePhotos[selected].url } class='mainPopup'></img>
           <button class='btn-right' onClick={this.onClickToRight.bind(this)} disabled={selected >= Math.min(showedFirst + MAX_PHOTOS_TO_DISPLAY - 1, stylePhotos.length - 1)}>&#8250;</button>
           <button onClick={this.onClickClosePopup.bind(this)} class='popup-close-button topright'>X</button>
+          <div class='main-image-popup-caresoul'>
+          {stylePhotos.map((photo, index) => {
+            if (index >= showedFirst && index < showedFirst + MAX_PHOTOS_TO_DISPLAY) {
+              return (<i class='popup-caresoul-icon' onClick={this.onImageClick.bind(this, index)} style={index === selected ? {color: 'black', fontSize: '40px'} : {color: 'white'} }>&#9711;</i>);
+            }
+          return (<div/>);
+          })}
         </div>
+        </div>
+
+
+        </div>
+
       )
     }
 }
@@ -97,10 +111,14 @@ class ImageGallery extends React.Component {
     const stylePhotos = this.props.selectedStyle.photos;
     const currentShowedFirst = this.state.currentShowedFirstIndex;
     const currentSelected = this.state.currentSelectedIndex;
-    const renderUpButton = (<button disabled={currentShowedFirst === 0} onClick={this.onUpClick.bind(this)}>UP</button>);
+    const renderUpButton = (<button
+                              disabled={currentShowedFirst === 0}
+                              onClick={this.onUpClick.bind(this)}
+                              style={{padding: '2%', marginBottom: '5%'}}>UP</button>);
     const renderDownButton = (<button
                                 disabled={currentShowedFirst + MAX_PHOTOS_TO_DISPLAY >= stylePhotos.length}
-                                onClick={this.onDownClick.bind(this)}>DOWN</button>);
+                                onClick={this.onDownClick.bind(this)}
+                                style={{padding: '2%', marginBottom: '5%'}}>DOWN</button>);
 
     return (
       <div class='imageContainer'>
@@ -109,7 +127,7 @@ class ImageGallery extends React.Component {
           <div class='selectionImages'>
             {stylePhotos.map((photo, index) => {
               if (index >= currentShowedFirst && index < currentShowedFirst + MAX_PHOTOS_TO_DISPLAY) {
-                return (<img class='selectionImg' src={photo.thumbnail_url} onClick={this.onImageClick.bind(this, index)} style={index === currentSelected ? {border: 'solid'} : {border: 'none'} }/>);
+                return (<img class='selectionImg' src={photo.thumbnail_url} onClick={this.onImageClick.bind(this, index)} style={index === currentSelected ? {border: 'solid', borderColor: 'gold'} : {border: 'none'} }/>);
               }
               return (<div/>);
               })}
