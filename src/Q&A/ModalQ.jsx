@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import token from '../../config.js';
 import './Q&A.css';
+//import { TrackClickContext } from './../trackClick.jsx';
 
 class ModalQ extends React.Component {
   constructor(props) {
@@ -98,13 +99,14 @@ class ModalQ extends React.Component {
             </p>
           </div>
           <div className='modal-body'>
-            <form onSubmit={this.submitForm} name='QA'>
+            <form  onSubmit={this.submitForm} name='QA'>
               <div>
                 <label htmlFor='yourName'>
                   *Name:
                   <br />
                   <input
                     required
+                    style = {{width: "300px"}}
                     type='text'
                     name='name'
                     maxLength='60'
@@ -122,13 +124,13 @@ class ModalQ extends React.Component {
                   <br />
                   <input
                     required
+                    style = {{width: "300px"}}
                     type='email'
                     name='email'
                     placeholder='Example: yourname@gmail.com'
                     maxLength='60'
                     onChange={(e) => {this.handleFormChange(e)}}
                     onInvalid={this.submitErrEmail}
-
                     >
                   </input>
                 </label>
@@ -142,6 +144,7 @@ class ModalQ extends React.Component {
                   <br />
                   <input
                     type='textarea'
+                    style={{height: "50px", width: "300px"}}
                     required
                     name='body'
                     rows='20'
@@ -150,10 +153,9 @@ class ModalQ extends React.Component {
                     onInvalid={this.submitErrForm}>
                   </input>
                 </label>
-
               </div>
 
-              <button className='button' type = 'submit' onClick={handleClose}>
+              <button className='button' type = 'submit' onClick={this.props.handleClose} >
                 Submit
               </button>
             </form>
@@ -163,6 +165,7 @@ class ModalQ extends React.Component {
           </div>
         </section>
       </div>
+
     )
   }
 }

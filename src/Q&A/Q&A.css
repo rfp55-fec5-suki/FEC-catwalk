@@ -25,7 +25,65 @@
   overflow: scroll;
   border: none;
   padding-left: 15px;
+  margin-bottom: 20px;
 }
+
+.qa_questionInfo {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.qa_questionBtn {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  margin-left: 20px;
+}
+
+.qa_addAnswer {
+  margin-left: 20px;
+}
+
+
+
+.listTitle {
+  font-size: 30px;
+}
+/* .qa_answer {
+  display: flex;
+  justify-content: space-between;
+} */
+
+.qa_answerInfo {
+  display: grid;
+  grid-template-columns: 200px 200px auto;
+}
+.qa_answerBody {
+  font-size: large;
+  background-color: rgb(106, 136, 105);
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.qa_answerBtn {
+  display: grid;
+  grid-template-columns: 25% 25%
+}
+
+/* .qa_photo {
+
+}
+
+.qa_answerer {
+
+}
+
+.qa_answerDate {
+
+}
+
+.qa_answerHelpful {
+
+} */
 
 .answerList {
   height: 150px;
