@@ -86,7 +86,6 @@ class Overview extends React.Component {
               <a href="#" class="icon fa fa-facebook icon" style={icon_styles}></a>
               <a href="#" class="icon fa fa-twitter icon" style={icon_styles}></a>
               <a href="#" class="icon fa fa-instagram icon" style={icon_styles}></a>
-
             </div>
           </div>
         </div>
