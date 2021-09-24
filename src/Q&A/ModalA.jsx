@@ -193,6 +193,7 @@ class ModalA extends React.Component {
                       }}
                       placeholder = 'your answer img url example.com/photo.jpg'>
                     </input>
+                    {this.state.photos.map(photo => <img className='answerPic' src = {`${photo}`}/>)}
                     <button className='button' onClick={this.addUrl}>
                       Add Image
                     </button>
