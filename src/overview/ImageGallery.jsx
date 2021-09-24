@@ -97,7 +97,9 @@ class ImageGallery extends React.Component {
     const stylePhotos = this.props.selectedStyle.photos;
     const currentShowedFirst = this.state.currentShowedFirstIndex;
     const currentSelected = this.state.currentSelectedIndex;
-    const renderUpButton = (<button disabled={currentShowedFirst === 0} onClick={this.onUpClick.bind(this)}>UP</button>);
+    const renderUpButton = (<button
+                              disabled={currentShowedFirst === 0}
+                              onClick={this.onUpClick.bind(this)}>UP</button>);
     const renderDownButton = (<button
                                 disabled={currentShowedFirst + MAX_PHOTOS_TO_DISPLAY >= stylePhotos.length}
                                 onClick={this.onDownClick.bind(this)}>DOWN</button>);
