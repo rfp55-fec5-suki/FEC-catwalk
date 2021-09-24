@@ -74,19 +74,34 @@ class Overview extends React.Component {
             <div><StarRating meta={this.state.productStarRating} /><a href='#review-section'>Read all reviews ({this.state.ratingCount})</a></div>
             <OverviewInformation product={this.props.product} selectedStyle={this.state.selectedStyle} />
             <StyleSelector styles={this.props.styles} selectStyle={this.handleSelect.bind(this)} />
-            <AddToCart selectedStyle={this.state.selectedStyle}/>
-            <div class='infoFreeText'>
-              <h3>{this.props.product.slogan}</h3>
-              <p>{this.props.product.description}</p>
+
+            <div class='right-bottom'>
+              <div class='right-bottom-left'>
+                <div class='infoFreeText'>
+                  <h3>{this.props.product.slogan}</h3>
+                  <p>{this.props.product.description}</p>
+                </div>
+                <div class='features'>
+                  {_.map(this.props.product.features, (feature)   => {
+                    return (<p>	&#10003; {feature.feature}:   {feature.value}</p>)
+                  })}
+                  <div class='social-icons'>
+                    <a href="#" class="icon fa fa-facebook icon"   style={icon_styles}></a>
+                    <a href="#" class="icon fa fa-twitter icon"   style={icon_styles}></a>
+                    <a href="#" class="icon fa fa-instagram icon"   style={icon_styles}></a>
+                  </div>
+
+                </div>
+              </div>
+              <div class='right-bottom-right'>
+                <AddToCart selectedStyle={this.state.selectedStyle}/>
+              </div>
+
+
             </div>
-            <div class='features'>
-              {_.map(this.props.product.features, (feature) => {
-                return (<p>	&#10003; {feature.feature}: {feature.value}</p>)
-              })}
-              <a href="#" class="icon fa fa-facebook icon" style={icon_styles}></a>
-              <a href="#" class="icon fa fa-twitter icon" style={icon_styles}></a>
-              <a href="#" class="icon fa fa-instagram icon" style={icon_styles}></a>
-            </div>
+
+
+
           </div>
         </div>
       </div>
