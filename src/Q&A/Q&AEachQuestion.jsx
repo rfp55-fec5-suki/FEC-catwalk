@@ -3,6 +3,7 @@ import axios from 'axios';
 import token from '../../config.js';
 import QAAnswer from './QAAnswer.jsx';
 import ModalA from './ModalA.jsx';
+import { TrackClickContext } from './../trackClick.jsx'
 
 class EachQuestion extends React.Component {
   constructor(props) {
@@ -22,7 +23,8 @@ class EachQuestion extends React.Component {
   }
 
 
-  showModal() {
+  showModal(e) {
+    e.preventDefault();
     this.setState ({
       show: true,
     })
@@ -73,7 +75,8 @@ class EachQuestion extends React.Component {
       })
   }
 
-  handleClickYes() {
+  handleClickYes(e) {
+    e.preventDefault();
     const question_id = this.props.question.question_id;
     if(this.state.voted === true) {
       return
@@ -88,7 +91,8 @@ class EachQuestion extends React.Component {
     }
   }
 
-  handleClickReport() {
+  handleClickReport(e) {
+    e.preventDefault();
     const question_id = this.props.question.question_id;
     this.setState({
       reported: true
@@ -100,20 +104,25 @@ class EachQuestion extends React.Component {
   render() {
     const question = this.props.question;
     return (
-      <div key = {question.question_id}>
+      <TrackClickContext.Consumer>{(context) => {
+        context = context
+        return (
+          <div key = {question.question_id}>
           <div className='listTitle'>Q:</div>
-          {question.question_body}
-          <br />
-          post on: {question.question_date.slice(0,10)}
+          <div className='qa_questionInfo'>
+            <div className='qa_questionBody'>{question.question_body}</div>
+            <div>{question.question_date.slice(0,10)}</div>
+          </div>
+
 
           <div className = 'helpful'>
             Helpful?
-            <a className = 'link' onClick={this.handleClickYes}>
+            <a className = 'link' onClick={(e) => {this.handleClickYes(e); context.click('qa_QYes', 'QA')}}>
               <span>
                 Yes({question.question_helpfulness}) |
               </span>
             </a>
-            <a className = 'link' onClick={this.handleClickReport}>
+            <a className = 'link' onClick={(e) => {this.handleClickReport(e); context.click('qa_Qreport', 'QA')}}>
               <span>
                 Report
               </span>
@@ -130,13 +139,19 @@ class EachQuestion extends React.Component {
             question={this.props.question}
             answer={this.state.answer}
             type = 'answer'/>
-            <button className='button' type = 'submit' onClick={this.showModal}>
+            <button className='button' type = 'submit' onClick={(e) => {this.showModal(e); context.click('qa_ModalA', 'QA')}}>
               Add an Answer
             </button>
           </div>
 
           <QAAnswer question = {question} getQuestions={this.props.getQuestions}/>
       </div>
+        )
+      }
+
+      }
+      </TrackClickContext.Consumer>
+
     )
   }
 }
