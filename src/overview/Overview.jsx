@@ -57,6 +57,11 @@ class Overview extends React.Component {
   render () {
 
     const features = this.props.product.features;
+    const icon_styles = {
+      fontSize: '48px',
+      paddingLeft: '10%',
+      paddingTop: '5%'
+    }
 
     return (
       <div class='overview'>
@@ -78,8 +83,10 @@ class Overview extends React.Component {
               {_.map(this.props.product.features, (feature) => {
                 return (<p>	&#10003; {feature.feature}: {feature.value}</p>)
               })}
-              <a href="#" class="fa fa-facebook"></a>
-              <a href="#" class="fa fa-twitter"></a>
+              <a href="#" class="icon fa fa-facebook icon" style={icon_styles}></a>
+              <a href="#" class="icon fa fa-twitter icon" style={icon_styles}></a>
+              <a href="#" class="icon fa fa-instagram icon" style={icon_styles}></a>
+
             </div>
           </div>
         </div>
