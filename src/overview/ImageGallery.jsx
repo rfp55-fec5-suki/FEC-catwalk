@@ -113,10 +113,12 @@ class ImageGallery extends React.Component {
     const currentSelected = this.state.currentSelectedIndex;
     const renderUpButton = (<button
                               disabled={currentShowedFirst === 0}
-                              onClick={this.onUpClick.bind(this)}>UP</button>);
+                              onClick={this.onUpClick.bind(this)}
+                              style={{padding: '2%', marginBottom: '5%'}}>UP</button>);
     const renderDownButton = (<button
                                 disabled={currentShowedFirst + MAX_PHOTOS_TO_DISPLAY >= stylePhotos.length}
-                                onClick={this.onDownClick.bind(this)}>DOWN</button>);
+                                onClick={this.onDownClick.bind(this)}
+                                style={{padding: '2%', marginBottom: '5%'}}>DOWN</button>);
 
     return (
       <div class='imageContainer'>
@@ -125,7 +127,7 @@ class ImageGallery extends React.Component {
           <div class='selectionImages'>
             {stylePhotos.map((photo, index) => {
               if (index >= currentShowedFirst && index < currentShowedFirst + MAX_PHOTOS_TO_DISPLAY) {
-                return (<img class='selectionImg' src={photo.thumbnail_url} onClick={this.onImageClick.bind(this, index)} style={index === currentSelected ? {border: 'solid'} : {border: 'none'} }/>);
+                return (<img class='selectionImg' src={photo.thumbnail_url} onClick={this.onImageClick.bind(this, index)} style={index === currentSelected ? {border: 'solid', borderColor: 'gold'} : {border: 'none'} }/>);
               }
               return (<div/>);
               })}
