@@ -15,6 +15,7 @@ const POPUP_STYLES = {
   backgroundColor: '#FFF',
   padding: '50px',
   objectFit: "cover",
+  background: `linear-gradient(45deg, rgb(129, 161, 128),rgba(86,73, 54, .6), rgb(214, 164, 15), rgb(161, 19, 40), black)`,
   zIndex: 1000
 }
 

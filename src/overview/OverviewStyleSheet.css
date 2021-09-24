@@ -31,7 +31,7 @@
   z-index: 1;
   padding: 0.5%;
   margin-left: 30%;
-  margin-bottom: 30%
+  margin-bottom: 5%
 }
 
 .addToCart #selectSize{
@@ -243,6 +243,7 @@
   text-align: center;
   cursor: pointer;
   white-space: nowrap;
+  font-size: 48px;
 }
 
 .style-image-container{
@@ -258,4 +259,10 @@
 #style-checkmark .fafafa::before {
   color: white;
   transform: translate(-50%, -50%);
+}
+
+.topright {
+  position:fixed;
+  top: 10px;
+  right:10px;
 }

@@ -78,6 +78,8 @@ class Overview extends React.Component {
               {_.map(this.props.product.features, (feature) => {
                 return (<p>	&#10003; {feature.feature}: {feature.value}</p>)
               })}
+              <a href="#" class="fa fa-facebook"></a>
+              <a href="#" class="fa fa-twitter"></a>
             </div>
           </div>
         </div>
