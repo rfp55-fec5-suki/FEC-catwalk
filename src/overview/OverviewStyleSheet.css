@@ -1,11 +1,10 @@
 .overview {
-  width: 100%;
   height: 60%;
   display: flex;
   flex-direction: column;
   padding-top: 80px;
-  padding-left: 3%;
-  padding-right: 3%;
+  margin-left: 3%;
+  margin-right: 3%;
   font-size: 20px
 }
 
@@ -18,47 +17,70 @@
 .rightCol {
   float: right;
   height: 100%;
-  width: 60%;
+  width: 50%;
 }
 
-.addToCart {
-  border-style: groove;
-  border-color: rgb(129, 161, 128);
-  width: 15%;
-  height:15%;
+.right-bottom {
   display: flex;
-  flex-direction: column;
-  position: fixed;
-  z-index: 1;
-  padding: 0.5%;
-  margin-left: 30%;
-  margin-bottom: 5%
+  flex-direction: row;
+
 }
 
-.addToCart #selectSize{
-  height: 35px;
-  margin-top: 2%;
+.right-bottom-left {
+  float: left;
+  width: 50%;
+
+  height: auto;
 }
 
-.addToCart #selectQuantity{
-  margin-top: 2%;
-  height: 35px;
+.right-bottom-right {
+  float:  left;
+  width: 50%
+
 }
-
-.addToCart #buyButton {
-
-  margin-top: 6%;
-  font-size: 22px;
-  font-weight: 1000;
-  color: gold;
-}
-
 
 .leftCol {
   float: right;
-  width: 60%;
-  height: 80%;
+  width: 50%;
+  height: 100%;
   display: flex;
+}
+
+.addToCart {
+  padding-top: 20%;
+  padding-bottom: 20%;
+  padding-left: 10%;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+}
+
+.addToCart #selectSize{
+  margin-top: 8%;
+}
+
+.addToCart #selectQuantity{
+  margin-top: 8%;
+
+}
+
+.addToCart #buyButton {
+  width: 100%;
+  height: 100%;
+
+  padding-top: 5%;
+
+  padding-bottom: 5%;
+  margin-top: 10%;
+
+
+  font-weight: 1000;
+  font-size: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
 }
 
 .imageContainer {
@@ -66,7 +88,7 @@
   flex-direction: row;
 }
 
-.imageContainer .selectionImgColumn {
+.selectionImgColumn {
   display: flex;
   flex-direction: column;
   float: left;
@@ -99,8 +121,8 @@
 .imageContainer .mainImage-container{
   position: relative;
   float: right;
-  width: 791px;
-  height: 1187px;
+  width: 90%;
+  height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -132,16 +154,20 @@
 }
 
 .imageContainer .mainImage-container .mainImage {
+  min-width: 90%;
   width: inherit;
-  /*height: auto;*/
+  height: inherit;
   cursor: zoom-in;
   display:block;
-  margin: 1%;
+  justify-content: center;
 }
 
 .mainImage img {
-  max-width: 100%;
-  height: auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  justify-content: center;
 }
 
 
@@ -154,21 +180,17 @@
 
 }
 
-.detailedInformation {
-  padding-top: 50px;
-  width: 100%;
-  display: flex;
-}
-
 .infoFreeText {
   float:left;
-  width: 59%;
-  padding:2%
+  width: 100%;
+  padding-top: 10%
+
 }
 .features {
   float:left;
-  width: 59%;
-  margin-right:2%
+  width: 100%;
+  padding-left:2%;
+
 }
 
 .infoHighlights span {
@@ -203,14 +225,15 @@
 .style-container {
   width: 20%;
   height: 20%;
-  padding-right: 5%;
+  padding-right: 1%;
+  padding-left: 1%;
 }
 
 .style {
   position: relative;
   overflow: hidden;
   border-radius: 50%;
-  margin: 8%;
+  margin: 10%;
 }
 
 .style:before{
@@ -221,12 +244,13 @@
 
 .style-name {
   width: 100%;
+  padding-top: 5%;
   text-align: center;
-  font-size: 8;
+
+  font-size: 16px;
 }
 .style img{
   position: absolute; /* Take your picture out of the flow */
-
   top: 0;
   bottom: 0;
   left: 0;
@@ -236,7 +260,6 @@
   object-fit: cover; /* Equivalent of the background-size: cover; of a background-image */
   object-position: center;
   background-size: 50% 50%;
-  margin-right: 20px;
 
 }
 
@@ -307,6 +330,14 @@
   padding-left: 20%;
 }
 
+.social-icons {
+  padding-top: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .icon .fa {
-  font-size: 100px
+  font-size: 100px;
+
 }
