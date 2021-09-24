@@ -22,7 +22,7 @@
 
 .addToCart {
   border-style: groove;
-  border-color: chartreuse;
+  border-color: rgb(129, 161, 128);
   width: 15%;
   height:15%;
   display: flex;
@@ -240,6 +240,7 @@
   text-decoration: none;
   color: inherit;
   background-color: inherit;
+  color:rgb(129, 161, 128);
   text-align: center;
   cursor: pointer;
   white-space: nowrap;
@@ -265,4 +266,30 @@
   position:fixed;
   top: 10px;
   right:10px;
+}
+
+.main-image-popup-caresoul {
+  position: fixed;
+  left: 41%;
+  bottom: 2%;
+  transform: translate(-20%, -50%);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.popup-caresoul-icon {
+  position: relative;
+  z-index:102;
+  height:100%;
+  display: flex;
+  color: black;
+  width: 2%;
+  font-weight: 1000;
+  font-size: 32px;
+  margin:10%;
+  text-shadow: 2px 2px red;
+  cursor: pointer;
+
+  padding-left: 20%;
 }

@@ -16,7 +16,7 @@ const POPUP_STYLES = {
   padding: '50px',
   objectFit: "cover",
   background: `linear-gradient(45deg, rgb(129, 161, 128),rgba(86,73, 54, .6), rgb(214, 164, 15), rgb(161, 19, 40), black)`,
-  zIndex: 1000
+  zIndex: 100
 }
 
 class ImageGallery extends React.Component {
@@ -84,12 +84,25 @@ class ImageGallery extends React.Component {
       return null;
     } else {
       return (
-        <div style={POPUP_STYLES} class='main-img-popup'>
+        <div class='main-image-popup'>
+          <div style={POPUP_STYLES} class='main-image-popup-img'>
           <button class='btn-left' onClick={this.onClickToLeft.bind(this)} disabled={selected <= showedFirst}>&#8249;</button>
           <img src={stylePhotos[selected].url } class='mainPopup'></img>
           <button class='btn-right' onClick={this.onClickToRight.bind(this)} disabled={selected >= Math.min(showedFirst + MAX_PHOTOS_TO_DISPLAY - 1, stylePhotos.length - 1)}>&#8250;</button>
           <button onClick={this.onClickClosePopup.bind(this)} class='popup-close-button topright'>X</button>
+          <div class='main-image-popup-caresoul'>
+          {stylePhotos.map((photo, index) => {
+            if (index >= showedFirst && index < showedFirst + MAX_PHOTOS_TO_DISPLAY) {
+              return (<i class='popup-caresoul-icon' onClick={this.onImageClick.bind(this, index)} style={index === selected ? {color: 'black', fontSize: '40px'} : {color: 'white'} }>&#9711;</i>);
+            }
+          return (<div/>);
+          })}
         </div>
+        </div>
+
+
+        </div>
+
       )
     }
 }
