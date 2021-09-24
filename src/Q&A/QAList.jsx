@@ -157,7 +157,7 @@ class QAList extends React.Component {
               className = 'searchBar'
               type = 'text'
               placeholder="Have a question? Search for answers…"
-              onChange = {this.handleFilter}
+              onChange = {(e) => {this.handleFilter(e)}}
             ></input>
           </div>
           <div className = 'questionList'>
@@ -167,7 +167,7 @@ class QAList extends React.Component {
           </div>
           <div className = 'qa_questionBtn'>
             <div>
-              <button className='button' type='submit' onClick={()=>{this.collapseQClick; context.click('qa_showlessQBtn', 'QA')}}>Show less answered questions</button>
+              <button className='button' type='submit' onClick={(e)=>{this.collapseQClick(e); context.click('qa_showlessQBtn', 'QA')}}>Show less answered questions</button>
             </div>
             <div>
               {this.state.questions.length > 2 && <button className='button' type = 'submit' onClick={(e)=>{this.loadMoreQClick(e); context.click('qa_showmoreQBtn', 'QA')}}>More answered questions</button>}
