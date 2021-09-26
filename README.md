@@ -28,7 +28,7 @@ npm run start
 
 
 ## Usage
-### Overview (Nan Jiang)
+### Overview (Nan Jiang) [![Linkedin: LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/dorajiang/)](https://www.linkedin.com/in/dorajiang/) [![GitHub: GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white&link=https://github.com/nannobug)](https://github.com/nannobug)
 Product overview shows relevant information for a user selected product. It also provides various options for users to browse styles and provides interaction options for users to add a sku to shopping cart for purchase.
  
 **Overview consists of functional components:**
@@ -56,14 +56,10 @@ Product overview shows relevant information for a user selected product. It also
 - Select size and quantity
 - Add a SKU to shopping cart
 
-### Related Items and Products (Andrew Cho)
+### Related Items and Products (Andrew Cho) [![Linkedin: LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/andrew-cho-b06768218/)](https://www.linkedin.com/in/andrew-cho-b06768218/) [![GitHub: GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white&link=https://github.com/AndrewGunnCho)](https://github.com/AndrewGunnCho)
  
 This component is split into two parts: *Related Items* and *Outfit List*
- 
-### Related Items and Products
- 
-This component is split into two parts: *Related Items* and *Outfit List*
- 
+  
 **Related Items**
 
 <ul>
@@ -82,7 +78,7 @@ This component is split into two parts: *Related Items* and *Outfit List*
  </ul>
 
  
-### Questions and Answers (Qinyu Zhu)
+### Questions and Answers (Qinyu Zhu) [![Linkedin: LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/qinyu-867152181/)](https://www.linkedin.com/in/qinyu-867152181/) [![GitHub: GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white&link=https://github.com/zhuzhuxia078)](https://github.com/zhuzhuxia078)
 **:open_book: Introduction**
 
 - Our Q&A is sorted by helplessness, both questions and answers to give clients better review. 
@@ -112,7 +108,7 @@ This component is split into two parts: *Related Items* and *Outfit List*
  
  
  
-### Ratings and Reviews (Daniel Prejs)
+### Ratings and Reviews (Daniel Prejs) [![Linkedin: LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/daniel-prejs-7842611a9/)](https://www.linkedin.com/in/daniel-prejs-7842611a9/) [![GitHub: GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white&link=https://github.com/dprejs)](https://github.com/dprejs)
  
 Ratings and reviews has a list of reviews that can be filtered in different ways:
 - by Relevant 
