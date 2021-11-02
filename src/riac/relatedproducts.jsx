@@ -30,7 +30,7 @@ class RelatedProducts extends React.Component {
   }
 
   fetchStorage() {
-    var arr = [...Object.values(localStorage)];
+    var arr = [...Object.keys(localStorage)];
     this.setState({
       storage: arr
     })
@@ -150,7 +150,7 @@ class RelatedProducts extends React.Component {
                   <AddOutfit onClick={this.addToOutfit} />
 
                   {this.state.storage ? this.state.storage.map((productid) => {
-                    return <OutfitCard productid={productid} onClick={this.props.onClick} removeOutfit={this.removeOutfit} />
+                    return productid === 'helpful' ? null : <OutfitCard productid={productid} onClick={this.props.onClick} removeOutfit={this.removeOutfit} />
                   }) : null}
 
                 </div>
